@@ -15,5 +15,5 @@ hs_err_pid*
 
 # Eclipse
 .metadata/
-code/.classpath
-code/.project
+.classpath
+.project
