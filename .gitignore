@@ -17,3 +17,5 @@ hs_err_pid*
 .metadata/
 .classpath
 .project
+
+code/CCLabCore/bin/
