@@ -1,43 +1,25 @@
-<<<<<<< HEAD
+# Generated files
 *.class
+code/CCLabCore/target/
+code/CCLabCore/bin/
+*.pdf
 
-#IDE files
-code/CCLabCore/.idea/*
-code/CCLabCore/target/*
+# IDE files
+code/CCLabCore/.idea/
 *.iml
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-*.aux
-*.synctex.gz
-*.pdf
-=======
-*.class
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-*.aux
-*.synctex.gz
-*.pdf
-
-# Eclipse
 .metadata/
 .classpath
 .project
 
-code/CCLabCore/bin/
->>>>>>> develop
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+*.aux
+*.synctex.gz
+AwsCredentials.properties
