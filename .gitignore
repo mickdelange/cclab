@@ -1,8 +1,8 @@
 *.class
 
 #IDE files
-.idea/*
-target/*
+code/CCLabCore/.idea/*
+code/CCLabCore/target/*
 *.iml
 
 # Mobile Tools for Java (J2ME)
