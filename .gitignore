@@ -12,3 +12,8 @@ hs_err_pid*
 *.aux
 *.synctex.gz
 *.pdf
+
+# Eclipse
+.metadata/
+code/.classpath
+code/.project
