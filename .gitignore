@@ -1,4 +1,15 @@
+# Generated files
 *.class
+code/CCLabCore/target/
+code/CCLabCore/bin/
+*.pdf
+
+# IDE files
+code/CCLabCore/.idea/
+*.iml
+.metadata/
+.classpath
+.project
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -11,11 +22,4 @@
 hs_err_pid*
 *.aux
 *.synctex.gz
-*.pdf
-
-# Eclipse
-.metadata/
-.classpath
-.project
-
-code/CCLabCore/bin/
+AwsCredentials.properties
