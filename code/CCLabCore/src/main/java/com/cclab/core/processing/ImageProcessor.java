@@ -26,23 +26,23 @@ public class ImageProcessor {
         writeImage(process(readImage(input), operations), output);
     }
 
-    private static BufferedImage process(BufferedImage img, String operations)throws RuntimeException {
+    private static BufferedImage process(BufferedImage img, String operations){
         String[] ops = operations.split(",");
-        for(String op:ops){
-            if("thumbnail".equals(op))
-                img =  createThumbnail(img);
-            else if("blur".equals(op))
-                img =  blurImage(img);
+        for (String op : ops) {
+            if ("thumbnail".equals(op))
+                img = createThumbnail(img);
+            else if ("blur".equals(op))
+                img = blurImage(img);
             else
                 throw new RuntimeException("Unknown filter");
         }
         return img;
     }
 
-    private static BufferedImage blurImage(BufferedImage img){
-        if(Math.max(img.getHeight(), img.getWidth()) > MAX_SIZE)
+    private static BufferedImage blurImage(BufferedImage img) {
+        if (Math.max(img.getHeight(), img.getWidth()) > MAX_SIZE)
             img = resize(img, MAX_SIZE);
-        long radius = Math.round(Math.sqrt(img.getHeight()*img.getWidth()))/10;
+        long radius = Math.round(Math.sqrt(img.getHeight() * img.getWidth())) / 10;
         new GaussianFilter(Math.min(radius, MAX_BLUR_RADIUS)).filter(img, img);
         return img;
     }
