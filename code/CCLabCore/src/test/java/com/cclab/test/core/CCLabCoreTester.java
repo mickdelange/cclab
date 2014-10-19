@@ -2,7 +2,7 @@ package com.cclab.test.core;
 
 import com.amazonaws.services.ec2.model.Instance;
 import com.cclab.core.AwsConnect;
-import com.cclab.core.ImageProcessor;
+import com.cclab.core.processing.ImageProcessor;
 
 import java.io.IOException;
 
