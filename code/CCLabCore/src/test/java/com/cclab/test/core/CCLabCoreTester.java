@@ -1,6 +1,6 @@
 package com.cclab.test.core;
 
-import com.cclab.core.ImageProcessor;
+import com.cclab.core.processing.ImageProcessor;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import java.io.IOException;
 public class CCLabCoreTester {
     public static void main (String[] args) {
         try {
-            ImageProcessor.createThumbnail("/Users/ane/Downloads/strawberry.jpg", "/Users/ane/Downloads/strawberry_small.jpg");
+            ImageProcessor.process("/Users/ane/Downloads/strawberry.jpg", "/Users/ane/Downloads/strawberry_small.jpg", "blur");
         } catch (IOException e) {
             e.printStackTrace();
         }
