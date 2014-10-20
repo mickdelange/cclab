@@ -1,81 +1,36 @@
 package com.cclab.core;
 
-import org.apache.log4j.*;
-import org.apache.log4j.varia.LevelRangeFilter;
+import com.cclab.core.network.Message;
 
-import java.io.*;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by ane on 10/15/14.
  */
+@Deprecated
 public class NodeUtils {
-    static final long FSIZE = 183678375L;
-    static final int PORT = 9026, SENDSIZE = 4094;
+    private static final long FSIZE = 183678375L;
+    private static final int SENDSIZE = 4094;
+    public static final int BUF_SIZE = 8192;
 
-    static enum MessageType {
-        LOADINPUT((byte)1),
-        LOADOUTPUT((byte)2);
-
-        private static final Map<Byte, MessageType> lookup = new HashMap<Byte, MessageType>();
-
-        static {
-            for (MessageType s : EnumSet.allOf(MessageType.class))
-                lookup.put(s.getCode(), s);
-        }
-
-        private byte code;
-
-        private MessageType(byte code) {
-            this.code = code;
-        }
-
-        public byte getCode() {
-            return code;
-        }
-
-        public static MessageType get(byte code) {
-            return lookup.get(code);
-        }
-    }
-
-    public static void configureLogger(String hostname, String role) {
-        Logger logger = Logger.getLogger("NodeLogger." + hostname+"."+role);
-        logger.setLevel(Level.DEBUG);
-        ConsoleAppender consoleApp = new ConsoleAppender(new PatternLayout(
-                "%-4r [%t] %-5p %c - %m%n"));
-        LevelRangeFilter filter = new LevelRangeFilter();
-        filter.setLevelMin(Level.INFO);
-        consoleApp.addFilter(filter);
-        logger.addAppender(consoleApp);
-        try {
-            RollingFileAppender fileApp = new RollingFileAppender(
-                    new PatternLayout("%d [%t] %-5p - %m%n"), "server_log_"
-                    + hostname + ".txt");
-            fileApp.setMaxFileSize("100KB");
-            logger.addAppender(fileApp);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    public static final int DEFAULT_PORT = 9026;
 
     static class Server extends Thread {
 
         ServerSocketChannel listener = null;
 
         public Server() {
-            this(PORT);
+            this(DEFAULT_PORT);
         }
 
         public Server(int port) {
@@ -105,13 +60,13 @@ public class NodeUtils {
                     System.out.println("Accepted : " + conn);
                     conn.configureBlocking(true);
                     int nread = 0;
-                    MessageType type = null;
+                    Message.Type type = null;
                     while (nread != -1) {
                         try {
                             nread = conn.read(dst);
                             System.out.println("Received " + nread);
-                            if (type == null){
-                                type = MessageType.get(dst.get(1));
+                            if (type == null) {
+                                type = Message.Type.get(dst.get(1));
                             }
 
                         } catch (IOException e) {
@@ -127,15 +82,15 @@ public class NodeUtils {
         }
     }
 
-    private static SocketChannel getChannel(String host) throws IOException{
-        SocketAddress sad = new InetSocketAddress(host, PORT);
+    private static SocketChannel getChannel(String host) throws IOException {
+        SocketAddress sad = new InetSocketAddress(host, DEFAULT_PORT);
         SocketChannel sc = SocketChannel.open();
         sc.connect(sad);
         sc.configureBlocking(true);
         return sc;
     }
 
-    public static void sendfile(String host, MessageType messageType, String filePath) throws IOException {
+    public static void sendfile(String host, Message.Type messageType, String filePath) throws IOException {
         SocketChannel sc = getChannel(host);
 
         FileChannel fc = new FileInputStream(filePath).getChannel();
@@ -145,7 +100,7 @@ public class NodeUtils {
         //fc.close();
     }
 
-    public static void sendData(String host, MessageType messageType, OutputStream out) throws IOException{
+    public static void sendData(String host, Message.Type messageType, OutputStream out) throws IOException {
         getChannel(host);
         DataOutputStream s = new DataOutputStream(out);
 
