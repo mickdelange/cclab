@@ -15,7 +15,9 @@ public class Message implements Serializable {
     public static enum Type {
         PING((byte) 0),
         LOADINPUT((byte) 1),
-        LOADOUTPUT((byte) 2);
+        LOADOUTPUT((byte) 2),
+        NEWTASK((byte) 3),
+        FINISHED((byte) 4);
 
         private static final Map<Byte, Type> codeLookup = new HashMap<Byte, Type>();
         private static final Map<String, Type> nameLookup = new HashMap<String, Type>();

@@ -23,8 +23,9 @@ public class WorkerInstance extends NodeInstance {
         return true;
     }
 
-    @Override
-    public void processMessage(Message message) throws IOException{
-        //TODO
-    }
+	@Override
+	public void processMessage(Message message) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 }
