@@ -2,7 +2,7 @@ package com.cclab.test.core;
 
 import com.amazonaws.services.ec2.model.Instance;
 import com.cclab.core.AwsConnect;
-import com.cclab.core.ImageProcessor;
+import com.cclab.core.processing.ImageProcessor;
 
 import java.io.IOException;
 
@@ -17,10 +17,9 @@ public class CCLabCoreTester {
         System.out.println("===========================================");
         
         try {
-            ImageProcessor.createThumbnail("/Users/ane/Downloads/strawberry.jpg", "/Users/ane/Downloads/strawberry_small.jpg");
+            ImageProcessor.process("/Users/ane/Downloads/strawberry.jpg", "/Users/ane/Downloads/strawberry_small.jpg", "blur");
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println(e);
         }
 
         System.out.println("===========================================");
