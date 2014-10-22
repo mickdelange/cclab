@@ -8,6 +8,7 @@ import com.cclab.core.utils.CLReader;
 import com.cclab.core.utils.NodeLogger;
 import com.cclab.core.utils.NodeUtils;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -55,5 +56,5 @@ public abstract class NodeInstance implements CLInterpreter {
     public abstract boolean extendedInterpret(String[] command);
 
 
-    //public abstract void processMessage(Message message) throws IOException;
+    public abstract void processMessage(Message message) throws IOException;
 }

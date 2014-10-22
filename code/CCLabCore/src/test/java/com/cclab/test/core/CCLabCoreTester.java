@@ -12,15 +12,15 @@ import java.io.IOException;
 public class CCLabCoreTester {
     public static void main (String[] args) {
 
-//        System.out.println("===========================================");
-//        System.out.println("Creating thumbnail");
-//        System.out.println("===========================================");
-//        
-//        try {
-//            ImageProcessor.process("/Users/ane/Downloads/strawberry.jpg", "/Users/ane/Downloads/strawberry_small.jpg", "blur");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        System.out.println("===========================================");
+        System.out.println("Creating thumbnail");
+        System.out.println("===========================================");
+        
+        try {
+            ImageProcessor.process("/Users/ane/Downloads/strawberry.jpg", "/Users/ane/Downloads/strawberry_small.jpg", "blur");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         System.out.println("===========================================");
         System.out.println("Listing AWS instances");

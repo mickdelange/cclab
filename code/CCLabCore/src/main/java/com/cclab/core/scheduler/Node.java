@@ -13,7 +13,7 @@ import com.cclab.core.AwsConnect;
 public class Node {
 	
 	enum State {
-		IDLE, WORKING, STOPPED;
+		IDLE, WORKING, STOPPED, STARTING;
 	}
 	
 	String instanceId;
@@ -28,19 +28,19 @@ public class Node {
 	 */
 	Node(Instance inst) {
 		instanceId = inst.getInstanceId();
-		if (inst.getState().getName() == "running") {
-			setIdle();
-		} else {
-			state = State.STOPPED;
-		}
+		updateState(inst);
 	}
 	
-	/**
-	 * Set state to IDLE and record time since going idle.
-	 */
-	private void setIdle() {
-		state = State.IDLE;
-		idleSince = System.currentTimeMillis();
+	public void updateState(Instance inst) {
+		if (inst.getInstanceId() == instanceId) {
+			if (inst.getState().getName() == "running") {
+				setIdle();
+			} else {
+				state = State.STOPPED;
+			}
+		} else {
+			throw new Error("InstanceId changed");
+		}
 	}
 	
 	/**
@@ -81,8 +81,8 @@ public class Node {
 	 * After receiving confirmation that a Task was completed, execute this.
 	 * @param t The completed Task
 	 */
-	public void taskFinished(Task t) {
-		q.remove(t);
+	public void taskFinished() {
+		q.poll();
 		if (queueSize() == 0)
 			setIdle();
 	}
@@ -93,6 +93,14 @@ public class Node {
 	 */
 	public int queueSize() {
 		return q.size();
+	}
+	
+	/**
+	 * Set state to IDLE and record time since going idle.
+	 */
+	private void setIdle() {
+		state = State.IDLE;
+		idleSince = System.currentTimeMillis();
 	}
 
 }
