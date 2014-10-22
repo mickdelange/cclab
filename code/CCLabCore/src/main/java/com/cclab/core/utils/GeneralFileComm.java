@@ -1,4 +1,4 @@
-package com.cclab.core;
+package com.cclab.core.utils;
 
 import com.cclab.core.network.Message;
 
@@ -18,7 +18,7 @@ import java.nio.channels.SocketChannel;
  * Created by ane on 10/15/14.
  */
 @Deprecated
-public class NodeUtils {
+public class GeneralFileComm {
     private static final long FSIZE = 183678375L;
     private static final int SENDSIZE = 4094;
     public static final int BUF_SIZE = 8192;

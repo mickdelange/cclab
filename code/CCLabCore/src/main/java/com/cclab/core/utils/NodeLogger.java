@@ -1,4 +1,4 @@
-package com.cclab.core;
+package com.cclab.core.utils;
 
 import org.apache.log4j.*;
 import org.apache.log4j.varia.LevelRangeFilter;

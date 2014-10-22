@@ -1,6 +1,7 @@
 package com.cclab.core;
 
 import com.cclab.core.network.GeneralComm;
+import com.cclab.core.utils.NodeLogger;
 
 import java.io.IOException;
 
