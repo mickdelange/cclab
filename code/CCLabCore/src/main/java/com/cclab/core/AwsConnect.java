@@ -18,14 +18,16 @@ import com.amazonaws.services.ec2.model.StopInstancesRequest;
 
 /***
  * This class manages all connections to the AWS system.
- * @author Mick
+ * @author Mick de Lange
  */
 public class AwsConnect {
 
     static AmazonEC2 ec2;
     static Set<Instance> instances;
+    static long lastUpdate = 0;
+    static final int updateInterval = 5000; // Update the list at most every 5 seconds
     
-    /***
+    /**
      * Initialise the instances list
      * @throws Exception
      */
@@ -36,58 +38,73 @@ public class AwsConnect {
 
         // Init EC2 object
         ec2 = new AmazonEC2Client(credentials);
-
-        // List all instances
-        try {
-            DescribeInstancesResult describeInstancesRequest = ec2.describeInstances();
-            List<Reservation> reservations = describeInstancesRequest.getReservations();
-            instances = new HashSet<Instance>();
-
-            for (Reservation reservation : reservations) {
-                instances.addAll(reservation.getInstances());
-            }
-        } catch (AmazonServiceException ase) {
-                System.out.println("Caught Exception: " + ase.getMessage());
-                System.out.println("Reponse Status Code: " + ase.getStatusCode());
-                System.out.println("Error Code: " + ase.getErrorCode());
-                System.out.println("Request ID: " + ase.getRequestId());
-        }
     }
     
-    /***
+    /**
+     * Retrieves the instances from AWS API, when update interval has passed.
+     */
+    private static void retrieveInstances() {
+    	
+    	long currTime = System.currentTimeMillis();
+    	
+    	if ((lastUpdate + updateInterval) < currTime) { // Prevent updating to often.
+    		// List all instances
+            try {
+                DescribeInstancesResult describeInstancesRequest = ec2.describeInstances();
+                List<Reservation> reservations = describeInstancesRequest.getReservations();
+                instances = new HashSet<Instance>();
+
+                for (Reservation reservation : reservations) {
+                    instances.addAll(reservation.getInstances());
+                }
+            } catch (AmazonServiceException ase) {
+                    System.out.println("Caught Exception: " + ase.getMessage());
+                    System.out.println("Reponse Status Code: " + ase.getStatusCode());
+                    System.out.println("Error Code: " + ase.getErrorCode());
+                    System.out.println("Request ID: " + ase.getRequestId());
+            }
+            lastUpdate = System.currentTimeMillis();
+    	}
+       
+    }
+    
+    /**
      * Return the list of all instances
      * @return list of all instances
      */
     public static Set<Instance> getInstances() {
+        retrieveInstances();
     	return instances;
     }
 
-    /***
+    /**
      * Start an instance by instanceId
      * @param instanceId ID of the instance to start
      */
-    public static void startInstance(String instanceId) {
+    public static boolean startInstance(String instanceId) {
     	try {
-	        List<String> instancesToStop = new ArrayList<String>();
-	        instancesToStop.add(instanceId);
+	        List<String> instancesToStart = new ArrayList<String>();
+	        instancesToStart.add(instanceId);
 	        
 	        StartInstancesRequest sir = new StartInstancesRequest();
-	        sir.setInstanceIds(instancesToStop);
+	        sir.setInstanceIds(instancesToStart);
 	        
 	        ec2.startInstances(sir);
+	        return true;
     	} catch (AmazonServiceException ase) {
             System.out.println("Caught Exception: " + ase.getMessage());
             System.out.println("Reponse Status Code: " + ase.getStatusCode());
             System.out.println("Error Code: " + ase.getErrorCode());
             System.out.println("Request ID: " + ase.getRequestId());
     	}
+    	return false;
     }
     
-    /***
+    /**
      * Stop an instance by instanceId
      * @param instanceId ID of the instance to stop
      */
-    public static void stopInstance(String instanceId) {
+    public static boolean stopInstance(String instanceId) {
     	try {
 	        List<String> instancesToStop = new ArrayList<String>();
 	        instancesToStop.add(instanceId);
@@ -96,11 +113,13 @@ public class AwsConnect {
 	        sir.setInstanceIds(instancesToStop);
 	        
 	        ec2.stopInstances(sir);
+	        return true;
     	} catch (AmazonServiceException ase) {
             System.out.println("Caught Exception: " + ase.getMessage());
             System.out.println("Reponse Status Code: " + ase.getStatusCode());
             System.out.println("Error Code: " + ase.getErrorCode());
             System.out.println("Request ID: " + ase.getRequestId());
     	}
+    	return false;
     }
 }
