@@ -19,9 +19,11 @@ public abstract class GeneralComm extends Thread {
     static final int BUF_SIZE = 8192;
     public static final int DEFAULT_PORT = 9026;
     private boolean shouldExit = false;
+    MessageInterpreter interpreter = null;
 
-    public GeneralComm(int port) {
+    public GeneralComm(int port, MessageInterpreter interpreter) {
         this.port = port;
+        this.interpreter = interpreter;
     }
 
     @Override
@@ -71,7 +73,7 @@ public abstract class GeneralComm extends Thread {
             try {
                 Message message = queue.poll();
                 byte[] data = message.toBytes();
-                NodeLogger.get().info("Sending message " + message);
+                NodeLogger.get().info("Sending " + message);
                 buf = ByteBuffer.allocateDirect(data.length + 8);
                 buf.putInt(data.length);
                 buf.put(data);

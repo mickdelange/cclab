@@ -6,7 +6,7 @@ package com.cclab.core.utils;
 public class NodeUtils {
     public static String join(Object[] parts, int skip, String delimiter) {
         StringBuilder ret = new StringBuilder();
-        for (int i = skip - 1; i < parts.length - 1; i++)
+        for (int i = skip; i < parts.length - 1; i++)
             ret.append(parts[i]).append(delimiter);
         ret.append(parts[parts.length - 1]);
         return ret.toString();

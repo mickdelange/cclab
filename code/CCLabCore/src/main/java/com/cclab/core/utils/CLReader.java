@@ -1,5 +1,6 @@
 package com.cclab.core.utils;
 
+import javax.xml.soap.Node;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -28,6 +29,7 @@ public class CLReader extends Thread {
                 NodeLogger.get().error(e.getMessage(), e);
             }
             // received command in CLI
+            NodeLogger.get().debug("Received command " + command + ".");
             if (command != null && !interpreter.interpretAndContinue(command.split(" ")))
                 break;
         }

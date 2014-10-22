@@ -1,5 +1,7 @@
 package com.cclab.core.network;
 
+import com.cclab.core.utils.NodeLogger;
+
 import java.io.IOException;
 import java.nio.channels.SelectionKey;
 
@@ -8,24 +10,13 @@ import java.nio.channels.SelectionKey;
  */
 public class ServerReceiver extends GeneralReceiver {
 
-    ServerComm serverCommInstance;
-
-    public ServerReceiver(SelectionKey key, ServerComm serverCommInstance) throws IOException {
-        super(key);
-        this.serverCommInstance = serverCommInstance;
-    }
-
-    @Override
-    void handleReceivedMessage(Message message) {
-        //TODO interpret message
-        serverCommInstance.registerClient(message.getOwner(), myChannel);
-        System.out.println("Received " + message);
-        serverCommInstance.addMessageToQueue(message, myChannel);
+    public ServerReceiver(SelectionKey key, MessageInterpreter interpreter) throws IOException {
+        super(key, interpreter);
     }
 
     @Override
     void cancelConnection() throws IOException{
-        serverCommInstance.removeSocketChannel(myChannel);
+        interpreter.disconnectClient(myChannel);
     }
 
 }
