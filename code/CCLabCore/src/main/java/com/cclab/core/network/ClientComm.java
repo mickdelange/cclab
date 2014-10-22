@@ -1,6 +1,6 @@
 package com.cclab.core.network;
 
-import com.cclab.core.NodeLogger;
+import com.cclab.core.utils.NodeLogger;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

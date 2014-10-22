@@ -1,6 +1,6 @@
 package com.cclab.core.network;
 
-import com.cclab.core.NodeLogger;
+import com.cclab.core.utils.NodeLogger;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -18,6 +18,7 @@ public abstract class GeneralComm extends Thread {
     Selector selector;
     static final int BUF_SIZE = 8192;
     public static final int DEFAULT_PORT = 9026;
+    private boolean shouldExit = false;
 
     public GeneralComm(int port) {
         this.port = port;
@@ -28,6 +29,8 @@ public abstract class GeneralComm extends Thread {
         try {
             // main loop
             while (true) {
+                if(shouldExit)
+                    break;
                 checkOutgoing();
                 // wait for something to happen
                 selector.select();
@@ -95,4 +98,9 @@ public abstract class GeneralComm extends Thread {
     abstract void cleanup();
 
     abstract void initialize() throws IOException;
+
+    public void quit(){
+        shouldExit = true;
+        selector.wakeup();
+    }
 }

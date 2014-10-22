@@ -1,6 +1,6 @@
 package com.cclab.core.network;
 
-import com.cclab.core.NodeLogger;
+import com.cclab.core.utils.NodeLogger;
 
 import java.io.*;
 import java.util.EnumSet;
@@ -13,14 +13,18 @@ import java.util.Map;
 public class Message implements Serializable {
 
     public static enum Type {
+        PING((byte) 0),
         LOADINPUT((byte) 1),
         LOADOUTPUT((byte) 2);
 
-        private static final Map<Byte, Type> lookup = new HashMap<Byte, Type>();
+        private static final Map<Byte, Type> codeLookup = new HashMap<Byte, Type>();
+        private static final Map<String, Type> nameLookup = new HashMap<String, Type>();
 
         static {
-            for (Type s : EnumSet.allOf(Type.class))
-                lookup.put(s.getCode(), s);
+            for (Type s : EnumSet.allOf(Type.class)) {
+                codeLookup.put(s.getCode(), s);
+                nameLookup.put(s.toString(), s);
+            }
         }
 
         private byte code;
@@ -34,7 +38,10 @@ public class Message implements Serializable {
         }
 
         public static Type get(byte code) {
-            return lookup.get(code);
+            return codeLookup.get(code);
+        }
+        public static Type get(String name) {
+            return nameLookup.get(name);
         }
     }
 
@@ -42,6 +49,15 @@ public class Message implements Serializable {
     private String owner;
     private String details;
     private Object data;
+
+    public Message(){
+
+    }
+
+    public Message(Type type, String owner){
+        this.type = type.getCode();
+        this.owner = owner;
+    }
 
     public byte getType() {
         return type;

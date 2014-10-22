@@ -1,6 +1,6 @@
 package com.cclab.core.network;
 
-import com.cclab.core.NodeLogger;
+import com.cclab.core.utils.NodeLogger;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -125,9 +125,15 @@ public class ServerComm extends GeneralComm {
     }
 
     public void addMessageToQueue(Message message, String client) {
+        if (client == null) {
+            //broadcast
+            for (SocketChannel channel : channelToClient.keySet())
+                addMessageToQueue(message, channel);
+            return;
+        }
         SocketChannel clientChannel = clientToChannel.get(client);
-        System.out.println("Found " + clientChannel);
+        if (clientChannel == null)
+            NodeLogger.get().error("Client " + client + " not connected");
         addMessageToQueue(message, clientChannel);
-        System.out.println("annoying " + outgoingQueues.get(clientChannel).size());
     }
 }

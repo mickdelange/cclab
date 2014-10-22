@@ -15,22 +15,10 @@ public class WorkerInstance extends NodeInstance {
         ClientComm client = new ClientComm(masterHostname, port);
         client.start();
         clients.put(masterHostname + ":" + port, client);
-        try {
-            Message message;
-            message = new Message();
-            message.setType(Message.Type.LOADOUTPUT.getCode());
-            message.setOwner("me");
-            message.setDetails("bla bla bla");
-            client.addMessageToQueue(message);
-            Thread.sleep(1000);
-            message = new Message();
-            message.setType(Message.Type.LOADOUTPUT.getCode());
-            message.setOwner("me");
-            message.setDetails("and again");
-            client.addMessageToQueue(message);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
+    @Override
+    public boolean extendedInterpret(String[] command){
+        return true;
+    }
 }
