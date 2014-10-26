@@ -10,11 +10,12 @@ import java.io.IOException;
  */
 public class WorkerInstance extends NodeInstance {
 
-    public WorkerInstance(String myHostname, String masterHostname, int port) throws IOException {
-        super(myHostname);
-        ClientComm client = new ClientComm(masterHostname, port);
+    public WorkerInstance(String myName, String masterIP, int port) throws IOException {
+        super(masterIP);
+        this.masterIP = masterIP;
+        ClientComm client = new ClientComm(masterIP, port, myName, this);
         client.start();
-        clients.put(masterHostname + ":" + port, client);
+        clients.put(masterIP, client);
     }
 
     @Override

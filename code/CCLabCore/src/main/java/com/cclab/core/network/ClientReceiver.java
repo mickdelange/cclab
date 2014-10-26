@@ -8,8 +8,8 @@ import java.nio.channels.SelectionKey;
  */
 public class ClientReceiver extends GeneralReceiver {
 
-    public ClientReceiver(SelectionKey key) throws IOException {
-        super(key);
+    public ClientReceiver(SelectionKey key, MessageInterpreter interpreter) throws IOException {
+        super(key, interpreter);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.cclab.core.network;
 
+import com.cclab.core.utils.NodeLogger;
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
@@ -13,11 +15,13 @@ public abstract class GeneralReceiver implements Runnable {
     SelectionKey myKey;
     SocketChannel myChannel;
     static final int BUF_SIZE = 8192;
+    MessageInterpreter interpreter;
 
 
-    public GeneralReceiver(SelectionKey key) throws IOException {
+    public GeneralReceiver(SelectionKey key, MessageInterpreter interpreter) throws IOException {
         this.myKey = key;
         this.myChannel = (SocketChannel) key.channel();
+        this.interpreter = interpreter;
     }
 
     @Override
@@ -66,7 +70,11 @@ public abstract class GeneralReceiver implements Runnable {
         }
     }
 
-    abstract void handleReceivedMessage(Message message);
+    void handleReceivedMessage(Message message) {
+        //TODO interpret message
+        interpreter.checkIfNew(message.getOwner(), myChannel);
+        NodeLogger.get().info("Received " + message);
+    }
 
     abstract void cancelConnection() throws IOException;
 }

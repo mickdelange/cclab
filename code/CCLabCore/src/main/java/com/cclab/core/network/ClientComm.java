@@ -16,13 +16,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class ClientComm extends GeneralComm {
 
     private ConcurrentLinkedQueue<Message> outgoingQueue;
-    private String hostname;
+    private String masterIP;
     SocketChannel mainChannel = null;
+    private String myName;
 
-    public ClientComm(String serverHostname, int port) throws IOException {
-        super(port);
-
-        this.hostname = serverHostname;
+    public ClientComm(String masterIP, int port, String myName, MessageInterpreter interpreter) throws IOException {
+        super(port, interpreter);
+        this.myName = myName;
+        this.masterIP = masterIP;
         outgoingQueue = new ConcurrentLinkedQueue<Message>();
 
         initialize();
@@ -32,16 +33,17 @@ public class ClientComm extends GeneralComm {
     @Override
     void initialize() throws IOException {
         NodeLogger.get().info("ClientComm communicator is now online");
-        NodeLogger.get().info("Connecting to " + hostname + ":" + port);
+        NodeLogger.get().info("Connecting to " + masterIP + ":" + port);
 
         mainChannel = SocketChannel.open();
         mainChannel.configureBlocking(false);
-        mainChannel.connect(new InetSocketAddress(hostname, port));
+        mainChannel.connect(new InetSocketAddress(masterIP, port));
         mainChannel.finishConnect();
 
         ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE);
         selector = Selector.open();
         mainChannel.register(selector, SelectionKey.OP_READ, buf);
+        outgoingQueue.add(new Message(Message.Type.PING, myName));
     }
 
     @Override
@@ -63,7 +65,7 @@ public class ClientComm extends GeneralComm {
 
     @Override
     void read(SelectionKey key) throws IOException {
-        new Thread(new ClientReceiver(key)).start();
+        new Thread(new ClientReceiver(key, interpreter)).start();
     }
 
     @Override

@@ -24,8 +24,8 @@ public class ServerComm extends GeneralComm {
     private ConcurrentLinkedQueue<SocketChannel> socketsToBeRemoved;
     ServerSocketChannel mainChannel;
 
-    public ServerComm(int port) throws IOException {
-        super(port);
+    public ServerComm(int port, MessageInterpreter interpreter) throws IOException {
+        super(port, interpreter);
         outgoingQueues = new ConcurrentHashMap<SocketChannel, ConcurrentLinkedQueue<Message>>();
         socketsToBeRemoved = new ConcurrentLinkedQueue<SocketChannel>();
         clientToChannel = new ConcurrentHashMap<String, SocketChannel>();
@@ -76,7 +76,7 @@ public class ServerComm extends GeneralComm {
     @Override
     void read(SelectionKey key) throws IOException {
         key.interestOps(key.interestOps() & ~SelectionKey.OP_READ);
-        pool.execute(new Thread(new ServerReceiver(key, this)));
+        pool.execute(new Thread(new ServerReceiver(key, interpreter)));
     }
 
     @Override
@@ -98,7 +98,7 @@ public class ServerComm extends GeneralComm {
             }
     }
 
-    protected void removeSocketChannel(SocketChannel socketChannel) throws IOException {
+    public void removeSocketChannel(SocketChannel socketChannel) {
         String client = channelToClient.get(socketChannel);
 
         NodeLogger.get().info("Node " + client + " disconnected");
@@ -107,13 +107,18 @@ public class ServerComm extends GeneralComm {
         clientToChannel.remove(client);
         socketsToBeRemoved.remove(socketChannel);
 
-        socketChannel.close();
+        try {
+            socketChannel.close();
+        } catch (IOException e) {
+            NodeLogger.get().error("Error closing client channel: " + e.getMessage(), e);
+        }
 
     }
 
-    protected void registerClient(String client, SocketChannel channel) {
+    public void registerClient(String client, SocketChannel channel) {
         if (channel.equals(clientToChannel.get(client)))
             return;
+        NodeLogger.get().info("Client " + client + " has connected.");
         outgoingQueues.put(channel, new ConcurrentLinkedQueue<Message>());
         clientToChannel.put(client, channel);
         channelToClient.put(channel, client);

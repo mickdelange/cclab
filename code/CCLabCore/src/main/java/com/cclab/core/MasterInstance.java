@@ -11,9 +11,9 @@ public class MasterInstance extends NodeInstance {
 	
 	Scheduler scheduler;
 
-    public MasterInstance(String myHostname, int port) throws IOException {
-        super(myHostname);
-        server = new ServerComm(port);
+    public MasterInstance(String myName, int port) throws IOException {
+        super(myName);
+        server = new ServerComm(port, this);
         server.start();
         
         scheduler = new Scheduler();
