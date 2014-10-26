@@ -18,6 +18,7 @@ public class Scheduler extends Thread {
 	Node[] nodes;
 	final int loadThresh = 2;
 	final int interval = 2000; // Milliseconds before next run.
+    private boolean shouldExit = false;
 	
 	public Scheduler() {
 		try {
@@ -42,6 +43,8 @@ public class Scheduler extends Thread {
 		Task currT;
 			try {
 				while(true) {
+					if(shouldExit) // Stop the loop.
+	                    break;
 					Thread.sleep(interval);
 					// Check availability of new Nodes
 					updateNodeStates();
@@ -94,42 +97,46 @@ public class Scheduler extends Thread {
 	
 	/**
 	 * Assign a task to an available Node.
+	 * @param t Task to assign.
+	 * @return True is task was assigned to an active node, False otherwise.
 	 */
 	private boolean assignTask(Task t) {
+		
+		// Search for an IDLE node
 		Node n = findIdleNode();
 		if (n != null) {
-			// IDLE node available
+			// IDLE node available, assign Task
+			n.assign(t);
+			return true;
+		} 
+		
+		// No IDLE node, find node with load < threshold
+		n = findNodeUnderThreshold();
+		if (n != null) {
+			// Low load node available, assign Task
+			n.assign(t);
+			return true;
+		}
+
+		// All RUNNING Nodes busy, start new node
+		n = startNewNode();
+		if (n!=null) {
+			// New node started, wait for it to become IDLE before assigning Task
+			return false;
+		}
+
+		// No new nodes available
+		n = findNodeLowestLoad();
+		if (n != null) {
+			// Assign task to least busiest node
 			n.assign(t);
 			return true;
 		} else {
-			n = findNodeUnderThreshold();
-			if (n != null) {
-				// Low load node available
-				n.assign(t);
-				return true;
-			} else {
-				// All RUNNING Nodes busy
-				n = startNewNode();
-				if (n!=null) {
-					// New node started to work on task
-					// Wait for next round to assign task
-					return false;
-				} else {
-					// No new nodes available
-					n = findNodeLowestLoad();
-					if (n != null) {
-						// Assign task to least busiest node
-						n.assign(t);
-						return true;
-					} else {
-						// This would mean no node could be started and no node is currently running
-						// Something went terribly wrong...
-						NodeLogger.get().error("SCHEDULER ERROR - There seem to be no Nodes available, and none can be started.");
-					}
-				}
-			}
+			// This would mean no node could be started and no node is currently running
+			// Something went terribly wrong...
+			NodeLogger.get().error("SCHEDULER ERROR - There seem to be no Nodes available, and none can be started.");
+			return false;
 		}
-		return false;
 	}
 	
 	/**
@@ -192,5 +199,12 @@ public class Scheduler extends Thread {
 		}
 		return sel;
 	}
+	
+	/**
+	 * Kill scheduler thread.
+	 */
+    public void quit(){
+        shouldExit = true;
+    }
 
 }

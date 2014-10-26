@@ -47,7 +47,7 @@ public class AwsConnect {
     	
     	long currTime = System.currentTimeMillis();
     	
-    	if ((lastUpdate + updateInterval) < currTime) { // Prevent updating to often.
+    	if ((lastUpdate + updateInterval) < currTime) { // Prevent updating too often.
     		// List all instances
             try {
                 DescribeInstancesResult describeInstancesRequest = ec2.describeInstances();
