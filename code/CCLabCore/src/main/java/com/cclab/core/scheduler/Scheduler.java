@@ -16,7 +16,7 @@ public class Scheduler extends Thread {
 	
 	Queue<Task> mainQ = new LinkedList<Task>();
 	Node[] nodes;
-	final int loadThresh = 2;
+	final int loadThresh = 2; // Amount of tasks that defines a node with low load
 	final int interval = 2000; // Milliseconds before next run.
     private boolean shouldExit = false;
 	
@@ -85,12 +85,22 @@ public class Scheduler extends Thread {
 		mainQ.add(t);
 	}
 	
+	/**
+	 * Update node states bases on AWS response
+	 */
 	private void updateNodeStates() {
 		Set<Instance> instances = AwsConnect.getInstances();
 		
 		int i = 0;
 		for (Instance inst : instances) {
 			nodes[i].updateState(inst);
+			// Check if node has lost tasks
+			if (nodes[i].hasLostTasks()) {
+				// Add tasks back to main queue
+				for (Task t : nodes[i].q) {
+					addTask(t);
+				}
+			}
 			i++;
 		}
 	}
@@ -121,14 +131,15 @@ public class Scheduler extends Thread {
 		// All RUNNING Nodes busy, start new node
 		n = startNewNode();
 		if (n!=null) {
-			// New node started, wait for it to become IDLE before assigning Task
-			return false;
+			// New node started, assign Task to run when finished booting
+			n.assign(t);
+			return true;
 		}
 
-		// No new nodes available
+		// No new nodes available, all nodes are running
 		n = findNodeLowestLoad();
 		if (n != null) {
-			// Assign task to least busiest node
+			// Assign task to least busy node
 			n.assign(t);
 			return true;
 		} else {
