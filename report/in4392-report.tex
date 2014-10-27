@@ -9,7 +9,7 @@
 \title{}
 \subtitle{}
 
-\numberofauthors{2}
+\numberofauthors{5}
 \author{
 \alignauthor
 R.M. de Lange\\
@@ -19,15 +19,16 @@ R.M. de Lange\\
 M. Voinea\\
 		\affaddr{4317602}\\
 		\email{m.voinea\}@student.tudelft.nl}
-% \alignauthor
-% D.H.J. Epema\\
-% 		\email{d.h.j.epema@tudelft.nl}
-% \alignauthor
-% A. Iosup\\
-% 		\email{a.iosup@tudelft.nl}
-% \alignauthor
-% B.I. Ghit\\
-% 		\email{b.i.ghit@tudelft.nl}
+\and
+\alignauthor
+D.H.J. Epema\\
+		\email{\{d.h.j.epema,}
+\alignauthor
+A. Iosup\\
+		\email{a.iosup,}
+\alignauthor
+B.I. Ghit\\
+		\email{b.i.ghit\}@tudelft.nl}
 }
 
 \maketitle
@@ -91,7 +92,29 @@ M. Voinea\\
 \bibliography{references}{}
 \bibliographystyle{plain}
 
-% 9. Appendix A: Time sheets (see Section E)
 \appendix
+% 9. Appendix A: Time sheets (see Section E)
+\section{Time sheet}
+
+The following table documents the time spent working on the assignment.
+
+\begin{tabular}{ | l | r | }
+	\hline
+	Part & Time (hrs) \\ \hline \hline
+	% the  = total amount of time spent in completing WantOne CTO’s assignment (the large exercise).
+	\texttt{total-time} & 50\\ \hline
+	% the think-time = total amount of time spent in thinking about how to solve WantOne CTO’s assignment (the large exercise).
+	\texttt{think-time} & 8\\ \hline
+	% the dev-time = total amount of time spent in developing the code needed to solve WantOne CTO’s assignment (the large exercise).
+	\texttt{dev-time} & 40\\ \hline
+	% the xp-time = total amount of time spent in experiments for WantOne CTO’s assignment (the large exercise).
+	\texttt{xp-time} & 0\\ \hline
+	% the analysis-time = total amount of time spent in analyzing the results of the experiments for WantOne CTO’s assignment (the large exercise).
+	\texttt{analysis-time} & 0\\ \hline
+	% the write-time = total amount of time spent in writing this report
+	\texttt{write-time} & 2\\ \hline
+	% the wasted-time = total amount of time spent in activities related to WantOne CTO’s assignment (the large exercise), but which cannot be charged as think-time, dev-time, xp-time, analysis-time, or write-time
+	\texttt{wasted-time} & 0\\ \hline
+\end{tabular}
 
 \end{document}
