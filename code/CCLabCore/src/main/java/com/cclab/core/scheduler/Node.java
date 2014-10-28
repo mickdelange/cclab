@@ -47,8 +47,8 @@ public class Node {
 	State state;
 	long idleSince = Integer.MAX_VALUE;
 	long workingSince = Integer.MAX_VALUE;
-	long maxTaskTime = 60000; // Maximum time allowed for one task, in milliseconds. (1 minute)
-	long maxIdleTime = 3600000; // Maximum time allowed for node to be IDLE, in milliseconds. (1 hour)
+	long maxTaskTime;
+	long maxIdleTime;
 	
 	/**
 	 * Construct Node object.
