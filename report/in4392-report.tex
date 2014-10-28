@@ -42,10 +42,28 @@ B.I. Ghit\\
 % implement, and the structure of the remainder of the article; use one short paragraph
 % for each.
 \section{Introduction}
+WantCloud BV is an organisation with a large workload in blurring images.
+One of the business processes in WantCloud requires large images to be blurred using a Gaussian blur.
+This process is compute intensive, as Gaussian functions require complex calculations as well as reading and writing a large amount of data.
+
+Currently, WantCloud has a single server running all of these tasks.
+This machine is experiencing heavy peak loads and sits idle for the rest of the day
+Therefore, WantCloud wants to explore the option to employ the cloud to be able to scale up and down as needed.
+
+This report will discuss the details of an exploration towards using Amazon EC2\footnote{http://aws.amazon.com/ec2/} as a solution to WantClouds needs.
+The image processing system will be implemented on a dynamically scalable cluster of compute nodes.
+This implementation is made available open-source through GitHub\footnote{https://github.com/mickdelange/cclab}.
+The performance, overhead, and scalability will be tested to compare to the current set-up using one machine.
+
+This paper will first give an insight in the application and its requirements in Section \ref{sec_bg}.
+After this the design of the cloud system will be discussed in Section \ref{sec_system}, giving an insight in the implementation.
+The designed system will be evaluated in Section \ref{sec_eval}.
+The results in the evaluation will be discussed in Section \ref{sec_discussion} and conclusions will be presented in Section \ref{sec_conclusion}.
 
 % 4. Background on Application (recommended size: 0.5 pages):
 % describe the application (1 paragraph) and its requirements (1-3 paragraphs, summarized in a table if needed).
 \section{Background}
+\label{sec_bg}
 
 % 5. System Design (recommended size: 1.5 pages)
 % a. Resource Management Architecture: describe the design of your system,
@@ -58,6 +76,7 @@ B.I. Ghit\\
 % c. (Optional, for bonus points, see Section F) Additional System Features:
 % describe each additional feature of your system, one sub-section per feature.
 \section{System Design}
+\label{sec_system}
 
 % 6. Experimental Results (recommended size: 1.5 pages)
 % a. Experimental setup: describe the working environments (DAS, Amazon EC2,
@@ -77,6 +96,7 @@ B.I. Ghit\\
 % iv. (optional) Usage metrics of the experiment, such as per-VM and overall
 % system usage and activity.
 \section{Evaluation}
+\label{sec_eval}
 
 % 7. Discussion (recommended size: 1 page): summarize the main findings of your work
 % and discuss the tradeoffs inherent in the design of cloud-computing-based applications.
@@ -85,9 +105,11 @@ B.I. Ghit\\
 % charged cost reported in section for 100,000/1,000,000/10,000,000 users and for 1
 % day/1 month/1 year.
 \section{Discussion}
+\label{sec_discussion}
 
 % 8. Conclusion
 \section{Conclusion}
+\label{sec_conclusion}
 
 \bibliography{references}{}
 \bibliographystyle{plain}
