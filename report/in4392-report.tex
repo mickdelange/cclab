@@ -64,6 +64,25 @@ The results in the evaluation will be discussed in Section \ref{sec_discussion} 
 % describe the application (1 paragraph) and its requirements (1-3 paragraphs, summarized in a table if needed).
 \section{Background}
 \label{sec_bg}
+The application that this report describes handles image files and adds Gaussian Blur to these images.
+Image files can be uploaded, which will then be processed and the results will be returned to the user.
+The application uses the Amazon Compute Cloud to process the images in a reliable and scalable way.
+This means that the number of used nodes -and therefore the resulting cost- is kept to a minimum, whilst providing better performance than WantCloud currently has.
+More specifically, the application has to deal with the following requirements.
+
+\subsection{Elasticity}
+The application must scale the active nodes up and down depending on the workload.
+This means that unused nodes should be released as they are no longer needed, and new nodes should be leased as soon as the workload increases.
+This requirement should result in lower cost for maintaining nodes, while handling peak loads faster.
+
+\subsection{Automation}
+The application should handle its own scheduling automatically.
+This means that tasks are assigned to available nodes, new nodes are started when needed, and unused nodes are release without human input.
+
+\subsection{Fault tolerance}
+Furthermore, the application must be reliable, or fault tolerant.
+This means that any problems that occur should be dealt with by the system itself.
+Nodes that crash, tasks that break or other problems that occur should be dealt with by the system itself, again without human input.
 
 % 5. System Design (recommended size: 1.5 pages)
 % a. Resource Management Architecture: describe the design of your system,
