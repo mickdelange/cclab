@@ -16,7 +16,7 @@ public class MasterInstance extends NodeInstance {
         server = new ServerComm(port, this);
         server.start();
         
-        scheduler = new Scheduler();
+        scheduler = new Scheduler(myName);
         scheduler.run();
     }
 
