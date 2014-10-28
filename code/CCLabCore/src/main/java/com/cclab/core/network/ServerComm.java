@@ -26,17 +26,18 @@ public class ServerComm extends GeneralComm {
 
     public ServerComm(int port, MessageInterpreter interpreter) throws IOException {
         super(port, interpreter);
+
         outgoingQueues = new ConcurrentHashMap<SocketChannel, ConcurrentLinkedQueue<Message>>();
         socketsToBeRemoved = new ConcurrentLinkedQueue<SocketChannel>();
         clientToChannel = new ConcurrentHashMap<String, SocketChannel>();
         channelToClient = new ConcurrentHashMap<SocketChannel, String>();
+        messageParts = new ConcurrentHashMap<SocketChannel, ConcurrentHashMap<Integer, byte[]>>();
 
         initialize();
     }
 
     @Override
     void initialize() throws IOException {
-
         NodeLogger.get().info("Server communicator is now online");
         NodeLogger.get().info("Listening on port " + port);
 
@@ -66,6 +67,8 @@ public class ServerComm extends GeneralComm {
 
         socketChannel.register(key.selector(), SelectionKey.OP_READ);
 
+        messageParts.put(socketChannel, new ConcurrentHashMap<Integer, byte[]>());
+
         // display remote client address
         NodeLogger.get().info(
                 "Connection from: "
@@ -75,8 +78,7 @@ public class ServerComm extends GeneralComm {
 
     @Override
     void read(SelectionKey key) throws IOException {
-        key.interestOps(key.interestOps() & ~SelectionKey.OP_READ);
-        pool.execute(new Thread(new ServerReceiver(key, interpreter)));
+        pool.execute(new Thread(new ServerReceiver(key, this)));
     }
 
     @Override
@@ -140,5 +142,21 @@ public class ServerComm extends GeneralComm {
         if (clientChannel == null)
             NodeLogger.get().error("Client " + client + " not connected");
         addMessageToQueue(message, clientChannel);
+    }
+
+    @Override
+    public void checkIfNew(String clientName, SocketChannel socketChannel) {
+        registerClient(clientName, socketChannel);
+    }
+
+    @Override
+    public void disconnectClient(SocketChannel socketChannel) {
+        removeSocketChannel(socketChannel);
+    }
+
+    @Override
+    void finishedReading(SelectionKey key) {
+        /* deactivate interest for reading */
+        key.interestOps(key.interestOps() & ~SelectionKey.OP_READ);
     }
 }

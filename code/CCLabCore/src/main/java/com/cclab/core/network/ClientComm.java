@@ -8,6 +8,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -25,6 +26,7 @@ public class ClientComm extends GeneralComm {
         this.myName = myName;
         this.masterIP = masterIP;
         outgoingQueue = new ConcurrentLinkedQueue<Message>();
+        messageParts = new ConcurrentHashMap<SocketChannel, ConcurrentHashMap<Integer, byte[]>>();
 
         initialize();
 
@@ -43,6 +45,7 @@ public class ClientComm extends GeneralComm {
         ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE);
         selector = Selector.open();
         mainChannel.register(selector, SelectionKey.OP_READ, buf);
+        messageParts.put(mainChannel, new ConcurrentHashMap<Integer, byte[]>());
         outgoingQueue.add(new Message(Message.Type.PING, myName));
     }
 
@@ -65,7 +68,7 @@ public class ClientComm extends GeneralComm {
 
     @Override
     void read(SelectionKey key) throws IOException {
-        new Thread(new ClientReceiver(key, interpreter)).start();
+        new Thread(new ClientReceiver(key, this)).start();
     }
 
     @Override
@@ -80,5 +83,18 @@ public class ClientComm extends GeneralComm {
     public void addMessageToQueue(Message message) {
         outgoingQueue.add(message);
         selector.wakeup();
+    }
+
+    @Override
+    public void checkIfNew(String clientName, SocketChannel socketChannel) {
+    }
+
+    @Override
+    public void disconnectClient(SocketChannel socketChannel) {
+    }
+
+    @Override
+    void finishedReading(SelectionKey key) {
+
     }
 }

@@ -1,7 +1,5 @@
 package com.cclab.core.network;
 
-import com.cclab.core.utils.NodeLogger;
-
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
@@ -15,19 +13,20 @@ public abstract class GeneralReceiver implements Runnable {
     SelectionKey myKey;
     SocketChannel myChannel;
     static final int BUF_SIZE = 8192;
-    MessageInterpreter interpreter;
+    GeneralComm communicator;
+    //MessageInterpreter interpreter;
 
 
-    public GeneralReceiver(SelectionKey key, MessageInterpreter interpreter) throws IOException {
+    public GeneralReceiver(SelectionKey key, GeneralComm communicator) throws IOException {
         this.myKey = key;
         this.myChannel = (SocketChannel) key.channel();
-        this.interpreter = interpreter;
+        this.communicator = communicator;
     }
 
     @Override
     public void run() {
         try {
-            reciveMessages();
+            receiveMessages();
             /* reactivate interest for read */
             myKey.selector().wakeup();
         } catch (IOException e) {
@@ -36,10 +35,10 @@ public abstract class GeneralReceiver implements Runnable {
 
     }
 
-    private void reciveMessages() throws IOException {
+    private void receiveMessages() throws IOException {
 
         int bytes = -1;
-        ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE);//(ByteBuffer) key.attachment();
+        ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE + 12);//(ByteBuffer) key.attachment();
 
         // read from socket into buffer, use a loop
         try {
@@ -49,12 +48,14 @@ public abstract class GeneralReceiver implements Runnable {
 
             buf.flip();
 
-            while (buf.limit() - buf.position() > 4) {
+            while (buf.limit() - buf.position() > 12) {
+                int total = buf.getInt();
+                int part = buf.getInt();
                 int size = buf.getInt();
                 byte[] data = new byte[size];
                 buf.get(data, 0, size);
-                Message message = Message.getFromBytes(data);
-                handleReceivedMessage(message);
+                System.out.println("Read " + size + " of part " + part + " of " + total);
+                communicator.handlePartialMessage(total, part, data, myChannel);
             }
 
             if (myChannel.read(buf) == -1) {
@@ -68,12 +69,6 @@ public abstract class GeneralReceiver implements Runnable {
             buf.clear();
             cancelConnection();
         }
-    }
-
-    void handleReceivedMessage(Message message) {
-        //TODO interpret message
-        interpreter.checkIfNew(message.getOwner(), myChannel);
-        NodeLogger.get().info("Received " + message);
     }
 
     abstract void cancelConnection() throws IOException;

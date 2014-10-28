@@ -10,13 +10,13 @@ import java.nio.channels.SelectionKey;
  */
 public class ServerReceiver extends GeneralReceiver {
 
-    public ServerReceiver(SelectionKey key, MessageInterpreter interpreter) throws IOException {
-        super(key, interpreter);
+    public ServerReceiver(SelectionKey key, GeneralComm communicator) throws IOException {
+        super(key, communicator);
     }
 
     @Override
     void cancelConnection() throws IOException{
-        interpreter.disconnectClient(myChannel);
+        communicator.disconnectClient(myChannel);
     }
 
 }

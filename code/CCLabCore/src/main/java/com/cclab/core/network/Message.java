@@ -3,9 +3,7 @@ package com.cclab.core.network;
 import com.cclab.core.utils.NodeLogger;
 
 import java.io.*;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by ane on 10/19/14.
@@ -42,6 +40,7 @@ public class Message implements Serializable {
         public static Type get(byte code) {
             return codeLookup.get(code);
         }
+
         public static Type get(String name) {
             return nameLookup.get(name);
         }
@@ -52,11 +51,11 @@ public class Message implements Serializable {
     private String details;
     private Object data;
 
-    public Message(){
+    public Message() {
 
     }
 
-    public Message(Type type, String owner){
+    public Message(Type type, String owner) {
         this.type = type.getCode();
         this.owner = owner;
     }
@@ -123,8 +122,31 @@ public class Message implements Serializable {
         return message;
     }
 
+    public static Message getFromParts(Map<Integer, byte[]> data) {
+            Message message = null;
+        try {
+            Integer[] keys = new Integer[1];
+            keys = data.keySet().toArray(keys);
+            Arrays.sort(keys);
+
+            ByteArrayOutputStream result = new ByteArrayOutputStream();
+            for (Integer i : keys) {
+                result.write(data.get(i));
+            }
+            result.flush();
+            ByteArrayInputStream inStream = new ByteArrayInputStream(result.toByteArray());
+            ObjectInputStream objIn = new ObjectInputStream(inStream);
+            message = (Message) objIn.readObject();
+            objIn.close();
+            inStream.close();
+        } catch (Exception e) {
+            NodeLogger.get().error("Cannot read message: " + e.getMessage());
+        }
+        return message;
+    }
+
     @Override
-    public String toString(){
-        return "Message["+ Type.get(type)+"] from "+getOwner()+" ("+getDetails()+")";
+    public String toString() {
+        return "Message[" + Type.get(type) + "] from " + getOwner() + " (" + getDetails() + ")";
     }
 }

@@ -7,7 +7,9 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -20,6 +22,7 @@ public abstract class GeneralComm extends Thread {
     public static final int DEFAULT_PORT = 9026;
     private boolean shouldExit = false;
     MessageInterpreter interpreter = null;
+    ConcurrentHashMap<SocketChannel, ConcurrentHashMap<Integer, byte[]>> messageParts = null;
 
     public GeneralComm(int port, MessageInterpreter interpreter) {
         this.port = port;
@@ -31,7 +34,7 @@ public abstract class GeneralComm extends Thread {
         try {
             // main loop
             while (true) {
-                if(shouldExit)
+                if (shouldExit)
                     break;
                 checkOutgoing();
                 // wait for something to happen
@@ -44,7 +47,6 @@ public abstract class GeneralComm extends Thread {
                     if (key.isAcceptable()) {
                         accept(key);
                     } else if (key.isReadable()) {
-                        /* deactivate interest for reading */
                         read(key);
                     } else if (key.isWritable()) {
                         write(key);
@@ -67,18 +69,36 @@ public abstract class GeneralComm extends Thread {
     }
 
     void writeFromQueue(SelectionKey key, ConcurrentLinkedQueue<Message> queue) throws IOException {
-        SocketChannel channel = (SocketChannel)key.channel();
+        SocketChannel channel = (SocketChannel) key.channel();
         ByteBuffer buf = null;
         if (queue != null && !queue.isEmpty()) {
             try {
                 Message message = queue.poll();
                 byte[] data = message.toBytes();
                 NodeLogger.get().info("Sending " + message);
-                buf = ByteBuffer.allocateDirect(data.length + 8);
-                buf.putInt(data.length);
-                buf.put(data);
-                buf.flip();
-                channel.write(buf);
+                System.out.println("Data length " + data.length);
+
+
+                int chunks = data.length / BUF_SIZE;
+                if (data.length % BUF_SIZE > 0)
+                    chunks++;
+                int crt = 0;
+                while (crt < chunks) {
+                    buf = ByteBuffer.allocateDirect(data.length + 12);
+                    int size = Math.min(data.length - crt*BUF_SIZE, BUF_SIZE);
+                    buf.putInt(chunks);
+                    buf.putInt(crt);
+                    buf.putInt(size);
+                    byte[] part = Arrays.copyOfRange(data, crt*BUF_SIZE, crt*BUF_SIZE + size);
+                    buf.put(part);
+                    buf.flip();
+                    while (buf.hasRemaining()) {
+                        channel.write(buf);
+                    }
+                    System.out.println("Sent " + (crt*BUF_SIZE+size) + " of " + data.length);
+                    crt++;
+                }
+
             } catch (IOException e) {
                 if (buf != null)
                     buf.clear();
@@ -101,8 +121,38 @@ public abstract class GeneralComm extends Thread {
 
     abstract void initialize() throws IOException;
 
-    public void quit(){
+    public void quit() {
         shouldExit = true;
         selector.wakeup();
     }
+
+    abstract void checkIfNew(String clientName, SocketChannel socketChannel);
+
+    abstract void disconnectClient(SocketChannel socketChannel);
+
+    void handlePartialMessage(int total, int current , byte[] data, SocketChannel channel) throws IOException {
+        ConcurrentHashMap<Integer, byte[]> channelParts = messageParts.get(channel);
+        if (channelParts == null) {
+            channelParts = new ConcurrentHashMap<Integer, byte[]>();
+            messageParts.put(channel, channelParts);
+        }
+        channelParts.put(current, data);
+
+        System.out.println("Received part " + current + " now " + channelParts.size());
+        if (channelParts.size() == total) {
+            handleMessage(Message.getFromParts(channelParts), channel);
+            messageParts.put(channel, new ConcurrentHashMap<Integer, byte[]>());
+        }
+    }
+
+    void handleMessage(Message message, SocketChannel channel) throws IOException {
+        finishedReading(channel.keyFor(selector));
+        //TODO interpret message
+        System.out.println("Got it");
+        checkIfNew(message.getOwner(), channel);
+        NodeLogger.get().info("Received " + message);
+        interpreter.processMessage(message);
+    }
+
+    abstract void finishedReading(SelectionKey key);
 }

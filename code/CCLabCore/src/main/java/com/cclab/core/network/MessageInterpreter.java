@@ -8,8 +8,5 @@ import java.nio.channels.SocketChannel;
  */
 public interface MessageInterpreter {
 
-    public void checkIfNew(String clientName, SocketChannel socketChannel);
-    public void disconnectClient(SocketChannel socketChannel);
-
     public abstract void processMessage(Message message) throws IOException;
 }
