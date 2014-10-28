@@ -1,6 +1,12 @@
 package com.cclab.core.scheduler;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Properties;
 import java.util.Queue;
 import java.util.Set;
 
@@ -15,23 +21,29 @@ import com.cclab.core.utils.NodeLogger;
 public class Scheduler extends Thread {
 	
 	Queue<Task> mainQ = new LinkedList<Task>();
-	Node[] nodes;
-	final int loadThresh = 2; // Amount of tasks that defines a node with low load
-	final int interval = 2000; // Milliseconds before next run.
+	List<Node> workerNodes;
+	int loadThresh;
+	int interval;
+	long maxTaskTime;
+	long maxIdleTime;
     private boolean shouldExit = false;
 	
-	public Scheduler() {
+	public Scheduler(String ownId) {
+		if (!loadProperties()) {
+			// Something went wrong loading properties, set to default
+			loadThresh = 5;
+			interval = 2000;
+			maxTaskTime = 60000;
+			maxIdleTime = 3600000;
+		}
+		
 		try {
 			AwsConnect.init();
 			Set<Instance> instances = AwsConnect.getInstances();
 			
-			// init node list
-			nodes = new Node[instances.size()];
-			
-			int i = 0;
 			for (Instance inst : instances) {
-				nodes[i] = new Node(inst);
-				i++;
+				if (inst.getInstanceId() != ownId)
+					workerNodes.add(new Node(inst, maxTaskTime, maxIdleTime));
 			}
 		} catch (Exception e) {
 			NodeLogger.get().error(e.getMessage(), e);
@@ -39,10 +51,41 @@ public class Scheduler extends Thread {
 		
 	}
 	
+	/**
+	 * Get the properties from the config file.
+	 * @return True if succeeded, False otherwise.
+	 */
+	public boolean loadProperties() {
+		Properties prop = new Properties();
+		
+		try {
+			InputStream inputStream = getClass().getClassLoader().getResourceAsStream("scheduler.properties");
+			
+			if (inputStream != null) {
+				prop.load(inputStream);
+				loadThresh = Integer.parseInt(prop.getProperty("loadThresh"));
+				interval = Integer.parseInt(prop.getProperty("interval"));
+				maxTaskTime = Integer.parseInt(prop.getProperty("maxTaskTime"));
+				maxIdleTime = Integer.parseInt(prop.getProperty("maxIdleTime"));
+				return true;
+			} else {
+				NodeLogger.get().error("Scheduler properties file not found");
+				return false;
+			}
+		} catch (IOException e) {
+			NodeLogger.get().error(e.getMessage(), e);
+			return false;
+		}
+	}
+	
+	/**
+	 * Run the scheduler
+	 */
 	public void run() {
 		Task currT;
 			try {
 				while(true) {
+					System.out.println("test");
 					if(shouldExit) // Stop the loop.
 	                    break;
 					Thread.sleep(interval);
@@ -69,7 +112,7 @@ public class Scheduler extends Thread {
 	 * @param instanceId
 	 */
 	public void taskFinished(String instanceId) {
-		for (Node n: nodes) {
+		for (Node n: workerNodes) {
 			if (n.instanceId == instanceId) {
 				n.taskFinished();
 				return;
@@ -91,17 +134,22 @@ public class Scheduler extends Thread {
 	private void updateNodeStates() {
 		Set<Instance> instances = AwsConnect.getInstances();
 		
-		int i = 0;
+		Node wn = null;
+		Task currT = null;
 		for (Instance inst : instances) {
-			nodes[i].updateState(inst);
-			// Check if node has lost tasks
-			if (nodes[i].hasLostTasks()) {
-				// Add tasks back to main queue
-				for (Task t : nodes[i].q) {
-					addTask(t);
+			wn = getWorkerById(inst.getInstanceId());
+			if (wn != null) {
+				wn.updateState(inst);
+				// Check if node has lost tasks
+				if (wn.hasLostTasks()) {
+					// Add tasks back to main queue
+					currT = wn.q.poll();
+					while (currT != null) {
+						addTask(currT);
+						currT = wn.q.poll();
+					}
 				}
 			}
-			i++;
 		}
 	}
 	
@@ -155,7 +203,7 @@ public class Scheduler extends Thread {
 	 * @return A Node if found, null otherwise.
 	 */
 	private Node findIdleNode() {
-		for (Node n: nodes) {
+		for (Node n: workerNodes) {
 			if (n.state == Node.State.IDLE)
 				return n;
 		}
@@ -167,7 +215,7 @@ public class Scheduler extends Thread {
 	 * @return A Node if found, null otherwise.
 	 */
 	private Node findNodeUnderThreshold() {
-		for (Node n: nodes) {
+		for (Node n: workerNodes) {
 			if (n.state != Node.State.STOPPED && n.queueSize() <= loadThresh)
 				return n;
 		}
@@ -182,7 +230,7 @@ public class Scheduler extends Thread {
 	private Node findNodeLowestLoad() {
 		int lowestLoad = Integer.MAX_VALUE;
 		Node sel = null;
-		for (Node n: nodes) {
+		for (Node n: workerNodes) {
 			if (n.state != Node.State.STOPPED && n.queueSize() <= lowestLoad)
 				sel = n;
 		}
@@ -196,7 +244,7 @@ public class Scheduler extends Thread {
 	 */
 	private Node startNewNode() {
 		Node sel = null;
-		for (Node n: nodes) {
+		for (Node n: workerNodes) {
 			if (n.state == Node.State.STARTING) {
 				sel = n;
 			}
@@ -209,6 +257,19 @@ public class Scheduler extends Thread {
 			sel.start();
 		}
 		return sel;
+	}
+	
+	/**
+	 * Get a worker node by its instanceId
+	 * @param instId
+	 * @return Node, null if not found
+	 */
+	private Node getWorkerById(String instId) {
+		for (Node n: workerNodes) {
+			if (n.instanceId == instId)
+				return n;
+		}
+		return null;
 	}
 	
 	/**

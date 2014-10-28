@@ -23,3 +23,6 @@ hs_err_pid*
 *.aux
 *.synctex.gz
 AwsCredentials.properties
+
+# Ignore server logs
+code/CCLabCore/logs/*

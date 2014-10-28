@@ -24,7 +24,7 @@ public class NodeLogger {
         logger.addAppender(consoleApp);
         try {
             RollingFileAppender fileApp = new RollingFileAppender(
-                    new PatternLayout("%d [%t] %-5p - %m%n"), "server_log_"
+                    new PatternLayout("%d [%t] %-5p - %m%n"), "logs/server_log_"
                     + hostname + ".txt"
             );
             fileApp.setMaxFileSize("100KB");
