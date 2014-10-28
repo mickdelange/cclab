@@ -47,7 +47,8 @@ public class Node {
 	State state;
 	long idleSince = Integer.MAX_VALUE;
 	long workingSince = Integer.MAX_VALUE;
-	long maxTaskTime = 60000; // Maximum time allowed for one task, in milliseconds.
+	long maxTaskTime = 60000; // Maximum time allowed for one task, in milliseconds. (1 minute)
+	long maxIdleTime = 3600000; // Maximum time allowed for node to be IDLE, in milliseconds. (1 hour)
 	
 	/**
 	 * Construct Node object.
@@ -80,6 +81,10 @@ public class Node {
 			} // Machine has unexpectedly quit
 			else if (currState != "running" && state != State.STOPPED) {
 				switchState(State.STOPPED);
+			} // Machine has been IDLE for a long time
+			else if (currState == "running" && state == State.IDLE && (currTime-idleSince) > maxIdleTime) {
+				// Kill node
+				stop();
 			}
 		} else {
 			throw new Error("InstanceId changed");
