@@ -55,8 +55,10 @@ public class Node {
 	 * Used by the scheduler to monitor Nodes.
 	 * @param inst
 	 */
-	Node(Instance inst) {
+	Node(Instance inst, long mtt, long mit) {
 		instanceId = inst.getInstanceId();
+		maxTaskTime = mtt;
+		maxIdleTime = mit;
 		updateState(inst);
 	}
 	

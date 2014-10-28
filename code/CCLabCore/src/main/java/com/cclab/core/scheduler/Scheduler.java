@@ -1,7 +1,12 @@
 package com.cclab.core.scheduler;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Queue;
 import java.util.Set;
 
@@ -17,23 +22,60 @@ public class Scheduler extends Thread {
 	
 	Queue<Task> mainQ = new LinkedList<Task>();
 	List<Node> workerNodes;
-	final int loadThresh = 2; // Amount of tasks that defines a node with low load
-	final int interval = 2000; // Milliseconds before next run.
+	int loadThresh;
+	int interval;
+	long maxTaskTime;
+	long maxIdleTime;
     private boolean shouldExit = false;
 	
 	public Scheduler(String ownId) {
+		if (!loadProperties()) {
+			// Something went wrong loading properties, set to default
+			loadThresh = 5;
+			interval = 2000;
+			maxTaskTime = 60000;
+			maxIdleTime = 3600000;
+		}
+		
 		try {
 			AwsConnect.init();
 			Set<Instance> instances = AwsConnect.getInstances();
 			
 			for (Instance inst : instances) {
 				if (inst.getInstanceId() != ownId)
-					workerNodes.add(new Node(inst));
+					workerNodes.add(new Node(inst, maxTaskTime, maxIdleTime));
 			}
 		} catch (Exception e) {
 			NodeLogger.get().error(e.getMessage(), e);
 		}
 		
+	}
+	
+	/**
+	 * Get the properties from the config file.
+	 * @return True if succeeded, False otherwise.
+	 */
+	public boolean loadProperties() {
+		Properties prop = new Properties();
+		
+		try {
+			InputStream inputStream = getClass().getClassLoader().getResourceAsStream("scheduler.properties");
+			
+			if (inputStream != null) {
+				prop.load(inputStream);
+				loadThresh = Integer.parseInt(prop.getProperty("loadThresh"));
+				interval = Integer.parseInt(prop.getProperty("interval"));
+				maxTaskTime = Integer.parseInt(prop.getProperty("maxTaskTime"));
+				maxIdleTime = Integer.parseInt(prop.getProperty("maxIdleTime"));
+				return true;
+			} else {
+				NodeLogger.get().error("Scheduler properties file not found");
+				return false;
+			}
+		} catch (IOException e) {
+			NodeLogger.get().error(e.getMessage(), e);
+			return false;
+		}
 	}
 	
 	/**
@@ -43,6 +85,7 @@ public class Scheduler extends Thread {
 		Task currT;
 			try {
 				while(true) {
+					System.out.println("test");
 					if(shouldExit) // Stop the loop.
 	                    break;
 					Thread.sleep(interval);
