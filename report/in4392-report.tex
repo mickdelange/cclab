@@ -6,8 +6,8 @@
 \begin{document}
 
 % 1. Report title, authors, and support cast (Lab assistant and course instructors). For each person, give name and contact information (email).
-\title{}
-\subtitle{}
+\title{GaussianCloud}
+\subtitle{A cloud-based image blurring application}
 
 \numberofauthors{5}
 \author{
@@ -96,6 +96,50 @@ Nodes that crash, tasks that break or other problems that occur should be dealt 
 % describe each additional feature of your system, one sub-section per feature.
 \section{System Design}
 \label{sec_system}
+The system design is aimed at providing a simple platform to support the work that WantCloud wants to perform.
+It is intended as a proof of concept, rather than a production ready solution.
+With this in mind, the main design decision were made to comply with the requirements discussed in Section \ref{sec_bg}.
+In this section the main aspects of the system design will be discussed: the architecture, resource management, and policies.
+
+\subsection{Architecture}
+The architecture of this solution is kept very simple, it consists of Master and Worker nodes.
+These nodes communicate to notify each other of new tasks and finished tasks.
+% TODO: Mick create a visualisation of the architecture.
+
+\subsubsection{Master}
+The Master node manages the process, it handles the scheduling and assigns tasks to Worker nodes.
+As a new task comes in to the Master node, it is added to its main queue and assigned to the first available Worker.
+If no Worker nodes are available, a new node is started to handle the workload.
+The Master is also responsible for keeping track of each Worker's queue.
+Worker nodes do not maintain a queue themselves, but are rather assigned one task at a time.
+
+\subsubsection{Worker}
+Worker nodes perform the actual work.
+These nodes receive tasks from the Master node, process them, and reply to the Master whenever a task is finished.
+Worker nodes are not aware of the length of their queue, the Master node keeps track of this information.
+This design choice was made to keep the Worker nodes as simple as possible and also allow for easy fault correction in case a Worker node crashes.
+
+\subsubsection{Communication}
+% TODO: Maria describe the communication between nodes
+
+\subsection{Resource Management}
+The resources used in this application are a number of EC2 instances.
+For testing purposes the free \texttt{t2.micro} instances where used with an Ubuntu operating system.
+Here we will discuss how the requirements set in Section \ref{sec_bg} can be satisfied by the designed architecture.
+
+\subsubsection{Elasticity}
+
+\subsubsection{Automation}
+
+\subsubsection{Fault Tolerance}
+
+\subsection{Policies}
+
+\subsubsection{Scheduling}
+
+\subsubsection{Redundancy}
+
+\subsubsection{Extensions}
 
 % 6. Experimental Results (recommended size: 1.5 pages)
 % a. Experimental setup: describe the working environments (DAS, Amazon EC2,
