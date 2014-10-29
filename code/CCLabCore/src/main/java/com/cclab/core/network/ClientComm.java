@@ -8,7 +8,6 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -16,23 +15,18 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class ClientComm extends GeneralComm {
 
-    private ConcurrentLinkedQueue<Message> outgoingQueue;
     private String masterIP;
     SocketChannel mainChannel = null;
-    private String myName;
+
 
     public ClientComm(String masterIP, int port, String myName, MessageInterpreter interpreter) throws IOException {
-        super(port, interpreter);
-        this.myName = myName;
+        super(port, myName, interpreter);
+
         this.masterIP = masterIP;
-        outgoingQueue = new ConcurrentLinkedQueue<Message>();
-        messageParts = new ConcurrentHashMap<SocketChannel, ConcurrentHashMap<Integer, byte[]>>();
 
         initialize();
-
     }
 
-    @Override
     void initialize() throws IOException {
         NodeLogger.get().info("ClientComm communicator is now online");
         NodeLogger.get().info("Connecting to " + masterIP + ":" + port);
@@ -45,15 +39,14 @@ public class ClientComm extends GeneralComm {
         ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE);
         selector = Selector.open();
         mainChannel.register(selector, SelectionKey.OP_READ, buf);
-        messageParts.put(mainChannel, new ConcurrentHashMap<Integer, byte[]>());
-        outgoingQueue.add(new Message(Message.Type.PING, myName));
+
+        outgoingQueues.clear();
+        outgoingQueues.put(mainChannel, new ConcurrentLinkedQueue<Message>());
+        addMessageToOutgoing(new Message(Message.Type.PING, myName), mainChannel);
     }
 
-    @Override
-    void checkOutgoing() {
-        if (!outgoingQueue.isEmpty()) {
-            mainChannel.keyFor(selector).interestOps(SelectionKey.OP_WRITE);
-        }
+    public void addMessageToOutgoing(Message message) {
+        addMessageToOutgoing(message, mainChannel);
     }
 
     @Override
@@ -62,39 +55,40 @@ public class ClientComm extends GeneralComm {
     }
 
     @Override
-    void write(SelectionKey key) throws IOException {
-        writeFromQueue(key, outgoingQueue);
-    }
-
-    @Override
     void read(SelectionKey key) throws IOException {
-        new Thread(new ClientReceiver(key, this)).start();
+        // read message in same thread
+        new Transceiver(key, null, this).run();
     }
 
     @Override
     void cleanup() {
-        if (mainChannel != null)
+        if (mainChannel != null) {
             try {
                 mainChannel.close();
             } catch (IOException e) {
+                NodeLogger.get().warn("Error cleaning up communicator ", e);
             }
-    }
-
-    public void addMessageToQueue(Message message) {
-        outgoingQueue.add(message);
-        selector.wakeup();
+        }
+        super.cleanup();
     }
 
     @Override
-    public void checkIfNew(String clientName, SocketChannel socketChannel) {
+    void handleMessage(Message message, SocketChannel channel) throws IOException {
+        interpreter.processMessage(message);
     }
 
     @Override
-    public void disconnectClient(SocketChannel socketChannel) {
-    }
-
-    @Override
-    void finishedReading(SelectionKey key) {
+    void cancelConnection(SelectionKey key) throws IOException {
+//        super.cancelConnection(key);
+//        try {
+//            cleanup();
+//            initialize();
+//        } catch (Exception e) {
+//            interpreter.communicatorDown(this);
+//            selector.wakeup();
+//        }
+        shouldExit = true;
+        interpreter.communicatorDown(this);
 
     }
 }

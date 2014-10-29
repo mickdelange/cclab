@@ -17,26 +17,23 @@ import java.util.concurrent.Executors;
  * Created by ane on 10/19/14.
  */
 public class ServerComm extends GeneralComm {
-    public ConcurrentHashMap<String, SocketChannel> clientToChannel;
-    public ConcurrentHashMap<SocketChannel, String> channelToClient;
-    public ExecutorService pool = Executors.newFixedThreadPool(5);
-    private ConcurrentHashMap<SocketChannel, ConcurrentLinkedQueue<Message>> outgoingQueues;
+
     private ConcurrentLinkedQueue<SocketChannel> socketsToBeRemoved;
     ServerSocketChannel mainChannel;
+    ConcurrentHashMap<String, SocketChannel> nameToChannel;
+    ConcurrentHashMap<SocketChannel, String> channelToName;
+    ExecutorService pool = Executors.newFixedThreadPool(5);
 
-    public ServerComm(int port, MessageInterpreter interpreter) throws IOException {
-        super(port, interpreter);
+    public ServerComm(int port, String myName, MessageInterpreter interpreter) throws IOException {
+        super(port, myName, interpreter);
 
-        outgoingQueues = new ConcurrentHashMap<SocketChannel, ConcurrentLinkedQueue<Message>>();
         socketsToBeRemoved = new ConcurrentLinkedQueue<SocketChannel>();
-        clientToChannel = new ConcurrentHashMap<String, SocketChannel>();
-        channelToClient = new ConcurrentHashMap<SocketChannel, String>();
-        messageParts = new ConcurrentHashMap<SocketChannel, ConcurrentHashMap<Integer, byte[]>>();
+        nameToChannel = new ConcurrentHashMap<String, SocketChannel>();
+        channelToName = new ConcurrentHashMap<SocketChannel, String>();
 
         initialize();
     }
 
-    @Override
     void initialize() throws IOException {
         NodeLogger.get().info("Server communicator is now online");
         NodeLogger.get().info("Listening on port " + port);
@@ -50,12 +47,28 @@ public class ServerComm extends GeneralComm {
         mainChannel.register(selector, SelectionKey.OP_ACCEPT);
     }
 
-    void checkOutgoing() {
-        for (SocketChannel sc : channelToClient.keySet()) {
-            if (!outgoingQueues.get(sc).isEmpty()) {
-                sc.keyFor(selector).interestOps(SelectionKey.OP_WRITE);
-            }
+    public void registerClient(String client, SocketChannel channel) {
+        if (channel.equals(nameToChannel.get(client)))
+            return;
+        NodeLogger.get().info("Client " + client + " has connected.");
+        outgoingQueues.put(channel, new ConcurrentLinkedQueue<Message>());
+        nameToChannel.put(client, channel);
+        channelToName.put(channel, client);
+    }
+
+    public void addMessageToOutgoing(Message message, String client) {
+        if (client == null) {
+            //broadcast
+            for (SocketChannel channel : channelToName.keySet())
+                addMessageToOutgoing(message, channel);
+            return;
         }
+        SocketChannel clientChannel = nameToChannel.get(client);
+        if (clientChannel == null) {
+            NodeLogger.get().error("Client " + client + " not connected");
+            return;
+        }
+        addMessageToOutgoing(message, clientChannel);
     }
 
     @Override
@@ -67,26 +80,21 @@ public class ServerComm extends GeneralComm {
 
         socketChannel.register(key.selector(), SelectionKey.OP_READ);
 
-        messageParts.put(socketChannel, new ConcurrentHashMap<Integer, byte[]>());
-
-        // display remote client address
-        NodeLogger.get().info(
-                "Connection from: "
-                        + socketChannel.socket().getRemoteSocketAddress()
+        NodeLogger.get().info("Connection from: " + socketChannel.socket().getRemoteSocketAddress()
         );
     }
 
     @Override
     void read(SelectionKey key) throws IOException {
-        pool.execute(new Thread(new ServerReceiver(key, this)));
+        pool.execute(new Thread(new Transceiver(key, null, this)));
     }
 
     @Override
     void write(SelectionKey key) throws IOException {
+        super.write(key);
         SocketChannel channel = (SocketChannel) key.channel();
-        writeFromQueue(key, outgoingQueues.get(channel));
         if (socketsToBeRemoved.contains(channel)) {
-            removeSocketChannel(channel);
+            cancelConnection(key);
         }
     }
 
@@ -97,66 +105,30 @@ public class ServerComm extends GeneralComm {
             try {
                 mainChannel.close();
             } catch (IOException e) {
+                NodeLogger.get().warn("Error cleaning up communicator ", e);
             }
+        super.cleanup();
     }
 
-    public void removeSocketChannel(SocketChannel socketChannel) {
-        String client = channelToClient.get(socketChannel);
+    @Override
+    void cancelConnection(SelectionKey key) throws IOException {
+        SocketChannel channel = (SocketChannel) key.channel();
+        String client = channelToName.get(channel);
 
         NodeLogger.get().info("Node " + client + " disconnected");
-        outgoingQueues.remove(socketChannel);
-        channelToClient.remove(socketChannel);
-        clientToChannel.remove(client);
-        socketsToBeRemoved.remove(socketChannel);
-
-        try {
-            socketChannel.close();
-        } catch (IOException e) {
-            NodeLogger.get().error("Error closing client channel: " + e.getMessage(), e);
-        }
-
-    }
-
-    public void registerClient(String client, SocketChannel channel) {
-        if (channel.equals(clientToChannel.get(client)))
-            return;
-        NodeLogger.get().info("Client " + client + " has connected.");
-        outgoingQueues.put(channel, new ConcurrentLinkedQueue<Message>());
-        clientToChannel.put(client, channel);
-        channelToClient.put(channel, client);
-    }
-
-    public void addMessageToQueue(Message message, SocketChannel clientChannel) {
-        outgoingQueues.get(clientChannel).add(message);
-        selector.wakeup();
-    }
-
-    public void addMessageToQueue(Message message, String client) {
-        if (client == null) {
-            //broadcast
-            for (SocketChannel channel : channelToClient.keySet())
-                addMessageToQueue(message, channel);
-            return;
-        }
-        SocketChannel clientChannel = clientToChannel.get(client);
-        if (clientChannel == null)
-            NodeLogger.get().error("Client " + client + " not connected");
-        addMessageToQueue(message, clientChannel);
+        outgoingQueues.remove(channel);
+        channelToName.remove(channel);
+        nameToChannel.remove(client);
+        socketsToBeRemoved.remove(channel);
+        super.cancelConnection(key);
     }
 
     @Override
-    public void checkIfNew(String clientName, SocketChannel socketChannel) {
-        registerClient(clientName, socketChannel);
-    }
-
-    @Override
-    public void disconnectClient(SocketChannel socketChannel) {
-        removeSocketChannel(socketChannel);
-    }
-
-    @Override
-    void finishedReading(SelectionKey key) {
-        /* deactivate interest for reading */
+    void handleMessage(Message message, SocketChannel channel) throws IOException {
+        SelectionKey key = channel.keyFor(selector);
+        // deactivate interest for reading
         key.interestOps(key.interestOps() & ~SelectionKey.OP_READ);
+        registerClient(message.getOwner(), channel);
+        interpreter.processMessage(message);
     }
 }

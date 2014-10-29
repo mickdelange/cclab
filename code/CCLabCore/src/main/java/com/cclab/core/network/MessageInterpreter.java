@@ -8,5 +8,6 @@ import java.nio.channels.SocketChannel;
  */
 public interface MessageInterpreter {
 
-    public abstract void processMessage(Message message) throws IOException;
+    public abstract void processMessage(Message message);
+    public abstract void communicatorDown(GeneralComm comm);
 }

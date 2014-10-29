@@ -3,7 +3,9 @@ package com.cclab.core.network;
 import com.cclab.core.utils.NodeLogger;
 
 import java.io.*;
-import java.util.*;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by ane on 10/19/14.
@@ -12,10 +14,8 @@ public class Message implements Serializable {
 
     public static enum Type {
         PING((byte) 0),
-        LOADINPUT((byte) 1),
-        LOADOUTPUT((byte) 2),
-        NEWTASK((byte) 3),
-        FINISHED((byte) 4);
+        NEWTASK((byte) 1),
+        FINISHED((byte) 2);
 
         private static final Map<Byte, Type> codeLookup = new HashMap<Byte, Type>();
         private static final Map<String, Type> nameLookup = new HashMap<String, Type>();
@@ -46,16 +46,20 @@ public class Message implements Serializable {
         }
     }
 
+    private static int nextId;
+
+    private int id;
     private byte type;
     private String owner;
     private String details;
     private Object data;
 
     public Message() {
-
+        this.id = nextId++;
     }
 
     public Message(Type type, String owner) {
+        this.id = nextId++;
         this.type = type.getCode();
         this.owner = owner;
     }
@@ -92,9 +96,13 @@ public class Message implements Serializable {
         this.data = data;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public byte[] toBytes() {
         try {
-            // write load to buffer preceded by size
+            // write payload to buffer preceded by size
             ByteArrayOutputStream outStream = new ByteArrayOutputStream();
             ObjectOutputStream objOut = new ObjectOutputStream(outStream);
             objOut.writeObject(this);
@@ -109,28 +117,16 @@ public class Message implements Serializable {
     }
 
     public static Message getFromBytes(byte[] data) {
-        Message message = null;
-        try {
-            ByteArrayInputStream inStream = new ByteArrayInputStream(data);
-            ObjectInputStream objIn = new ObjectInputStream(inStream);
-            message = (Message) objIn.readObject();
-            objIn.close();
-            inStream.close();
-        } catch (Exception e) {
-            NodeLogger.get().error("Cannot read message: " + e.getMessage());
-        }
-        return message;
+        Map<Integer, byte[]> map = new HashMap<Integer, byte[]>();
+        map.put(0, data);
+        return getFromParts(map);
     }
 
     public static Message getFromParts(Map<Integer, byte[]> data) {
-            Message message = null;
+        Message message = null;
         try {
-            Integer[] keys = new Integer[1];
-            keys = data.keySet().toArray(keys);
-            Arrays.sort(keys);
-
             ByteArrayOutputStream result = new ByteArrayOutputStream();
-            for (Integer i : keys) {
+            for (int i = 0; i < data.size(); i++) {
                 result.write(data.get(i));
             }
             result.flush();
@@ -139,6 +135,7 @@ public class Message implements Serializable {
             message = (Message) objIn.readObject();
             objIn.close();
             inStream.close();
+            result.close();
         } catch (Exception e) {
             NodeLogger.get().error("Cannot read message: " + e.getMessage());
         }

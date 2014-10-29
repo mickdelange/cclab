@@ -3,12 +3,11 @@ package com.cclab.core.network;
 import com.cclab.core.utils.NodeLogger;
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
-import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -16,17 +15,25 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * Created by ane on 10/20/14.
  */
 public abstract class GeneralComm extends Thread {
-    int port;
-    Selector selector;
     static final int BUF_SIZE = 8192;
     public static final int DEFAULT_PORT = 9026;
-    private boolean shouldExit = false;
-    MessageInterpreter interpreter = null;
-    ConcurrentHashMap<SocketChannel, ConcurrentHashMap<Integer, byte[]>> messageParts = null;
 
-    public GeneralComm(int port, MessageInterpreter interpreter) {
+    String myName;
+    int port;
+    Selector selector;
+
+    boolean shouldExit = false;
+    MessageInterpreter interpreter = null;
+    ConcurrentHashMap<SocketChannel, ConcurrentHashMap<Integer, ConcurrentHashMap<Integer, byte[]>>> incomingQueues = null;
+    ConcurrentHashMap<SocketChannel, ConcurrentLinkedQueue<Message>> outgoingQueues;
+
+    public GeneralComm(int port, String myName, MessageInterpreter interpreter) {
         this.port = port;
+        this.myName = myName;
         this.interpreter = interpreter;
+
+        incomingQueues = new ConcurrentHashMap<SocketChannel, ConcurrentHashMap<Integer, ConcurrentHashMap<Integer, byte[]>>>();
+        outgoingQueues = new ConcurrentHashMap<SocketChannel, ConcurrentLinkedQueue<Message>>();
     }
 
     @Override
@@ -39,6 +46,7 @@ public abstract class GeneralComm extends Thread {
                 checkOutgoing();
                 // wait for something to happen
                 selector.select();
+
                 // iterate over the events
                 for (Iterator<SelectionKey> it = selector.selectedKeys().iterator(); it.hasNext(); ) {
                     // get current event and REMOVE it from the list!!!
@@ -52,107 +60,84 @@ public abstract class GeneralComm extends Thread {
                         write(key);
                     }
                 }
+
             }
 
-        } catch (IOException e) {
-            NodeLogger.get().error(e.getMessage(), e);
-
+        } catch (Exception e) {
+            NodeLogger.get().error("Error forced communicator to shut down", e);
         } finally {
-            // cleanup
             cleanup();
-            if (selector != null)
-                try {
-                    selector.close();
-                } catch (IOException e) {
-                }
+            interpreter.communicatorDown(this);
         }
     }
 
-    void writeFromQueue(SelectionKey key, ConcurrentLinkedQueue<Message> queue) throws IOException {
+    void addMessageToOutgoing(Message message, SocketChannel channel) {
+        outgoingQueues.get(channel).add(message);
+        selector.wakeup();
+    }
+
+    void cancelConnection(SelectionKey key) throws IOException {
         SocketChannel channel = (SocketChannel) key.channel();
-        ByteBuffer buf = null;
-        if (queue != null && !queue.isEmpty()) {
+        NodeLogger.get().warn("Connection closed for " + channel.socket().getRemoteSocketAddress());
+
+        key.cancel();
+        key.channel().close();
+    }
+
+    void cleanup() {
+        if (selector != null)
             try {
-                Message message = queue.poll();
-                byte[] data = message.toBytes();
-                NodeLogger.get().info("Sending " + message);
-                System.out.println("Data length " + data.length);
-
-
-                int chunks = data.length / BUF_SIZE;
-                if (data.length % BUF_SIZE > 0)
-                    chunks++;
-                int crt = 0;
-                while (crt < chunks) {
-                    buf = ByteBuffer.allocateDirect(data.length + 12);
-                    int size = Math.min(data.length - crt*BUF_SIZE, BUF_SIZE);
-                    buf.putInt(chunks);
-                    buf.putInt(crt);
-                    buf.putInt(size);
-                    byte[] part = Arrays.copyOfRange(data, crt*BUF_SIZE, crt*BUF_SIZE + size);
-                    buf.put(part);
-                    buf.flip();
-                    while (buf.hasRemaining()) {
-                        channel.write(buf);
-                    }
-                    System.out.println("Sent " + (crt*BUF_SIZE+size) + " of " + data.length);
-                    crt++;
-                }
-
+                selector.close();
             } catch (IOException e) {
-                if (buf != null)
-                    buf.clear();
-                channel.close();
-                return;
+                NodeLogger.get().warn("Error closing selector", e);
+            }
+    }
+
+    void checkOutgoing() {
+        for (Map.Entry<SocketChannel, ConcurrentLinkedQueue<Message>> e : outgoingQueues.entrySet()) {
+            if (!e.getValue().isEmpty()) {
+                e.getKey().keyFor(selector).interestOps(SelectionKey.OP_WRITE);
             }
         }
-        key.interestOps(SelectionKey.OP_READ);
     }
 
-    abstract void checkOutgoing();
-
-    abstract void accept(SelectionKey key) throws IOException;
-
-    abstract void write(SelectionKey key) throws IOException;
-
-    abstract void read(SelectionKey key) throws IOException;
-
-    abstract void cleanup();
-
-    abstract void initialize() throws IOException;
+    void write(SelectionKey key) throws IOException {
+        SocketChannel channel = (SocketChannel) key.channel();
+        // write in same thread
+        new Transceiver(key, outgoingQueues.get(channel).poll(), this).run();
+    }
 
     public void quit() {
         shouldExit = true;
         selector.wakeup();
     }
 
-    abstract void checkIfNew(String clientName, SocketChannel socketChannel);
-
-    abstract void disconnectClient(SocketChannel socketChannel);
-
-    void handlePartialMessage(int total, int current , byte[] data, SocketChannel channel) throws IOException {
-        ConcurrentHashMap<Integer, byte[]> channelParts = messageParts.get(channel);
-        if (channelParts == null) {
-            channelParts = new ConcurrentHashMap<Integer, byte[]>();
-            messageParts.put(channel, channelParts);
+    void handlePartialMessage(int id, int total, int current, byte[] data, SocketChannel channel) throws IOException {
+        ConcurrentHashMap<Integer, ConcurrentHashMap<Integer, byte[]>> messages = incomingQueues.get(channel);
+        if (messages == null) {
+            messages = new ConcurrentHashMap<Integer, ConcurrentHashMap<Integer, byte[]>>();
+            incomingQueues.put(channel, messages);
         }
-        channelParts.put(current, data);
-
-        System.out.println("Received part " + current + " now " + channelParts.size());
-        if (channelParts.size() == total) {
-            handleMessage(Message.getFromParts(channelParts), channel);
-            messageParts.put(channel, new ConcurrentHashMap<Integer, byte[]>());
+        ConcurrentHashMap<Integer, byte[]> messageParts = messages.get(id);
+        if (messageParts == null) {
+            messageParts = new ConcurrentHashMap<Integer, byte[]>();
+            messages.put(id, messageParts);
+        }
+        messageParts.put(current, data);
+        if (messageParts.size() == total) {
+            Message message = Message.getFromParts(messageParts);
+            if (message != null) {
+                NodeLogger.get().info("Received " + message);
+                handleMessage(message, channel);
+            }
+            messages.remove(id);
         }
     }
 
-    void handleMessage(Message message, SocketChannel channel) throws IOException {
-        finishedReading(channel.keyFor(selector));
-        //TODO interpret message
-        System.out.println("Got it");
-        checkIfNew(message.getOwner(), channel);
-        NodeLogger.get().info("Received " + message);
-        interpreter.processMessage(message);
-    }
+    abstract void handleMessage(Message message, SocketChannel channel) throws IOException;
 
-    abstract void finishedReading(SelectionKey key);
+    abstract void accept(SelectionKey key) throws IOException;
+
+    abstract void read(SelectionKey key) throws IOException;
+
 }

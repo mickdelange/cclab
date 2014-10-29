@@ -1,18 +1,17 @@
 package com.cclab.core;
 
-import com.cclab.core.network.ClientComm;
-import com.cclab.core.network.Message;
-import com.cclab.core.network.MessageInterpreter;
-import com.cclab.core.network.ServerComm;
+import com.cclab.core.network.*;
 import com.cclab.core.utils.CLInterpreter;
 import com.cclab.core.utils.CLReader;
 import com.cclab.core.utils.NodeLogger;
 import com.cclab.core.utils.NodeUtils;
-import org.apache.http.util.ByteArrayBuffer;
 
-import java.io.*;
-import java.nio.channels.SocketChannel;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by ane on 10/19/14.
@@ -26,7 +25,7 @@ public abstract class NodeInstance implements CLInterpreter, MessageInterpreter 
 
     public NodeInstance(String myName) {
         this.myName = myName;
-        NodeLogger.configureLogger(myName);
+        NodeLogger.configureLogger(myName, this);
         clients = new HashMap<String, ClientComm>();
         new CLReader(this).start();
     }
@@ -45,7 +44,7 @@ public abstract class NodeInstance implements CLInterpreter, MessageInterpreter 
                 Message message = new Message(Message.Type.get(command[1]), myName);
                 message.setDetails(NodeUtils.join(command, 3, " "));
                 if (server != null)
-                    server.addMessageToQueue(message, command[2]);
+                    server.addMessageToOutgoing(message, command[2]);
                 else
                     NodeLogger.get().error("Server down");
                 return true;
@@ -54,11 +53,11 @@ public abstract class NodeInstance implements CLInterpreter, MessageInterpreter 
                 Message message = new Message(Message.Type.get(command[1]), myName);
                 message.setDetails(NodeUtils.join(command, 2, " "));
                 if (server != null)
-                    server.addMessageToQueue(message, (String) null);
+                    server.addMessageToOutgoing(message, null);
                 else
                     NodeLogger.get().error("Server down");
                 for (ClientComm client : clients.values())
-                    client.addMessageToQueue(message);
+                    client.addMessageToOutgoing(message);
                 return true;
             }
             if (command[0].equals("sendToMaster")) {
@@ -66,7 +65,7 @@ public abstract class NodeInstance implements CLInterpreter, MessageInterpreter 
                 message.setDetails(NodeUtils.join(command, 2, " "));
                 ClientComm masterLink = clients.get(masterIP);
                 if (masterLink != null)
-                    masterLink.addMessageToQueue(message);
+                    masterLink.addMessageToOutgoing(message);
                 else
                     NodeLogger.get().error("No link to master " + masterIP);
                 return true;
@@ -76,20 +75,20 @@ public abstract class NodeInstance implements CLInterpreter, MessageInterpreter 
                 String filename = NodeUtils.join(command, 2, " ");
 
 //                if(filename == null || filename.length()<1)
-                    filename = "/Users/ane/Downloads/strawberry.jpg";
+                filename = "/Users/ane/Downloads/strawberry.jpg";
                 message.setDetails(filename);
-                File infile = new File (filename);
-               byte[] bytes = readBytesFromFile(infile);
-                System.out.println("File length "+bytes.length);
+                File infile = new File(filename);
+                byte[] bytes = readBytesFromFile(infile);
+                System.out.println("File length " + bytes.length);
                 message.setData(bytes);
                 if (server != null)
-                    server.addMessageToQueue(message, command[1]);
+                    server.addMessageToOutgoing(message, command[1]);
                 else
                     NodeLogger.get().error("Server down");
                 return true;
             }
         } catch (Exception e) {
-            NodeLogger.get().error("Error interpreting command " + NodeUtils.join(command, " ") + "(" + e.getMessage() + ")", e);
+            NodeLogger.get().error("Error interpreting command " + NodeUtils.join(command, " ") + " (" + e.getMessage() + ")", e);
         }
         return extendedInterpret(command);
     }
@@ -103,11 +102,11 @@ public abstract class NodeInstance implements CLInterpreter, MessageInterpreter 
             throw new IOException("Could not completely read file " + file.getName() + " as it is too long (" + length + " bytes, max supported " + Integer.MAX_VALUE + ")");
         }
 
-        byte[] bytes = new byte[(int)length];
+        byte[] bytes = new byte[(int) length];
 
         int offset = 0;
         int numRead = 0;
-        while (offset < bytes.length && (numRead=is.read(bytes, offset, bytes.length-offset)) >= 0) {
+        while (offset < bytes.length && (numRead = is.read(bytes, offset, bytes.length - offset)) >= 0) {
             offset += numRead;
         }
 
@@ -121,5 +120,19 @@ public abstract class NodeInstance implements CLInterpreter, MessageInterpreter 
 
     //return false if should not continue reading CLI
     public abstract boolean extendedInterpret(String[] command);
+
+    @Override
+    public void communicatorDown(GeneralComm comm) {
+        if (comm.equals(server)) {
+            NodeLogger.get().error("Server went down");
+        } else {
+            for (Map.Entry<String, ClientComm> e : clients.entrySet()) {
+                if (comm.equals(e.getValue())) {
+                    NodeLogger.get().error("Client for " + e.getKey() + " went down");
+                }
+            }
+        }
+
+    }
 
 }

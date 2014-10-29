@@ -4,37 +4,35 @@ import org.apache.log4j.*;
 import org.apache.log4j.varia.LevelRangeFilter;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * Created by ane on 10/19/14.
  */
 public class NodeLogger {
 
-    private static String name = null;
+    private static String nodeName = null;
 
-    public static void configureLogger(String hostname) {
-        name = "NodeLogger." + hostname;
-        Logger logger = Logger.getLogger(name);
-        logger.setLevel(Level.DEBUG);
-        ConsoleAppender consoleApp = new ConsoleAppender(new PatternLayout(
-                "%-4r [%t] %-5p %c - %m%n"));
-        LevelRangeFilter filter = new LevelRangeFilter();
-        filter.setLevelMin(Level.INFO);
-        consoleApp.addFilter(filter);
-        logger.addAppender(consoleApp);
+    public static void configureLogger(String name, Object caller) {
+        nodeName = name;
+
+        Properties props = new Properties();
         try {
-            RollingFileAppender fileApp = new RollingFileAppender(
-                    new PatternLayout("%d [%t] %-5p - %m%n"), "logs/server_log_"
-                    + hostname + ".txt"
-            );
-            fileApp.setMaxFileSize("100KB");
-            logger.addAppender(fileApp);
-        } catch (IOException e) {
-            e.printStackTrace();
+            InputStream configStream = caller.getClass().getResourceAsStream("/log4j.properties");
+            props.load(configStream);
+            configStream.close();
+        } catch(IOException e) {
+            System.out.println("Error: Cannot load log configuration file");
+            return;
         }
+
+        props.setProperty("log.name",name);
+        LogManager.resetConfiguration();
+        PropertyConfigurator.configure(props);
     }
 
     public static Logger get() {
-        return Logger.getLogger(name);
+        return Logger.getLogger(nodeName);
     }
 }
