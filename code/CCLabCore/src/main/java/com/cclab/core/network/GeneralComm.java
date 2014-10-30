@@ -17,6 +17,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public abstract class GeneralComm extends Thread {
     static final int BUF_SIZE = 8192;
     public static final int DEFAULT_PORT = 9026;
+    private static final int TIMEOUT = 10000;
 
     String myName;
     int port;
@@ -45,14 +46,16 @@ public abstract class GeneralComm extends Thread {
                     break;
                 checkOutgoing();
                 // wait for something to happen
-                selector.select();
+                selector.select(TIMEOUT);
 
                 // iterate over the events
                 for (Iterator<SelectionKey> it = selector.selectedKeys().iterator(); it.hasNext(); ) {
                     // get current event and REMOVE it from the list!!!
                     SelectionKey key = it.next();
                     it.remove();
-                    if (key.isAcceptable()) {
+                    if(key.isConnectable()){
+                        connect(key);
+                    }else if (key.isAcceptable()) {
                         accept(key);
                     } else if (key.isReadable()) {
                         read(key);
@@ -67,6 +70,7 @@ public abstract class GeneralComm extends Thread {
             NodeLogger.get().error("Error forced communicator to shut down", e);
         } finally {
             cleanup();
+            NodeLogger.get().warn("Communicator disconnected");
             interpreter.communicatorDown(this);
         }
     }
@@ -139,5 +143,7 @@ public abstract class GeneralComm extends Thread {
     abstract void accept(SelectionKey key) throws IOException;
 
     abstract void read(SelectionKey key) throws IOException;
+
+    abstract void connect(SelectionKey key)throws IOException;
 
 }

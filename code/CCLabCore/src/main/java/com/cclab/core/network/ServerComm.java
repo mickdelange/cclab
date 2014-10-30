@@ -18,7 +18,6 @@ import java.util.concurrent.Executors;
  */
 public class ServerComm extends GeneralComm {
 
-    private ConcurrentLinkedQueue<SocketChannel> socketsToBeRemoved;
     ServerSocketChannel mainChannel;
     ConcurrentHashMap<String, SocketChannel> nameToChannel;
     ConcurrentHashMap<SocketChannel, String> channelToName;
@@ -27,7 +26,6 @@ public class ServerComm extends GeneralComm {
     public ServerComm(int port, String myName, MessageInterpreter interpreter) throws IOException {
         super(port, myName, interpreter);
 
-        socketsToBeRemoved = new ConcurrentLinkedQueue<SocketChannel>();
         nameToChannel = new ConcurrentHashMap<String, SocketChannel>();
         channelToName = new ConcurrentHashMap<SocketChannel, String>();
 
@@ -77,6 +75,7 @@ public class ServerComm extends GeneralComm {
         ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
         SocketChannel socketChannel = serverSocketChannel.accept();
         socketChannel.configureBlocking(false);
+        System.out.println(socketChannel);
 
         socketChannel.register(key.selector(), SelectionKey.OP_READ);
 
@@ -87,15 +86,6 @@ public class ServerComm extends GeneralComm {
     @Override
     void read(SelectionKey key) throws IOException {
         pool.execute(new Thread(new Transceiver(key, null, this)));
-    }
-
-    @Override
-    void write(SelectionKey key) throws IOException {
-        super.write(key);
-        SocketChannel channel = (SocketChannel) key.channel();
-        if (socketsToBeRemoved.contains(channel)) {
-            cancelConnection(key);
-        }
     }
 
     @Override
@@ -119,7 +109,6 @@ public class ServerComm extends GeneralComm {
         outgoingQueues.remove(channel);
         channelToName.remove(channel);
         nameToChannel.remove(client);
-        socketsToBeRemoved.remove(channel);
         super.cancelConnection(key);
     }
 
@@ -130,5 +119,10 @@ public class ServerComm extends GeneralComm {
         key.interestOps(key.interestOps() & ~SelectionKey.OP_READ);
         registerClient(message.getOwner(), channel);
         interpreter.processMessage(message);
+    }
+
+    @Override
+    void connect(SelectionKey key) throws IOException {
+        NodeLogger.get().error("Cannot handle connect");
     }
 }

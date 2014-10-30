@@ -4,7 +4,9 @@ import com.cclab.core.utils.NodeLogger;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.net.SocketTimeoutException;
 import java.nio.ByteBuffer;
+import java.nio.channels.SelectableChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
@@ -34,15 +36,9 @@ public class ClientComm extends GeneralComm {
         mainChannel = SocketChannel.open();
         mainChannel.configureBlocking(false);
         mainChannel.connect(new InetSocketAddress(masterIP, port));
-        mainChannel.finishConnect();
 
-        ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE);
         selector = Selector.open();
-        mainChannel.register(selector, SelectionKey.OP_READ, buf);
-
-        outgoingQueues.clear();
-        outgoingQueues.put(mainChannel, new ConcurrentLinkedQueue<Message>());
-        addMessageToOutgoing(new Message(Message.Type.PING, myName), mainChannel);
+        mainChannel.register(selector, SelectionKey.OP_CONNECT);
     }
 
     public void addMessageToOutgoing(Message message) {
@@ -79,16 +75,27 @@ public class ClientComm extends GeneralComm {
 
     @Override
     void cancelConnection(SelectionKey key) throws IOException {
-//        super.cancelConnection(key);
-//        try {
-//            cleanup();
-//            initialize();
-//        } catch (Exception e) {
-//            interpreter.communicatorDown(this);
-//            selector.wakeup();
-//        }
-        shouldExit = true;
-        interpreter.communicatorDown(this);
+        super.cancelConnection(key);
+        try {
+            cleanup();
+            initialize();
+        } catch (Exception e) {
+            interpreter.communicatorDown(this);
+            selector.wakeup();
+        }
+    }
 
+    @Override
+    void connect(SelectionKey key) throws IOException{
+        System.out.println("Connection finishing");
+        if(mainChannel.isConnectionPending()){
+            mainChannel.finishConnect();
+            ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE);
+            mainChannel.register(selector, SelectionKey.OP_READ, buf);
+
+            outgoingQueues.clear();
+            outgoingQueues.put(mainChannel, new ConcurrentLinkedQueue<Message>());
+            addMessageToOutgoing(new Message(Message.Type.PING, myName), mainChannel);
+        }
     }
 }

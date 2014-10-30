@@ -13,13 +13,12 @@ import java.util.Arrays;
  */
 
 public class Transceiver implements Runnable {
-    private int MAX_SEND_TRIES = 1000;
-
-    SelectionKey myKey = null;
-    SocketChannel myChannel = null;
-    static final int BUF_SIZE = 8192;
-    GeneralComm communicator = null;
-    Message payload = null;
+    private static final int MAX_SEND_TRIES = 1000;
+    private SelectionKey myKey = null;
+    private SocketChannel myChannel = null;
+    private static final int BUF_SIZE = 8192;
+    private GeneralComm communicator = null;
+    private Message payload = null;
 
     public Transceiver(SelectionKey key, Message payload, GeneralComm communicator) throws IOException {
         this.myKey = key;
