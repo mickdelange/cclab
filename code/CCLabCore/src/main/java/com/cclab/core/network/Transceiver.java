@@ -43,20 +43,23 @@ public class Transceiver implements Runnable {
 
     private synchronized void doSend() throws IOException {
         byte[] data = payload.toBytes();
+        SocketChannel channel = (SocketChannel) myKey.channel();
         NodeLogger.get().info("Sending " + data.length + " bytes: " + payload);
-        ByteBuffer buf = ByteBuffer.allocateDirect(data.length + 16);
+
+        ByteBuffer buf = null;
         try {
             int chunks = data.length / BUF_SIZE;
             if (data.length % BUF_SIZE > 0)
                 chunks++;
             int crt = 0;
             while (crt < chunks) {
-                int size = Math.min(data.length - crt * BUF_SIZE, BUF_SIZE);
+                buf = ByteBuffer.allocateDirect(data.length + 16);
+                int size = Math.min(data.length - crt*BUF_SIZE, BUF_SIZE);
                 buf.putInt(payload.getId());
                 buf.putInt(chunks);
                 buf.putInt(crt);
                 buf.putInt(size);
-                byte[] part = Arrays.copyOfRange(data, crt * BUF_SIZE, crt * BUF_SIZE + size);
+                byte[] part = Arrays.copyOfRange(data, crt*BUF_SIZE, crt*BUF_SIZE + size);
                 buf.put(part);
                 buf.flip();
                 int tries = 0;
@@ -67,15 +70,12 @@ public class Transceiver implements Runnable {
                         //TODO maybe disconnect
                     }
                 }
-                buf.clear();
                 NodeLogger.get().debug("Sent packet " + (crt + 1) + " of " + chunks);
                 crt++;
             }
             myKey.interestOps(SelectionKey.OP_READ);
 
         } catch (Exception e) {
-            NodeLogger.get().error("Error sending message " + e);
-            buf.clear();
             communicator.cancelConnection(myKey);
         }
     }
@@ -83,7 +83,7 @@ public class Transceiver implements Runnable {
     private void doReceive() throws IOException {
 
         int bytes = -1;
-        ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE + 12);
+        ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE + 16);
 
         // read from socket into buffer, use a loop
         try {
@@ -93,7 +93,7 @@ public class Transceiver implements Runnable {
 
             buf.flip();
 
-            while (buf.limit() - buf.position() > 12) {
+            while (buf.limit() - buf.position() > 16) {
                 int id = buf.getInt();
                 int total = buf.getInt();
                 int part = buf.getInt();
