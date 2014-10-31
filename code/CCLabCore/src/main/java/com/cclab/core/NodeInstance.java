@@ -6,14 +6,23 @@ import com.cclab.core.utils.CLReader;
 import com.cclab.core.utils.NodeLogger;
 import com.cclab.core.utils.NodeUtils;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by ane on 10/19/14.
+ * Abstract implementation of a node.
+ * <p/>
+ * It keeps the reference to a server communicator that listens for connections
+ * from other nodes and a series of client communicator references for
+ * connecting to other nodes. The node listens for events from these
+ * communicators. It is capable of interpreting command line instructions for
+ * quiting and broadcasting messages.
+ * <p/>
+ * Created on 10/19/14 for CCLabCore.
+ *
+ * @author an3m0na
  */
-public abstract class NodeInstance implements CLInterpreter, MessageInterpreter {
+public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
 
     ServerComm server = null;
     HashMap<String, ClientComm> clients = null;

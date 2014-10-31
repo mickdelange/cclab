@@ -11,7 +11,17 @@ import java.nio.channels.SocketChannel;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
- * Created by ane on 10/19/14.
+ * Extension of the standard communicator to act as a network client.
+ * <p/>
+ * Apart from the parameters of a GeneralComm, the constructor expects the IP
+ * address and port of the process it will connect to. On connection to the
+ * server, it sends a default PING message to notify server of its name. All
+ * messages are handled in a serial fashion. If the connection to the server is
+ * lost, the communicator is forced to shutdown.
+ * <p/>
+ * Created on 10/19/14 for CCLabCore.
+ *
+ * @author an3m0na
  */
 public class ClientComm extends GeneralComm {
 
@@ -19,7 +29,7 @@ public class ClientComm extends GeneralComm {
     SocketChannel mainChannel = null;
 
 
-    public ClientComm(String masterIP, int port, String myName, MessageInterpreter interpreter) throws IOException {
+    public ClientComm(String masterIP, int port, String myName, CommInterpreter interpreter) throws IOException {
         super(port, myName, interpreter);
 
         this.masterIP = masterIP;
@@ -74,18 +84,12 @@ public class ClientComm extends GeneralComm {
     @Override
     void cancelConnection(SelectionKey key) throws IOException {
         super.cancelConnection(key);
-        try {
-            cleanup();
-            initialize();
-        } catch (Exception e) {
-            interpreter.communicatorDown(this);
-            selector.wakeup();
-        }
+        shouldExit = true;
+        selector.wakeup();
     }
 
     @Override
     void connect(SelectionKey key) throws IOException {
-        System.out.println("Connection finishing");
         if (mainChannel.isConnectionPending()) {
             mainChannel.finishConnect();
             ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE);

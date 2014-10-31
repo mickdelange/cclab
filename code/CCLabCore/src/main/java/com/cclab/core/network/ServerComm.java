@@ -14,7 +14,17 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by ane on 10/19/14.
+ * Extension of the standard communicator to act as a network server.
+ * <p/>
+ * Constructor has the same parameters of a GeneralComm. In addition, this
+ * communicator keeps record of the names of the clients it communicates with
+ * and offers an 'addMessageToOutgoing' method that can interpret the name of
+ * the recipient. Outgoing messages are handled in a serial fashion. Incoming
+ * messages are processed in parallel by a pool of executor threads.
+ * <p/>
+ * Created on 10/19/14 for CCLabCore.
+ *
+ * @author an3m0na
  */
 public class ServerComm extends GeneralComm {
 
@@ -23,7 +33,7 @@ public class ServerComm extends GeneralComm {
     ConcurrentHashMap<SocketChannel, String> channelToName;
     ExecutorService pool = Executors.newFixedThreadPool(5);
 
-    public ServerComm(int port, String myName, MessageInterpreter interpreter) throws IOException {
+    public ServerComm(int port, String myName, CommInterpreter interpreter) throws IOException {
         super(port, myName, interpreter);
 
         nameToChannel = new ConcurrentHashMap<String, SocketChannel>();

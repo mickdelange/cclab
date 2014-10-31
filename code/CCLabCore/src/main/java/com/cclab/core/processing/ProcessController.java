@@ -1,7 +1,11 @@
 package com.cclab.core.processing;
 
 /**
- * Created by ane on 10/30/14.
+ * Interface for reacting to the termination of input processing.
+ * <br/>
+ * Created on 10/30/14 for CCLabCore.
+ *
+ * @author an3m0na
  */
 public interface ProcessController {
 

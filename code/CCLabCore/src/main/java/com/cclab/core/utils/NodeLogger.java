@@ -1,21 +1,29 @@
 package com.cclab.core.utils;
 
 import org.apache.log4j.*;
-import org.apache.log4j.varia.LevelRangeFilter;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * Created by ane on 10/19/14.
+ * Universal logger provider.
+ * <p/>
+ * The properties of the logger are read by default from the log4j.properties
+ * file that should be located under the root class directory. The name of the
+ * file appender is changed to the name of the current process that is provided
+ * in the constructor.
+ * <p/>
+ * Created on 10/19/14 for CCLabCore.
+ *
+ * @author an3m0na
  */
 public class NodeLogger {
 
-    private static String nodeName = null;
+    private static String processName = null;
 
     public static void configureLogger(String name, Object caller) {
-        nodeName = name;
+        processName = name;
 
         Properties props = new Properties();
         try {
@@ -33,6 +41,6 @@ public class NodeLogger {
     }
 
     public static Logger get() {
-        return Logger.getLogger(nodeName);
+        return Logger.getLogger(processName);
     }
 }

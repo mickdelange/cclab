@@ -12,7 +12,17 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
- * Created by ane on 10/20/14.
+ * Abstract thread capable of communicating with external processes
+ * <p/>
+ * It holds standard implementation aspects of a Java NIO client-server
+ * communication pattern. All registered channels are monitored for new events.
+ * Messages can be sent by adding them to the outgoing queue. The constructor
+ * expects a listening port, the signature for coordination messages and a
+ * reference to an interpreter to which incoming messages can be reported.
+ * <p/>
+ * Created on 10/20/14 for CCLabCore.
+ *
+ * @author an3m0na
  */
 public abstract class GeneralComm extends Thread {
     static final int BUF_SIZE = 8192;
@@ -24,11 +34,11 @@ public abstract class GeneralComm extends Thread {
     Selector selector;
 
     boolean shouldExit = false;
-    MessageInterpreter interpreter = null;
+    CommInterpreter interpreter = null;
     ConcurrentHashMap<SocketChannel, ConcurrentHashMap<Integer, ConcurrentHashMap<Integer, byte[]>>> incomingQueues = null;
     ConcurrentHashMap<SocketChannel, ConcurrentLinkedQueue<Message>> outgoingQueues;
 
-    public GeneralComm(int port, String myName, MessageInterpreter interpreter) {
+    public GeneralComm(int port, String myName, CommInterpreter interpreter) {
         this.port = port;
         this.myName = myName;
         this.interpreter = interpreter;
@@ -63,9 +73,7 @@ public abstract class GeneralComm extends Thread {
                         write(key);
                     }
                 }
-
             }
-
         } catch (Exception e) {
             NodeLogger.get().error("Error forced communicator to shut down", e);
         } finally {

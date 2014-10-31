@@ -9,9 +9,17 @@ import java.nio.channels.SocketChannel;
 import java.util.Arrays;
 
 /**
- * Created by ane on 10/29/14.
+ * Runnable combination of a receiver and a transmitter.
+ * <p/>
+ * When instantiated without a message to deliver, the transmitter tries to
+ * read from its given key. Otherwise, it tries to write the message to the
+ * key's channel. The calling communicator instance is required in order to
+ * report communication errors and cancel the connection.
+ * <p/>
+ * Created on 10/29/14 for CCLabCore.
+ *
+ * @author an3m0na
  */
-
 public class Transceiver implements Runnable {
     private static final int MAX_SEND_TRIES = 1000;
     private SelectionKey myKey = null;
@@ -29,20 +37,15 @@ public class Transceiver implements Runnable {
 
     @Override
     public void run() {
-        try {
-            if (payload == null) {
-                doReceive();
-                myKey.selector().wakeup();
-            } else
-                doSend();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        if (payload == null) {
+            doReceive();
+            myKey.selector().wakeup();
+        } else
+            doSend();
     }
 
-    private synchronized void doSend() throws IOException {
+    private synchronized void doSend() {
         byte[] data = payload.toBytes();
-        SocketChannel channel = (SocketChannel) myKey.channel();
         NodeLogger.get().info("Sending " + data.length + " bytes: " + payload);
 
         ByteBuffer buf = null;
@@ -53,18 +56,18 @@ public class Transceiver implements Runnable {
             int crt = 0;
             while (crt < chunks) {
                 buf = ByteBuffer.allocateDirect(data.length + 16);
-                int size = Math.min(data.length - crt*BUF_SIZE, BUF_SIZE);
+                int size = Math.min(data.length - crt * BUF_SIZE, BUF_SIZE);
                 buf.putInt(payload.getId());
                 buf.putInt(chunks);
                 buf.putInt(crt);
                 buf.putInt(size);
-                byte[] part = Arrays.copyOfRange(data, crt*BUF_SIZE, crt*BUF_SIZE + size);
+                byte[] part = Arrays.copyOfRange(data, crt * BUF_SIZE, crt * BUF_SIZE + size);
                 buf.put(part);
                 buf.flip();
                 int tries = 0;
                 while (buf.hasRemaining()) {
                     myChannel.write(buf);
-                    if( ++tries > MAX_SEND_TRIES) {
+                    if (++tries > MAX_SEND_TRIES) {
                         NodeLogger.get().debug("Outgoing buffer full for " + ((SocketChannel) myKey.channel()).socket().getRemoteSocketAddress());
                         //TODO maybe disconnect
                     }
@@ -75,14 +78,20 @@ public class Transceiver implements Runnable {
             myKey.interestOps(SelectionKey.OP_READ);
 
         } catch (Exception e) {
-            communicator.cancelConnection(myKey);
+            try {
+                if (buf != null)
+                    buf.clear();
+                communicator.cancelConnection(myKey);
+            } catch (IOException ioe) {
+                NodeLogger.get().error("Error cancelling connection ", ioe);
+            }
         }
     }
 
-    private void doReceive() throws IOException {
+    private void doReceive() {
 
         int bytes = -1;
-        ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE + 16);
+        ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE + 12);
 
         // read from socket into buffer, use a loop
         try {
@@ -114,7 +123,11 @@ public class Transceiver implements Runnable {
             NodeLogger.get().error("Error receiving message " + e);
             //assume node disconnected
             buf.clear();
-            communicator.cancelConnection(myKey);
+            try {
+                communicator.cancelConnection(myKey);
+            } catch (IOException ioe) {
+                NodeLogger.get().error("Error cancelling connection ", ioe);
+            }
         }
     }
 }

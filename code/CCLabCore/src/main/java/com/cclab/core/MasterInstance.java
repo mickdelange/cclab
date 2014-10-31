@@ -10,6 +10,18 @@ import com.cclab.core.utils.NodeUtils;
 
 import java.io.IOException;
 
+/**
+ * Extension of NodeInstance that acts as a master node.
+ * <p/>
+ * This node keeps an internal scheduler for coordinating task execution. The
+ * constructor also requires the port on which to listen for connections from
+ * worker nodes. It is capable of interpreting command line instructions for
+ * sending messages and tasks to workers, and storing the task results.
+ * <p/>
+ * Created on 10/19/14 for CCLabCore.
+ *
+ * @author an3m0na
+ */
 public class MasterInstance extends NodeInstance {
 
     Scheduler scheduler;
@@ -38,6 +50,12 @@ public class MasterInstance extends NodeInstance {
                 sendTaskTo(recipient, inputId);
                 return true;
             }
+            if (command[0].equals("sendNextTaskTo")) {
+                String inputId = Database.getInstance().getNextRecordId();
+                String recipient = command[1];
+                sendTaskTo(recipient, inputId);
+                return true;
+            }
         } catch (Exception e) {
             NodeLogger.get().error("Error interpreting command " + NodeUtils.join(command, " ") + " (" + e.getMessage() + ")", e);
         }
@@ -51,7 +69,7 @@ public class MasterInstance extends NodeInstance {
         }
         Message message = new Message(Message.Type.NEWTASK, myName);
         message.setDetails(inputId);
-        byte[] input = Database.getInstance().getInput(inputId);
+        byte[] input = Database.getInstance().getRecord(inputId);
         if (input == null) {
             NodeLogger.get().error("Task will not be sent");
             return;
@@ -68,7 +86,7 @@ public class MasterInstance extends NodeInstance {
             //scheduler.taskFinished(message.getOwner());
 
             // optional
-            Database.getInstance().storeOutput((byte[]) message.getData(), message.getDetails());
+            Database.getInstance().storeRecord((byte[]) message.getData(), message.getDetails());
         }
     }
 }

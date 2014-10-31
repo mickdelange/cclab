@@ -6,7 +6,11 @@ import com.cclab.core.utils.NodeLogger;
 import java.io.IOException;
 
 /**
- * Created by ane on 10/19/14.
+ * The main class for running a node instance.
+ * <br/>
+ * Created on 10/19/14 for CCLabCore.
+ *
+ * @author an3m0na
  */
 public class NodeStarter {
 

@@ -12,7 +12,15 @@ import com.cclab.core.utils.NodeUtils;
 import java.io.IOException;
 
 /**
- * Created by ane on 10/15/14.
+ * Extension of NodeInstance that acts as a worker node.
+ * <p/>
+ * The constructor also requires the master node's IP address and the port to
+ * which it connects the main client. It is capable of interpreting command line
+ * instructions for reporting back to the master.
+ * <p/>
+ * Created on 10/15/14 for CCLabCore.
+ *
+ * @author an3m0na
  */
 public class WorkerInstance extends NodeInstance implements ProcessController {
     int port;

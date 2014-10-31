@@ -8,7 +8,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by ane on 10/19/14.
+ * Data object representing a network message.
+ * <p/>
+ * On instantiation, a new id is associated automatically from the internal
+ * static sequence. It also provides methods for serialization to/from a byte
+ * array.
+ * <p/>
+ * Created on 10/19/14 for CCLabCore.
+ *
+ * @author an3m0na
  */
 public class Message implements Serializable {
 
@@ -117,9 +125,17 @@ public class Message implements Serializable {
     }
 
     public static Message getFromBytes(byte[] data) {
-        Map<Integer, byte[]> map = new HashMap<Integer, byte[]>();
-        map.put(0, data);
-        return getFromParts(map);
+        Message message = null;
+        try {
+            ByteArrayInputStream inStream = new ByteArrayInputStream(data);
+            ObjectInputStream objIn = new ObjectInputStream(inStream);
+            message = (Message) objIn.readObject();
+            objIn.close();
+            inStream.close();
+        } catch (Exception e) {
+            NodeLogger.get().error("Cannot read message: " + e.getMessage());
+        }
+        return message;
     }
 
     public static Message getFromParts(Map<Integer, byte[]> data) {

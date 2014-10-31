@@ -3,7 +3,11 @@ package com.cclab.core.utils;
 import java.io.*;
 
 /**
- * Created by ane on 10/22/14.
+ * Holds general useful methods.
+ * <br/>
+ * Created on 10/22/14 for CCLabCore.
+ *
+ * @author an3m0na
  */
 public class NodeUtils {
     public static String join(Object[] parts, int skip, String delimiter) {

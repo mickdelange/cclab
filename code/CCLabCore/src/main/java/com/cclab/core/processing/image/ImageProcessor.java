@@ -12,6 +12,19 @@ import java.io.OutputStream;
 
 import static org.imgscalr.Scalr.*;
 
+/**
+ * Implementation of a Processor that treats the input as an image and applies
+ * a series of operations to it.
+ * <p/>
+ * It tries to read the input as a BufferedImage and applies the required
+ * operations on it. The output image is written to the given output stream.
+ * If the class is instantiated without mentioning operations, the
+ * DEFAULT_OPERATIONS are applied.
+ * <p/>
+ * Created on 10/15/14 for CCLabCore.
+ *
+ * @author an3m0na
+ */
 public class ImageProcessor extends Processor {
     final static String OUTPUT_TYPE = "JPEG";
     final static int MAX_BLUR_RADIUS = 200;

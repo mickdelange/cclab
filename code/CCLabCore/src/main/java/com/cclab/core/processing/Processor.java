@@ -5,7 +5,14 @@ import com.cclab.core.utils.NodeLogger;
 import java.io.*;
 
 /**
- * Created by ane on 10/31/14.
+ * Abstract definition of a task processor.
+ * <p/>
+ * Constructor takes the id of the task, its input, and the reference to a
+ * ProcessController to report the output to.
+ * <p/>
+ * Created on 10/31/14 for CCLabCore.
+ *
+ * @author an3m0na
  */
 public abstract class Processor implements Runnable {
     private byte[] input = null;
