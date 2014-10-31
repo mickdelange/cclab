@@ -10,9 +10,12 @@ import java.io.IOException;
  */
 public class NodeStarter {
 
+    private static final String usage = "Usage:\t<master> <name> [<port>]\n" +
+            "\t<worker> <name> [<master_ip> [<master_port>]]";
+
     public static void main(String[] args) {
         if (args.length < 2) {
-            System.out.println("Not enough args!");
+            System.out.println(usage);
             System.exit(1);
         }
 
@@ -42,7 +45,7 @@ public class NodeStarter {
                 System.exit(1);
             }
         } else {
-            System.out.println("Specify node type!");
+            System.out.println(usage);
             System.exit(1);
         }
     }

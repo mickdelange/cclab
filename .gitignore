@@ -3,6 +3,7 @@
 code/CCLabCore/target/
 code/CCLabCore/bin/
 *.pdf
+output/
 
 # IDE files
 code/CCLabCore/.idea/
@@ -24,5 +25,5 @@ hs_err_pid*
 *.synctex.gz
 AwsCredentials.properties
 
-# Ignore server logs
-code/CCLabCore/logs/*
+# Ignore all logs
+logs/
