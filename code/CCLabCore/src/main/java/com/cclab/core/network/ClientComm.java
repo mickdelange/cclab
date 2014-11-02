@@ -11,26 +11,32 @@ import java.nio.channels.SocketChannel;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
- * Created by ane on 10/19/14.
+ * Extension of the standard communicator to act as a network client.
+ * <p/>
+ * Apart from the parameters of a GeneralComm, the constructor expects the IP
+ * address and port of the process it will connect to. On connection to the
+ * server, it sends a default PING message to notify server of its name. All
+ * messages are handled in a serial fashion. If the connection to the server is
+ * lost, the communicator is forced to shutdown.
+ * <p/>
+ * Created on 10/19/14 for CCLabCore.
+ *
+ * @author an3m0na
  */
 public class ClientComm extends GeneralComm {
 
-    private ConcurrentLinkedQueue<Message> outgoingQueue;
     private String masterIP;
     SocketChannel mainChannel = null;
-    private String myName;
 
-    public ClientComm(String masterIP, int port, String myName, MessageInterpreter interpreter) throws IOException {
-        super(port, interpreter);
-        this.myName = myName;
+
+    public ClientComm(String masterIP, int port, String myName, CommInterpreter interpreter) throws IOException {
+        super(port, myName, interpreter);
+
         this.masterIP = masterIP;
-        outgoingQueue = new ConcurrentLinkedQueue<Message>();
 
         initialize();
-
     }
 
-    @Override
     void initialize() throws IOException {
         NodeLogger.get().info("ClientComm communicator is now online");
         NodeLogger.get().info("Connecting to " + masterIP + ":" + port);
@@ -38,19 +44,13 @@ public class ClientComm extends GeneralComm {
         mainChannel = SocketChannel.open();
         mainChannel.configureBlocking(false);
         mainChannel.connect(new InetSocketAddress(masterIP, port));
-        mainChannel.finishConnect();
 
-        ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE);
         selector = Selector.open();
-        mainChannel.register(selector, SelectionKey.OP_READ, buf);
-        outgoingQueue.add(new Message(Message.Type.PING, myName));
+        mainChannel.register(selector, SelectionKey.OP_CONNECT);
     }
 
-    @Override
-    void checkOutgoing() {
-        if (!outgoingQueue.isEmpty()) {
-            mainChannel.keyFor(selector).interestOps(SelectionKey.OP_WRITE);
-        }
+    public void addMessageToOutgoing(Message message) {
+        addMessageToOutgoing(message, mainChannel);
     }
 
     @Override
@@ -59,26 +59,45 @@ public class ClientComm extends GeneralComm {
     }
 
     @Override
-    void write(SelectionKey key) throws IOException {
-        writeFromQueue(key, outgoingQueue);
-    }
-
-    @Override
     void read(SelectionKey key) throws IOException {
-        new Thread(new ClientReceiver(key, interpreter)).start();
+        // read message in same thread
+        new Transceiver(key, null, this).run();
     }
 
     @Override
     void cleanup() {
-        if (mainChannel != null)
+        if (mainChannel != null) {
             try {
                 mainChannel.close();
             } catch (IOException e) {
+                NodeLogger.get().warn("Error cleaning up communicator ", e);
             }
+        }
+        super.cleanup();
     }
 
-    public void addMessageToQueue(Message message) {
-        outgoingQueue.add(message);
+    @Override
+    void handleMessage(Message message, SocketChannel channel) throws IOException {
+        interpreter.processMessage(message);
+    }
+
+    @Override
+    void cancelConnection(SelectionKey key) throws IOException {
+        super.cancelConnection(key);
+        shouldExit = true;
         selector.wakeup();
+    }
+
+    @Override
+    void connect(SelectionKey key) throws IOException {
+        if (mainChannel.isConnectionPending()) {
+            mainChannel.finishConnect();
+            ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE);
+            mainChannel.register(selector, SelectionKey.OP_READ, buf);
+
+            outgoingQueues.clear();
+            outgoingQueues.put(mainChannel, new ConcurrentLinkedQueue<Message>());
+            addMessageToOutgoing(new Message(Message.Type.PING, myName), mainChannel);
+        }
     }
 }

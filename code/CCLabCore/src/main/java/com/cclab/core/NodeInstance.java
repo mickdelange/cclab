@@ -1,31 +1,36 @@
 package com.cclab.core;
 
-import com.cclab.core.network.ClientComm;
-import com.cclab.core.network.Message;
-import com.cclab.core.network.MessageInterpreter;
-import com.cclab.core.network.ServerComm;
+import com.cclab.core.network.*;
 import com.cclab.core.utils.CLInterpreter;
 import com.cclab.core.utils.CLReader;
 import com.cclab.core.utils.NodeLogger;
 import com.cclab.core.utils.NodeUtils;
 
-import java.io.IOException;
-import java.nio.channels.SocketChannel;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Created by ane on 10/19/14.
+ * Abstract implementation of a node.
+ * <p/>
+ * It keeps the reference to a server communicator that listens for connections
+ * from other nodes and a series of client communicator references for
+ * connecting to other nodes. The node listens for events from these
+ * communicators. It is capable of interpreting command line instructions for
+ * quiting and broadcasting messages.
+ * <p/>
+ * Created on 10/19/14 for CCLabCore.
+ *
+ * @author an3m0na
  */
-public abstract class NodeInstance implements CLInterpreter, MessageInterpreter {
+public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
 
     ServerComm server = null;
     HashMap<String, ClientComm> clients = null;
     String myName;
-    String masterIP = null;
 
     public NodeInstance(String myName) {
         this.myName = myName;
-        NodeLogger.configureLogger(myName);
+        NodeLogger.configureLogger(myName, this);
         clients = new HashMap<String, ClientComm>();
         new CLReader(this).start();
     }
@@ -40,51 +45,40 @@ public abstract class NodeInstance implements CLInterpreter, MessageInterpreter 
                     client.quit();
                 return false;
             }
-            if (command[0].equals("sendToWorker")) {
-                Message message = new Message(Message.Type.get(command[1]), myName);
-                message.setDetails(NodeUtils.join(command, 3, " "));
-                if (server != null)
-                    server.addMessageToQueue(message, command[2]);
-                return true;
-            }
             if (command[0].equals("bcast")) {
                 Message message = new Message(Message.Type.get(command[1]), myName);
                 message.setDetails(NodeUtils.join(command, 2, " "));
                 if (server != null)
-                    server.addMessageToQueue(message, (String) null);
-                for (ClientComm client : clients.values())
-                    client.addMessageToQueue(message);
-                return true;
-            }
-            if (command[0].equals("sendToMaster")) {
-                Message message = new Message(Message.Type.get(command[1]), myName);
-                message.setDetails(NodeUtils.join(command, 2, " "));
-                ClientComm masterLink = clients.get(masterIP);
-                if (masterLink != null)
-                    masterLink.addMessageToQueue(message);
+                    server.addMessageToOutgoing(message, null);
                 else
-                    NodeLogger.get().error("No link to master " + masterIP);
+                    NodeLogger.get().error("Server down");
+                for (ClientComm client : clients.values())
+                    client.addMessageToOutgoing(message);
                 return true;
             }
         } catch (Exception e) {
-            NodeLogger.get().error("Error interpreting command " + NodeUtils.join(command, " ") + "(" + e.getMessage() + ")", e);
+            NodeLogger.get().error("Error interpreting command " + NodeUtils.join(command, " ") + " (" + e.getMessage() + ")", e);
         }
         return extendedInterpret(command);
     }
 
-    @Override
-    public void checkIfNew(String clientName, SocketChannel socketChannel) {
-        if (server != null)
-            server.registerClient(clientName, socketChannel);
-    }
 
-    @Override
-    public void disconnectClient(SocketChannel socketChannel) {
-        if (server != null)
-            server.removeSocketChannel(socketChannel);
-    }
 
     //return false if should not continue reading CLI
     public abstract boolean extendedInterpret(String[] command);
+
+    @Override
+    public void communicatorDown(GeneralComm comm) {
+        if (comm.equals(server)) {
+            NodeLogger.get().error("Server went down");
+        } else {
+            for (Map.Entry<String, ClientComm> e : clients.entrySet()) {
+                if (comm.equals(e.getValue())) {
+                    NodeLogger.get().error("Client for " + e.getKey() + " went down");
+                }
+            }
+        }
+
+    }
 
 }

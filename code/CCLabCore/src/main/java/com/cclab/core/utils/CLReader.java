@@ -6,7 +6,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Created by ane on 10/22/14.
+ * Thread responsible for reading command line instructions.
+ * <p/>
+ * The constructor requires an interpreter to report the instruction to. If the
+ * result of the interpretation is false, the reader shuts down.
+ * <p/>
+ * Created on 10/22/14 for CCLabCore.
+ *
+ * @author an3m0na
  */
 public class CLReader extends Thread {
 
