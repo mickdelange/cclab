@@ -49,16 +49,18 @@ public class Node {
 	long workingSince = Integer.MAX_VALUE;
 	long maxTaskTime;
 	long maxIdleTime;
+	boolean testMode; // Test Mode: do not actually start / stop nodes in AWS
 	
 	/**
 	 * Construct Node object.
 	 * Used by the scheduler to monitor Nodes.
 	 * @param inst
 	 */
-	Node(Instance inst, long mtt, long mit) {
+	Node(Instance inst, long mtt, long mit, boolean tm) {
 		instanceId = inst.getInstanceId();
 		maxTaskTime = mtt;
 		maxIdleTime = mit;
+		testMode = tm;
 		updateState(inst);
 	}
 	
@@ -70,9 +72,9 @@ public class Node {
 		long currTime = System.currentTimeMillis();
 		String currState = inst.getState().getName();
 		
-		if (inst.getInstanceId() == instanceId) {
+		if (inst.getInstanceId().equals(instanceId)) {
 			// Check if node has finished booting
-			if (state == State.STARTING && currState == "running") {
+			if (state == State.STARTING && testMode || currState == "running") {
 				switchState(State.IDLE);
 				// Start processing queue
 				doWork();
@@ -98,7 +100,11 @@ public class Node {
 	 * @return
 	 */
 	public boolean start() {
-		if (AwsConnect.startInstance(instanceId)) {
+		if (testMode) {
+			switchState(State.STARTING);
+			System.out.println("TESTMODE: " + instanceId + " was started.");
+			return true;
+		} else if(AwsConnect.startInstance(instanceId)) {
 			switchState(State.STARTING);
 			return true;
 		}
@@ -110,7 +116,11 @@ public class Node {
 	 * @return
 	 */
 	public boolean stop() {
-		if (AwsConnect.stopInstance(instanceId)) {
+		if (testMode) {
+			switchState(State.STOPPED);
+			System.out.println("TESTMODE: " + instanceId + " was terminated.");
+			return true;
+		} else if (AwsConnect.stopInstance(instanceId)) {
 			switchState(State.STOPPED);
 			return true;
 		}

@@ -1,9 +1,8 @@
 package com.cclab.core.scheduler;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -21,20 +20,28 @@ import com.cclab.core.utils.NodeLogger;
 public class Scheduler extends Thread {
 	
 	Queue<Task> mainQ = new LinkedList<Task>();
-	List<Node> workerNodes;
+	List<Node> workerNodes = new ArrayList<Node>();
 	int loadThresh;
 	int interval;
 	long maxTaskTime;
 	long maxIdleTime;
+	List<String> masterIds;
+	boolean testMode; // Test Mode: do not actually start / stop nodes in AWS
     private boolean shouldExit = false;
 	
-	public Scheduler(String ownId) {
+	public Scheduler(List<String> mi) {
+		masterIds = mi;
 		if (!loadProperties()) {
 			// Something went wrong loading properties, set to default
 			loadThresh = 5;
 			interval = 2000;
 			maxTaskTime = 60000;
 			maxIdleTime = 3600000;
+			testMode = false;
+		}
+		
+		if (testMode) {
+			System.out.println("Scheduler started in Test Mode.");
 		}
 		
 		try {
@@ -42,8 +49,8 @@ public class Scheduler extends Thread {
 			Set<Instance> instances = AwsConnect.getInstances();
 			
 			for (Instance inst : instances) {
-				if (inst.getInstanceId() != ownId)
-					workerNodes.add(new Node(inst, maxTaskTime, maxIdleTime));
+				if (!masterIds.contains(inst.getInstanceId()))
+					workerNodes.add(new Node(inst, maxTaskTime, maxIdleTime, testMode));
 			}
 		} catch (Exception e) {
 			NodeLogger.get().error(e.getMessage(), e);
@@ -67,6 +74,7 @@ public class Scheduler extends Thread {
 				interval = Integer.parseInt(prop.getProperty("interval"));
 				maxTaskTime = Integer.parseInt(prop.getProperty("maxTaskTime"));
 				maxIdleTime = Integer.parseInt(prop.getProperty("maxIdleTime"));
+				testMode = Boolean.parseBoolean(prop.getProperty("testMode"));
 				return true;
 			} else {
 				NodeLogger.get().error("Scheduler properties file not found");
@@ -85,7 +93,6 @@ public class Scheduler extends Thread {
 		Task currT;
 			try {
 				while(true) {
-					System.out.println("test");
 					if(shouldExit) // Stop the loop.
 	                    break;
 					Thread.sleep(interval);
@@ -247,9 +254,11 @@ public class Scheduler extends Thread {
 		for (Node n: workerNodes) {
 			if (n.state == Node.State.STARTING) {
 				sel = n;
+				break;
 			}
-			if (n.state == Node.State.STOPPED && sel == null) {
+			if (n.state == Node.State.STOPPED) {
 				sel = n;
+				break;
 			}
 		}
 		// Only start a new node if no STARTING node can be found.
@@ -266,7 +275,7 @@ public class Scheduler extends Thread {
 	 */
 	private Node getWorkerById(String instId) {
 		for (Node n: workerNodes) {
-			if (n.instanceId == instId)
+			if (n.instanceId.equals(instId))
 				return n;
 		}
 		return null;

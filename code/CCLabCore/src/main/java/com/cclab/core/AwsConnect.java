@@ -15,7 +15,6 @@ import com.amazonaws.services.ec2.model.Instance;
 import com.amazonaws.services.ec2.model.Reservation;
 import com.amazonaws.services.ec2.model.StartInstancesRequest;
 import com.amazonaws.services.ec2.model.StopInstancesRequest;
-
 /***
  * This class manages all connections to the AWS system.
  * @author Mick de Lange
@@ -23,7 +22,7 @@ import com.amazonaws.services.ec2.model.StopInstancesRequest;
 public class AwsConnect {
 
     static AmazonEC2 ec2;
-    static Set<Instance> instances;
+    static Set<Instance> instances = new HashSet<Instance>();
     static long lastUpdate = 0;
     static final int updateInterval = 5000; // Update the list at most every 5 seconds
     
@@ -52,7 +51,7 @@ public class AwsConnect {
             try {
                 DescribeInstancesResult describeInstancesRequest = ec2.describeInstances();
                 List<Reservation> reservations = describeInstancesRequest.getReservations();
-                instances = new HashSet<Instance>();
+                instances.clear();
 
                 for (Reservation reservation : reservations) {
                     instances.addAll(reservation.getInstances());

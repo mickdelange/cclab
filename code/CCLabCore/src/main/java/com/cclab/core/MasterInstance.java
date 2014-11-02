@@ -9,6 +9,8 @@ import com.cclab.core.utils.NodeLogger;
 import com.cclab.core.utils.NodeUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Extension of NodeInstance that acts as a master node.
@@ -31,8 +33,12 @@ public class MasterInstance extends NodeInstance {
         server = new ServerComm(port, myName, this);
         server.start();
 
-//        scheduler = new Scheduler();
-//        scheduler.run();
+        // Allow for adding multiple masterIds, currently only populated with own Id.
+        List<String> masterIds = new ArrayList<String>();
+        masterIds.add(myName);
+        
+        scheduler = new Scheduler(masterIds);
+        scheduler.run();
     }
 
     @Override
@@ -83,7 +89,7 @@ public class MasterInstance extends NodeInstance {
         if (message.getType() == Message.Type.FINISHED.getCode()) {
             NodeLogger.get().info("Task " + message.getDetails() + " finished");
 
-            //scheduler.taskFinished(message.getOwner());
+            scheduler.taskFinished(message.getOwner());
 
             // optional
             Database.getInstance().storeRecord((byte[]) message.getData(), message.getDetails());
