@@ -5,6 +5,7 @@ import java.util.Queue;
 
 import com.amazonaws.services.ec2.model.Instance;
 import com.cclab.core.AwsConnect;
+import com.cclab.core.MasterInstance;
 
 /**
  * Class that keeps track of Node status for Scheduler
@@ -50,13 +51,15 @@ public class Node {
 	long maxTaskTime;
 	long maxIdleTime;
 	boolean testMode; // Test Mode: do not actually start / stop nodes in AWS
+    MasterInstance myMaster;
 	
 	/**
 	 * Construct Node object.
 	 * Used by the scheduler to monitor Nodes.
 	 * @param inst
 	 */
-	Node(Instance inst, long mtt, long mit, boolean tm) {
+	Node(Instance inst, long mtt, long mit, boolean tm, MasterInstance m) {
+		myMaster = m;
 		instanceId = inst.getInstanceId();
 		maxTaskTime = mtt;
 		maxIdleTime = mit;
@@ -80,6 +83,8 @@ public class Node {
 				doWork();
 			} // Check if node is taking too long to perform task
 			else if (state == State.WORKING && (currTime-workingSince) > maxTaskTime) {
+				// Flag Task as problematic
+				q.peek().flagProblem();
 				// Kill node
 				stop();
 			} // Machine has unexpectedly quit
@@ -150,9 +155,10 @@ public class Node {
 		switchState(State.WORKING);
 		
 		// Get first job in queue
-//		Task t = q.peek();
+		Task t = q.peek();
 		
-		// TODO: send task to Node: execute task t
+		// Send task to worker instance
+		myMaster.sendTaskTo(instanceId, t.inputId);
 	}
 	
 	/**

@@ -37,7 +37,7 @@ public class MasterInstance extends NodeInstance {
         List<String> masterIds = new ArrayList<String>();
         masterIds.add(myName);
         
-        scheduler = new Scheduler(masterIds);
+        scheduler = new Scheduler(masterIds, this);
         scheduler.run();
     }
 
@@ -68,7 +68,7 @@ public class MasterInstance extends NodeInstance {
         return true;
     }
 
-    private void sendTaskTo(String recipient, String inputId) {
+    public void sendTaskTo(String recipient, String inputId) {
         if (inputId == null || inputId.length() < 1) {
             NodeLogger.get().error("Task input identifier not supplied");
             return;
