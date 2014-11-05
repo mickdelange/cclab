@@ -32,15 +32,7 @@ public class Node {
 				idleSince = Integer.MAX_VALUE;
 				workingSince = System.currentTimeMillis();
 				break;
-			case STOPPED :
-				idleSince = Integer.MAX_VALUE;
-				workingSince = Integer.MAX_VALUE;
-				break;
-			case STARTING :
-				idleSince = Integer.MAX_VALUE;
-				workingSince = Integer.MAX_VALUE;
-				break;
-			case UNKNOWN :
+			default :
 				idleSince = Integer.MAX_VALUE;
 				workingSince = Integer.MAX_VALUE;
 				break;
