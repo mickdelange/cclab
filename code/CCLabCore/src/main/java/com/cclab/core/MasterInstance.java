@@ -99,6 +99,8 @@ public class MasterInstance extends NodeInstance {
     @Override
     public void nodeConnected(String name){
         super.nodeConnected(name);
+        // TODO: Handle connection from backup instance
         scheduler.nodeConnected(name);
+        // TODO: let backup connect to node as well
     }
 }

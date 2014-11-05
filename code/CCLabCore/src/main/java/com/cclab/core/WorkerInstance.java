@@ -3,6 +3,7 @@ package com.cclab.core;
 import com.cclab.core.network.ClientComm;
 import com.cclab.core.network.GeneralComm;
 import com.cclab.core.network.Message;
+import com.cclab.core.network.ServerComm;
 import com.cclab.core.processing.ProcessController;
 import com.cclab.core.processing.Processor;
 import com.cclab.core.processing.image.ImageProcessor;
@@ -33,6 +34,9 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
         ClientComm client = new ClientComm(masterIP, port, myName, this);
         client.start();
         clients.put(masterIP, client);
+        
+        server = new ServerComm(port, myName, this);
+        server.start();
     }
 
     @Override
@@ -67,6 +71,9 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
             Message ret = new Message(Message.Type.FINISHED, myName);
             ret.setDetails(message.getDetails());
             clients.get(masterIP).addMessageToOutgoing(ret);
+        }
+        else if (message.getType() == Message.Type.NEWMASTER.getCode()) {
+        	// TODO: process new master details
         }
     }
 
