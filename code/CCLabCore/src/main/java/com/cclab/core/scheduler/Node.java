@@ -172,8 +172,10 @@ public class Node {
 		// Get first job in queue
 		Task t = q.peek();
 		
-		// Send task to worker instance
-		myMaster.sendTaskTo(instanceId, t.inputId);
+		if (t != null) {
+			// Send task to worker instance
+			myMaster.sendTaskTo(instanceId, t.inputId);
+		}
 	}
 	
 	/**
