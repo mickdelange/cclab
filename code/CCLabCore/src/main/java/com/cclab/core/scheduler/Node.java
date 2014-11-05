@@ -159,15 +159,14 @@ public class Node {
 	 * Execute task in queue
 	 */
 	private void doWork() {
-		// Reset working timer
-		switchState(State.WORKING);
-		
 		// Get first job in queue
 		Task t = q.peek();
 		
 		if (t != null) {
 			// Send task to worker instance
 			myMaster.sendTaskTo(instanceId, t.inputId);
+			// Reset working timer
+			switchState(State.WORKING);
 		}
 	}
 	
