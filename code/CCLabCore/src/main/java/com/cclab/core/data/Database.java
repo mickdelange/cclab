@@ -70,6 +70,7 @@ public class Database {
                 return file.lastModified() > lastPoll;
             }
         });
+        lastPoll = System.currentTimeMillis();
         if (lastPolled.length > 0)
             nextUp = 0;
         else
