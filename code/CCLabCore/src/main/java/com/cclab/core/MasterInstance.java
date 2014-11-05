@@ -39,9 +39,9 @@ public class MasterInstance extends NodeInstance {
     public boolean extendedInterpret(String[] command) {
         try {
             if (command[0].equals("sendTo")) {
-                Message message = new Message(Message.Type.get(command[1]), myName);
+                Message message = new Message(Message.Type.get(command[2]), myName);
                 message.setDetails(NodeUtils.join(command, 3, " "));
-                server.addMessageToOutgoing(message, command[2]);
+                server.addMessageToOutgoing(message, command[1]);
                 return true;
             }
             if (command[0].equals("sendTaskTo")) {
@@ -74,7 +74,7 @@ public class MasterInstance extends NodeInstance {
             NodeLogger.get().error("Task will not be sent");
             return;
         }
-        message.setData(input);
+//        message.setData(input);
         server.addMessageToOutgoing(message, recipient);
     }
 
@@ -86,7 +86,7 @@ public class MasterInstance extends NodeInstance {
             //scheduler.taskFinished(message.getOwner());
 
             // optional
-            Database.getInstance().storeRecord((byte[]) message.getData(), message.getDetails());
+//            Database.getInstance().storeRecord((byte[]) message.getData(), message.getDetails());
         }
     }
 }

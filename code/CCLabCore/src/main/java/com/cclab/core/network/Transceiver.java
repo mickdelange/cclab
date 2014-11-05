@@ -106,7 +106,7 @@ public class Transceiver implements Runnable {
                 int total = buf.getInt();
                 int part = buf.getInt();
                 int size = buf.getInt();
-                NodeLogger.get().debug("Received packet " + (part + 1) + " of " + total + " (" + size + ")");
+                NodeLogger.get().debug("Received packet " + (part + 1) + " of " + total + " (" + size + " from " + buf.remaining() + ")");
 
                 byte[] data = new byte[size];
                 buf.get(data, 0, size);
