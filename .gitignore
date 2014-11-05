@@ -1,12 +1,29 @@
+# Generated files
 *.class
+code/CCLabCore/target/
+code/CCLabCore/bin/
+*.pdf
+output/
+
+# IDE files
+code/CCLabCore/.idea/
+*.iml
+.metadata/
+.classpath
+.project
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+*.aux
+*.synctex.gz
+AwsCredentials.properties
+
+# Ignore all logs
+logs/
