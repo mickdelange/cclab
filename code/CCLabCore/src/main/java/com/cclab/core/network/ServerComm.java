@@ -135,4 +135,8 @@ public class ServerComm extends GeneralComm {
     void connect(SelectionKey key) throws IOException {
         NodeLogger.get().error("Cannot handle connect");
     }
+
+    boolean isClientConnected(String instanceId) {
+        return nameToChannel.keySet().contains(instanceId);
+    }
 }
