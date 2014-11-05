@@ -91,7 +91,7 @@ public class Transceiver implements Runnable {
     private void doReceive() {
 
         int bytes = -1;
-        ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE + 12);
+        ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE + 16);
 
         // read from socket into buffer, use a loop
         try {
