@@ -27,15 +27,20 @@ import java.util.List;
 public class MasterInstance extends NodeInstance {
 
     Scheduler scheduler;
+    String myBackupName;
+    boolean backupConnected = false;
 
-    public MasterInstance(String myName, int port) throws IOException {
+    public MasterInstance(String myName, String backupName, int port) throws IOException {
         super(myName);
+        myBackupName = backupName;
+        
         server = new ServerComm(port, myName, this);
         server.start();
 
-        // Allow for adding multiple masterIds, currently only populated with own Id.
+        // Add all master nodes to a list. Currently only Master & Backup
         List<String> masterIds = new ArrayList<String>();
         masterIds.add(myName);
+        masterIds.add(myBackupName);
         
         scheduler = new Scheduler(masterIds, this);
         scheduler.run();
@@ -68,6 +73,11 @@ public class MasterInstance extends NodeInstance {
         return true;
     }
 
+    /**
+     * Send a task to a specific node
+     * @param recipient Node
+     * @param inputId Task id
+     */
     public void sendTaskTo(String recipient, String inputId) {
         if (inputId == null || inputId.length() < 1) {
             NodeLogger.get().error("Task input identifier not supplied");
@@ -82,6 +92,36 @@ public class MasterInstance extends NodeInstance {
         }
 //        message.setData(input);
         server.addMessageToOutgoing(message, recipient);
+    }
+
+    /**
+     * Back-up new task to backup node.
+     * @param inputId
+     */
+    public void backupNewTask(String inputId) {
+    	if (backupConnected) {
+	        Message message = new Message(Message.Type.NEWTASK, myName);
+	        message.setDetails(inputId);
+	        byte[] input = Database.getInstance().getRecord(inputId);
+	        if (input == null) {
+	            NodeLogger.get().error("Task will not be sent");
+	            return;
+	        }
+	    	// TODO: fix: message.setData(input);
+	        server.addMessageToOutgoing(message, myBackupName);
+    	}
+    }
+    
+    /**
+     * Notify back-up of finished task.
+     * @param inputId
+     */
+    public void backupFinishedTask(String inputId) {
+    	if (backupConnected) {
+	        Message message = new Message(Message.Type.FINISHED, myName);
+	        message.setDetails(inputId);
+	        server.addMessageToOutgoing(message, myBackupName);
+    	}
     }
 
     @Override
@@ -99,7 +139,10 @@ public class MasterInstance extends NodeInstance {
     @Override
     public void nodeConnected(String name){
         super.nodeConnected(name);
-        // TODO: Handle connection from backup instance
+        if (name.equals(myBackupName)) {
+        	backupConnected = true;
+        	// TODO: Handle connection from backup instance
+        }
         scheduler.nodeConnected(name);
         // TODO: let backup connect to node as well
     }

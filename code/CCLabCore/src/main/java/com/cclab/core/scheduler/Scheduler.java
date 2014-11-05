@@ -101,30 +101,30 @@ public class Scheduler extends Thread {
 	 */
 	public void run() {
 		Task currT;
-			try {
-				while(true) {
-					if(shouldExit) // Stop the loop.
-	                    break;
-					Thread.sleep(interval);
-					// Check availability of new Nodes
-					updateNodeStates();
-					
-					// Update main queue
-					getTasks();
-					
-					// Assign any new tasks
+		try {
+			while(true) {
+				if(shouldExit) // Stop the loop.
+                    break;
+				Thread.sleep(interval);
+				// Check availability of new Nodes
+				updateNodeStates();
+				
+				// Update main queue
+				getTasks();
+				
+				// Assign any new tasks
+				currT = mainQ.poll();
+				while (currT != null) {
+					// Assign
+					assignTask(currT);
+					// Get next
 					currT = mainQ.poll();
-					while (currT != null) {
-						// Assign
-						assignTask(currT);
-						// Get next
-						currT = mainQ.poll();
-					}
-					
 				}
-			} catch (InterruptedException e) {
-				NodeLogger.get().error(e.getMessage(), e);
+				
 			}
+		} catch (InterruptedException e) {
+			NodeLogger.get().error(e.getMessage(), e);
+		}
 	}
 	
 	/**

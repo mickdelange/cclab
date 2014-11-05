@@ -175,8 +175,11 @@ public class Node {
 	 */
 	public void taskFinished() {
 		// Remove finished job from queue
-		q.poll();
-		
+		Task t = q.poll();
+
+		// Notify backup that task was finished
+		myMaster.backupFinishedTask(t.inputId);
+
 		// Check if queue is empty
 		if (queueSize() == 0) {
 			switchState(State.IDLE);

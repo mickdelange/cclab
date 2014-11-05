@@ -3,6 +3,7 @@ package com.cclab.core;
 import com.cclab.core.network.ClientComm;
 import com.cclab.core.network.Message;
 import com.cclab.core.network.ServerComm;
+import com.cclab.core.utils.MasterObserver;
 
 import java.io.IOException;
 
@@ -10,6 +11,7 @@ public class BackupInstance extends NodeInstance {
 	
     int port;
     String masterIP = null;
+    MasterObserver masterObserver;
 
     public BackupInstance(String myName, String masterIP, int port) throws IOException {
         super(myName);
@@ -22,8 +24,15 @@ public class BackupInstance extends NodeInstance {
         server = new ServerComm(port, myName, this);
         server.start();
         
-        // TODO: add check for Master activity:
-        // No response: announce self as Master.
+        masterObserver = new MasterObserver(this);
+        masterObserver.run();
+    }
+    
+    /**
+     * Take over from Master, notify all nodes.
+     */
+    public void takeOver() {
+    	// TODO: implement
     }
 
 	@Override
@@ -33,6 +42,9 @@ public class BackupInstance extends NodeInstance {
 
     @Override
     public void processMessage(Message message) {
+    	// Notify observer of contact.
+    	masterObserver.hadContact();
+    	
         if (message.getType() == Message.Type.NEWTASK.getCode()) {
         	// TODO: process new task message:
         	// Store new image in input
