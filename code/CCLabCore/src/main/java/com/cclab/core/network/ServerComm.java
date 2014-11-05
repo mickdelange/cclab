@@ -62,6 +62,7 @@ public class ServerComm extends GeneralComm {
         outgoingQueues.put(channel, new ConcurrentLinkedQueue<Message>());
         nameToChannel.put(client, channel);
         channelToName.put(channel, client);
+        interpreter.nodeConnected(client);
     }
 
     public void addMessageToOutgoing(Message message, String client) {
