@@ -95,4 +95,10 @@ public class MasterInstance extends NodeInstance {
 //            Database.getInstance().storeRecord((byte[]) message.getData(), message.getDetails());
         }
     }
+
+    @Override
+    public void nodeConnected(String name){
+        super.nodeConnected(name);
+        scheduler.nodeConnected(name);
+    }
 }
