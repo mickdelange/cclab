@@ -78,7 +78,7 @@ public class Node {
 		
 		if (inst.getInstanceId().equals(instanceId)) {
 			// Check if node has finished booting
-			if (state == State.STARTING && (testMode || currState == "running")) {
+			if (state == State.STARTING && (testMode || currState.equals("running"))) {
 				NodeLogger.get().info("Node " + instanceId + " has finished booting up.");
 				switchState(State.IDLE);
 				// Start processing queue
@@ -91,11 +91,11 @@ public class Node {
 				// Kill node
 				stop();
 			} // Machine has unexpectedly quit
-			else if (currState != "running" && state != State.STOPPED) {
+			else if (state != State.STOPPED && !currState.equals("running")) {
 				NodeLogger.get().error("Node " + instanceId + " has unexpectedly quit.");
 				switchState(State.STOPPED);
 			} // Machine has been IDLE for a long time
-			else if (currState == "running" && state == State.IDLE && (currTime-idleSince) > maxIdleTime) {
+			else if (currState.equals("running") && state == State.IDLE && (currTime-idleSince) > maxIdleTime) {
 				NodeLogger.get().info("Node " + instanceId + " was IDLE for too long.");
 				// Kill node
 				stop();
