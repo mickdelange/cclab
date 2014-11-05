@@ -15,7 +15,7 @@ import com.cclab.core.utils.NodeLogger;
 public class Node {
 	
 	enum State {
-		IDLE, WORKING, STOPPED, STARTING;
+		IDLE, WORKING, STOPPED, STARTING, UNKNOWN;
 	}
 	
 	/**
@@ -40,13 +40,17 @@ public class Node {
 				idleSince = Integer.MAX_VALUE;
 				workingSince = Integer.MAX_VALUE;
 				break;
+			case UNKNOWN :
+				idleSince = Integer.MAX_VALUE;
+				workingSince = Integer.MAX_VALUE;
+				break;
 		}
 		
 	}
 	
 	String instanceId;
 	Queue<Task> q = new LinkedList<Task>();
-	State state;
+	State state = State.UNKNOWN;
 	long idleSince = Integer.MAX_VALUE;
 	long workingSince = Integer.MAX_VALUE;
 	long maxTaskTime;
@@ -99,6 +103,12 @@ public class Node {
 				NodeLogger.get().info("Node " + instanceId + " was IDLE for too long.");
 				// Kill node
 				stop();
+			}
+			else if (currState.equals("running") && state == State.UNKNOWN) {
+				// Node is already running, but not yet assigned a state.
+				switchState(State.IDLE);
+				// Start processing queue
+				doWork();
 			}
 		} else {
 			throw new Error("InstanceId changed");
@@ -168,7 +178,6 @@ public class Node {
 	
 	/**
 	 * After receiving confirmation that a Task was completed, execute this.
-	 * @param t The completed Task
 	 */
 	public void taskFinished() {
 		// Remove finished job from queue

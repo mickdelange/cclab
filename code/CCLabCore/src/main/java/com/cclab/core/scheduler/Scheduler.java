@@ -129,12 +129,11 @@ public class Scheduler extends Thread {
 	
 	/**
 	 * Received notification that a Task was finished.
-	 * @param t
 	 * @param instanceId
 	 */
 	public void taskFinished(String instanceId) {
 		for (Node n: workerNodes) {
-			if (n.instanceId == instanceId) {
+			if (n.instanceId.equals(instanceId)) {
 				n.taskFinished();
 				return;
 			}
