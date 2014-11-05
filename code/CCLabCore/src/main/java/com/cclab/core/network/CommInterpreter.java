@@ -11,5 +11,7 @@ public interface CommInterpreter {
 
     abstract void processMessage(Message message);
 
+    abstract void nodeConnected(String name);
+
     abstract void communicatorDown(GeneralComm comm);
 }

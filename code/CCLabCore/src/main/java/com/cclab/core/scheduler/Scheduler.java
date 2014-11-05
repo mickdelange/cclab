@@ -128,13 +128,25 @@ public class Scheduler extends Thread {
 	}
 	
 	/**
+	 * Received a connection with a node.
+	 * @param instanceId
+	 */
+	public void nodeConnected(String instanceId) {
+		for (Node n: workerNodes) {
+			if (n.instanceId.equals(instanceId)) {
+				n.nodeStarted();
+				return;
+			}
+		}
+	}
+	
+	/**
 	 * Received notification that a Task was finished.
-	 * @param t
 	 * @param instanceId
 	 */
 	public void taskFinished(String instanceId) {
 		for (Node n: workerNodes) {
-			if (n.instanceId == instanceId) {
+			if (n.instanceId.equals(instanceId)) {
 				n.taskFinished();
 				return;
 			}
@@ -284,22 +296,16 @@ public class Scheduler extends Thread {
 	 * @return A Node if found, null otherwise.
 	 */
 	private Node startNewNode() {
-		Node sel = null;
 		for (Node n: workerNodes) {
 			if (n.state == Node.State.STARTING) {
-				sel = n;
-				break;
-			}
-			if (n.state == Node.State.STOPPED) {
-				sel = n;
-				break;
+				return n;
+			} else if (n.state == Node.State.STOPPED) {
+				// Only start a new node if no STARTING node can be found.
+				n.start();
+				return n;
 			}
 		}
-		// Only start a new node if no STARTING node can be found.
-		if (sel != null && sel.state == Node.State.STOPPED) {
-			sel.start();
-		}
-		return sel;
+		return null;
 	}
 	
 	/**

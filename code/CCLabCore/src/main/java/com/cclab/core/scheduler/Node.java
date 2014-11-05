@@ -6,6 +6,7 @@ import java.util.Queue;
 import com.amazonaws.services.ec2.model.Instance;
 import com.cclab.core.AwsConnect;
 import com.cclab.core.MasterInstance;
+import com.cclab.core.utils.NodeLogger;
 
 /**
  * Class that keeps track of Node status for Scheduler
@@ -31,11 +32,7 @@ public class Node {
 				idleSince = Integer.MAX_VALUE;
 				workingSince = System.currentTimeMillis();
 				break;
-			case STOPPED :
-				idleSince = Integer.MAX_VALUE;
-				workingSince = Integer.MAX_VALUE;
-				break;
-			case STARTING :
+			default :
 				idleSince = Integer.MAX_VALUE;
 				workingSince = Integer.MAX_VALUE;
 				break;
@@ -45,7 +42,7 @@ public class Node {
 	
 	String instanceId;
 	Queue<Task> q = new LinkedList<Task>();
-	State state;
+	State state = State.STARTING;
 	long idleSince = Integer.MAX_VALUE;
 	long workingSince = Integer.MAX_VALUE;
 	long maxTaskTime;
@@ -68,6 +65,19 @@ public class Node {
 	}
 	
 	/**
+	 * After receiving a connection, the node is IDLE and available for tasks.
+	 * Automatically check if there are tasks in queue.
+	 */
+	public void nodeStarted() {
+		NodeLogger.get().info("Node " + instanceId + " has finished booting up.");
+		// Set state to IDLE
+		switchState(State.IDLE);
+
+		// Start processing queue
+		doWork();
+	}
+	
+	/**
 	 * Check the state of the node
 	 * @param inst
 	 */
@@ -76,22 +86,20 @@ public class Node {
 		String currState = inst.getState().getName();
 		
 		if (inst.getInstanceId().equals(instanceId)) {
-			// Check if node has finished booting
-			if (state == State.STARTING && testMode || currState == "running") {
-				switchState(State.IDLE);
-				// Start processing queue
-				doWork();
-			} // Check if node is taking too long to perform task
-			else if (state == State.WORKING && (currTime-workingSince) > maxTaskTime) {
+			// Check if node is taking too long to perform task
+			if (state == State.WORKING && (currTime-workingSince) > maxTaskTime) {
+				NodeLogger.get().error("Node " + instanceId + " was WORKING for too long.");
 				// Flag Task as problematic
 				q.peek().flagProblem();
 				// Kill node
 				stop();
 			} // Machine has unexpectedly quit
-			else if (currState != "running" && state != State.STOPPED) {
+			else if (state != State.STOPPED && !currState.equals("running")) {
+				NodeLogger.get().error("Node " + instanceId + " has unexpectedly quit.");
 				switchState(State.STOPPED);
 			} // Machine has been IDLE for a long time
-			else if (currState == "running" && state == State.IDLE && (currTime-idleSince) > maxIdleTime) {
+			else if (currState.equals("running") && state == State.IDLE && (currTime-idleSince) > maxIdleTime) {
+				NodeLogger.get().info("Node " + instanceId + " was IDLE for too long.");
 				// Kill node
 				stop();
 			}
@@ -151,19 +159,19 @@ public class Node {
 	 * Execute task in queue
 	 */
 	private void doWork() {
-		// Reset working timer
-		switchState(State.WORKING);
-		
 		// Get first job in queue
 		Task t = q.peek();
 		
-		// Send task to worker instance
-		myMaster.sendTaskTo(instanceId, t.inputId);
+		if (t != null) {
+			// Send task to worker instance
+			myMaster.sendTaskTo(instanceId, t.inputId);
+			// Reset working timer
+			switchState(State.WORKING);
+		}
 	}
 	
 	/**
 	 * After receiving confirmation that a Task was completed, execute this.
-	 * @param t The completed Task
 	 */
 	public void taskFinished() {
 		// Remove finished job from queue
