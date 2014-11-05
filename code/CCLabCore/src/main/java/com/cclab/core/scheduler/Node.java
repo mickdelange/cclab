@@ -5,6 +5,7 @@ import java.util.Queue;
 
 import com.amazonaws.services.ec2.model.Instance;
 import com.cclab.core.AwsConnect;
+import com.cclab.core.MasterInstance;
 
 /**
  * Class that keeps track of Node status for Scheduler
@@ -49,16 +50,20 @@ public class Node {
 	long workingSince = Integer.MAX_VALUE;
 	long maxTaskTime;
 	long maxIdleTime;
+	boolean testMode; // Test Mode: do not actually start / stop nodes in AWS
+    MasterInstance myMaster;
 	
 	/**
 	 * Construct Node object.
 	 * Used by the scheduler to monitor Nodes.
 	 * @param inst
 	 */
-	Node(Instance inst, long mtt, long mit) {
+	Node(Instance inst, long mtt, long mit, boolean tm, MasterInstance m) {
+		myMaster = m;
 		instanceId = inst.getInstanceId();
 		maxTaskTime = mtt;
 		maxIdleTime = mit;
+		testMode = tm;
 		updateState(inst);
 	}
 	
@@ -70,14 +75,16 @@ public class Node {
 		long currTime = System.currentTimeMillis();
 		String currState = inst.getState().getName();
 		
-		if (inst.getInstanceId() == instanceId) {
+		if (inst.getInstanceId().equals(instanceId)) {
 			// Check if node has finished booting
-			if (state == State.STARTING && currState == "running") {
+			if (state == State.STARTING && testMode || currState == "running") {
 				switchState(State.IDLE);
 				// Start processing queue
 				doWork();
 			} // Check if node is taking too long to perform task
 			else if (state == State.WORKING && (currTime-workingSince) > maxTaskTime) {
+				// Flag Task as problematic
+				q.peek().flagProblem();
 				// Kill node
 				stop();
 			} // Machine has unexpectedly quit
@@ -98,7 +105,11 @@ public class Node {
 	 * @return
 	 */
 	public boolean start() {
-		if (AwsConnect.startInstance(instanceId)) {
+		if (testMode) {
+			switchState(State.STARTING);
+			System.out.println("TESTMODE: " + instanceId + " was started.");
+			return true;
+		} else if(AwsConnect.startInstance(instanceId)) {
 			switchState(State.STARTING);
 			return true;
 		}
@@ -110,7 +121,11 @@ public class Node {
 	 * @return
 	 */
 	public boolean stop() {
-		if (AwsConnect.stopInstance(instanceId)) {
+		if (testMode) {
+			switchState(State.STOPPED);
+			System.out.println("TESTMODE: " + instanceId + " was terminated.");
+			return true;
+		} else if (AwsConnect.stopInstance(instanceId)) {
 			switchState(State.STOPPED);
 			return true;
 		}
@@ -140,9 +155,10 @@ public class Node {
 		switchState(State.WORKING);
 		
 		// Get first job in queue
-//		Task t = q.peek();
+		Task t = q.peek();
 		
-		// TODO: send task to Node: execute task t
+		// Send task to worker instance
+		myMaster.sendTaskTo(instanceId, t.inputId);
 	}
 	
 	/**
