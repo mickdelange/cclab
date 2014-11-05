@@ -27,6 +27,7 @@ public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
     ServerComm server = null;
     HashMap<String, ClientComm> clients = null;
     String myName;
+    boolean shuttingDown = false;
 
     public NodeInstance(String myName) {
         this.myName = myName;
@@ -39,6 +40,7 @@ public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
     public boolean interpretAndContinue(String[] command) {
         try {
             if (command[0].equals("quit")) {
+                shuttingDown = true;
                 if (server != null)
                     server.quit();
                 for (ClientComm client : clients.values())
@@ -63,12 +65,13 @@ public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
     }
 
 
-
     //return false if should not continue reading CLI
     public abstract boolean extendedInterpret(String[] command);
 
     @Override
     public void communicatorDown(GeneralComm comm) {
+        if (shuttingDown)
+            return;
         if (comm.equals(server)) {
             NodeLogger.get().error("Server went down");
         } else {
