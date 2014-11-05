@@ -6,6 +6,7 @@ import java.util.Queue;
 import com.amazonaws.services.ec2.model.Instance;
 import com.cclab.core.AwsConnect;
 import com.cclab.core.MasterInstance;
+import com.cclab.core.utils.NodeLogger;
 
 /**
  * Class that keeps track of Node status for Scheduler
@@ -77,21 +78,25 @@ public class Node {
 		
 		if (inst.getInstanceId().equals(instanceId)) {
 			// Check if node has finished booting
-			if (state == State.STARTING && testMode || currState == "running") {
+			if (state == State.STARTING && (testMode || currState == "running")) {
+				NodeLogger.get().info("Node " + instanceId + " has finished booting up.");
 				switchState(State.IDLE);
 				// Start processing queue
 				doWork();
 			} // Check if node is taking too long to perform task
 			else if (state == State.WORKING && (currTime-workingSince) > maxTaskTime) {
+				NodeLogger.get().error("Node " + instanceId + " was WORKING for too long.");
 				// Flag Task as problematic
 				q.peek().flagProblem();
 				// Kill node
 				stop();
 			} // Machine has unexpectedly quit
 			else if (currState != "running" && state != State.STOPPED) {
+				NodeLogger.get().error("Node " + instanceId + " has unexpectedly quit.");
 				switchState(State.STOPPED);
 			} // Machine has been IDLE for a long time
 			else if (currState == "running" && state == State.IDLE && (currTime-idleSince) > maxIdleTime) {
+				NodeLogger.get().info("Node " + instanceId + " was IDLE for too long.");
 				// Kill node
 				stop();
 			}

@@ -284,22 +284,16 @@ public class Scheduler extends Thread {
 	 * @return A Node if found, null otherwise.
 	 */
 	private Node startNewNode() {
-		Node sel = null;
 		for (Node n: workerNodes) {
 			if (n.state == Node.State.STARTING) {
-				sel = n;
-				break;
-			}
-			if (n.state == Node.State.STOPPED) {
-				sel = n;
-				break;
+				return n;
+			} else if (n.state == Node.State.STOPPED) {
+				// Only start a new node if no STARTING node can be found.
+				n.start();
+				return n;
 			}
 		}
-		// Only start a new node if no STARTING node can be found.
-		if (sel != null && sel.state == Node.State.STOPPED) {
-			sel.start();
-		}
-		return sel;
+		return null;
 	}
 	
 	/**
