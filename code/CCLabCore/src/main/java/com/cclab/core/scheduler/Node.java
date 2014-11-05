@@ -15,7 +15,7 @@ import com.cclab.core.utils.NodeLogger;
 public class Node {
 	
 	enum State {
-		IDLE, WORKING, STOPPED, STARTING, UNKNOWN;
+		IDLE, WORKING, STOPPED, STARTING;
 	}
 	
 	/**
@@ -42,7 +42,7 @@ public class Node {
 	
 	String instanceId;
 	Queue<Task> q = new LinkedList<Task>();
-	State state = State.UNKNOWN;
+	State state = State.STARTING;
 	long idleSince = Integer.MAX_VALUE;
 	long workingSince = Integer.MAX_VALUE;
 	long maxTaskTime;
@@ -65,6 +65,19 @@ public class Node {
 	}
 	
 	/**
+	 * After receiving a connection, the node is IDLE and available for tasks.
+	 * Automatically check if there are tasks in queue.
+	 */
+	public void nodeStarted() {
+		NodeLogger.get().info("Node " + instanceId + " has finished booting up.");
+		// Set state to IDLE
+		switchState(State.IDLE);
+
+		// Start processing queue
+		doWork();
+	}
+	
+	/**
 	 * Check the state of the node
 	 * @param inst
 	 */
@@ -73,14 +86,8 @@ public class Node {
 		String currState = inst.getState().getName();
 		
 		if (inst.getInstanceId().equals(instanceId)) {
-			// Check if node has finished booting
-			if (state == State.STARTING && (testMode || currState.equals("running"))) {
-				NodeLogger.get().info("Node " + instanceId + " has finished booting up.");
-				switchState(State.IDLE);
-				// Start processing queue
-				doWork();
-			} // Check if node is taking too long to perform task
-			else if (state == State.WORKING && (currTime-workingSince) > maxTaskTime) {
+			// Check if node is taking too long to perform task
+			if (state == State.WORKING && (currTime-workingSince) > maxTaskTime) {
 				NodeLogger.get().error("Node " + instanceId + " was WORKING for too long.");
 				// Flag Task as problematic
 				q.peek().flagProblem();
@@ -95,12 +102,6 @@ public class Node {
 				NodeLogger.get().info("Node " + instanceId + " was IDLE for too long.");
 				// Kill node
 				stop();
-			}
-			else if (currState.equals("running") && state == State.UNKNOWN) {
-				// Node is already running, but not yet assigned a state.
-				switchState(State.IDLE);
-				// Start processing queue
-				doWork();
 			}
 		} else {
 			throw new Error("InstanceId changed");

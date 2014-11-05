@@ -128,6 +128,19 @@ public class Scheduler extends Thread {
 	}
 	
 	/**
+	 * Received a connection with a node.
+	 * @param instanceId
+	 */
+	public void nodeConnected(String instanceId) {
+		for (Node n: workerNodes) {
+			if (n.instanceId.equals(instanceId)) {
+				n.nodeStarted();
+				return;
+			}
+		}
+	}
+	
+	/**
 	 * Received notification that a Task was finished.
 	 * @param instanceId
 	 */
