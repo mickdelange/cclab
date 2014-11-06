@@ -37,7 +37,6 @@ public class BigDataSender {
     }
 
     public void doSend() {
-        NodeLogger.get().debug("Sending large data (" + data.length + " bytes)");
         ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE);
         try {
             buf.clear();
@@ -56,7 +55,7 @@ public class BigDataSender {
             NodeLogger.get().debug("Message " + parentMessage.getId() + ": Sent packet " + (chunk + 1) + " of " + chunks + "(" + size + " bytes)");
             chunk++;
             if(chunk == chunks){
-                NodeLogger.get().info("Successfully finished sending "+parentMessage);
+                NodeLogger.get().info("Sent data for "+parentMessage);
                 communicator.finishedSending(parentMessage, myChannel);
             }
             myKey.interestOps(SelectionKey.OP_READ);

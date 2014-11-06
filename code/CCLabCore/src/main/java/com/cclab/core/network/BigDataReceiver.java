@@ -13,7 +13,7 @@ import java.nio.channels.SocketChannel;
  *
  * @author an3m0na
  */
-public class BigDataReceiver {
+public class BigDataReceiver extends Thread{
 
     private static final int MAX_SEND_TRIES = 1000;
     private SelectionKey myKey = null;
@@ -49,7 +49,7 @@ public class BigDataReceiver {
             collector.write(data);
 
             if (collector.size() == (Integer) parentMessage.getData()) {
-                NodeLogger.get().info("Successfully finished reading " + parentMessage);
+                NodeLogger.get().info("Received data for " + parentMessage);
                 parentMessage.setData(collector.toByteArray());
                 communicator.handleBigMessage(parentMessage, myChannel);
             } else {

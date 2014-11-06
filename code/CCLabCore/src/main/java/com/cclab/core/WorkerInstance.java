@@ -25,6 +25,8 @@ import java.io.IOException;
 public class WorkerInstance extends NodeInstance implements ProcessController {
     int port;
     String masterIP = null;
+    final int MAX_RECONNECT = 3;
+    int reconnecting = 0;
 
     public WorkerInstance(String myName, String masterIP, int port) throws IOException {
         super(myName);
@@ -57,7 +59,9 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
     @Override
     public void processMessage(Message message) {
         if (message.getType() == Message.Type.NEWTASK.getCode()) {
-            Processor processor = new ImageProcessor(message.getDetails(), (byte[])message.getData(), "blur", this);
+            NodeLogger.get().info("Received task " + message);
+            NodeLogger.getProcessing().info("START_" + message.getDetails());
+            Processor processor = new ImageProcessor(message.getDetails(), (byte[]) message.getData(), "blur", this);
             new Thread(processor).start();
 //            try {
 //                Thread.sleep(5000);
@@ -73,8 +77,10 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
     @Override
     public void communicatorDown(GeneralComm comm) {
         super.communicatorDown(comm);
+        if (shuttingDown)
+            return;
         try {
-            if (comm.equals(clients.get(masterIP))) {
+            if (comm.equals(clients.get(masterIP)) && reconnecting++ >= MAX_RECONNECT) {
                 ClientComm client = new ClientComm(masterIP, port, myName, this);
                 client.start();
                 clients.put(masterIP, client);
@@ -86,9 +92,11 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
 
     @Override
     public void handleProcessorOutput(String taskId, byte[] output) {
+        NodeLogger.getProcessing().info("FINISH_" + taskId);
         Message ret = new Message(Message.Type.FINISHED, myName);
         ret.setDetails(taskId);
         ret.setData(output);
+        NodeLogger.get().info("Finished task " + ret);
         clients.get(masterIP).addMessageToOutgoing(ret);
     }
 }

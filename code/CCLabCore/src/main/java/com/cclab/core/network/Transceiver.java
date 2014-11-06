@@ -46,7 +46,6 @@ public class Transceiver implements Runnable {
 
     private synchronized void doSend() {
         byte[] data = payload.toBytes();
-        NodeLogger.get().info("Sending " + data.length + " bytes: " + payload);
         ByteBuffer buf = ByteBuffer.allocateDirect(data.length + 8);
         try {
             buf.clear();
@@ -62,7 +61,7 @@ public class Transceiver implements Runnable {
                     //TODO maybe disconnect
                 }
             }
-            NodeLogger.get().debug("Sent message " + payload);
+            NodeLogger.get().debug("Sent " + payload);
             myKey.interestOps(SelectionKey.OP_READ);
 
         } catch (Exception e) {
@@ -92,7 +91,6 @@ public class Transceiver implements Runnable {
                 System.out.println("");
                 int id = buf.getInt();
                 int size = buf.getInt();
-                NodeLogger.get().debug("Receiving message " + id + " (" + size + " from " + buf.remaining() + ")");
 
                 byte[] data = new byte[size];
                 buf.get(data, 0, Math.min(buf.remaining(), size));

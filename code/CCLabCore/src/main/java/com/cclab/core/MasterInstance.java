@@ -78,6 +78,7 @@ public class MasterInstance extends NodeInstance {
             NodeLogger.get().error("Task input identifier not supplied");
             return;
         }
+        NodeLogger.getTasking().info("ASSIGN_" + inputId + "_" + recipient);
         Message message = new Message(Message.Type.NEWTASK, myName);
         message.setDetails(inputId);
         byte[] input = Database.getInstance().getRecord(inputId);
@@ -98,6 +99,7 @@ public class MasterInstance extends NodeInstance {
 
             // optional
             Database.getInstance().storeRecord((byte[]) message.getData(), message.getDetails());
+            NodeLogger.getTasking().info("DONE_" + message.getDetails() + "_" + message.getOwner());
         }
     }
 
@@ -105,5 +107,11 @@ public class MasterInstance extends NodeInstance {
     public void nodeConnected(String name) {
         super.nodeConnected(name);
         scheduler.nodeConnected(name);
+    }
+
+    @Override
+    public void shutDown() {
+        super.shutDown();
+        scheduler.quit();
     }
 }

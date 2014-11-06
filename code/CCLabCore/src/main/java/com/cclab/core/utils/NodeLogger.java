@@ -20,10 +20,7 @@ import java.util.Properties;
  */
 public class NodeLogger {
 
-    private static String processName = null;
-
     public static void configureLogger(String name, Object caller) {
-        processName = name;
 
         Properties props = new Properties();
         try {
@@ -41,6 +38,14 @@ public class NodeLogger {
     }
 
     public static Logger get() {
-        return Logger.getLogger(processName);
+        return Logger.getLogger("full");
+    }
+
+    public static Logger getProcessing() {
+        return Logger.getLogger("monitor.processing");
+    }
+
+    public static Logger getTasking() {
+        return Logger.getLogger("monitor.tasking");
     }
 }

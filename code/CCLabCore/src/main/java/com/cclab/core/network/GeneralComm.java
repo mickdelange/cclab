@@ -92,6 +92,9 @@ public abstract class GeneralComm extends Thread {
 
     void cancelConnection(SelectionKey key) throws IOException {
         SocketChannel channel = (SocketChannel) key.channel();
+        outgoingQueues.remove(channel);
+        bigDataReceivers.remove(channel);
+        bigDataSenders.remove(channel);
         NodeLogger.get().warn("Connection closed for " + channel.socket().getRemoteSocketAddress());
 
         key.cancel();
@@ -99,12 +102,11 @@ public abstract class GeneralComm extends Thread {
     }
 
     void cleanup() {
-        if (selector != null)
-            try {
-                selector.close();
-            } catch (IOException e) {
-                NodeLogger.get().warn("Error closing selector", e);
-            }
+        try {
+            selector.close();
+        } catch (Exception e) {
+            NodeLogger.get().warn("Error cleaning up communicator", e);
+        }
     }
 
     void checkOutgoing() {

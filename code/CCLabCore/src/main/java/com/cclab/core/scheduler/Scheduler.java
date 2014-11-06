@@ -50,7 +50,7 @@ public class Scheduler extends Thread {
 		}
 		
 		if (testMode) {
-			System.out.println("Scheduler started in Test Mode.");
+			NodeLogger.get().info("Scheduler started in Test Mode.");
 		}
 		
 		try {
@@ -219,7 +219,9 @@ public class Scheduler extends Thread {
 			// IDLE node available, assign Task
 			n.assign(t);
 			return true;
-		} 
+		}
+
+        NodeLogger.get().debug("No idle nodes");
 		
 		// No IDLE node, find node with load < threshold
 		n = findNodeUnderThreshold();
@@ -229,7 +231,9 @@ public class Scheduler extends Thread {
 			return true;
 		}
 
-		// All RUNNING Nodes busy, start new node
+        NodeLogger.get().debug("No nodes under threshold");
+
+        // All RUNNING Nodes busy, start new node
 		n = startNewNode();
 		if (n!=null) {
 			// New node started, assign Task to run when finished booting
@@ -237,7 +241,9 @@ public class Scheduler extends Thread {
 			return true;
 		}
 
-		// No new nodes available, all nodes are running
+        NodeLogger.get().debug("No new nodes available");
+
+        // No new nodes available, all nodes are running
 		n = findNodeLowestLoad();
 		if (n != null) {
 			// Assign task to least busy node
