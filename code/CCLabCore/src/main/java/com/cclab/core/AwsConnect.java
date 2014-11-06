@@ -12,6 +12,7 @@ import com.amazonaws.services.ec2.AmazonEC2;
 import com.amazonaws.services.ec2.AmazonEC2Client;
 import com.amazonaws.services.ec2.model.DescribeInstancesResult;
 import com.amazonaws.services.ec2.model.Instance;
+import com.amazonaws.services.ec2.model.RebootInstancesRequest;
 import com.amazonaws.services.ec2.model.Reservation;
 import com.amazonaws.services.ec2.model.StartInstancesRequest;
 import com.amazonaws.services.ec2.model.StopInstancesRequest;
@@ -75,6 +76,32 @@ public class AwsConnect {
         retrieveInstances();
     	return instances;
     }
+    
+    /**
+     * Get the private IP address for an instance
+     * @param instanceId
+     * @return Private IP of instance
+     */
+    public static String getInstancePrivIP(String instanceId) {
+    	for (Instance inst : instances) {
+    		if (instanceId.equals(inst.getInstanceId()))
+    			return inst.getPrivateIpAddress();
+    	}
+    	return "";
+    }
+    
+    /**
+     * Get the public IP address for an instance
+     * @param instanceId
+     * @return Public IP of instance
+     */
+    public static String getInstancePubIP(String instanceId) {
+    	for (Instance inst : instances) {
+    		if (instanceId.equals(inst.getInstanceId()))
+    			return inst.getPublicIpAddress();
+    	}
+    	return "";
+    }
 
     /**
      * Start an instance by instanceId
@@ -112,6 +139,29 @@ public class AwsConnect {
 	        sir.setInstanceIds(instancesToStop);
 	        
 	        ec2.stopInstances(sir);
+	        return true;
+    	} catch (AmazonServiceException ase) {
+            System.out.println("Caught Exception: " + ase.getMessage());
+            System.out.println("Reponse Status Code: " + ase.getStatusCode());
+            System.out.println("Error Code: " + ase.getErrorCode());
+            System.out.println("Request ID: " + ase.getRequestId());
+    	}
+    	return false;
+    }
+    
+    /**
+     * Reboot an instance by instanceId
+     * @param instanceId ID of the instance to reboot
+     */
+    public static boolean rebootInstance(String instanceId) {
+    	try {
+	        List<String> instancesToReboot = new ArrayList<String>();
+	        instancesToReboot.add(instanceId);
+	        
+	        RebootInstancesRequest rir = new RebootInstancesRequest();
+	        rir.setInstanceIds(instancesToReboot);
+	        
+	        ec2.rebootInstances(rir);
 	        return true;
     	} catch (AmazonServiceException ase) {
             System.out.println("Caught Exception: " + ase.getMessage());

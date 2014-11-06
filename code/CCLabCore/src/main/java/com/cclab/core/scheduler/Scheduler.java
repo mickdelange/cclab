@@ -172,6 +172,9 @@ public class Scheduler extends Thread {
 			nT = new Task(newInput);
 			addTask(nT);
 			
+			// Backup new task
+			myMaster.backupNewTask(nT.inputId);
+			
 			// Get next
 			newInput = Database.getInstance().getNextRecordId();
 		}

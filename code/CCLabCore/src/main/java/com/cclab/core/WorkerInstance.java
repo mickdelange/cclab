@@ -29,14 +29,33 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
 
     public WorkerInstance(String myName, String masterIP, int port) throws IOException {
         super(myName);
-        this.masterIP = masterIP;
         this.port = port;
-        ClientComm client = new ClientComm(masterIP, port, myName, this);
-        client.start();
-        clients.put(masterIP, client);
+        
+        registerMaster(masterIP);
         
         server = new ServerComm(port, myName, this);
         server.start();
+    }
+    
+    /**
+     * Register to a Master node.
+     * @throws IOException 
+     */
+    private void registerMaster(String newMasterIP) {
+    	try {
+    		// Remove any old master connections
+        	clients.clear();
+        	
+        	this.masterIP = newMasterIP;
+        	
+        	// Register to master
+            ClientComm client = new ClientComm(masterIP, port, myName, this);
+            client.start();
+        	clients.put(masterIP, client);
+		} catch (IOException e) {
+            e.printStackTrace();
+			NodeLogger.get().error("Could not register Master node.");
+		}
     }
 
     @Override
@@ -73,7 +92,7 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
             clients.get(masterIP).addMessageToOutgoing(ret);
         }
         else if (message.getType() == Message.Type.NEWMASTER.getCode()) {
-        	// TODO: process new master details
+        	registerMaster(message.getDetails());
         }
     }
 

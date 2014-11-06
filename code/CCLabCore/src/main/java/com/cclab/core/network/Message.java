@@ -24,8 +24,11 @@ public class Message implements Serializable {
         PING((byte) 0),
         NEWTASK((byte) 1),
         FINISHED((byte) 2),
-        NEWMASTER((byte) 3), // Used to announce new Master node.
-        STILLALIVE((byte) 4); // Used to notify backup of Master still being alive (if no other messages).
+        NEWMASTER((byte) 3),
+        BACKUPTASK((byte) 4),
+        BACKUPFIN((byte) 5), 
+        BACKUPCONNECT((byte) 6),
+        STILLALIVE((byte) 7);
 
         private static final Map<Byte, Type> codeLookup = new HashMap<Byte, Type>();
         private static final Map<String, Type> nameLookup = new HashMap<String, Type>();

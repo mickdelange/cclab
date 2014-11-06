@@ -100,7 +100,7 @@ public class MasterInstance extends NodeInstance {
      */
     public void backupNewTask(String inputId) {
     	if (backupConnected) {
-	        Message message = new Message(Message.Type.NEWTASK, myName);
+	        Message message = new Message(Message.Type.BACKUPTASK, myName);
 	        message.setDetails(inputId);
 	        byte[] input = Database.getInstance().getRecord(inputId);
 	        if (input == null) {
@@ -118,8 +118,20 @@ public class MasterInstance extends NodeInstance {
      */
     public void backupFinishedTask(String inputId) {
     	if (backupConnected) {
-	        Message message = new Message(Message.Type.FINISHED, myName);
+	        Message message = new Message(Message.Type.BACKUPFIN, myName);
 	        message.setDetails(inputId);
+	        server.addMessageToOutgoing(message, myBackupName);
+    	}
+    }
+    
+    /**
+     * Notify back-up of new connection.
+     * @param inputId
+     */
+    public void backupNodeConnection(String instanceId) {
+    	if (backupConnected) {
+	        Message message = new Message(Message.Type.BACKUPCONNECT, myName);
+	        message.setDetails(instanceId);
 	        server.addMessageToOutgoing(message, myBackupName);
     	}
     }
@@ -140,10 +152,14 @@ public class MasterInstance extends NodeInstance {
     public void nodeConnected(String name){
         super.nodeConnected(name);
         if (name.equals(myBackupName)) {
+        	// Handle connection to backup node
         	backupConnected = true;
-        	// TODO: Handle connection from backup instance
+        } else {
+        	// Handle connection to worker node
+            scheduler.nodeConnected(name);
+            // Backup connection
+            backupNodeConnection(name);
         }
-        scheduler.nodeConnected(name);
-        // TODO: let backup connect to node as well
+        
     }
 }

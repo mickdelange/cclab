@@ -51,10 +51,10 @@ public class NodeStarter {
             }
         } else if (args[1].equals("backup")) {
         	 try {
-                 if (args.length == 3)
-                     new BackupInstance(me, args[2], GeneralComm.DEFAULT_PORT);
-                 else if (args.length > 3)
-                     new BackupInstance(me, args[2], Integer.parseInt(args[3]));
+                 if (args.length == 4)
+                     new BackupInstance(me, args[2], args[3], GeneralComm.DEFAULT_PORT);
+                 else if (args.length > 4)
+                     new BackupInstance(me, args[2], args[3], Integer.parseInt(args[4]));
              } catch (IOException e) {
                  System.out.println("Could not start backup master");
                  NodeLogger.get().error(e.getMessage(), e);

@@ -16,6 +16,7 @@ public class MasterObserver extends Thread {
 	int interval;
 	int maxTimeOut;
     long lastContact = 0;
+    public boolean started = false;
     BackupInstance backupInstance;
 	
     private boolean shouldExit = false;
@@ -34,6 +35,7 @@ public class MasterObserver extends Thread {
 	 */
 	public void run() {
 		long currTime;
+		started = true;
 		try {
 			while(true) {
 				if(shouldExit) // Stop the loop.
@@ -45,6 +47,8 @@ public class MasterObserver extends Thread {
 				// No message received from Master for too long, take over.
 				if ((currTime - lastContact) > maxTimeOut) {
 					backupInstance.takeOver();
+					// Stop observer
+					quit();
 				}
 				
 			}
