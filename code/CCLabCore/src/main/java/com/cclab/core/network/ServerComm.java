@@ -95,7 +95,13 @@ public class ServerComm extends GeneralComm {
 
     @Override
     void read(SelectionKey key) throws IOException {
-        pool.execute(new Thread(new Transceiver(key, null, this)));
+//        pool.execute(new Thread(new Transceiver(key, null, this)));
+        SocketChannel channel = (SocketChannel) key.channel();
+        BigDataReceiver bigDataReceiver = bigDataReceivers.get(channel);
+        if (bigDataReceiver != null)
+            bigDataReceiver.doReceive();
+        else
+            new Transceiver(key, null, this).run();
     }
 
     @Override
@@ -123,12 +129,22 @@ public class ServerComm extends GeneralComm {
     }
 
     @Override
-    void handleMessage(Message message, SocketChannel channel) throws IOException {
+    void handleMessage(Message message, SocketChannel channel) {
+        if (message.getType() != Message.Type.FINISHED.getCode()) {
+            SelectionKey key = channel.keyFor(selector);
+            // deactivate interest for reading
+            key.interestOps(key.interestOps() & ~SelectionKey.OP_READ);
+        }
+        registerClient(message.getOwner(), channel);
+        super.handleMessage(message, channel);
+    }
+
+    @Override
+    void handleBigMessage(Message message, SocketChannel channel) {
         SelectionKey key = channel.keyFor(selector);
         // deactivate interest for reading
         key.interestOps(key.interestOps() & ~SelectionKey.OP_READ);
-        registerClient(message.getOwner(), channel);
-        interpreter.processMessage(message);
+        super.handleBigMessage(message, channel);
     }
 
     @Override

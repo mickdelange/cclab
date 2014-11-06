@@ -57,16 +57,16 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
     @Override
     public void processMessage(Message message) {
         if (message.getType() == Message.Type.NEWTASK.getCode()) {
-//            Processor processor = new ImageProcessor(message.getDetails(), (byte[])message.getData(), "blur", this);
-//            new Thread(processor).start();
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            Message ret = new Message(Message.Type.FINISHED, myName);
-            ret.setDetails(message.getDetails());
-            clients.get(masterIP).addMessageToOutgoing(ret);
+            Processor processor = new ImageProcessor(message.getDetails(), (byte[])message.getData(), "blur", this);
+            new Thread(processor).start();
+//            try {
+//                Thread.sleep(5000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            Message ret = new Message(Message.Type.FINISHED, myName);
+//            ret.setDetails(message.getDetails());
+//            clients.get(masterIP).addMessageToOutgoing(ret);
         }
     }
 
