@@ -84,4 +84,8 @@ public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
 
     }
 
+    @Override
+    public void nodeConnected(String name) {
+        NodeLogger.get().info("Node connected: "+name);
+    }
 }

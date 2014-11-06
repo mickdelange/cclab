@@ -4,7 +4,6 @@ import com.cclab.core.utils.NodeLogger;
 import com.cclab.core.utils.NodeUtils;
 
 import java.io.File;
-import java.io.FilenameFilter;
 
 /**
  * Abstracts the file-based storage scheme.
@@ -23,9 +22,10 @@ public class Database {
     private static Database ourInstance = new Database();
     private static final String rootInDir = "/input";
     private static final String rootOutDir = "/output";
+    private static final String rootTmpDir = "/tmp";
     private File inputDir = null;
     private File outputDir = null;
-    private long lastPoll = 0;
+    private File tmpDir = null;
     private String[] lastPolled = null;
     private int nextUp = -1;
 
@@ -39,13 +39,21 @@ public class Database {
 
         String inputDirPath = currentDir + rootInDir;
         String outputDirPath = currentDir + rootOutDir;
+        String tmpDirPath = currentDir + rootTmpDir;
         inputDir = new File(inputDirPath);
         outputDir = new File(outputDirPath);
+        tmpDir = new File(tmpDirPath);
         if (!inputDir.exists()) {
             NodeLogger.get().warn("Input directory not found. Creating it...");
             if (!inputDir.mkdirs()) {
                 NodeLogger.get().error("Error creating input directory at " + inputDirPath);
                 return;
+            }
+        }
+        if (!tmpDir.exists()) {
+            NodeLogger.get().info("Temporary directory not found. Creating it...");
+            if (!tmpDir.mkdirs()) {
+                NodeLogger.get().error("Error creating output directory at " + outputDirPath);
             }
         }
         if (!outputDir.exists()) {
@@ -61,16 +69,17 @@ public class Database {
      * Checks for records that have been added/modified since the last poll.
      * To be called only if the record processing queue is external.
      *
-     * @return      the list of record ids
+     * @return the list of record ids
      */
     public String[] pollNew() {
-        lastPolled = inputDir.list(new FilenameFilter() {
-            @Override
-            public boolean accept(File file, String s) {
-                return file.lastModified() > lastPoll;
-            }
-        });
-        lastPoll = System.currentTimeMillis();
+        lastPolled = inputDir.list();
+        for (String name : lastPolled) {
+            File oldFile = new File(inputDir.getAbsolutePath() + "/" + name);
+            File newFile = new File(tmpDir.getAbsolutePath() + "/" + name);
+            boolean result = oldFile.renameTo(newFile);
+            if (!result)
+                NodeLogger.get().error("Could not move file " + name + " to " + tmpDir.getAbsolutePath());
+        }
         if (lastPolled.length > 0)
             nextUp = 0;
         else
@@ -81,10 +90,10 @@ public class Database {
     /**
      * Gets the next record to be processed
      *
-     * @return      the record's id
+     * @return the record's id
      */
     public String getNextRecordId() {
-        if (nextUp >= lastPolled.length)
+        if (nextUp < 0 || nextUp >= lastPolled.length)
             pollNew();
         if (nextUp < 0) {
             return null;
@@ -95,18 +104,18 @@ public class Database {
     /**
      * Transforms an input record id to the associated filename.
      *
-     * @param inputId   the record's id
-     * @return          the input record's filename
+     * @param inputId the record's id
+     * @return the input record's filename
      */
     private String getInputPathFromId(String inputId) {
-        return inputDir.getAbsolutePath() + "/" + inputId;
+        return tmpDir.getAbsolutePath() + "/" + inputId;
     }
 
     /**
      * Constructs an output filename based on the original input record's id.
      *
-     * @param originalId   the original input record's id
-     * @return             the output record's filename
+     * @param originalId the original input record's id
+     * @return the output record's filename
      */
     private String getOutputPathFromOriginalId(String originalId) {
         return outputDir.getAbsolutePath() + "/processed_" + originalId;
@@ -115,8 +124,8 @@ public class Database {
     /**
      * Gets a record from its id.
      *
-     * @param inputId   the record's id
-     * @return          the record as a byte array
+     * @param inputId the record's id
+     * @return the record as a byte array
      */
     public byte[] getRecord(String inputId) {
         String inputName = getInputPathFromId(inputId);
@@ -131,7 +140,7 @@ public class Database {
     /**
      * Writes a record to storage
      *
-     * @param output   the new record as a byte array
+     * @param output the new record as a byte array
      */
     public void storeRecord(byte[] output, String originalId) {
         String outputName = getOutputPathFromOriginalId(originalId);

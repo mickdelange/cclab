@@ -62,6 +62,7 @@ public class ServerComm extends GeneralComm {
         outgoingQueues.put(channel, new ConcurrentLinkedQueue<Message>());
         nameToChannel.put(client, channel);
         channelToName.put(channel, client);
+        interpreter.nodeConnected(client);
     }
 
     public void addMessageToOutgoing(Message message, String client) {
@@ -150,5 +151,9 @@ public class ServerComm extends GeneralComm {
     @Override
     void connect(SelectionKey key) throws IOException {
         NodeLogger.get().error("Cannot handle connect");
+    }
+
+    boolean isClientConnected(String instanceId) {
+        return nameToChannel.keySet().contains(instanceId);
     }
 }
