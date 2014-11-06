@@ -30,8 +30,8 @@ public class MasterInstance extends NodeInstance {
     String myBackupName;
     boolean backupConnected = false;
 
-    public MasterInstance(String myName, String backupName, int port) throws IOException {
-        super(myName);
+    public MasterInstance(String name, String backupName, int port) throws IOException {
+        super(name);
         myBackupName = backupName;
         
         server = new ServerComm(port, myName, this);
@@ -132,6 +132,17 @@ public class MasterInstance extends NodeInstance {
     	if (backupConnected) {
 	        Message message = new Message(Message.Type.BACKUPCONNECT, myName);
 	        message.setDetails(instanceId);
+	        server.addMessageToOutgoing(message, myBackupName);
+    	}
+    }
+    
+    /**
+     * Notify back-up of still being alive.
+     * @param inputId
+     */
+    public void backupStillAlive() {
+    	if (backupConnected) {
+	        Message message = new Message(Message.Type.STILLALIVE, myName);
 	        server.addMessageToOutgoing(message, myBackupName);
     	}
     }

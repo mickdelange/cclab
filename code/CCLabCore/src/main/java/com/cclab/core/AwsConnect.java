@@ -26,18 +26,23 @@ public class AwsConnect {
     static Set<Instance> instances = new HashSet<Instance>();
     static long lastUpdate = 0;
     static final int updateInterval = 5000; // Update the list at most every 5 seconds
+    static boolean initialised = false;
     
     /**
      * Initialise the instances list
      * @throws Exception
      */
     public static void init() throws Exception {
-    	// Get credentials from file
-        AWSCredentials credentials = new PropertiesCredentials(
-        		AwsConnect.class.getResourceAsStream("AwsCredentials.properties"));
-
-        // Init EC2 object
-        ec2 = new AmazonEC2Client(credentials);
+    	if (!initialised) { // Prevent multiple initialisations
+	    	// Get credentials from file
+	        AWSCredentials credentials = new PropertiesCredentials(
+	        		AwsConnect.class.getResourceAsStream("AwsCredentials.properties"));
+	
+	        // Init EC2 object
+	        ec2 = new AmazonEC2Client(credentials);
+	        
+	        initialised = true;
+    	}
     }
     
     /**
@@ -78,16 +83,29 @@ public class AwsConnect {
     }
     
     /**
+     * Return a specific instance
+     * @return requested instance, null if not found
+     */
+    public static Instance getInstance(String instanceId) {
+        retrieveInstances();
+        for (Instance inst : instances) {
+    		if (instanceId.equals(inst.getInstanceId()))
+    			return inst;
+    	}
+    	return null;
+    }
+    
+    /**
      * Get the private IP address for an instance
      * @param instanceId
      * @return Private IP of instance
      */
     public static String getInstancePrivIP(String instanceId) {
-    	for (Instance inst : instances) {
-    		if (instanceId.equals(inst.getInstanceId()))
-    			return inst.getPrivateIpAddress();
-    	}
-    	return "";
+    	Instance inst = getInstance(instanceId);
+    	if (inst != null)
+    		return inst.getPrivateIpAddress();
+    	else
+    		return "";
     }
     
     /**
@@ -96,11 +114,24 @@ public class AwsConnect {
      * @return Public IP of instance
      */
     public static String getInstancePubIP(String instanceId) {
-    	for (Instance inst : instances) {
-    		if (instanceId.equals(inst.getInstanceId()))
-    			return inst.getPublicIpAddress();
-    	}
-    	return "";
+    	Instance inst = getInstance(instanceId);
+    	if (inst != null)
+    		return inst.getPublicIpAddress();
+    	else
+    		return "";
+    }
+    
+    /**
+     * Get the state of an instance
+     * @param instanceId
+     * @return State of instance: (pending, running, shutting-down, terminated, stopping, stopped)
+     */
+    public static String getInstanceState(String instanceId) {
+    	Instance inst = getInstance(instanceId);
+    	if (inst != null)
+    		return inst.getState().getName();
+    	else
+    		return "";
     }
 
     /**

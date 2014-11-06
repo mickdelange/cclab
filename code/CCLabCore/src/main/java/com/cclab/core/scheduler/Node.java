@@ -6,6 +6,8 @@ import java.util.Queue;
 import com.amazonaws.services.ec2.model.Instance;
 import com.cclab.core.AwsConnect;
 import com.cclab.core.MasterInstance;
+import com.cclab.core.utils.BootObserver;
+import com.cclab.core.utils.BootSettings;
 import com.cclab.core.utils.NodeLogger;
 
 /**
@@ -118,6 +120,8 @@ public class Node {
 			System.out.println("TESTMODE: " + instanceId + " was started.");
 			return true;
 		} else if(AwsConnect.startInstance(instanceId)) {
+			// Observer booting up
+	    	new BootObserver(instanceId, BootSettings.worker(instanceId, myMaster.myIP));
 			switchState(State.STARTING);
 			return true;
 		}

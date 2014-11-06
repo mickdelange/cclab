@@ -26,11 +26,20 @@ public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
 
     ServerComm server = null;
     HashMap<String, ClientComm> clients = null;
-    String myName;
+    public String myName;
+    public String myIP;
     boolean shuttingDown = false;
 
     public NodeInstance(String myName) {
         this.myName = myName;
+		
+        try {
+			AwsConnect.init();
+		} catch (Exception e) {
+			NodeLogger.get().error(e.getMessage(), e);
+		}
+        
+        myIP = AwsConnect.getInstancePrivIP(myName);
         NodeLogger.configureLogger(myName, this);
         clients = new HashMap<String, ClientComm>();
         new CLReader(this).start();

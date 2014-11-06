@@ -2,7 +2,8 @@ package com.cclab.core;
 
 import com.cclab.core.network.ClientComm;
 import com.cclab.core.network.Message;
-import com.cclab.core.network.ServerComm;
+import com.cclab.core.utils.BootObserver;
+import com.cclab.core.utils.BootSettings;
 import com.cclab.core.utils.MasterObserver;
 import com.cclab.core.utils.NodeLogger;
 
@@ -23,9 +24,6 @@ public class BackupInstance extends NodeInstance {
         ClientComm client = new ClientComm(masterIP, port, myName, this);
         client.start();
         clients.put(masterIP, client);
-        
-        server = new ServerComm(port, myName, this);
-        server.start();
         
         masterObserver = new MasterObserver(this);
         
@@ -51,7 +49,7 @@ public class BackupInstance extends NodeInstance {
 	    	// Notify all Workers.
 	    	notifyWorkers();
 	    	
-	    	// TODO: init former Master as Backup
+	    	new BootObserver(myMasterName, BootSettings.backup(myMasterName, myName, myIP));
 	    	
 	    	// Kill self
 	    	quit();

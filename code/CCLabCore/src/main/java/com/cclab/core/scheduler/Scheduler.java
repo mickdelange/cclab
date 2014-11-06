@@ -54,7 +54,6 @@ public class Scheduler extends Thread {
 		}
 		
 		try {
-			AwsConnect.init();
 			Set<Instance> instances = AwsConnect.getInstances();
 			
 			for (Instance inst : instances) {
@@ -101,6 +100,7 @@ public class Scheduler extends Thread {
 	 */
 	public void run() {
 		Task currT;
+		boolean backupNotified = false;
 		try {
 			while(true) {
 				if(shouldExit) // Stop the loop.
@@ -110,7 +110,7 @@ public class Scheduler extends Thread {
 				updateNodeStates();
 				
 				// Update main queue
-				getTasks();
+				backupNotified = getTasks();
 				
 				// Assign any new tasks
 				currT = mainQ.poll();
@@ -121,6 +121,8 @@ public class Scheduler extends Thread {
 					currT = mainQ.poll();
 				}
 				
+				if (!backupNotified)
+					myMaster.backupStillAlive();
 			}
 		} catch (InterruptedException e) {
 			NodeLogger.get().error(e.getMessage(), e);
@@ -164,9 +166,10 @@ public class Scheduler extends Thread {
 	/**
 	 * Get all tasks from input folder
 	 */
-	private void getTasks() {
+	private boolean getTasks() {
 		String newInput = Database.getInstance().getNextRecordId();
 		Task nT;
+		boolean backupNotified = false;
 		while (newInput != null) {
 			// Create and add task
 			nT = new Task(newInput);
@@ -174,10 +177,12 @@ public class Scheduler extends Thread {
 			
 			// Backup new task
 			myMaster.backupNewTask(nT.inputId);
+			backupNotified = true;
 			
 			// Get next
 			newInput = Database.getInstance().getNextRecordId();
 		}
+		return backupNotified;
 	}
 	
 	/**
