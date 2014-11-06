@@ -63,6 +63,8 @@ public class Database {
             }
         }
         pollNew();
+        if (nextUp < 0)
+            NodeLogger.get().warn("No initial input in database");
     }
 
     /**
@@ -92,14 +94,27 @@ public class Database {
      *
      * @return the record's id
      */
-    public String getNextRecordId() {
+    public synchronized String getNextRecordId() {
+        String id = peekNextRecordId();
+        if (id != null)
+            nextUp++;
+        return id;
+    }
+
+    /**
+     * Shows the next record to be processed without removing it
+     *
+     * @return the record's id
+     */
+    public String peekNextRecordId() {
         if (nextUp < 0 || nextUp >= lastPolled.length)
             pollNew();
         if (nextUp < 0) {
             return null;
         }
-        return lastPolled[nextUp++];
+        return lastPolled[nextUp];
     }
+
 
     /**
      * Transforms an input record id to the associated filename.
@@ -118,7 +133,7 @@ public class Database {
      * @return the output record's filename
      */
     private String getOutputPathFromOriginalId(String originalId) {
-        return outputDir.getAbsolutePath() + "/processed_" + originalId;
+        return outputDir.getAbsolutePath() + "/processed_" + System.currentTimeMillis() + "_" + originalId;
     }
 
     /**
