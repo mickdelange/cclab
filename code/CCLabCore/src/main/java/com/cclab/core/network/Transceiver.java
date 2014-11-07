@@ -64,8 +64,9 @@ public class Transceiver implements Runnable {
             NodeLogger.get().debug("Sent " + payload);
             myKey.interestOps(SelectionKey.OP_READ);
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             try {
+                NodeLogger.get().error("Error sending message ", e);
                 buf.clear();
                 communicator.cancelConnection(myKey);
             } catch (IOException ioe) {
@@ -96,7 +97,8 @@ public class Transceiver implements Runnable {
                 buf.get(data, 0, Math.min(buf.remaining(), size));
                 Message message = Message.getFromBytes(data);
                 NodeLogger.get().debug("Received " + message);
-                communicator.handleMessage(message, myChannel);
+                if (message != null)
+                    communicator.handleMessage(message, myChannel);
             }
 
             if (myChannel.read(buf) == -1) {
@@ -105,7 +107,7 @@ public class Transceiver implements Runnable {
                 communicator.cancelConnection(myKey);
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             NodeLogger.get().error("Error receiving message ", e);
             //assume node disconnected
             buf.clear();

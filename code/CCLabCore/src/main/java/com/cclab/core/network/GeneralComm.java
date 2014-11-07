@@ -65,6 +65,8 @@ public abstract class GeneralComm extends Thread {
                     // get current event and REMOVE it from the list!!!
                     SelectionKey key = it.next();
                     it.remove();
+                    if (!key.isValid())
+                        continue;
                     if (key.isConnectable()) {
                         connect(key);
                     } else if (key.isAcceptable()) {
@@ -74,6 +76,7 @@ public abstract class GeneralComm extends Thread {
                     } else if (key.isWritable()) {
                         write(key);
                     }
+
                 }
             }
         } catch (Exception e) {
@@ -93,7 +96,9 @@ public abstract class GeneralComm extends Thread {
     void cancelConnection(SelectionKey key) throws IOException {
         SocketChannel channel = (SocketChannel) key.channel();
         outgoingQueues.remove(channel);
+//        synchronized (this) {
         bigDataReceivers.remove(channel);
+//        }
         bigDataSenders.remove(channel);
         NodeLogger.get().warn("Connection closed for " + channel.socket().getRemoteSocketAddress());
 
@@ -162,7 +167,9 @@ public abstract class GeneralComm extends Thread {
 
     void handleBigMessage(Message message, SocketChannel channel) {
         NodeLogger.get().debug("Resuming normal receive mode for  " + message.getOwner());
+//        synchronized (this) {
         bigDataReceivers.remove(channel);
+//        }
         interpreter.processMessage(message);
     }
 

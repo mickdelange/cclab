@@ -160,6 +160,6 @@ public class Message implements Serializable {
 
     @Override
     public String toString() {
-        return "Message[" + Type.get(type) + "] from " + getOwner() + " (" + getDetails() + ")";
+        return "Message["+getId()+"][" + Type.get(type) + "] from " + getOwner() + " (" + getDetails() + ")";
     }
 }

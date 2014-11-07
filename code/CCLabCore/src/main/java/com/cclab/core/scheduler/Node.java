@@ -182,7 +182,7 @@ public class Node {
      */
     public void taskFinished() {
         // Remove finished job from queue
-        Task t = q.poll();
+        q.poll();
 
         // Check if queue is empty
         if (queueSize() == 0) {
