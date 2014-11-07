@@ -3,10 +3,9 @@ package com.cclab.core.scheduler;
 import com.amazonaws.services.ec2.model.Instance;
 import com.cclab.core.AwsConnect;
 import com.cclab.core.MasterInstance;
+import com.cclab.core.utils.BootObserver;
+import com.cclab.core.utils.BootSettings;
 import com.cclab.core.utils.NodeLogger;
-
-import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * Class that keeps track of Node status for Scheduler
@@ -111,10 +110,9 @@ public class Node {
             throw new Error("InstanceId changed");
         }
     }
-
+    
     /**
      * Start the node
-     *
      * @return
      */
     public boolean start() {
@@ -122,16 +120,17 @@ public class Node {
             switchState(State.STARTING);
             System.out.println("TESTMODE: " + instanceId + " was started.");
             return true;
-        } else if (AwsConnect.startInstance(instanceId)) {
+        } else if(AwsConnect.startInstance(instanceId)) {
+            // Observer booting up
+            new BootObserver(instanceId, BootSettings.worker(instanceId, myMaster.myIP));
             switchState(State.STARTING);
             return true;
         }
         return false;
     }
-
+    
     /**
      * Stop the node
-     *
      * @return
      */
     public boolean stop() {
@@ -178,6 +177,9 @@ public class Node {
         // Clear current task
     	currTask = null;
 
+        // Notify backup that task was finished
+        myMaster.backupFinishedTask(currTask.inputId);
+
         /// Go IDLE
     	switchState(State.IDLE);
     }
@@ -191,5 +193,4 @@ public class Node {
     public boolean hasLostTask() {
         return state == State.STOPPED && currTask != null;
     }
-
 }

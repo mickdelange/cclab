@@ -26,11 +26,20 @@ public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
 
     ServerComm server = null;
     HashMap<String, ClientComm> clients = null;
-    String myName;
+    public String myName;
+    public String myIP;
     boolean shuttingDown = false;
 
     public NodeInstance(String myName) {
         this.myName = myName;
+		
+        try {
+			AwsConnect.init();
+		} catch (Exception e) {
+			NodeLogger.get().error(e.getMessage(), e);
+		}
+        
+        myIP = AwsConnect.getInstancePrivIP(myName);
         NodeLogger.configureLogger(myName, this);
         clients = new HashMap<String, ClientComm>();
         new CLReader(this).start();
@@ -40,7 +49,7 @@ public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
     public boolean interpretAndContinue(String[] command) {
         try {
             if (command[0].equals("quit")) {
-                shutDown();
+            	shutDown();
                 return false;
             }
             if (command[0].equals("bcast")) {
@@ -84,9 +93,12 @@ public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
     public void nodeConnected(String name) {
         NodeLogger.get().info("Node connected: "+name);
     }
-
-    public void shutDown(){
-        shuttingDown = true;
+    
+    /**
+     * Quit the instance
+     */
+    public void shutDown() {
+    	shuttingDown = true;
         if (server != null)
             server.quit();
         for (ClientComm client : clients.values())
