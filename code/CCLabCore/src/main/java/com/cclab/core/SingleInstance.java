@@ -14,6 +14,7 @@ public class SingleInstance extends NodeInstance implements ProcessController {
 
     public SingleInstance() {
     	super("single");
+    	NodeLogger.get().info("Started single instance.");
     	run();
     }
 
@@ -37,30 +38,44 @@ public class SingleInstance extends NodeInstance implements ProcessController {
     	// Process images
     	String newInput = Database.getInstance().getNextRecordId();
         while (newInput != null && !shouldExit) {
-            NodeLogger.getProcessing().info("START_" + newInput);
-            
+            NodeLogger.get().info("Started processing: " + newInput);
+
+            NodeLogger.getTasking().info("ASSIGN_" + newInput + "_single");
             // Get Image data
             byte[] input = Database.getInstance().getRecord(newInput);
             
             // Process
+            NodeLogger.getProcessing().info("START_" + newInput);
             Processor processor = new ImageProcessor(newInput, input, "blur", this);
             processor.run();
+            NodeLogger.getProcessing().info("FINISH_" + newInput);
+
+            NodeLogger.get().info("Finished processing: " + newInput);
             
             // Get next
             newInput = Database.getInstance().getNextRecordId();
     	}
+        
+    	NodeLogger.get().info("Finished processing all images.");
+    	shutDown();
     }
     
     /**
      * Quit the instance
      */
+    @Override
     public void shutDown() {
+    	super.shutDown();
     	shouldExit = true;
+        System.exit(1);
     }
 
 	@Override
 	public void processMessage(Message message) {}
 
 	@Override
-	public void handleProcessorOutput(String taskId, byte[] output) {}
+	public void handleProcessorOutput(String taskId, byte[] output) {
+		Database.getInstance().storeRecord(output, taskId);
+		NodeLogger.getTasking().info("DONE_" + taskId + "_single");
+	}
 }
