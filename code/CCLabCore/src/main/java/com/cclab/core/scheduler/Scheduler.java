@@ -25,6 +25,7 @@ public class Scheduler extends Thread {
     long maxTaskTime;
     long maxIdleTime;
     int maxTaskRetry;
+    int availableNodes;
     boolean testMode; // Test Mode: do not actually start / stop nodes in AWS
 
     MasterInstance myMaster;
@@ -97,7 +98,6 @@ public class Scheduler extends Thread {
      * Run the scheduler
      */
     public void run() {
-        Task currT;
         try {
             while (true) {
                 if (shouldExit) // Stop the loop.
@@ -112,18 +112,40 @@ public class Scheduler extends Thread {
                 getTasks();
 
                 // Assign any new tasks
-
-                while (!mainQ.isEmpty()) {
-                    Node n = findIdleNode();
-                    if (n == null)
-                        break;
-                    // IDLE node available, assign Task
-                    n.assign(mainQ.poll());
-                }
-
+                assignTasks();
             }
         } catch (InterruptedException e) {
             NodeLogger.get().error(e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Assign tasks to an available Node.
+     * @return True is task was assigned to an active node, False otherwise.
+     */
+    private void assignTasks() {
+    	
+    	boolean idleNodes = true;
+
+        while (!mainQ.isEmpty() && idleNodes) {
+
+	        // Search for an IDLE node
+	        Node n = findIdleNode();
+	        if (n != null) {
+	            // IDLE node available, assign Task
+	            n.assign(mainQ.poll());
+	        } else {
+		        NodeLogger.get().debug("No idle nodes available");
+	        	// No IDLE nodes available, check if new one should be started
+	        	idleNodes = false;
+	        	if (queueSize()/availableNodes > loadThresh) {
+	        		n = startNewNode();
+	        		if (n == null) {
+	        	        // No new nodes available, all nodes are running
+	        			NodeLogger.get().debug("No new nodes available");
+	        		}
+	        	}
+	        }
         }
     }
 
@@ -191,6 +213,7 @@ public class Scheduler extends Thread {
      */
     private void updateNodeStates() {
         Set<Instance> instances = AwsConnect.getInstances();
+        availableNodes = 0;
 
         Node wn = null;
         Task currT = null;
@@ -198,72 +221,20 @@ public class Scheduler extends Thread {
             wn = getWorkerById(inst.getInstanceId());
             if (wn != null) {
                 wn.updateState(inst);
+                if (wn.state != Node.State.STOPPED)
+                	availableNodes++;
                 // Check if node has lost tasks
-                if (wn.hasLostTasks()) {
+                if (wn.hasLostTask()) {
                     // Add tasks back to main queue
-                    currT = wn.q.poll();
-                    while (currT != null) {
-                        // Only add tasks back to queue that have not caused too many errors.
-                        if (currT.errorCount < maxTaskRetry)
-                            addTask(currT);
-                        else
-                            NodeLogger.get().error("Task " + currT.inputId + " has caused too many errors, removed from queue.");
-                        currT = wn.q.poll();
-                    }
+                    currT = wn.currTask;
+                    // Only add tasks back to queue that have not caused too many errors.
+                    if (currT.errorCount < maxTaskRetry)
+                        addTask(currT);
+                    else
+                        NodeLogger.get().error("Task " + currT.inputId + " has caused too many errors, removed from queue.");
+                    wn.currTask = null; // reset task for node
                 }
             }
-        }
-    }
-
-    /**
-     * Assign a task to an available Node.
-     *
-     * @param t Task to assign.
-     * @return True is task was assigned to an active node, False otherwise.
-     */
-    private boolean assignTask(Task t) {
-
-        // Search for an IDLE node
-        Node n = findIdleNode();
-        if (n != null) {
-            // IDLE node available, assign Task
-            n.assign(t);
-            return true;
-        }
-
-        NodeLogger.get().debug("No idle nodes");
-
-        // No IDLE node, find node with load < threshold
-        n = findNodeUnderThreshold();
-        if (n != null) {
-            // Low load node available, assign Task
-            n.assign(t);
-            return true;
-        }
-
-        NodeLogger.get().debug("No nodes under threshold");
-
-        // All RUNNING Nodes busy, start new node
-        n = startNewNode();
-        if (n != null) {
-            // New node started, assign Task to run when finished booting
-            n.assign(t);
-            return true;
-        }
-
-        NodeLogger.get().debug("No new nodes available");
-
-        // No new nodes available, all nodes are running
-        n = findNodeLowestLoad();
-        if (n != null) {
-            // Assign task to least busy node
-            n.assign(t);
-            return true;
-        } else {
-            // This would mean no node could be started and no node is currently running
-            // Something went terribly wrong...
-            NodeLogger.get().error("SCHEDULER ERROR - There seem to be no Nodes available, and none can be started.");
-            return false;
         }
     }
 
@@ -278,35 +249,6 @@ public class Scheduler extends Thread {
                 return n;
         }
         return null;
-    }
-
-    /**
-     * Find a Node with load under threshold.
-     *
-     * @return A Node if found, null otherwise.
-     */
-    private Node findNodeUnderThreshold() {
-        for (Node n : workerNodes) {
-            if (n.state != Node.State.STOPPED && n.queueSize() <= loadThresh)
-                return n;
-        }
-        return null;
-    }
-
-    /**
-     * Find the Node with the lowest load.
-     * Will return null if no node is running.
-     *
-     * @return A Node if found, null otherwise.
-     */
-    private Node findNodeLowestLoad() {
-        int lowestLoad = Integer.MAX_VALUE;
-        Node sel = null;
-        for (Node n : workerNodes) {
-            if (n.state != Node.State.STOPPED && n.queueSize() <= lowestLoad)
-                sel = n;
-        }
-        return sel;
     }
 
     /**
@@ -340,6 +282,15 @@ public class Scheduler extends Thread {
                 return n;
         }
         return null;
+    }
+
+    /**
+     * Get the queue size
+     *
+     * @return
+     */
+    public int queueSize() {
+        return mainQ.size();
     }
 
     /**
