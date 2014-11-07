@@ -2,7 +2,7 @@
  MASTER='54.173.192.88'
  MASTERID='i-c1bbb72a'
  
- BACKUP='54.173.84.22'
+ BACKUP='54.165.77.125'
  BACKUPID='i-3eb27bdf'
  
  WORKER1='54.173.184.220'
@@ -11,7 +11,7 @@
  WORKER2='54.173.150.98'
  WORKER2ID='i-1bb57cfa'
  
- NODES=($MASTER $WORKER1 $WORKER2)
+ NODES=($MASTER $BACKUP $WORKER1 $WORKER2)
  NODEIDS=($MASTERID $BACKUPID WORKER1ID $WORKER2ID)
  
  # get number of elements in the array
@@ -34,6 +34,9 @@
  'logs') 
 	NAME=$2	
  	scp -i ~/Downloads/test1mick.pem ubuntu@${!NAME}:~/cclab/logs/* logs
+   	;;
+ 'processed') 
+ 	scp -i ~/Downloads/test1mick.pem ubuntu@${MASTER}:~/cclab/output/* output
    	;;
  *) 
  	echo "Option not valid"
