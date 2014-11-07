@@ -1,0 +1,16 @@
+2014-11-07 15:54:01,703 -> START_pears (copy).jpg
+2014-11-07 15:54:19,379 -> FINISH_pears (copy).jpg
+2014-11-07 15:54:19,391 -> START_banana (6th copy).jpg
+2014-11-07 15:54:37,016 -> FINISH_banana (6th copy).jpg
+2014-11-07 15:54:37,104 -> START_banana.jpg
+2014-11-07 15:54:54,528 -> FINISH_banana.jpg
+2014-11-07 15:54:54,541 -> START_banana (4th copy).jpg
+2014-11-07 15:55:12,989 -> FINISH_banana (4th copy).jpg
+2014-11-07 15:55:13,021 -> START_pears (another copy).jpg
+2014-11-07 15:55:30,877 -> FINISH_pears (another copy).jpg
+2014-11-07 15:55:30,891 -> START_banana (another copy).jpg
+2014-11-07 15:55:48,416 -> FINISH_banana (another copy).jpg
+2014-11-07 15:55:48,556 -> START_strawberry.jpg
+2014-11-07 15:56:16,925 -> FINISH_strawberry.jpg
+2014-11-07 15:56:16,949 -> START_pears (4th copy).jpg
+2014-11-07 15:56:34,895 -> FINISH_pears (4th copy).jpg
