@@ -1,0 +1,456 @@
+2014-11-07 16:16:05,387 [main] INFO  full  - ClientComm communicator is now online
+2014-11-07 16:16:05,388 [main] INFO  full  - Connecting to 172.31.31.101:9026
+2014-11-07 16:16:05,399 [main] INFO  full  - Server communicator is now online
+2014-11-07 16:16:05,400 [main] INFO  full  - Listening on port 9026
+2014-11-07 16:16:05,413 [Thread-2] DEBUG full  - Message 0: Sent 0 of 0(155 bytes)
+2014-11-07 16:16:05,419 [Thread-2] INFO  full  - Sent data for Message[0][PING] from i-4b5f8faa (null)
+2014-11-07 16:16:05,419 [Thread-2] DEBUG full  - Resuming normal send mode for  i-4b5f8faa
+2014-11-07 16:16:05,424 [Thread-2] DEBUG full  - Receiving message of size 250
+2014-11-07 16:16:05,427 [Thread-2] DEBUG full  - Received Message[4][NEWTASK] from i-c1bbb72a (banana (copy).jpg)
+2014-11-07 16:16:05,427 [Thread-2] DEBUG full  - Message 4: Received 7938 bytes of 342155
+2014-11-07 16:16:05,428 [Thread-2] DEBUG full  - Message 4: Received 16130 bytes of 342155
+2014-11-07 16:16:05,428 [Thread-2] DEBUG full  - Message 4: Received 24322 bytes of 342155
+2014-11-07 16:16:05,428 [Thread-2] DEBUG full  - Message 4: Received 32514 bytes of 342155
+2014-11-07 16:16:05,428 [Thread-2] DEBUG full  - Message 4: Received 40706 bytes of 342155
+2014-11-07 16:16:05,428 [Thread-2] DEBUG full  - Message 4: Received 48898 bytes of 342155
+2014-11-07 16:16:05,428 [Thread-2] DEBUG full  - Message 4: Received 57090 bytes of 342155
+2014-11-07 16:16:05,428 [Thread-2] DEBUG full  - Message 4: Received 65282 bytes of 342155
+2014-11-07 16:16:05,429 [Thread-2] DEBUG full  - Message 4: Received 73474 bytes of 342155
+2014-11-07 16:16:05,429 [Thread-2] DEBUG full  - Message 4: Received 81666 bytes of 342155
+2014-11-07 16:16:05,429 [Thread-2] DEBUG full  - Message 4: Received 89858 bytes of 342155
+2014-11-07 16:16:05,429 [Thread-2] DEBUG full  - Message 4: Received 98050 bytes of 342155
+2014-11-07 16:16:05,429 [Thread-2] DEBUG full  - Message 4: Received 106242 bytes of 342155
+2014-11-07 16:16:05,429 [Thread-2] DEBUG full  - Message 4: Received 114434 bytes of 342155
+2014-11-07 16:16:05,429 [Thread-2] DEBUG full  - Message 4: Received 122626 bytes of 342155
+2014-11-07 16:16:05,430 [Thread-2] DEBUG full  - Message 4: Received 130818 bytes of 342155
+2014-11-07 16:16:05,430 [Thread-2] DEBUG full  - Message 4: Received 139010 bytes of 342155
+2014-11-07 16:16:05,430 [Thread-2] DEBUG full  - Message 4: Received 147202 bytes of 342155
+2014-11-07 16:16:05,430 [Thread-2] DEBUG full  - Message 4: Received 155394 bytes of 342155
+2014-11-07 16:16:05,430 [Thread-2] DEBUG full  - Message 4: Received 163586 bytes of 342155
+2014-11-07 16:16:05,430 [Thread-2] DEBUG full  - Message 4: Received 171778 bytes of 342155
+2014-11-07 16:16:05,431 [Thread-2] DEBUG full  - Message 4: Received 179970 bytes of 342155
+2014-11-07 16:16:05,431 [Thread-2] DEBUG full  - Message 4: Received 188162 bytes of 342155
+2014-11-07 16:16:05,431 [Thread-2] DEBUG full  - Message 4: Received 196354 bytes of 342155
+2014-11-07 16:16:05,437 [Thread-2] DEBUG full  - Message 4: Received 204546 bytes of 342155
+2014-11-07 16:16:05,437 [Thread-2] DEBUG full  - Message 4: Received 212738 bytes of 342155
+2014-11-07 16:16:05,437 [Thread-2] DEBUG full  - Message 4: Received 220930 bytes of 342155
+2014-11-07 16:16:05,437 [Thread-2] DEBUG full  - Message 4: Received 229122 bytes of 342155
+2014-11-07 16:16:05,437 [Thread-2] DEBUG full  - Message 4: Received 237314 bytes of 342155
+2014-11-07 16:16:05,437 [Thread-2] DEBUG full  - Message 4: Received 245506 bytes of 342155
+2014-11-07 16:16:05,438 [Thread-2] DEBUG full  - Message 4: Received 253698 bytes of 342155
+2014-11-07 16:16:05,441 [Thread-2] DEBUG full  - Message 4: Received 261890 bytes of 342155
+2014-11-07 16:16:05,441 [Thread-2] DEBUG full  - Message 4: Received 270082 bytes of 342155
+2014-11-07 16:16:05,441 [Thread-2] DEBUG full  - Message 4: Received 278274 bytes of 342155
+2014-11-07 16:16:05,441 [Thread-2] DEBUG full  - Message 4: Received 286466 bytes of 342155
+2014-11-07 16:16:05,441 [Thread-2] DEBUG full  - Message 4: Received 294658 bytes of 342155
+2014-11-07 16:16:05,441 [Thread-2] DEBUG full  - Message 4: Received 302850 bytes of 342155
+2014-11-07 16:16:05,441 [Thread-2] DEBUG full  - Message 4: Received 311042 bytes of 342155
+2014-11-07 16:16:05,442 [Thread-2] DEBUG full  - Message 4: Received 319234 bytes of 342155
+2014-11-07 16:16:05,442 [Thread-2] DEBUG full  - Message 4: Received 327426 bytes of 342155
+2014-11-07 16:16:05,442 [Thread-2] DEBUG full  - Message 4: Received 335618 bytes of 342155
+2014-11-07 16:16:05,442 [Thread-2] INFO  full  - Received data for Message[4][NEWTASK] from i-c1bbb72a (banana (copy).jpg)
+2014-11-07 16:16:05,442 [Thread-2] INFO  full  - Received task Message[4][NEWTASK] from i-c1bbb72a (banana (copy).jpg)
+2014-11-07 16:16:05,442 [Thread-2] INFO  monitor.processing  - START_banana (copy).jpg
+2014-11-07 16:16:21,738 [Thread-5] INFO  monitor.processing  - FINISH_banana (copy).jpg
+2014-11-07 16:16:21,738 [Thread-5] INFO  full  - Finished task Message[1][FINISHED] from i-4b5f8faa (banana (copy).jpg)
+2014-11-07 16:16:21,739 [Thread-2] DEBUG full  - Message 1: Sent 0 of 10(250 bytes)
+2014-11-07 16:16:21,739 [Thread-2] DEBUG full  - Message 1: Sent 1 of 10(8192 bytes)
+2014-11-07 16:16:21,739 [Thread-2] DEBUG full  - Message 1: Sent 2 of 10(8192 bytes)
+2014-11-07 16:16:21,739 [Thread-2] DEBUG full  - Message 1: Sent 3 of 10(8192 bytes)
+2014-11-07 16:16:21,739 [Thread-2] DEBUG full  - Message 1: Sent 4 of 10(8192 bytes)
+2014-11-07 16:16:21,739 [Thread-2] DEBUG full  - Message 1: Sent 5 of 10(8192 bytes)
+2014-11-07 16:16:21,739 [Thread-2] DEBUG full  - Message 1: Sent 6 of 10(8192 bytes)
+2014-11-07 16:16:21,740 [Thread-2] DEBUG full  - Message 1: Sent 7 of 10(8192 bytes)
+2014-11-07 16:16:21,740 [Thread-2] DEBUG full  - Message 1: Sent 8 of 10(8192 bytes)
+2014-11-07 16:16:21,740 [Thread-2] DEBUG full  - Message 1: Sent 9 of 10(8192 bytes)
+2014-11-07 16:16:21,740 [Thread-2] DEBUG full  - Message 1: Sent 10 of 10(241 bytes)
+2014-11-07 16:16:21,740 [Thread-2] INFO  full  - Sent data for Message[1][FINISHED] from i-4b5f8faa (banana (copy).jpg)
+2014-11-07 16:16:21,740 [Thread-2] DEBUG full  - Resuming normal send mode for  i-4b5f8faa
+2014-11-07 16:16:21,743 [Thread-2] DEBUG full  - Receiving message of size 253
+2014-11-07 16:16:21,744 [Thread-2] DEBUG full  - Received Message[6][NEWTASK] from i-c1bbb72a (pears (3rd copy).jpg)
+2014-11-07 16:16:21,744 [Thread-2] DEBUG full  - Message 6: Received 0 bytes of 957156
+2014-11-07 16:16:21,744 [Thread-2] DEBUG full  - Message 6: Received 8192 bytes of 957156
+2014-11-07 16:16:21,744 [Thread-2] DEBUG full  - Message 6: Received 16384 bytes of 957156
+2014-11-07 16:16:21,744 [Thread-2] DEBUG full  - Message 6: Received 24576 bytes of 957156
+2014-11-07 16:16:21,744 [Thread-2] DEBUG full  - Message 6: Received 32768 bytes of 957156
+2014-11-07 16:16:21,745 [Thread-2] DEBUG full  - Message 6: Received 40960 bytes of 957156
+2014-11-07 16:16:21,745 [Thread-2] DEBUG full  - Message 6: Received 49152 bytes of 957156
+2014-11-07 16:16:21,745 [Thread-2] DEBUG full  - Message 6: Received 57344 bytes of 957156
+2014-11-07 16:16:21,745 [Thread-2] DEBUG full  - Message 6: Received 65536 bytes of 957156
+2014-11-07 16:16:21,745 [Thread-2] DEBUG full  - Message 6: Received 73728 bytes of 957156
+2014-11-07 16:16:21,745 [Thread-2] DEBUG full  - Message 6: Received 81920 bytes of 957156
+2014-11-07 16:16:21,745 [Thread-2] DEBUG full  - Message 6: Received 90112 bytes of 957156
+2014-11-07 16:16:21,746 [Thread-2] DEBUG full  - Message 6: Received 98304 bytes of 957156
+2014-11-07 16:16:21,746 [Thread-2] DEBUG full  - Message 6: Received 106496 bytes of 957156
+2014-11-07 16:16:21,746 [Thread-2] DEBUG full  - Message 6: Received 114688 bytes of 957156
+2014-11-07 16:16:21,746 [Thread-2] DEBUG full  - Message 6: Received 122880 bytes of 957156
+2014-11-07 16:16:21,746 [Thread-2] DEBUG full  - Message 6: Received 131072 bytes of 957156
+2014-11-07 16:16:21,746 [Thread-2] DEBUG full  - Message 6: Received 139264 bytes of 957156
+2014-11-07 16:16:21,746 [Thread-2] DEBUG full  - Message 6: Received 147456 bytes of 957156
+2014-11-07 16:16:21,746 [Thread-2] DEBUG full  - Message 6: Received 148970 bytes of 957156
+2014-11-07 16:16:21,747 [Thread-2] DEBUG full  - Message 6: Received 155648 bytes of 957156
+2014-11-07 16:16:21,747 [Thread-2] DEBUG full  - Message 6: Received 163840 bytes of 957156
+2014-11-07 16:16:21,748 [Thread-2] DEBUG full  - Message 6: Received 172032 bytes of 957156
+2014-11-07 16:16:21,748 [Thread-2] DEBUG full  - Message 6: Received 172789 bytes of 957156
+2014-11-07 16:16:21,748 [Thread-2] DEBUG full  - Message 6: Received 180981 bytes of 957156
+2014-11-07 16:16:21,748 [Thread-2] DEBUG full  - Message 6: Received 189173 bytes of 957156
+2014-11-07 16:16:21,748 [Thread-2] DEBUG full  - Message 6: Received 197365 bytes of 957156
+2014-11-07 16:16:21,748 [Thread-2] DEBUG full  - Message 6: Received 205557 bytes of 957156
+2014-11-07 16:16:21,749 [Thread-2] DEBUG full  - Message 6: Received 213749 bytes of 957156
+2014-11-07 16:16:21,749 [Thread-2] DEBUG full  - Message 6: Received 221941 bytes of 957156
+2014-11-07 16:16:21,749 [Thread-2] DEBUG full  - Message 6: Received 230133 bytes of 957156
+2014-11-07 16:16:21,749 [Thread-2] DEBUG full  - Message 6: Received 238325 bytes of 957156
+2014-11-07 16:16:21,749 [Thread-2] DEBUG full  - Message 6: Received 246517 bytes of 957156
+2014-11-07 16:16:21,749 [Thread-2] DEBUG full  - Message 6: Received 254709 bytes of 957156
+2014-11-07 16:16:21,750 [Thread-2] DEBUG full  - Message 6: Received 262901 bytes of 957156
+2014-11-07 16:16:21,750 [Thread-2] DEBUG full  - Message 6: Received 271093 bytes of 957156
+2014-11-07 16:16:21,750 [Thread-2] DEBUG full  - Message 6: Received 279285 bytes of 957156
+2014-11-07 16:16:21,750 [Thread-2] DEBUG full  - Message 6: Received 287477 bytes of 957156
+2014-11-07 16:16:21,750 [Thread-2] DEBUG full  - Message 6: Received 295669 bytes of 957156
+2014-11-07 16:16:21,750 [Thread-2] DEBUG full  - Message 6: Received 303861 bytes of 957156
+2014-11-07 16:16:21,750 [Thread-2] DEBUG full  - Message 6: Received 312053 bytes of 957156
+2014-11-07 16:16:21,751 [Thread-2] DEBUG full  - Message 6: Received 320245 bytes of 957156
+2014-11-07 16:16:21,751 [Thread-2] DEBUG full  - Message 6: Received 328437 bytes of 957156
+2014-11-07 16:16:21,751 [Thread-2] DEBUG full  - Message 6: Received 336629 bytes of 957156
+2014-11-07 16:16:21,751 [Thread-2] DEBUG full  - Message 6: Received 344821 bytes of 957156
+2014-11-07 16:16:21,751 [Thread-2] DEBUG full  - Message 6: Received 353013 bytes of 957156
+2014-11-07 16:16:21,751 [Thread-2] DEBUG full  - Message 6: Received 361205 bytes of 957156
+2014-11-07 16:16:21,751 [Thread-2] DEBUG full  - Message 6: Received 369397 bytes of 957156
+2014-11-07 16:16:21,752 [Thread-2] DEBUG full  - Message 6: Received 377589 bytes of 957156
+2014-11-07 16:16:21,752 [Thread-2] DEBUG full  - Message 6: Received 385781 bytes of 957156
+2014-11-07 16:16:21,752 [Thread-2] DEBUG full  - Message 6: Received 393973 bytes of 957156
+2014-11-07 16:16:21,752 [Thread-2] DEBUG full  - Message 6: Received 402165 bytes of 957156
+2014-11-07 16:16:21,752 [Thread-2] DEBUG full  - Message 6: Received 410357 bytes of 957156
+2014-11-07 16:16:21,752 [Thread-2] DEBUG full  - Message 6: Received 418549 bytes of 957156
+2014-11-07 16:16:21,752 [Thread-2] DEBUG full  - Message 6: Received 426741 bytes of 957156
+2014-11-07 16:16:21,753 [Thread-2] DEBUG full  - Message 6: Received 434933 bytes of 957156
+2014-11-07 16:16:21,753 [Thread-2] DEBUG full  - Message 6: Received 443125 bytes of 957156
+2014-11-07 16:16:21,753 [Thread-2] DEBUG full  - Message 6: Received 451317 bytes of 957156
+2014-11-07 16:16:21,753 [Thread-2] DEBUG full  - Message 6: Received 459509 bytes of 957156
+2014-11-07 16:16:21,753 [Thread-2] DEBUG full  - Message 6: Received 467701 bytes of 957156
+2014-11-07 16:16:21,753 [Thread-2] DEBUG full  - Message 6: Received 475893 bytes of 957156
+2014-11-07 16:16:21,753 [Thread-2] DEBUG full  - Message 6: Received 484085 bytes of 957156
+2014-11-07 16:16:21,754 [Thread-2] DEBUG full  - Message 6: Received 492277 bytes of 957156
+2014-11-07 16:16:21,754 [Thread-2] DEBUG full  - Message 6: Received 500469 bytes of 957156
+2014-11-07 16:16:21,754 [Thread-2] DEBUG full  - Message 6: Received 508661 bytes of 957156
+2014-11-07 16:16:21,754 [Thread-2] DEBUG full  - Message 6: Received 516853 bytes of 957156
+2014-11-07 16:16:21,756 [Thread-2] DEBUG full  - Message 6: Received 525045 bytes of 957156
+2014-11-07 16:16:21,756 [Thread-2] DEBUG full  - Message 6: Received 533237 bytes of 957156
+2014-11-07 16:16:21,756 [Thread-2] DEBUG full  - Message 6: Received 541429 bytes of 957156
+2014-11-07 16:16:21,756 [Thread-2] DEBUG full  - Message 6: Received 549621 bytes of 957156
+2014-11-07 16:16:21,756 [Thread-2] DEBUG full  - Message 6: Received 557813 bytes of 957156
+2014-11-07 16:16:21,756 [Thread-2] DEBUG full  - Message 6: Received 566005 bytes of 957156
+2014-11-07 16:16:21,756 [Thread-2] DEBUG full  - Message 6: Received 574197 bytes of 957156
+2014-11-07 16:16:21,756 [Thread-2] DEBUG full  - Message 6: Received 582389 bytes of 957156
+2014-11-07 16:16:21,757 [Thread-2] DEBUG full  - Message 6: Received 590581 bytes of 957156
+2014-11-07 16:16:21,757 [Thread-2] DEBUG full  - Message 6: Received 598773 bytes of 957156
+2014-11-07 16:16:21,757 [Thread-2] DEBUG full  - Message 6: Received 606965 bytes of 957156
+2014-11-07 16:16:21,757 [Thread-2] DEBUG full  - Message 6: Received 615157 bytes of 957156
+2014-11-07 16:16:21,757 [Thread-2] DEBUG full  - Message 6: Received 623349 bytes of 957156
+2014-11-07 16:16:21,757 [Thread-2] DEBUG full  - Message 6: Received 631541 bytes of 957156
+2014-11-07 16:16:21,757 [Thread-2] DEBUG full  - Message 6: Received 639733 bytes of 957156
+2014-11-07 16:16:21,758 [Thread-2] DEBUG full  - Message 6: Received 647925 bytes of 957156
+2014-11-07 16:16:21,758 [Thread-2] DEBUG full  - Message 6: Received 656117 bytes of 957156
+2014-11-07 16:16:21,758 [Thread-2] DEBUG full  - Message 6: Received 664309 bytes of 957156
+2014-11-07 16:16:21,758 [Thread-2] DEBUG full  - Message 6: Received 672501 bytes of 957156
+2014-11-07 16:16:21,758 [Thread-2] DEBUG full  - Message 6: Received 680693 bytes of 957156
+2014-11-07 16:16:21,758 [Thread-2] DEBUG full  - Message 6: Received 688885 bytes of 957156
+2014-11-07 16:16:21,759 [Thread-2] DEBUG full  - Message 6: Received 697077 bytes of 957156
+2014-11-07 16:16:21,759 [Thread-2] DEBUG full  - Message 6: Received 705269 bytes of 957156
+2014-11-07 16:16:21,759 [Thread-2] DEBUG full  - Message 6: Received 713461 bytes of 957156
+2014-11-07 16:16:21,759 [Thread-2] DEBUG full  - Message 6: Received 721653 bytes of 957156
+2014-11-07 16:16:21,759 [Thread-2] DEBUG full  - Message 6: Received 729845 bytes of 957156
+2014-11-07 16:16:21,759 [Thread-2] DEBUG full  - Message 6: Received 738037 bytes of 957156
+2014-11-07 16:16:21,759 [Thread-2] DEBUG full  - Message 6: Received 746229 bytes of 957156
+2014-11-07 16:16:21,759 [Thread-2] DEBUG full  - Message 6: Received 754421 bytes of 957156
+2014-11-07 16:16:21,760 [Thread-2] DEBUG full  - Message 6: Received 762613 bytes of 957156
+2014-11-07 16:16:21,760 [Thread-2] DEBUG full  - Message 6: Received 770805 bytes of 957156
+2014-11-07 16:16:21,760 [Thread-2] DEBUG full  - Message 6: Received 778997 bytes of 957156
+2014-11-07 16:16:21,760 [Thread-2] DEBUG full  - Message 6: Received 787189 bytes of 957156
+2014-11-07 16:16:21,760 [Thread-2] DEBUG full  - Message 6: Received 795381 bytes of 957156
+2014-11-07 16:16:21,760 [Thread-2] DEBUG full  - Message 6: Received 803573 bytes of 957156
+2014-11-07 16:16:21,760 [Thread-2] DEBUG full  - Message 6: Received 811765 bytes of 957156
+2014-11-07 16:16:21,760 [Thread-2] DEBUG full  - Message 6: Received 819957 bytes of 957156
+2014-11-07 16:16:21,761 [Thread-2] DEBUG full  - Message 6: Received 828149 bytes of 957156
+2014-11-07 16:16:21,761 [Thread-2] DEBUG full  - Message 6: Received 836341 bytes of 957156
+2014-11-07 16:16:21,761 [Thread-2] DEBUG full  - Message 6: Received 844533 bytes of 957156
+2014-11-07 16:16:21,761 [Thread-2] DEBUG full  - Message 6: Received 852725 bytes of 957156
+2014-11-07 16:16:21,761 [Thread-2] DEBUG full  - Message 6: Received 860917 bytes of 957156
+2014-11-07 16:16:21,761 [Thread-2] DEBUG full  - Message 6: Received 869109 bytes of 957156
+2014-11-07 16:16:21,761 [Thread-2] DEBUG full  - Message 6: Received 877301 bytes of 957156
+2014-11-07 16:16:21,761 [Thread-2] DEBUG full  - Message 6: Received 885493 bytes of 957156
+2014-11-07 16:16:21,762 [Thread-2] DEBUG full  - Message 6: Received 893685 bytes of 957156
+2014-11-07 16:16:21,762 [Thread-2] DEBUG full  - Message 6: Received 901877 bytes of 957156
+2014-11-07 16:16:21,762 [Thread-2] DEBUG full  - Message 6: Received 910069 bytes of 957156
+2014-11-07 16:16:21,762 [Thread-2] DEBUG full  - Message 6: Received 918261 bytes of 957156
+2014-11-07 16:16:21,762 [Thread-2] DEBUG full  - Message 6: Received 926453 bytes of 957156
+2014-11-07 16:16:21,762 [Thread-2] DEBUG full  - Message 6: Received 934645 bytes of 957156
+2014-11-07 16:16:21,762 [Thread-2] DEBUG full  - Message 6: Received 942837 bytes of 957156
+2014-11-07 16:16:21,762 [Thread-2] DEBUG full  - Message 6: Received 951029 bytes of 957156
+2014-11-07 16:16:21,763 [Thread-2] INFO  full  - Received data for Message[6][NEWTASK] from i-c1bbb72a (pears (3rd copy).jpg)
+2014-11-07 16:16:21,763 [Thread-2] INFO  full  - Received task Message[6][NEWTASK] from i-c1bbb72a (pears (3rd copy).jpg)
+2014-11-07 16:16:21,763 [Thread-2] INFO  monitor.processing  - START_pears (3rd copy).jpg
+2014-11-07 16:16:39,773 [Thread-8] INFO  monitor.processing  - FINISH_pears (3rd copy).jpg
+2014-11-07 16:16:39,773 [Thread-8] INFO  full  - Finished task Message[2][FINISHED] from i-4b5f8faa (pears (3rd copy).jpg)
+2014-11-07 16:16:39,773 [Thread-2] DEBUG full  - Message 2: Sent 0 of 11(253 bytes)
+2014-11-07 16:16:39,774 [Thread-2] DEBUG full  - Message 2: Sent 1 of 11(8192 bytes)
+2014-11-07 16:16:39,774 [Thread-2] DEBUG full  - Message 2: Sent 2 of 11(8192 bytes)
+2014-11-07 16:16:39,774 [Thread-2] DEBUG full  - Message 2: Sent 3 of 11(8192 bytes)
+2014-11-07 16:16:39,774 [Thread-2] DEBUG full  - Message 2: Sent 4 of 11(8192 bytes)
+2014-11-07 16:16:39,774 [Thread-2] DEBUG full  - Message 2: Sent 5 of 11(8192 bytes)
+2014-11-07 16:16:39,774 [Thread-2] DEBUG full  - Message 2: Sent 6 of 11(8192 bytes)
+2014-11-07 16:16:39,774 [Thread-2] DEBUG full  - Message 2: Sent 7 of 11(8192 bytes)
+2014-11-07 16:16:39,774 [Thread-2] DEBUG full  - Message 2: Sent 8 of 11(8192 bytes)
+2014-11-07 16:16:39,775 [Thread-2] DEBUG full  - Message 2: Sent 9 of 11(8192 bytes)
+2014-11-07 16:16:39,775 [Thread-2] DEBUG full  - Message 2: Sent 10 of 11(8192 bytes)
+2014-11-07 16:16:39,775 [Thread-2] DEBUG full  - Message 2: Sent 11 of 11(209 bytes)
+2014-11-07 16:16:39,775 [Thread-2] INFO  full  - Sent data for Message[2][FINISHED] from i-4b5f8faa (pears (3rd copy).jpg)
+2014-11-07 16:16:39,775 [Thread-2] DEBUG full  - Resuming normal send mode for  i-4b5f8faa
+2014-11-07 16:16:39,778 [Thread-2] DEBUG full  - Receiving message of size 250
+2014-11-07 16:16:39,778 [Thread-2] DEBUG full  - Received Message[11][NEWTASK] from i-c1bbb72a (apple (copy).jpeg)
+2014-11-07 16:16:39,778 [Thread-2] DEBUG full  - Message 11: Received 0 bytes of 90524
+2014-11-07 16:16:39,779 [Thread-2] DEBUG full  - Message 11: Received 8192 bytes of 90524
+2014-11-07 16:16:39,783 [Thread-2] DEBUG full  - Message 11: Received 16384 bytes of 90524
+2014-11-07 16:16:39,783 [Thread-2] DEBUG full  - Message 11: Received 24576 bytes of 90524
+2014-11-07 16:16:39,783 [Thread-2] DEBUG full  - Message 11: Received 32768 bytes of 90524
+2014-11-07 16:16:39,784 [Thread-2] DEBUG full  - Message 11: Received 40960 bytes of 90524
+2014-11-07 16:16:39,784 [Thread-2] DEBUG full  - Message 11: Received 49152 bytes of 90524
+2014-11-07 16:16:39,784 [Thread-2] DEBUG full  - Message 11: Received 57344 bytes of 90524
+2014-11-07 16:16:39,784 [Thread-2] DEBUG full  - Message 11: Received 65536 bytes of 90524
+2014-11-07 16:16:39,784 [Thread-2] DEBUG full  - Message 11: Received 73728 bytes of 90524
+2014-11-07 16:16:39,784 [Thread-2] DEBUG full  - Message 11: Received 81920 bytes of 90524
+2014-11-07 16:16:39,784 [Thread-2] DEBUG full  - Message 11: Received 90112 bytes of 90524
+2014-11-07 16:16:39,784 [Thread-2] INFO  full  - Received data for Message[11][NEWTASK] from i-c1bbb72a (apple (copy).jpeg)
+2014-11-07 16:16:39,785 [Thread-2] INFO  full  - Received task Message[11][NEWTASK] from i-c1bbb72a (apple (copy).jpeg)
+2014-11-07 16:16:39,785 [Thread-2] INFO  monitor.processing  - START_apple (copy).jpeg
+2014-11-07 16:16:40,201 [Thread-10] INFO  monitor.processing  - FINISH_apple (copy).jpeg
+2014-11-07 16:16:40,201 [Thread-10] INFO  full  - Finished task Message[3][FINISHED] from i-4b5f8faa (apple (copy).jpeg)
+2014-11-07 16:16:40,201 [Thread-2] DEBUG full  - Message 3: Sent 0 of 2(250 bytes)
+2014-11-07 16:16:40,202 [Thread-2] DEBUG full  - Message 3: Sent 1 of 2(8192 bytes)
+2014-11-07 16:16:40,202 [Thread-2] DEBUG full  - Message 3: Sent 2 of 2(1137 bytes)
+2014-11-07 16:16:40,202 [Thread-2] INFO  full  - Sent data for Message[3][FINISHED] from i-4b5f8faa (apple (copy).jpeg)
+2014-11-07 16:16:40,202 [Thread-2] DEBUG full  - Resuming normal send mode for  i-4b5f8faa
+2014-11-07 16:16:40,206 [Thread-2] DEBUG full  - Receiving message of size 254
+2014-11-07 16:16:40,207 [Thread-2] DEBUG full  - Received Message[12][NEWTASK] from i-c1bbb72a (banana (5th copy).jpg)
+2014-11-07 16:16:40,207 [Thread-2] DEBUG full  - Message 12: Received 0 bytes of 342155
+2014-11-07 16:16:40,207 [Thread-2] DEBUG full  - Message 12: Received 8192 bytes of 342155
+2014-11-07 16:16:40,207 [Thread-2] DEBUG full  - Message 12: Received 16384 bytes of 342155
+2014-11-07 16:16:40,207 [Thread-2] DEBUG full  - Message 12: Received 24576 bytes of 342155
+2014-11-07 16:16:40,207 [Thread-2] DEBUG full  - Message 12: Received 32768 bytes of 342155
+2014-11-07 16:16:40,207 [Thread-2] DEBUG full  - Message 12: Received 40960 bytes of 342155
+2014-11-07 16:16:40,208 [Thread-2] DEBUG full  - Message 12: Received 49152 bytes of 342155
+2014-11-07 16:16:40,208 [Thread-2] DEBUG full  - Message 12: Received 57344 bytes of 342155
+2014-11-07 16:16:40,208 [Thread-2] DEBUG full  - Message 12: Received 65536 bytes of 342155
+2014-11-07 16:16:40,208 [Thread-2] DEBUG full  - Message 12: Received 73728 bytes of 342155
+2014-11-07 16:16:40,208 [Thread-2] DEBUG full  - Message 12: Received 81920 bytes of 342155
+2014-11-07 16:16:40,208 [Thread-2] DEBUG full  - Message 12: Received 90112 bytes of 342155
+2014-11-07 16:16:40,208 [Thread-2] DEBUG full  - Message 12: Received 98304 bytes of 342155
+2014-11-07 16:16:40,208 [Thread-2] DEBUG full  - Message 12: Received 106496 bytes of 342155
+2014-11-07 16:16:40,209 [Thread-2] DEBUG full  - Message 12: Received 114688 bytes of 342155
+2014-11-07 16:16:40,209 [Thread-2] DEBUG full  - Message 12: Received 122880 bytes of 342155
+2014-11-07 16:16:40,209 [Thread-2] DEBUG full  - Message 12: Received 131072 bytes of 342155
+2014-11-07 16:16:40,209 [Thread-2] DEBUG full  - Message 12: Received 139264 bytes of 342155
+2014-11-07 16:16:40,209 [Thread-2] DEBUG full  - Message 12: Received 147456 bytes of 342155
+2014-11-07 16:16:40,209 [Thread-2] DEBUG full  - Message 12: Received 155648 bytes of 342155
+2014-11-07 16:16:40,209 [Thread-2] DEBUG full  - Message 12: Received 163840 bytes of 342155
+2014-11-07 16:16:40,210 [Thread-2] DEBUG full  - Message 12: Received 172032 bytes of 342155
+2014-11-07 16:16:40,210 [Thread-2] DEBUG full  - Message 12: Received 180224 bytes of 342155
+2014-11-07 16:16:40,210 [Thread-2] DEBUG full  - Message 12: Received 188416 bytes of 342155
+2014-11-07 16:16:40,210 [Thread-2] DEBUG full  - Message 12: Received 196608 bytes of 342155
+2014-11-07 16:16:40,210 [Thread-2] DEBUG full  - Message 12: Received 204800 bytes of 342155
+2014-11-07 16:16:40,210 [Thread-2] DEBUG full  - Message 12: Received 212992 bytes of 342155
+2014-11-07 16:16:40,210 [Thread-2] DEBUG full  - Message 12: Received 221184 bytes of 342155
+2014-11-07 16:16:40,210 [Thread-2] DEBUG full  - Message 12: Received 229376 bytes of 342155
+2014-11-07 16:16:40,211 [Thread-2] DEBUG full  - Message 12: Received 237568 bytes of 342155
+2014-11-07 16:16:40,211 [Thread-2] DEBUG full  - Message 12: Received 245760 bytes of 342155
+2014-11-07 16:16:40,211 [Thread-2] DEBUG full  - Message 12: Received 253952 bytes of 342155
+2014-11-07 16:16:40,211 [Thread-2] DEBUG full  - Message 12: Received 262144 bytes of 342155
+2014-11-07 16:16:40,211 [Thread-2] DEBUG full  - Message 12: Received 270336 bytes of 342155
+2014-11-07 16:16:40,211 [Thread-2] DEBUG full  - Message 12: Received 278528 bytes of 342155
+2014-11-07 16:16:40,211 [Thread-2] DEBUG full  - Message 12: Received 286720 bytes of 342155
+2014-11-07 16:16:40,211 [Thread-2] DEBUG full  - Message 12: Received 294912 bytes of 342155
+2014-11-07 16:16:40,212 [Thread-2] DEBUG full  - Message 12: Received 303104 bytes of 342155
+2014-11-07 16:16:40,212 [Thread-2] DEBUG full  - Message 12: Received 311296 bytes of 342155
+2014-11-07 16:16:40,212 [Thread-2] DEBUG full  - Message 12: Received 319488 bytes of 342155
+2014-11-07 16:16:40,212 [Thread-2] DEBUG full  - Message 12: Received 327680 bytes of 342155
+2014-11-07 16:16:40,212 [Thread-2] DEBUG full  - Message 12: Received 335872 bytes of 342155
+2014-11-07 16:16:40,212 [Thread-2] INFO  full  - Received data for Message[12][NEWTASK] from i-c1bbb72a (banana (5th copy).jpg)
+2014-11-07 16:16:40,212 [Thread-2] INFO  full  - Received task Message[12][NEWTASK] from i-c1bbb72a (banana (5th copy).jpg)
+2014-11-07 16:16:40,212 [Thread-2] INFO  monitor.processing  - START_banana (5th copy).jpg
+2014-11-07 16:16:57,400 [Thread-12] INFO  monitor.processing  - FINISH_banana (5th copy).jpg
+2014-11-07 16:16:57,400 [Thread-12] INFO  full  - Finished task Message[4][FINISHED] from i-4b5f8faa (banana (5th copy).jpg)
+2014-11-07 16:16:57,401 [Thread-2] DEBUG full  - Message 4: Sent 0 of 10(254 bytes)
+2014-11-07 16:16:57,401 [Thread-2] DEBUG full  - Message 4: Sent 1 of 10(8192 bytes)
+2014-11-07 16:16:57,401 [Thread-2] DEBUG full  - Message 4: Sent 2 of 10(8192 bytes)
+2014-11-07 16:16:57,401 [Thread-2] DEBUG full  - Message 4: Sent 3 of 10(8192 bytes)
+2014-11-07 16:16:57,401 [Thread-2] DEBUG full  - Message 4: Sent 4 of 10(8192 bytes)
+2014-11-07 16:16:57,401 [Thread-2] DEBUG full  - Message 4: Sent 5 of 10(8192 bytes)
+2014-11-07 16:16:57,402 [Thread-2] DEBUG full  - Message 4: Sent 6 of 10(8192 bytes)
+2014-11-07 16:16:57,402 [Thread-2] DEBUG full  - Message 4: Sent 7 of 10(8192 bytes)
+2014-11-07 16:16:57,402 [Thread-2] DEBUG full  - Message 4: Sent 8 of 10(8192 bytes)
+2014-11-07 16:16:57,402 [Thread-2] DEBUG full  - Message 4: Sent 9 of 10(8192 bytes)
+2014-11-07 16:16:57,402 [Thread-2] DEBUG full  - Message 4: Sent 10 of 10(241 bytes)
+2014-11-07 16:16:57,402 [Thread-2] INFO  full  - Sent data for Message[4][FINISHED] from i-4b5f8faa (banana (5th copy).jpg)
+2014-11-07 16:16:57,402 [Thread-2] DEBUG full  - Resuming normal send mode for  i-4b5f8faa
+2014-11-07 16:16:57,406 [Thread-2] DEBUG full  - Receiving message of size 253
+2014-11-07 16:16:57,406 [Thread-2] DEBUG full  - Received Message[16][NEWTASK] from i-c1bbb72a (pears (5th copy).jpg)
+2014-11-07 16:16:57,406 [Thread-2] DEBUG full  - Message 16: Received 0 bytes of 957156
+2014-11-07 16:16:57,407 [Thread-2] DEBUG full  - Message 16: Received 8192 bytes of 957156
+2014-11-07 16:16:57,407 [Thread-2] DEBUG full  - Message 16: Received 16384 bytes of 957156
+2014-11-07 16:16:57,407 [Thread-2] DEBUG full  - Message 16: Received 24576 bytes of 957156
+2014-11-07 16:16:57,407 [Thread-2] DEBUG full  - Message 16: Received 32768 bytes of 957156
+2014-11-07 16:16:57,407 [Thread-2] DEBUG full  - Message 16: Received 40960 bytes of 957156
+2014-11-07 16:16:57,407 [Thread-2] DEBUG full  - Message 16: Received 49152 bytes of 957156
+2014-11-07 16:16:57,408 [Thread-2] DEBUG full  - Message 16: Received 57344 bytes of 957156
+2014-11-07 16:16:57,408 [Thread-2] DEBUG full  - Message 16: Received 65536 bytes of 957156
+2014-11-07 16:16:57,408 [Thread-2] DEBUG full  - Message 16: Received 73728 bytes of 957156
+2014-11-07 16:16:57,408 [Thread-2] DEBUG full  - Message 16: Received 81920 bytes of 957156
+2014-11-07 16:16:57,408 [Thread-2] DEBUG full  - Message 16: Received 90112 bytes of 957156
+2014-11-07 16:16:57,408 [Thread-2] DEBUG full  - Message 16: Received 98304 bytes of 957156
+2014-11-07 16:16:57,408 [Thread-2] DEBUG full  - Message 16: Received 106496 bytes of 957156
+2014-11-07 16:16:57,408 [Thread-2] DEBUG full  - Message 16: Received 114688 bytes of 957156
+2014-11-07 16:16:57,409 [Thread-2] DEBUG full  - Message 16: Received 122880 bytes of 957156
+2014-11-07 16:16:57,409 [Thread-2] DEBUG full  - Message 16: Received 131072 bytes of 957156
+2014-11-07 16:16:57,409 [Thread-2] DEBUG full  - Message 16: Received 139264 bytes of 957156
+2014-11-07 16:16:57,409 [Thread-2] DEBUG full  - Message 16: Received 147456 bytes of 957156
+2014-11-07 16:16:57,409 [Thread-2] DEBUG full  - Message 16: Received 155648 bytes of 957156
+2014-11-07 16:16:57,409 [Thread-2] DEBUG full  - Message 16: Received 163840 bytes of 957156
+2014-11-07 16:16:57,409 [Thread-2] DEBUG full  - Message 16: Received 172032 bytes of 957156
+2014-11-07 16:16:57,410 [Thread-2] DEBUG full  - Message 16: Received 180224 bytes of 957156
+2014-11-07 16:16:57,410 [Thread-2] DEBUG full  - Message 16: Received 188416 bytes of 957156
+2014-11-07 16:16:57,410 [Thread-2] DEBUG full  - Message 16: Received 196608 bytes of 957156
+2014-11-07 16:16:57,410 [Thread-2] DEBUG full  - Message 16: Received 204800 bytes of 957156
+2014-11-07 16:16:57,410 [Thread-2] DEBUG full  - Message 16: Received 212992 bytes of 957156
+2014-11-07 16:16:57,410 [Thread-2] DEBUG full  - Message 16: Received 221184 bytes of 957156
+2014-11-07 16:16:57,410 [Thread-2] DEBUG full  - Message 16: Received 229376 bytes of 957156
+2014-11-07 16:16:57,410 [Thread-2] DEBUG full  - Message 16: Received 237568 bytes of 957156
+2014-11-07 16:16:57,411 [Thread-2] DEBUG full  - Message 16: Received 245760 bytes of 957156
+2014-11-07 16:16:57,411 [Thread-2] DEBUG full  - Message 16: Received 253952 bytes of 957156
+2014-11-07 16:16:57,411 [Thread-2] DEBUG full  - Message 16: Received 262144 bytes of 957156
+2014-11-07 16:16:57,411 [Thread-2] DEBUG full  - Message 16: Received 270336 bytes of 957156
+2014-11-07 16:16:57,411 [Thread-2] DEBUG full  - Message 16: Received 278528 bytes of 957156
+2014-11-07 16:16:57,411 [Thread-2] DEBUG full  - Message 16: Received 286720 bytes of 957156
+2014-11-07 16:16:57,411 [Thread-2] DEBUG full  - Message 16: Received 294912 bytes of 957156
+2014-11-07 16:16:57,412 [Thread-2] DEBUG full  - Message 16: Received 303104 bytes of 957156
+2014-11-07 16:16:57,412 [Thread-2] DEBUG full  - Message 16: Received 311296 bytes of 957156
+2014-11-07 16:16:57,412 [Thread-2] DEBUG full  - Message 16: Received 319488 bytes of 957156
+2014-11-07 16:16:57,412 [Thread-2] DEBUG full  - Message 16: Received 327680 bytes of 957156
+2014-11-07 16:16:57,412 [Thread-2] DEBUG full  - Message 16: Received 335872 bytes of 957156
+2014-11-07 16:16:57,412 [Thread-2] DEBUG full  - Message 16: Received 344064 bytes of 957156
+2014-11-07 16:16:57,412 [Thread-2] DEBUG full  - Message 16: Received 352256 bytes of 957156
+2014-11-07 16:16:57,412 [Thread-2] DEBUG full  - Message 16: Received 360448 bytes of 957156
+2014-11-07 16:16:57,412 [Thread-2] DEBUG full  - Message 16: Received 368640 bytes of 957156
+2014-11-07 16:16:57,413 [Thread-2] DEBUG full  - Message 16: Received 376832 bytes of 957156
+2014-11-07 16:16:57,413 [Thread-2] DEBUG full  - Message 16: Received 385024 bytes of 957156
+2014-11-07 16:16:57,413 [Thread-2] DEBUG full  - Message 16: Received 393216 bytes of 957156
+2014-11-07 16:16:57,413 [Thread-2] DEBUG full  - Message 16: Received 401408 bytes of 957156
+2014-11-07 16:16:57,413 [Thread-2] DEBUG full  - Message 16: Received 409600 bytes of 957156
+2014-11-07 16:16:57,413 [Thread-2] DEBUG full  - Message 16: Received 417792 bytes of 957156
+2014-11-07 16:16:57,413 [Thread-2] DEBUG full  - Message 16: Received 425984 bytes of 957156
+2014-11-07 16:16:57,414 [Thread-2] DEBUG full  - Message 16: Received 434176 bytes of 957156
+2014-11-07 16:16:57,414 [Thread-2] DEBUG full  - Message 16: Received 442368 bytes of 957156
+2014-11-07 16:16:57,414 [Thread-2] DEBUG full  - Message 16: Received 450560 bytes of 957156
+2014-11-07 16:16:57,414 [Thread-2] DEBUG full  - Message 16: Received 458752 bytes of 957156
+2014-11-07 16:16:57,414 [Thread-2] DEBUG full  - Message 16: Received 466944 bytes of 957156
+2014-11-07 16:16:57,414 [Thread-2] DEBUG full  - Message 16: Received 475136 bytes of 957156
+2014-11-07 16:16:57,414 [Thread-2] DEBUG full  - Message 16: Received 483328 bytes of 957156
+2014-11-07 16:16:57,414 [Thread-2] DEBUG full  - Message 16: Received 491520 bytes of 957156
+2014-11-07 16:16:57,415 [Thread-2] DEBUG full  - Message 16: Received 499712 bytes of 957156
+2014-11-07 16:16:57,415 [Thread-2] DEBUG full  - Message 16: Received 507904 bytes of 957156
+2014-11-07 16:16:57,415 [Thread-2] DEBUG full  - Message 16: Received 516096 bytes of 957156
+2014-11-07 16:16:57,415 [Thread-2] DEBUG full  - Message 16: Received 524288 bytes of 957156
+2014-11-07 16:16:57,416 [Thread-2] DEBUG full  - Message 16: Received 532480 bytes of 957156
+2014-11-07 16:16:57,416 [Thread-2] DEBUG full  - Message 16: Received 540672 bytes of 957156
+2014-11-07 16:16:57,417 [Thread-2] DEBUG full  - Message 16: Received 548864 bytes of 957156
+2014-11-07 16:16:57,417 [Thread-2] DEBUG full  - Message 16: Received 557056 bytes of 957156
+2014-11-07 16:16:57,417 [Thread-2] DEBUG full  - Message 16: Received 565248 bytes of 957156
+2014-11-07 16:16:57,417 [Thread-2] DEBUG full  - Message 16: Received 573440 bytes of 957156
+2014-11-07 16:16:57,417 [Thread-2] DEBUG full  - Message 16: Received 581632 bytes of 957156
+2014-11-07 16:16:57,417 [Thread-2] DEBUG full  - Message 16: Received 589824 bytes of 957156
+2014-11-07 16:16:57,417 [Thread-2] DEBUG full  - Message 16: Received 598016 bytes of 957156
+2014-11-07 16:16:57,417 [Thread-2] DEBUG full  - Message 16: Received 606208 bytes of 957156
+2014-11-07 16:16:57,418 [Thread-2] DEBUG full  - Message 16: Received 614400 bytes of 957156
+2014-11-07 16:16:57,418 [Thread-2] DEBUG full  - Message 16: Received 622592 bytes of 957156
+2014-11-07 16:16:57,418 [Thread-2] DEBUG full  - Message 16: Received 630784 bytes of 957156
+2014-11-07 16:16:57,418 [Thread-2] DEBUG full  - Message 16: Received 638976 bytes of 957156
+2014-11-07 16:16:57,418 [Thread-2] DEBUG full  - Message 16: Received 647168 bytes of 957156
+2014-11-07 16:16:57,418 [Thread-2] DEBUG full  - Message 16: Received 655360 bytes of 957156
+2014-11-07 16:16:57,418 [Thread-2] DEBUG full  - Message 16: Received 663552 bytes of 957156
+2014-11-07 16:16:57,423 [Thread-2] DEBUG full  - Message 16: Received 671744 bytes of 957156
+2014-11-07 16:16:57,423 [Thread-2] DEBUG full  - Message 16: Received 679936 bytes of 957156
+2014-11-07 16:16:57,423 [Thread-2] DEBUG full  - Message 16: Received 688128 bytes of 957156
+2014-11-07 16:16:57,424 [Thread-2] DEBUG full  - Message 16: Received 696320 bytes of 957156
+2014-11-07 16:16:57,424 [Thread-2] DEBUG full  - Message 16: Received 704512 bytes of 957156
+2014-11-07 16:16:57,424 [Thread-2] DEBUG full  - Message 16: Received 712704 bytes of 957156
+2014-11-07 16:16:57,424 [Thread-2] DEBUG full  - Message 16: Received 720896 bytes of 957156
+2014-11-07 16:16:57,424 [Thread-2] DEBUG full  - Message 16: Received 729088 bytes of 957156
+2014-11-07 16:16:57,424 [Thread-2] DEBUG full  - Message 16: Received 737280 bytes of 957156
+2014-11-07 16:16:57,424 [Thread-2] DEBUG full  - Message 16: Received 745472 bytes of 957156
+2014-11-07 16:16:57,424 [Thread-2] DEBUG full  - Message 16: Received 753664 bytes of 957156
+2014-11-07 16:16:57,424 [Thread-2] DEBUG full  - Message 16: Received 761856 bytes of 957156
+2014-11-07 16:16:57,425 [Thread-2] DEBUG full  - Message 16: Received 770048 bytes of 957156
+2014-11-07 16:16:57,425 [Thread-2] DEBUG full  - Message 16: Received 778240 bytes of 957156
+2014-11-07 16:16:57,425 [Thread-2] DEBUG full  - Message 16: Received 786432 bytes of 957156
+2014-11-07 16:16:57,425 [Thread-2] DEBUG full  - Message 16: Received 794624 bytes of 957156
+2014-11-07 16:16:57,425 [Thread-2] DEBUG full  - Message 16: Received 802816 bytes of 957156
+2014-11-07 16:16:57,425 [Thread-2] DEBUG full  - Message 16: Received 811008 bytes of 957156
+2014-11-07 16:16:57,425 [Thread-2] DEBUG full  - Message 16: Received 819200 bytes of 957156
+2014-11-07 16:16:57,425 [Thread-2] DEBUG full  - Message 16: Received 827392 bytes of 957156
+2014-11-07 16:16:57,425 [Thread-2] DEBUG full  - Message 16: Received 835584 bytes of 957156
+2014-11-07 16:16:57,426 [Thread-2] DEBUG full  - Message 16: Received 843776 bytes of 957156
+2014-11-07 16:16:57,426 [Thread-2] DEBUG full  - Message 16: Received 851968 bytes of 957156
+2014-11-07 16:16:57,426 [Thread-2] DEBUG full  - Message 16: Received 860160 bytes of 957156
+2014-11-07 16:16:57,426 [Thread-2] DEBUG full  - Message 16: Received 868352 bytes of 957156
+2014-11-07 16:16:57,426 [Thread-2] DEBUG full  - Message 16: Received 876544 bytes of 957156
+2014-11-07 16:16:57,426 [Thread-2] DEBUG full  - Message 16: Received 884736 bytes of 957156
+2014-11-07 16:16:57,426 [Thread-2] DEBUG full  - Message 16: Received 892928 bytes of 957156
+2014-11-07 16:16:57,426 [Thread-2] DEBUG full  - Message 16: Received 901120 bytes of 957156
+2014-11-07 16:16:57,426 [Thread-2] DEBUG full  - Message 16: Received 909312 bytes of 957156
+2014-11-07 16:16:57,431 [Thread-2] DEBUG full  - Message 16: Received 917504 bytes of 957156
+2014-11-07 16:16:57,431 [Thread-2] DEBUG full  - Message 16: Received 925696 bytes of 957156
+2014-11-07 16:16:57,431 [Thread-2] DEBUG full  - Message 16: Received 933888 bytes of 957156
+2014-11-07 16:16:57,431 [Thread-2] DEBUG full  - Message 16: Received 942080 bytes of 957156
+2014-11-07 16:16:57,432 [Thread-2] DEBUG full  - Message 16: Received 950272 bytes of 957156
+2014-11-07 16:16:57,432 [Thread-2] INFO  full  - Received data for Message[16][NEWTASK] from i-c1bbb72a (pears (5th copy).jpg)
+2014-11-07 16:16:57,432 [Thread-2] INFO  full  - Received task Message[16][NEWTASK] from i-c1bbb72a (pears (5th copy).jpg)
+2014-11-07 16:16:57,432 [Thread-2] INFO  monitor.processing  - START_pears (5th copy).jpg
+2014-11-07 16:17:15,333 [Thread-14] INFO  monitor.processing  - FINISH_pears (5th copy).jpg
+2014-11-07 16:17:15,333 [Thread-14] INFO  full  - Finished task Message[5][FINISHED] from i-4b5f8faa (pears (5th copy).jpg)
+2014-11-07 16:17:15,334 [Thread-2] DEBUG full  - Message 5: Sent 0 of 11(253 bytes)
+2014-11-07 16:17:15,334 [Thread-2] DEBUG full  - Message 5: Sent 1 of 11(8192 bytes)
+2014-11-07 16:17:15,334 [Thread-2] DEBUG full  - Message 5: Sent 2 of 11(8192 bytes)
+2014-11-07 16:17:15,334 [Thread-2] DEBUG full  - Message 5: Sent 3 of 11(8192 bytes)
+2014-11-07 16:17:15,334 [Thread-2] DEBUG full  - Message 5: Sent 4 of 11(8192 bytes)
+2014-11-07 16:17:15,334 [Thread-2] DEBUG full  - Message 5: Sent 5 of 11(8192 bytes)
+2014-11-07 16:17:15,335 [Thread-2] DEBUG full  - Message 5: Sent 6 of 11(8192 bytes)
+2014-11-07 16:17:15,335 [Thread-2] DEBUG full  - Message 5: Sent 7 of 11(8192 bytes)
+2014-11-07 16:17:15,335 [Thread-2] DEBUG full  - Message 5: Sent 8 of 11(8192 bytes)
+2014-11-07 16:17:15,335 [Thread-2] DEBUG full  - Message 5: Sent 9 of 11(8192 bytes)
+2014-11-07 16:17:15,335 [Thread-2] DEBUG full  - Message 5: Sent 10 of 11(8192 bytes)
+2014-11-07 16:17:15,335 [Thread-2] DEBUG full  - Message 5: Sent 11 of 11(209 bytes)
+2014-11-07 16:17:15,335 [Thread-2] INFO  full  - Sent data for Message[5][FINISHED] from i-4b5f8faa (pears (5th copy).jpg)
+2014-11-07 16:17:15,335 [Thread-2] DEBUG full  - Resuming normal send mode for  i-4b5f8faa
+2014-11-07 16:17:15,338 [Thread-2] DEBUG full  - Receiving message of size 258
+2014-11-07 16:17:15,338 [Thread-2] DEBUG full  - Received Message[19][NEWTASK] from i-c1bbb72a (apple (another copy).jpeg)
+2014-11-07 16:17:15,338 [Thread-2] DEBUG full  - Message 19: Received 0 bytes of 90524
+2014-11-07 16:17:15,338 [Thread-2] DEBUG full  - Message 19: Received 8192 bytes of 90524
+2014-11-07 16:17:15,338 [Thread-2] DEBUG full  - Message 19: Received 16384 bytes of 90524
+2014-11-07 16:17:15,339 [Thread-2] DEBUG full  - Message 19: Received 24576 bytes of 90524
+2014-11-07 16:17:15,339 [Thread-2] DEBUG full  - Message 19: Received 32768 bytes of 90524
+2014-11-07 16:17:15,339 [Thread-2] DEBUG full  - Message 19: Received 40960 bytes of 90524
+2014-11-07 16:17:15,339 [Thread-2] DEBUG full  - Message 19: Received 49152 bytes of 90524
+2014-11-07 16:17:15,339 [Thread-2] DEBUG full  - Message 19: Received 57344 bytes of 90524
+2014-11-07 16:17:15,339 [Thread-2] DEBUG full  - Message 19: Received 65536 bytes of 90524
+2014-11-07 16:17:15,339 [Thread-2] DEBUG full  - Message 19: Received 73728 bytes of 90524
+2014-11-07 16:17:15,339 [Thread-2] DEBUG full  - Message 19: Received 81920 bytes of 90524
+2014-11-07 16:17:15,340 [Thread-2] DEBUG full  - Message 19: Received 90112 bytes of 90524
+2014-11-07 16:17:15,340 [Thread-2] INFO  full  - Received data for Message[19][NEWTASK] from i-c1bbb72a (apple (another copy).jpeg)
+2014-11-07 16:17:15,340 [Thread-2] INFO  full  - Received task Message[19][NEWTASK] from i-c1bbb72a (apple (another copy).jpeg)
+2014-11-07 16:17:15,340 [Thread-2] INFO  monitor.processing  - START_apple (another copy).jpeg
+2014-11-07 16:17:15,754 [Thread-16] INFO  monitor.processing  - FINISH_apple (another copy).jpeg
+2014-11-07 16:17:15,755 [Thread-16] INFO  full  - Finished task Message[6][FINISHED] from i-4b5f8faa (apple (another copy).jpeg)
+2014-11-07 16:17:15,755 [Thread-2] DEBUG full  - Message 6: Sent 0 of 2(258 bytes)
+2014-11-07 16:17:15,755 [Thread-2] DEBUG full  - Message 6: Sent 1 of 2(8192 bytes)
+2014-11-07 16:17:15,755 [Thread-2] DEBUG full  - Message 6: Sent 2 of 2(1137 bytes)
+2014-11-07 16:17:15,755 [Thread-2] INFO  full  - Sent data for Message[6][FINISHED] from i-4b5f8faa (apple (another copy).jpeg)
+2014-11-07 16:17:15,756 [Thread-2] DEBUG full  - Resuming normal send mode for  i-4b5f8faa

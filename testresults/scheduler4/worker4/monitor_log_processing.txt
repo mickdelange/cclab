@@ -1,0 +1,8 @@
+2014-11-07 16:16:04,987 -> START_strawberry (copy).jpg
+2014-11-07 16:16:29,151 -> FINISH_strawberry (copy).jpg
+2014-11-07 16:16:29,450 -> START_banana (4th copy).jpg
+2014-11-07 16:16:46,734 -> FINISH_banana (4th copy).jpg
+2014-11-07 16:16:50,594 -> START_banana (another copy).jpg
+2014-11-07 16:17:08,215 -> FINISH_banana (another copy).jpg
+2014-11-07 16:17:08,226 -> START_banana (3rd copy).jpg
+2014-11-07 16:17:25,424 -> FINISH_banana (3rd copy).jpg
