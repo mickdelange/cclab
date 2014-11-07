@@ -71,7 +71,7 @@ public class BootObserver extends Thread {
 		try
 		{
 			jsch.addIdentity(pemPath);
-			Session session = jsch.getSession("root", ip, 22);
+			Session session = jsch.getSession("ubuntu", ip, 22);
 			java.util.Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
 			session.setConfig(config);
