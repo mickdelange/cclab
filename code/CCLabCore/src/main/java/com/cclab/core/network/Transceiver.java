@@ -19,6 +19,7 @@ import java.nio.channels.SocketChannel;
  *
  * @author an3m0na
  */
+@Deprecated
 public class Transceiver implements Runnable {
     private static final int MAX_SEND_TRIES = 1000;
     private SelectionKey myKey = null;

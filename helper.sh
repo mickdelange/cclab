@@ -35,6 +35,9 @@
 	NAME=$2	
  	scp -i ~/Downloads/test1mick.pem ubuntu@${!NAME}:~/cclab/logs/* logs
    	;;
+  'processed') 
+ 	scp -i ~/Downloads/test1mick.pem ubuntu@${MASTER}:~/cclab/output/* output
+   	;;
  *) 
  	echo "Option not valid"
    	;;

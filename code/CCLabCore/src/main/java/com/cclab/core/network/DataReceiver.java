@@ -13,7 +13,7 @@ import java.nio.channels.SocketChannel;
  *
  * @author an3m0na
  */
-public class DataReceiver extends Thread {
+public class DataReceiver {
 
     private SelectionKey myKey = null;
     private SocketChannel myChannel = null;
@@ -21,7 +21,7 @@ public class DataReceiver extends Thread {
     private GeneralComm communicator = null;
     private ByteArrayOutputStream collector = new ByteArrayOutputStream();
     private Message parentMessage = null;
-//    private boolean isReceiving = false;
+    private boolean done = false;
 
     public DataReceiver(SelectionKey key, GeneralComm communicator) {
         this.myKey = key;
@@ -29,13 +29,8 @@ public class DataReceiver extends Thread {
         this.communicator = communicator;
     }
 
-    @Override
-    public void run() {
-//        synchronized (this) {
-//            if (isReceiving)
-//                return;
-//        }
-        doReceive();
+    public boolean isDone() {
+        return done;
     }
 
     public void doReceive() {
@@ -64,9 +59,7 @@ public class DataReceiver extends Thread {
                             parentMessage = message;
                             break;
                         } else {
-//                            synchronized (this) {
-//                                isReceiving = false;
-//                            }
+                            done = true;
                             communicator.handleMessage(message, myChannel);
                         }
                     }
@@ -81,14 +74,12 @@ public class DataReceiver extends Thread {
                 try {
                     total = (Integer) parentMessage.getData();
                 } catch (Exception e) {
-                    NodeLogger.get().error("Cannot cast " + parentMessage.getData() + " for " + parentMessage);
+                    NodeLogger.get().error("Malformed parent " + parentMessage.getId() + " for " + parentMessage);
                 }
-//                synchronized (this) {
-//                    isReceiving = false;
-//                }
                 if (collector.size() == total) {
                     NodeLogger.get().info("Received data for " + parentMessage);
                     parentMessage.setData(collector.toByteArray());
+                    done = true;
                     communicator.handleMessage(parentMessage, myChannel);
                 } else {
                     NodeLogger.get().debug("Message " + parentMessage.getId() + ": Received " + collector.size() + " bytes of " + parentMessage.getData());

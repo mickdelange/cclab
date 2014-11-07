@@ -32,14 +32,15 @@ public class ServerComm extends GeneralComm {
     ConcurrentHashMap<String, SocketChannel> nameToChannel;
     ConcurrentHashMap<SocketChannel, String> channelToName;
     ExecutorService pool = Executors.newFixedThreadPool(5);
-    ConcurrentHashMap<SocketChannel, Transceiver> transceivers;
+
+    ConcurrentHashMap<SocketChannel, ServerReceiver> receivers = new ConcurrentHashMap<SocketChannel, ServerReceiver>();
+
 
     public ServerComm(int port, String myName, CommInterpreter interpreter) throws IOException {
         super(port, myName, interpreter);
 
         nameToChannel = new ConcurrentHashMap<String, SocketChannel>();
         channelToName = new ConcurrentHashMap<SocketChannel, String>();
-        transceivers = new ConcurrentHashMap<SocketChannel, Transceiver>();
 
         initialize();
     }
@@ -88,7 +89,8 @@ public class ServerComm extends GeneralComm {
         ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
         SocketChannel socketChannel = serverSocketChannel.accept();
         socketChannel.configureBlocking(false);
-        System.out.println(socketChannel);
+
+        receivers.put(socketChannel, new ServerReceiver(this));
 
         socketChannel.register(key.selector(), SelectionKey.OP_READ);
 
@@ -99,16 +101,10 @@ public class ServerComm extends GeneralComm {
     @Override
     void read(SelectionKey key) throws IOException {
         SocketChannel channel = (SocketChannel) key.channel();
-        DataReceiver dataReceiver = dataReceivers.get(channel);
-        if (dataReceiver != null) {
-            dataReceiver.doReceive();
-//            pool.execute(dataReceiver);
-        } else {
-            dataReceiver = new DataReceiver(key, this);
-            dataReceivers.put(channel, dataReceiver);
-            dataReceiver.doReceive();
-//            pool.execute(dataReceiver);
-        }
+        ServerReceiver receiver = receivers.get(channel);
+        receiver.queue.add(key);
+        pool.execute(receiver);
+//            dataReceiver.doReceive();
     }
 
     @Override
@@ -134,6 +130,7 @@ public class ServerComm extends GeneralComm {
         NodeLogger.get().info("Node " + client + " disconnected");
         channelToName.remove(channel);
         nameToChannel.remove(client);
+        receivers.remove(channel);
         super.cancelConnection(key);
     }
 

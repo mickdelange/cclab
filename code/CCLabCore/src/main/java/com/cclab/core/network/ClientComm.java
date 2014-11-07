@@ -27,6 +27,8 @@ public class ClientComm extends GeneralComm {
 
     private String masterIP;
     SocketChannel mainChannel = null;
+    DataReceiver dataReceiver = null;
+
 
     public ClientComm(String masterIP, int port, String myName, CommInterpreter interpreter) throws IOException {
         super(port, myName, interpreter);
@@ -60,12 +62,10 @@ public class ClientComm extends GeneralComm {
     @Override
     void read(SelectionKey key) throws IOException {
         // read message in same thread
-        DataReceiver dataReceiver = dataReceivers.get(mainChannel);
         if (dataReceiver != null)
             dataReceiver.doReceive();
         else {
             dataReceiver = new DataReceiver(key, this);
-            dataReceivers.put(mainChannel, dataReceiver);
             dataReceiver.doReceive();
         }
     }
@@ -102,4 +102,9 @@ public class ClientComm extends GeneralComm {
         }
     }
 
+    @Override
+    void handleMessage(Message message, SocketChannel channel) {
+        dataReceiver = null;
+        super.handleMessage(message, channel);
+    }
 }
