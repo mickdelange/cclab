@@ -174,11 +174,11 @@ public class Node {
      * After receiving confirmation that a Task was completed, execute this.
      */
     public void taskFinished() {
-        // Clear current task
-    	currTask = null;
-
         // Notify backup that task was finished
         myMaster.backupFinishedTask(currTask.inputId);
+        
+        // Clear current task
+    	currTask = null;
 
         /// Go IDLE
     	switchState(State.IDLE);
