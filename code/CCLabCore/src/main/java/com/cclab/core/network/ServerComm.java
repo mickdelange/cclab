@@ -32,12 +32,14 @@ public class ServerComm extends GeneralComm {
     ConcurrentHashMap<String, SocketChannel> nameToChannel;
     ConcurrentHashMap<SocketChannel, String> channelToName;
     ExecutorService pool = Executors.newFixedThreadPool(5);
+    ConcurrentHashMap<SocketChannel, Transceiver> transceivers;
 
     public ServerComm(int port, String myName, CommInterpreter interpreter) throws IOException {
         super(port, myName, interpreter);
 
         nameToChannel = new ConcurrentHashMap<String, SocketChannel>();
         channelToName = new ConcurrentHashMap<SocketChannel, String>();
+        transceivers = new ConcurrentHashMap<SocketChannel, Transceiver>();
 
         initialize();
     }
@@ -96,18 +98,31 @@ public class ServerComm extends GeneralComm {
 
     @Override
     void read(SelectionKey key) throws IOException {
-        pool.execute(new Thread(new Transceiver(key, null, this)));
+        SocketChannel channel = (SocketChannel) key.channel();
+        DataReceiver dataReceiver = dataReceivers.get(channel);
+        if (dataReceiver != null) {
+            dataReceiver.doReceive();
+//            pool.execute(dataReceiver);
+        } else {
+            dataReceiver = new DataReceiver(key, this);
+            dataReceivers.put(channel, dataReceiver);
+            dataReceiver.doReceive();
+//            pool.execute(dataReceiver);
+        }
     }
 
     @Override
     void cleanup() {
         pool.shutdownNow();
-        if (mainChannel != null)
-            try {
-                mainChannel.close();
-            } catch (IOException e) {
-                NodeLogger.get().warn("Error cleaning up communicator ", e);
+        try {
+            mainChannel.close();
+            for (SocketChannel channel : channelToName.keySet()) {
+                channel.keyFor(selector).cancel();
+                channel.close();
             }
+        } catch (IOException e) {
+            NodeLogger.get().warn("Error cleaning up communicator ", e);
+        }
         super.cleanup();
     }
 
@@ -117,19 +132,17 @@ public class ServerComm extends GeneralComm {
         String client = channelToName.get(channel);
 
         NodeLogger.get().info("Node " + client + " disconnected");
-        outgoingQueues.remove(channel);
         channelToName.remove(channel);
         nameToChannel.remove(client);
         super.cancelConnection(key);
     }
 
     @Override
-    void handleMessage(Message message, SocketChannel channel) throws IOException {
+    void handleMessage(Message message, SocketChannel channel) {
         SelectionKey key = channel.keyFor(selector);
-        // deactivate interest for reading
-        key.interestOps(key.interestOps() & ~SelectionKey.OP_READ);
         registerClient(message.getOwner(), channel);
-        interpreter.processMessage(message);
+        key.interestOps(key.interestOps() & ~SelectionKey.OP_READ);
+        super.handleMessage(message, channel);
     }
 
     @Override
@@ -137,7 +150,4 @@ public class ServerComm extends GeneralComm {
         NodeLogger.get().error("Cannot handle connect");
     }
 
-    boolean isClientConnected(String instanceId) {
-        return nameToChannel.keySet().contains(instanceId);
-    }
 }

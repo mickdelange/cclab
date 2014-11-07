@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
-import java.util.Arrays;
 
 /**
  * Runnable combination of a receiver and a transmitter.
@@ -28,7 +27,7 @@ public class Transceiver implements Runnable {
     private GeneralComm communicator = null;
     private Message payload = null;
 
-    public Transceiver(SelectionKey key, Message payload, GeneralComm communicator) throws IOException {
+    public Transceiver(SelectionKey key, Message payload, GeneralComm communicator) {
         this.myKey = key;
         this.myChannel = (SocketChannel) key.channel();
         this.communicator = communicator;
@@ -39,48 +38,37 @@ public class Transceiver implements Runnable {
     public void run() {
         if (payload == null) {
             doReceive();
+            System.out.println("Transceiver finished");
             myKey.selector().wakeup();
-        } else
+        } else {
             doSend();
+        }
     }
 
     private synchronized void doSend() {
         byte[] data = payload.toBytes();
-        NodeLogger.get().info("Sending " + data.length + " bytes: " + payload);
-
-        ByteBuffer buf = null;
+        ByteBuffer buf = ByteBuffer.allocateDirect(data.length + 8);
         try {
-            int chunks = data.length / BUF_SIZE;
-            if (data.length % BUF_SIZE > 0)
-                chunks++;
-            int crt = 0;
-            while (crt < chunks) {
-                buf = ByteBuffer.allocateDirect(data.length + 16);
-                int size = Math.min(data.length - crt * BUF_SIZE, BUF_SIZE);
-                buf.putInt(payload.getId());
-                buf.putInt(chunks);
-                buf.putInt(crt);
-                buf.putInt(size);
-                byte[] part = Arrays.copyOfRange(data, crt * BUF_SIZE, crt * BUF_SIZE + size);
-                buf.put(part);
-                buf.flip();
-                int tries = 0;
-                while (buf.hasRemaining()) {
-                    myChannel.write(buf);
-                    if (++tries > MAX_SEND_TRIES) {
-                        NodeLogger.get().debug("Outgoing buffer full for " + ((SocketChannel) myKey.channel()).socket().getRemoteSocketAddress());
-                        //TODO maybe disconnect
-                    }
+            buf.clear();
+            buf.putInt(payload.getId());
+            buf.putInt(data.length);
+            buf.put(data);
+            buf.flip();
+            int tries = 0;
+            while (buf.hasRemaining()) {
+                myChannel.write(buf);
+                if (++tries > MAX_SEND_TRIES) {
+                    NodeLogger.get().debug("Outgoing buffer full for " + ((SocketChannel) myKey.channel()).socket().getRemoteSocketAddress());
+                    //TODO maybe disconnect
                 }
-                NodeLogger.get().debug("Sent packet " + (crt + 1) + " of " + chunks);
-                crt++;
             }
+            NodeLogger.get().debug("Sent " + payload);
             myKey.interestOps(SelectionKey.OP_READ);
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             try {
-                if (buf != null)
-                    buf.clear();
+                NodeLogger.get().error("Error sending message ", e);
+                buf.clear();
                 communicator.cancelConnection(myKey);
             } catch (IOException ioe) {
                 NodeLogger.get().error("Error cancelling connection ", ioe);
@@ -89,9 +77,9 @@ public class Transceiver implements Runnable {
     }
 
     private void doReceive() {
-
+        System.out.println("Transceiver trying read");
         int bytes = -1;
-        ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE + 16);
+        ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE + 8);
 
         // read from socket into buffer, use a loop
         try {
@@ -100,17 +88,19 @@ public class Transceiver implements Runnable {
                 ;
 
             buf.flip();
-
-            while (buf.limit() - buf.position() > 16) {
+            int times = 0;
+            while (buf.limit() - buf.position() > 8) {
                 int id = buf.getInt();
-                int total = buf.getInt();
-                int part = buf.getInt();
+                System.out.println("Here " + times++ + " times for " + id + " : " + buf.remaining());
+
                 int size = buf.getInt();
-                NodeLogger.get().debug("Received packet " + (part + 1) + " of " + total + " (" + size + " from " + buf.remaining() + ")");
 
                 byte[] data = new byte[size];
-                buf.get(data, 0, size);
-                communicator.handlePartialMessage(id, total, part, data, myChannel);
+                buf.get(data, 0, Math.min(buf.remaining(), size));
+                Message message = Message.getFromBytes(data);
+                NodeLogger.get().debug("Received " + message);
+                if (message != null)
+                    communicator.handleMessage(message, myChannel);
             }
 
             if (myChannel.read(buf) == -1) {
@@ -119,8 +109,8 @@ public class Transceiver implements Runnable {
                 communicator.cancelConnection(myKey);
             }
 
-        } catch (Exception e) {
-            NodeLogger.get().error("Error receiving message " + e);
+        } catch (IOException e) {
+            NodeLogger.get().error("Error receiving message ", e);
             //assume node disconnected
             buf.clear();
             try {

@@ -28,7 +28,6 @@ public class ClientComm extends GeneralComm {
     private String masterIP;
     SocketChannel mainChannel = null;
 
-
     public ClientComm(String masterIP, int port, String myName, CommInterpreter interpreter) throws IOException {
         super(port, myName, interpreter);
 
@@ -61,7 +60,14 @@ public class ClientComm extends GeneralComm {
     @Override
     void read(SelectionKey key) throws IOException {
         // read message in same thread
-        new Transceiver(key, null, this).run();
+        DataReceiver dataReceiver = dataReceivers.get(mainChannel);
+        if (dataReceiver != null)
+            dataReceiver.doReceive();
+        else {
+            dataReceiver = new DataReceiver(key, this);
+            dataReceivers.put(mainChannel, dataReceiver);
+            dataReceiver.doReceive();
+        }
     }
 
     @Override
@@ -74,11 +80,6 @@ public class ClientComm extends GeneralComm {
             }
         }
         super.cleanup();
-    }
-
-    @Override
-    void handleMessage(Message message, SocketChannel channel) throws IOException {
-        interpreter.processMessage(message);
     }
 
     @Override
@@ -100,4 +101,5 @@ public class ClientComm extends GeneralComm {
             addMessageToOutgoing(new Message(Message.Type.PING, myName), mainChannel);
         }
     }
+
 }

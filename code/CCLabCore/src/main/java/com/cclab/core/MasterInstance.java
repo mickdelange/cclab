@@ -36,7 +36,7 @@ public class MasterInstance extends NodeInstance {
         // Allow for adding multiple masterIds, currently only populated with own Id.
         List<String> masterIds = new ArrayList<String>();
         masterIds.add(myName);
-        
+
         scheduler = new Scheduler(masterIds, this);
         scheduler.run();
     }
@@ -62,6 +62,11 @@ public class MasterInstance extends NodeInstance {
                 sendTaskTo(recipient, inputId);
                 return true;
             }
+            if (command[0].equals("peekNextTask")) {
+                String inputId = Database.getInstance().peekNextRecordId();
+                System.out.println("Next task: " + inputId);
+                return true;
+            }
         } catch (Exception e) {
             NodeLogger.get().error("Error interpreting command " + NodeUtils.join(command, " ") + " (" + e.getMessage() + ")", e);
         }
@@ -73,6 +78,7 @@ public class MasterInstance extends NodeInstance {
             NodeLogger.get().error("Task input identifier not supplied");
             return;
         }
+        NodeLogger.getTasking().info("ASSIGN_" + inputId + "_" + recipient);
         Message message = new Message(Message.Type.NEWTASK, myName);
         message.setDetails(inputId);
         byte[] input = Database.getInstance().getRecord(inputId);
@@ -80,7 +86,7 @@ public class MasterInstance extends NodeInstance {
             NodeLogger.get().error("Task will not be sent");
             return;
         }
-//        message.setData(input);
+        message.setData(input);
         server.addMessageToOutgoing(message, recipient);
     }
 
@@ -92,13 +98,20 @@ public class MasterInstance extends NodeInstance {
             scheduler.taskFinished(message.getOwner());
 
             // optional
-//            Database.getInstance().storeRecord((byte[]) message.getData(), message.getDetails());
+            Database.getInstance().storeRecord((byte[]) message.getData(), message.getDetails());
+            NodeLogger.getTasking().info("DONE_" + message.getDetails() + "_" + message.getOwner());
         }
     }
 
     @Override
-    public void nodeConnected(String name){
+    public void nodeConnected(String name) {
         super.nodeConnected(name);
         scheduler.nodeConnected(name);
+    }
+
+    @Override
+    public void shutDown() {
+        super.shutDown();
+        scheduler.quit();
     }
 }

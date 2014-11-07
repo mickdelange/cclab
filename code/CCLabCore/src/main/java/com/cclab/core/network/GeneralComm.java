@@ -35,7 +35,8 @@ public abstract class GeneralComm extends Thread {
 
     boolean shouldExit = false;
     CommInterpreter interpreter = null;
-    ConcurrentHashMap<SocketChannel, ConcurrentHashMap<Integer, ConcurrentHashMap<Integer, byte[]>>> incomingQueues = null;
+    ConcurrentHashMap<SocketChannel, DataReceiver> dataReceivers = null;
+    ConcurrentHashMap<SocketChannel, DataSender> dataSenders = null;
     ConcurrentHashMap<SocketChannel, ConcurrentLinkedQueue<Message>> outgoingQueues;
 
     public GeneralComm(int port, String myName, CommInterpreter interpreter) {
@@ -43,7 +44,8 @@ public abstract class GeneralComm extends Thread {
         this.myName = myName;
         this.interpreter = interpreter;
 
-        incomingQueues = new ConcurrentHashMap<SocketChannel, ConcurrentHashMap<Integer, ConcurrentHashMap<Integer, byte[]>>>();
+        dataReceivers = new ConcurrentHashMap<SocketChannel, DataReceiver>();
+        dataSenders = new ConcurrentHashMap<SocketChannel, DataSender>();
         outgoingQueues = new ConcurrentHashMap<SocketChannel, ConcurrentLinkedQueue<Message>>();
     }
 
@@ -63,15 +65,18 @@ public abstract class GeneralComm extends Thread {
                     // get current event and REMOVE it from the list!!!
                     SelectionKey key = it.next();
                     it.remove();
-                    if(key.isConnectable()){
+                    if (!key.isValid())
+                        continue;
+                    if (key.isConnectable()) {
                         connect(key);
-                    }else if (key.isAcceptable()) {
+                    } else if (key.isAcceptable()) {
                         accept(key);
                     } else if (key.isReadable()) {
                         read(key);
                     } else if (key.isWritable()) {
                         write(key);
                     }
+
                 }
             }
         } catch (Exception e) {
@@ -90,6 +95,9 @@ public abstract class GeneralComm extends Thread {
 
     void cancelConnection(SelectionKey key) throws IOException {
         SocketChannel channel = (SocketChannel) key.channel();
+        outgoingQueues.remove(channel);
+        dataReceivers.remove(channel);
+        dataSenders.remove(channel);
         NodeLogger.get().warn("Connection closed for " + channel.socket().getRemoteSocketAddress());
 
         key.cancel();
@@ -97,15 +105,17 @@ public abstract class GeneralComm extends Thread {
     }
 
     void cleanup() {
-        if (selector != null)
-            try {
-                selector.close();
-            } catch (IOException e) {
-                NodeLogger.get().warn("Error closing selector", e);
-            }
+        try {
+            selector.close();
+        } catch (Exception e) {
+            NodeLogger.get().warn("Error cleaning up communicator", e);
+        }
     }
 
     void checkOutgoing() {
+        for (Map.Entry<SocketChannel, DataSender> e : dataSenders.entrySet()) {
+            e.getKey().keyFor(selector).interestOps(SelectionKey.OP_WRITE);
+        }
         for (Map.Entry<SocketChannel, ConcurrentLinkedQueue<Message>> e : outgoingQueues.entrySet()) {
             if (!e.getValue().isEmpty()) {
                 e.getKey().keyFor(selector).interestOps(SelectionKey.OP_WRITE);
@@ -116,7 +126,17 @@ public abstract class GeneralComm extends Thread {
     void write(SelectionKey key) throws IOException {
         SocketChannel channel = (SocketChannel) key.channel();
         // write in same thread
-        new Transceiver(key, outgoingQueues.get(channel).poll(), this).run();
+        DataSender sender = dataSenders.get(channel);
+        if (sender != null) {
+            sender.doSend();
+            return;
+        }
+        Message message = outgoingQueues.get(channel).poll();
+        if (message == null)
+            return;
+        sender = new DataSender(key, message, this);
+        dataSenders.put(channel, sender);
+        sender.doSend();
     }
 
     public void quit() {
@@ -124,34 +144,20 @@ public abstract class GeneralComm extends Thread {
         selector.wakeup();
     }
 
-    void handlePartialMessage(int id, int total, int current, byte[] data, SocketChannel channel) throws IOException {
-        ConcurrentHashMap<Integer, ConcurrentHashMap<Integer, byte[]>> messages = incomingQueues.get(channel);
-        if (messages == null) {
-            messages = new ConcurrentHashMap<Integer, ConcurrentHashMap<Integer, byte[]>>();
-            incomingQueues.put(channel, messages);
-        }
-        ConcurrentHashMap<Integer, byte[]> messageParts = messages.get(id);
-        if (messageParts == null) {
-            messageParts = new ConcurrentHashMap<Integer, byte[]>();
-            messages.put(id, messageParts);
-        }
-        messageParts.put(current, data);
-        if (messageParts.size() == total) {
-            Message message = Message.getFromParts(messageParts);
-            if (message != null) {
-                NodeLogger.get().info("Received " + message);
-                handleMessage(message, channel);
-            }
-            messages.remove(id);
-        }
+    void handleMessage(Message message, SocketChannel channel) {
+        dataReceivers.remove(channel);
+        interpreter.processMessage(message);
     }
 
-    abstract void handleMessage(Message message, SocketChannel channel) throws IOException;
+    void finishedSending(Message message, SocketChannel channel) {
+        NodeLogger.get().debug("Resuming normal send mode for  " + message.getOwner());
+        dataSenders.remove(channel);
+    }
 
     abstract void accept(SelectionKey key) throws IOException;
 
     abstract void read(SelectionKey key) throws IOException;
 
-    abstract void connect(SelectionKey key)throws IOException;
+    abstract void connect(SelectionKey key) throws IOException;
 
 }
