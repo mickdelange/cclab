@@ -43,7 +43,7 @@ public class Node {
     }
 
     String instanceId;
-    Queue<Task> q = new LinkedList<Task>();
+    Task currTask;
     State state = State.STARTING;
     long idleSince = Integer.MAX_VALUE;
     long workingSince = Integer.MAX_VALUE;
@@ -76,7 +76,7 @@ public class Node {
         // Set state to IDLE
         switchState(State.IDLE);
 
-        // Start processing queue
+        // Start processing task
         doWork();
     }
 
@@ -94,7 +94,7 @@ public class Node {
             if (state == State.WORKING && (currTime - workingSince) > maxTaskTime) {
                 NodeLogger.get().error("Node " + instanceId + " was WORKING for too long.");
                 // Flag Task as problematic
-                q.peek().flagProblem();
+                currTask.flagProblem();
                 // Kill node
                 stop();
             } // Machine has unexpectedly quit
@@ -153,27 +153,21 @@ public class Node {
      */
     public void assign(Task t) {
         // Add to queue
-        q.add(t);
-
-        // Execute task immediately if IDLE
-        if (state == State.IDLE) {
-            // Perform tasks
-            doWork();
-        }
+    	currTask = t;
+        
+        // Perform task
+        doWork();
     }
 
     /**
-     * Execute task in queue
+     * Execute task
      */
     private void doWork() {
-        // Get first job in queue
-        Task t = q.peek();
-
-        if (t != null) {
+        if (currTask != null) {
             // Reset working timer
             switchState(State.WORKING);
             // Send task to worker instance
-            myMaster.sendTaskTo(instanceId, t.inputId);
+            myMaster.sendTaskTo(instanceId, currTask.inputId);
         }
     }
 
@@ -181,35 +175,21 @@ public class Node {
      * After receiving confirmation that a Task was completed, execute this.
      */
     public void taskFinished() {
-        // Remove finished job from queue
-        q.poll();
+        // Clear current task
+    	currTask = null;
 
-        // Check if queue is empty
-        if (queueSize() == 0) {
-            switchState(State.IDLE);
-        } else {
-            // Execute next task
-            doWork();
-        }
+        /// Go IDLE
+    	switchState(State.IDLE);
     }
 
     /**
-     * The node is stopped, but not all tasks have been completed.
+     * The node is stopped, but the task has not been completed.
      * Probably cause by a crash or the node got stuck on a task.
      *
-     * @return True is tasks remain in queue while STOPPED, False otherwise
+     * @return True if a task remains on this node while STOPPED, False otherwise
      */
-    public boolean hasLostTasks() {
-        return state == State.STOPPED && queueSize() > 0;
-    }
-
-    /**
-     * Get the queue size
-     *
-     * @return
-     */
-    public int queueSize() {
-        return q.size();
+    public boolean hasLostTask() {
+        return state == State.STOPPED && currTask != null;
     }
 
 }
