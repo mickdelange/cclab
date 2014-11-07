@@ -14,12 +14,16 @@ import java.io.IOException;
  */
 public class NodeStarter {
 
-    private static final String usage = "Usage:\t<master> <name> <backup_name> [<port>]\n" +
-            "\t<worker> <name> [<master_ip> [<master_port>]]" +
-            "\t<backup> <name> <master_ip> [<master_port>]";
+    private static final String usage = "Usage:\t<single>\n" +
+            "\t<master> <name> <backup_name> [<port>]\n" +
+            "\t<backup> <name> <master_ip> [<master_port>]" +
+            "\t<worker> <name> [<master_ip> [<master_port>]]";
 
     public static void main(String[] args) {
-        if (args.length < 3) {
+    	if (args.length == 1) {
+    		// Run a single instance
+    		new SingleInstance();
+        } else if (args.length < 3) {
             System.out.println(usage);
             System.exit(1);
         }
