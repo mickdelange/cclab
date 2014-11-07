@@ -14,11 +14,12 @@ import java.io.IOException;
  */
 public class NodeStarter {
 
-    private static final String usage = "Usage:\t<master> <name> [<port>]\n" +
-            "\t<worker> <name> [<master_ip> [<master_port>]]";
+    private static final String usage = "Usage:\t<master> <name> <backup_name> [<port>]\n" +
+            "\t<worker> <name> [<master_ip> [<master_port>]]" +
+            "\t<backup> <name> <master_ip> [<master_port>]";
 
     public static void main(String[] args) {
-        if (args.length < 2) {
+        if (args.length < 3) {
             System.out.println(usage);
             System.exit(1);
         }
@@ -26,10 +27,10 @@ public class NodeStarter {
         String me = args[0];
         if (args[1].equals("master")) {
             try {
-                if (args.length > 2)
-                    new MasterInstance(me, Integer.parseInt(args[2]));
-                else
-                    new MasterInstance(me, GeneralComm.DEFAULT_PORT);
+                if (args.length == 3)
+                    new MasterInstance(me, args[2], GeneralComm.DEFAULT_PORT);
+                else if (args.length > 3)
+                    new MasterInstance(me, args[2], Integer.parseInt(args[3]));
             } catch (IOException e) {
                 System.out.println("Could not start master");
                 NodeLogger.get().error(e.getMessage(), e);
@@ -48,6 +49,17 @@ public class NodeStarter {
                 NodeLogger.get().error(e.getMessage(), e);
                 System.exit(1);
             }
+        } else if (args[1].equals("backup")) {
+        	 try {
+                 if (args.length == 4)
+                     new BackupInstance(me, args[2], args[3], GeneralComm.DEFAULT_PORT);
+                 else if (args.length > 4)
+                     new BackupInstance(me, args[2], args[3], Integer.parseInt(args[4]));
+             } catch (IOException e) {
+                 System.out.println("Could not start backup master");
+                 NodeLogger.get().error(e.getMessage(), e);
+                 System.exit(1);
+             }
         } else {
             System.out.println(usage);
             System.exit(1);
