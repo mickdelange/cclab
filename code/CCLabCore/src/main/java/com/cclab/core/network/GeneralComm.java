@@ -35,7 +35,6 @@ public abstract class GeneralComm extends Thread {
 
     boolean shouldExit = false;
     CommInterpreter interpreter = null;
-    ConcurrentHashMap<SocketChannel, DataReceiver> dataReceivers = null;
     ConcurrentHashMap<SocketChannel, DataSender> dataSenders = null;
     ConcurrentHashMap<SocketChannel, ConcurrentLinkedQueue<Message>> outgoingQueues;
 
@@ -44,7 +43,6 @@ public abstract class GeneralComm extends Thread {
         this.myName = myName;
         this.interpreter = interpreter;
 
-        dataReceivers = new ConcurrentHashMap<SocketChannel, DataReceiver>();
         dataSenders = new ConcurrentHashMap<SocketChannel, DataSender>();
         outgoingQueues = new ConcurrentHashMap<SocketChannel, ConcurrentLinkedQueue<Message>>();
     }
@@ -96,7 +94,6 @@ public abstract class GeneralComm extends Thread {
     void cancelConnection(SelectionKey key) throws IOException {
         SocketChannel channel = (SocketChannel) key.channel();
         outgoingQueues.remove(channel);
-        dataReceivers.remove(channel);
         dataSenders.remove(channel);
         NodeLogger.get().warn("Connection closed for " + channel.socket().getRemoteSocketAddress());
 
@@ -145,7 +142,6 @@ public abstract class GeneralComm extends Thread {
     }
 
     void handleMessage(Message message, SocketChannel channel) {
-        dataReceivers.remove(channel);
         interpreter.processMessage(message);
     }
 

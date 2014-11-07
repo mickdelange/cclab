@@ -7,7 +7,7 @@
     <groupId>cclab</groupId>
     <artifactId>cclab-core</artifactId>
     <!--<version>1.8-SNAPSHOT</version>-->
-    <version>1.9</version>
+    <version>1.10</version>
 
     <dependencies>
         <dependency>
