@@ -60,11 +60,14 @@ public class ClientComm extends GeneralComm {
     @Override
     void read(SelectionKey key) throws IOException {
         // read message in same thread
-        BigDataReceiver bigDataReceiver = bigDataReceivers.get(mainChannel);
-        if (bigDataReceiver != null)
-            bigDataReceiver.doReceive();
-        else
-            new Transceiver(key, null, this).run();
+        DataReceiver dataReceiver = dataReceivers.get(mainChannel);
+        if (dataReceiver != null)
+            dataReceiver.doReceive();
+        else {
+            dataReceiver = new DataReceiver(key, this);
+            dataReceivers.put(mainChannel, dataReceiver);
+            dataReceiver.doReceive();
+        }
     }
 
     @Override

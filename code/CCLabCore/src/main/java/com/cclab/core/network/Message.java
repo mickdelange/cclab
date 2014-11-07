@@ -133,7 +133,7 @@ public class Message implements Serializable {
             objIn.close();
             inStream.close();
         } catch (Exception e) {
-            NodeLogger.get().error("Cannot read message: " + e.getMessage());
+            NodeLogger.get().error("Cannot read message: " + e.getMessage(), e);
         }
         return message;
     }
@@ -160,6 +160,6 @@ public class Message implements Serializable {
 
     @Override
     public String toString() {
-        return "Message["+getId()+"][" + Type.get(type) + "] from " + getOwner() + " (" + getDetails() + ")";
+        return "Message[" + getId() + "][" + Type.get(type) + "] from " + getOwner() + " (" + getDetails() + ")";
     }
 }

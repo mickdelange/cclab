@@ -38,6 +38,7 @@ public class Transceiver implements Runnable {
     public void run() {
         if (payload == null) {
             doReceive();
+            System.out.println("Transceiver finished");
             myKey.selector().wakeup();
         } else {
             doSend();
@@ -76,7 +77,7 @@ public class Transceiver implements Runnable {
     }
 
     private void doReceive() {
-
+        System.out.println("Transceiver trying read");
         int bytes = -1;
         ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE + 8);
 
@@ -87,10 +88,11 @@ public class Transceiver implements Runnable {
                 ;
 
             buf.flip();
-
+            int times = 0;
             while (buf.limit() - buf.position() > 8) {
-                System.out.println("");
                 int id = buf.getInt();
+                System.out.println("Here " + times++ + " times for " + id + " : " + buf.remaining());
+
                 int size = buf.getInt();
 
                 byte[] data = new byte[size];

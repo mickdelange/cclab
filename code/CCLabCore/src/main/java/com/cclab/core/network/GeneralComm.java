@@ -35,8 +35,8 @@ public abstract class GeneralComm extends Thread {
 
     boolean shouldExit = false;
     CommInterpreter interpreter = null;
-    ConcurrentHashMap<SocketChannel, BigDataReceiver> bigDataReceivers = null;
-    ConcurrentHashMap<SocketChannel, BigDataSender> bigDataSenders = null;
+    ConcurrentHashMap<SocketChannel, DataReceiver> dataReceivers = null;
+    ConcurrentHashMap<SocketChannel, DataSender> dataSenders = null;
     ConcurrentHashMap<SocketChannel, ConcurrentLinkedQueue<Message>> outgoingQueues;
 
     public GeneralComm(int port, String myName, CommInterpreter interpreter) {
@@ -44,8 +44,8 @@ public abstract class GeneralComm extends Thread {
         this.myName = myName;
         this.interpreter = interpreter;
 
-        bigDataReceivers = new ConcurrentHashMap<SocketChannel, BigDataReceiver>();
-        bigDataSenders = new ConcurrentHashMap<SocketChannel, BigDataSender>();
+        dataReceivers = new ConcurrentHashMap<SocketChannel, DataReceiver>();
+        dataSenders = new ConcurrentHashMap<SocketChannel, DataSender>();
         outgoingQueues = new ConcurrentHashMap<SocketChannel, ConcurrentLinkedQueue<Message>>();
     }
 
@@ -96,10 +96,8 @@ public abstract class GeneralComm extends Thread {
     void cancelConnection(SelectionKey key) throws IOException {
         SocketChannel channel = (SocketChannel) key.channel();
         outgoingQueues.remove(channel);
-//        synchronized (this) {
-        bigDataReceivers.remove(channel);
-//        }
-        bigDataSenders.remove(channel);
+        dataReceivers.remove(channel);
+        dataSenders.remove(channel);
         NodeLogger.get().warn("Connection closed for " + channel.socket().getRemoteSocketAddress());
 
         key.cancel();
@@ -115,7 +113,7 @@ public abstract class GeneralComm extends Thread {
     }
 
     void checkOutgoing() {
-        for (Map.Entry<SocketChannel, BigDataSender> e : bigDataSenders.entrySet()) {
+        for (Map.Entry<SocketChannel, DataSender> e : dataSenders.entrySet()) {
             e.getKey().keyFor(selector).interestOps(SelectionKey.OP_WRITE);
         }
         for (Map.Entry<SocketChannel, ConcurrentLinkedQueue<Message>> e : outgoingQueues.entrySet()) {
@@ -128,7 +126,7 @@ public abstract class GeneralComm extends Thread {
     void write(SelectionKey key) throws IOException {
         SocketChannel channel = (SocketChannel) key.channel();
         // write in same thread
-        BigDataSender sender = bigDataSenders.get(channel);
+        DataSender sender = dataSenders.get(channel);
         if (sender != null) {
             sender.doSend();
             return;
@@ -136,13 +134,9 @@ public abstract class GeneralComm extends Thread {
         Message message = outgoingQueues.get(channel).poll();
         if (message == null)
             return;
-        if (message.getType() == Message.Type.NEWTASK.getCode() ||
-                message.getType() == Message.Type.FINISHED.getCode()) {
-            byte[] data = (byte[]) message.getData();
-            message.setData(data.length);
-            bigDataSenders.put(channel, new BigDataSender(key, data, message, this));
-        }
-        new Transceiver(key, message, this).run();
+        sender = new DataSender(key, message, this);
+        dataSenders.put(channel, sender);
+        sender.doSend();
     }
 
     public void quit() {
@@ -151,26 +145,13 @@ public abstract class GeneralComm extends Thread {
     }
 
     void handleMessage(Message message, SocketChannel channel) {
-        if (message.getType() == Message.Type.NEWTASK.getCode() ||
-                message.getType() == Message.Type.FINISHED.getCode()) {
-            NodeLogger.get().debug("Waiting for " + message.getData() + " bytes from " + message.getOwner());
-            bigDataReceivers.put(channel, new BigDataReceiver(channel.keyFor(selector), this, message));
-            return;
-        }
+        dataReceivers.remove(channel);
         interpreter.processMessage(message);
     }
 
     void finishedSending(Message message, SocketChannel channel) {
         NodeLogger.get().debug("Resuming normal send mode for  " + message.getOwner());
-        bigDataSenders.remove(channel);
-    }
-
-    void handleBigMessage(Message message, SocketChannel channel) {
-        NodeLogger.get().debug("Resuming normal receive mode for  " + message.getOwner());
-//        synchronized (this) {
-        bigDataReceivers.remove(channel);
-//        }
-        interpreter.processMessage(message);
+        dataSenders.remove(channel);
     }
 
     abstract void accept(SelectionKey key) throws IOException;
