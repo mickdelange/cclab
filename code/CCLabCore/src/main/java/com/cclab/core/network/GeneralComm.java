@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public abstract class GeneralComm extends Thread {
     static final int BUF_SIZE = 8192;
     public static final int DEFAULT_PORT = 9026;
-    private static final int TIMEOUT = 10000;
+    private static final int TIMEOUT = 2000;
 
     String myName;
     int port;
