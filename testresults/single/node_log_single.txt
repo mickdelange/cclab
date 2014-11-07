@@ -1,0 +1,45 @@
+2014-11-07 15:29:36,609 [main] INFO  full  - Started single instance.
+2014-11-07 15:29:36,611 [main] INFO  full  - Database initializing under /home/ubuntu/cclab
+2014-11-07 15:29:36,611 [main] INFO  full  - Temporary directory not found. Creating it...
+2014-11-07 15:29:36,611 [main] INFO  full  - Output directory not found. Creating it...
+2014-11-07 15:29:36,615 [main] INFO  full  - Started processing: pears (copy).jpg
+2014-11-07 15:29:52,401 [main] INFO  full  - Finished processing: pears (copy).jpg
+2014-11-07 15:29:52,402 [main] INFO  full  - Started processing: apple.jpeg
+2014-11-07 15:29:52,981 [main] INFO  full  - Finished processing: apple.jpeg
+2014-11-07 15:29:52,981 [main] INFO  full  - Started processing: strawberry (copy).jpg
+2014-11-07 15:30:18,774 [main] INFO  full  - Finished processing: strawberry (copy).jpg
+2014-11-07 15:30:18,774 [main] INFO  full  - Started processing: banana (6th copy).jpg
+2014-11-07 15:30:35,765 [main] INFO  full  - Finished processing: banana (6th copy).jpg
+2014-11-07 15:30:35,765 [main] INFO  full  - Started processing: banana (copy).jpg
+2014-11-07 15:30:52,417 [main] INFO  full  - Finished processing: banana (copy).jpg
+2014-11-07 15:30:52,417 [main] INFO  full  - Started processing: banana.jpg
+2014-11-07 15:31:09,349 [main] INFO  full  - Finished processing: banana.jpg
+2014-11-07 15:31:09,349 [main] INFO  full  - Started processing: pears (3rd copy).jpg
+2014-11-07 15:31:26,578 [main] INFO  full  - Finished processing: pears (3rd copy).jpg
+2014-11-07 15:31:26,578 [main] INFO  full  - Started processing: banana (4th copy).jpg
+2014-11-07 15:31:43,233 [main] INFO  full  - Finished processing: banana (4th copy).jpg
+2014-11-07 15:31:43,233 [main] INFO  full  - Started processing: apple (3rd copy).jpeg
+2014-11-07 15:31:43,631 [main] INFO  full  - Finished processing: apple (3rd copy).jpeg
+2014-11-07 15:31:43,631 [main] INFO  full  - Started processing: pears (6th copy).jpg
+2014-11-07 15:32:00,642 [main] INFO  full  - Finished processing: pears (6th copy).jpg
+2014-11-07 15:32:00,642 [main] INFO  full  - Started processing: pears (another copy).jpg
+2014-11-07 15:32:17,951 [main] INFO  full  - Finished processing: pears (another copy).jpg
+2014-11-07 15:32:17,951 [main] INFO  full  - Started processing: apple (copy).jpeg
+2014-11-07 15:32:18,349 [main] INFO  full  - Finished processing: apple (copy).jpeg
+2014-11-07 15:32:18,349 [main] INFO  full  - Started processing: banana (5th copy).jpg
+2014-11-07 15:32:35,022 [main] INFO  full  - Finished processing: banana (5th copy).jpg
+2014-11-07 15:32:35,022 [main] INFO  full  - Started processing: banana (another copy).jpg
+2014-11-07 15:32:51,746 [main] INFO  full  - Finished processing: banana (another copy).jpg
+2014-11-07 15:32:51,746 [main] INFO  full  - Started processing: pears.jpg
+2014-11-07 15:33:08,874 [main] INFO  full  - Finished processing: pears.jpg
+2014-11-07 15:33:08,874 [main] INFO  full  - Started processing: strawberry.jpg
+2014-11-07 15:33:34,292 [main] INFO  full  - Finished processing: strawberry.jpg
+2014-11-07 15:33:34,292 [main] INFO  full  - Started processing: pears (5th copy).jpg
+2014-11-07 15:33:51,394 [main] INFO  full  - Finished processing: pears (5th copy).jpg
+2014-11-07 15:33:51,394 [main] INFO  full  - Started processing: banana (3rd copy).jpg
+2014-11-07 15:34:08,249 [main] INFO  full  - Finished processing: banana (3rd copy).jpg
+2014-11-07 15:34:08,249 [main] INFO  full  - Started processing: pears (4th copy).jpg
+2014-11-07 15:34:25,323 [main] INFO  full  - Finished processing: pears (4th copy).jpg
+2014-11-07 15:34:25,323 [main] INFO  full  - Started processing: apple (another copy).jpeg
+2014-11-07 15:34:25,719 [main] INFO  full  - Finished processing: apple (another copy).jpeg
+2014-11-07 15:34:25,719 [main] INFO  full  - Finished processing all images.

@@ -1,0 +1,125 @@
+2014-11-07 15:29:36,609 [main] INFO  full  - Started single instance.
+2014-11-07 15:29:36,611 [main] INFO  full  - Database initializing under /home/ubuntu/cclab
+2014-11-07 15:29:36,611 [main] INFO  full  - Temporary directory not found. Creating it...
+2014-11-07 15:29:36,611 [main] INFO  full  - Output directory not found. Creating it...
+2014-11-07 15:29:36,615 [main] INFO  full  - Started processing: pears (copy).jpg
+2014-11-07 15:29:36,615 [main] INFO  monitor.tasking  - ASSIGN_pears (copy).jpg_single
+2014-11-07 15:29:36,616 [main] INFO  monitor.processing  - START_pears (copy).jpg
+2014-11-07 15:29:52,401 [main] INFO  monitor.tasking  - DONE_pears (copy).jpg_single
+2014-11-07 15:29:52,401 [main] INFO  monitor.processing  - FINISH_pears (copy).jpg
+2014-11-07 15:29:52,401 [main] INFO  full  - Finished processing: pears (copy).jpg
+2014-11-07 15:29:52,402 [main] INFO  full  - Started processing: apple.jpeg
+2014-11-07 15:29:52,402 [main] INFO  monitor.tasking  - ASSIGN_apple.jpeg_single
+2014-11-07 15:29:52,402 [main] INFO  monitor.processing  - START_apple.jpeg
+2014-11-07 15:29:52,981 [main] INFO  monitor.tasking  - DONE_apple.jpeg_single
+2014-11-07 15:29:52,981 [main] INFO  monitor.processing  - FINISH_apple.jpeg
+2014-11-07 15:29:52,981 [main] INFO  full  - Finished processing: apple.jpeg
+2014-11-07 15:29:52,981 [main] INFO  full  - Started processing: strawberry (copy).jpg
+2014-11-07 15:29:52,981 [main] INFO  monitor.tasking  - ASSIGN_strawberry (copy).jpg_single
+2014-11-07 15:29:52,985 [main] INFO  monitor.processing  - START_strawberry (copy).jpg
+2014-11-07 15:30:18,774 [main] INFO  monitor.tasking  - DONE_strawberry (copy).jpg_single
+2014-11-07 15:30:18,774 [main] INFO  monitor.processing  - FINISH_strawberry (copy).jpg
+2014-11-07 15:30:18,774 [main] INFO  full  - Finished processing: strawberry (copy).jpg
+2014-11-07 15:30:18,774 [main] INFO  full  - Started processing: banana (6th copy).jpg
+2014-11-07 15:30:18,774 [main] INFO  monitor.tasking  - ASSIGN_banana (6th copy).jpg_single
+2014-11-07 15:30:18,774 [main] INFO  monitor.processing  - START_banana (6th copy).jpg
+2014-11-07 15:30:35,765 [main] INFO  monitor.tasking  - DONE_banana (6th copy).jpg_single
+2014-11-07 15:30:35,765 [main] INFO  monitor.processing  - FINISH_banana (6th copy).jpg
+2014-11-07 15:30:35,765 [main] INFO  full  - Finished processing: banana (6th copy).jpg
+2014-11-07 15:30:35,765 [main] INFO  full  - Started processing: banana (copy).jpg
+2014-11-07 15:30:35,765 [main] INFO  monitor.tasking  - ASSIGN_banana (copy).jpg_single
+2014-11-07 15:30:35,766 [main] INFO  monitor.processing  - START_banana (copy).jpg
+2014-11-07 15:30:52,417 [main] INFO  monitor.tasking  - DONE_banana (copy).jpg_single
+2014-11-07 15:30:52,417 [main] INFO  monitor.processing  - FINISH_banana (copy).jpg
+2014-11-07 15:30:52,417 [main] INFO  full  - Finished processing: banana (copy).jpg
+2014-11-07 15:30:52,417 [main] INFO  full  - Started processing: banana.jpg
+2014-11-07 15:30:52,417 [main] INFO  monitor.tasking  - ASSIGN_banana.jpg_single
+2014-11-07 15:30:52,418 [main] INFO  monitor.processing  - START_banana.jpg
+2014-11-07 15:31:09,349 [main] INFO  monitor.tasking  - DONE_banana.jpg_single
+2014-11-07 15:31:09,349 [main] INFO  monitor.processing  - FINISH_banana.jpg
+2014-11-07 15:31:09,349 [main] INFO  full  - Finished processing: banana.jpg
+2014-11-07 15:31:09,349 [main] INFO  full  - Started processing: pears (3rd copy).jpg
+2014-11-07 15:31:09,349 [main] INFO  monitor.tasking  - ASSIGN_pears (3rd copy).jpg_single
+2014-11-07 15:31:09,350 [main] INFO  monitor.processing  - START_pears (3rd copy).jpg
+2014-11-07 15:31:26,578 [main] INFO  monitor.tasking  - DONE_pears (3rd copy).jpg_single
+2014-11-07 15:31:26,578 [main] INFO  monitor.processing  - FINISH_pears (3rd copy).jpg
+2014-11-07 15:31:26,578 [main] INFO  full  - Finished processing: pears (3rd copy).jpg
+2014-11-07 15:31:26,578 [main] INFO  full  - Started processing: banana (4th copy).jpg
+2014-11-07 15:31:26,578 [main] INFO  monitor.tasking  - ASSIGN_banana (4th copy).jpg_single
+2014-11-07 15:31:26,579 [main] INFO  monitor.processing  - START_banana (4th copy).jpg
+2014-11-07 15:31:43,233 [main] INFO  monitor.tasking  - DONE_banana (4th copy).jpg_single
+2014-11-07 15:31:43,233 [main] INFO  monitor.processing  - FINISH_banana (4th copy).jpg
+2014-11-07 15:31:43,233 [main] INFO  full  - Finished processing: banana (4th copy).jpg
+2014-11-07 15:31:43,233 [main] INFO  full  - Started processing: apple (3rd copy).jpeg
+2014-11-07 15:31:43,233 [main] INFO  monitor.tasking  - ASSIGN_apple (3rd copy).jpeg_single
+2014-11-07 15:31:43,234 [main] INFO  monitor.processing  - START_apple (3rd copy).jpeg
+2014-11-07 15:31:43,630 [main] INFO  monitor.tasking  - DONE_apple (3rd copy).jpeg_single
+2014-11-07 15:31:43,631 [main] INFO  monitor.processing  - FINISH_apple (3rd copy).jpeg
+2014-11-07 15:31:43,631 [main] INFO  full  - Finished processing: apple (3rd copy).jpeg
+2014-11-07 15:31:43,631 [main] INFO  full  - Started processing: pears (6th copy).jpg
+2014-11-07 15:31:43,631 [main] INFO  monitor.tasking  - ASSIGN_pears (6th copy).jpg_single
+2014-11-07 15:31:43,632 [main] INFO  monitor.processing  - START_pears (6th copy).jpg
+2014-11-07 15:32:00,642 [main] INFO  monitor.tasking  - DONE_pears (6th copy).jpg_single
+2014-11-07 15:32:00,642 [main] INFO  monitor.processing  - FINISH_pears (6th copy).jpg
+2014-11-07 15:32:00,642 [main] INFO  full  - Finished processing: pears (6th copy).jpg
+2014-11-07 15:32:00,642 [main] INFO  full  - Started processing: pears (another copy).jpg
+2014-11-07 15:32:00,642 [main] INFO  monitor.tasking  - ASSIGN_pears (another copy).jpg_single
+2014-11-07 15:32:00,643 [main] INFO  monitor.processing  - START_pears (another copy).jpg
+2014-11-07 15:32:17,950 [main] INFO  monitor.tasking  - DONE_pears (another copy).jpg_single
+2014-11-07 15:32:17,951 [main] INFO  monitor.processing  - FINISH_pears (another copy).jpg
+2014-11-07 15:32:17,951 [main] INFO  full  - Finished processing: pears (another copy).jpg
+2014-11-07 15:32:17,951 [main] INFO  full  - Started processing: apple (copy).jpeg
+2014-11-07 15:32:17,951 [main] INFO  monitor.tasking  - ASSIGN_apple (copy).jpeg_single
+2014-11-07 15:32:17,951 [main] INFO  monitor.processing  - START_apple (copy).jpeg
+2014-11-07 15:32:18,349 [main] INFO  monitor.tasking  - DONE_apple (copy).jpeg_single
+2014-11-07 15:32:18,349 [main] INFO  monitor.processing  - FINISH_apple (copy).jpeg
+2014-11-07 15:32:18,349 [main] INFO  full  - Finished processing: apple (copy).jpeg
+2014-11-07 15:32:18,349 [main] INFO  full  - Started processing: banana (5th copy).jpg
+2014-11-07 15:32:18,349 [main] INFO  monitor.tasking  - ASSIGN_banana (5th copy).jpg_single
+2014-11-07 15:32:18,349 [main] INFO  monitor.processing  - START_banana (5th copy).jpg
+2014-11-07 15:32:35,022 [main] INFO  monitor.tasking  - DONE_banana (5th copy).jpg_single
+2014-11-07 15:32:35,022 [main] INFO  monitor.processing  - FINISH_banana (5th copy).jpg
+2014-11-07 15:32:35,022 [main] INFO  full  - Finished processing: banana (5th copy).jpg
+2014-11-07 15:32:35,022 [main] INFO  full  - Started processing: banana (another copy).jpg
+2014-11-07 15:32:35,023 [main] INFO  monitor.tasking  - ASSIGN_banana (another copy).jpg_single
+2014-11-07 15:32:35,023 [main] INFO  monitor.processing  - START_banana (another copy).jpg
+2014-11-07 15:32:51,746 [main] INFO  monitor.tasking  - DONE_banana (another copy).jpg_single
+2014-11-07 15:32:51,746 [main] INFO  monitor.processing  - FINISH_banana (another copy).jpg
+2014-11-07 15:32:51,746 [main] INFO  full  - Finished processing: banana (another copy).jpg
+2014-11-07 15:32:51,746 [main] INFO  full  - Started processing: pears.jpg
+2014-11-07 15:32:51,746 [main] INFO  monitor.tasking  - ASSIGN_pears.jpg_single
+2014-11-07 15:32:51,747 [main] INFO  monitor.processing  - START_pears.jpg
+2014-11-07 15:33:08,874 [main] INFO  monitor.tasking  - DONE_pears.jpg_single
+2014-11-07 15:33:08,874 [main] INFO  monitor.processing  - FINISH_pears.jpg
+2014-11-07 15:33:08,874 [main] INFO  full  - Finished processing: pears.jpg
+2014-11-07 15:33:08,874 [main] INFO  full  - Started processing: strawberry.jpg
+2014-11-07 15:33:08,874 [main] INFO  monitor.tasking  - ASSIGN_strawberry.jpg_single
+2014-11-07 15:33:08,878 [main] INFO  monitor.processing  - START_strawberry.jpg
+2014-11-07 15:33:34,291 [main] INFO  monitor.tasking  - DONE_strawberry.jpg_single
+2014-11-07 15:33:34,292 [main] INFO  monitor.processing  - FINISH_strawberry.jpg
+2014-11-07 15:33:34,292 [main] INFO  full  - Finished processing: strawberry.jpg
+2014-11-07 15:33:34,292 [main] INFO  full  - Started processing: pears (5th copy).jpg
+2014-11-07 15:33:34,292 [main] INFO  monitor.tasking  - ASSIGN_pears (5th copy).jpg_single
+2014-11-07 15:33:34,293 [main] INFO  monitor.processing  - START_pears (5th copy).jpg
+2014-11-07 15:33:51,393 [main] INFO  monitor.tasking  - DONE_pears (5th copy).jpg_single
+2014-11-07 15:33:51,394 [main] INFO  monitor.processing  - FINISH_pears (5th copy).jpg
+2014-11-07 15:33:51,394 [main] INFO  full  - Finished processing: pears (5th copy).jpg
+2014-11-07 15:33:51,394 [main] INFO  full  - Started processing: banana (3rd copy).jpg
+2014-11-07 15:33:51,394 [main] INFO  monitor.tasking  - ASSIGN_banana (3rd copy).jpg_single
+2014-11-07 15:33:51,394 [main] INFO  monitor.processing  - START_banana (3rd copy).jpg
+2014-11-07 15:34:08,249 [main] INFO  monitor.tasking  - DONE_banana (3rd copy).jpg_single
+2014-11-07 15:34:08,249 [main] INFO  monitor.processing  - FINISH_banana (3rd copy).jpg
+2014-11-07 15:34:08,249 [main] INFO  full  - Finished processing: banana (3rd copy).jpg
+2014-11-07 15:34:08,249 [main] INFO  full  - Started processing: pears (4th copy).jpg
+2014-11-07 15:34:08,249 [main] INFO  monitor.tasking  - ASSIGN_pears (4th copy).jpg_single
+2014-11-07 15:34:08,250 [main] INFO  monitor.processing  - START_pears (4th copy).jpg
+2014-11-07 15:34:25,323 [main] INFO  monitor.tasking  - DONE_pears (4th copy).jpg_single
+2014-11-07 15:34:25,323 [main] INFO  monitor.processing  - FINISH_pears (4th copy).jpg
+2014-11-07 15:34:25,323 [main] INFO  full  - Finished processing: pears (4th copy).jpg
+2014-11-07 15:34:25,323 [main] INFO  full  - Started processing: apple (another copy).jpeg
+2014-11-07 15:34:25,324 [main] INFO  monitor.tasking  - ASSIGN_apple (another copy).jpeg_single
+2014-11-07 15:34:25,324 [main] INFO  monitor.processing  - START_apple (another copy).jpeg
+2014-11-07 15:34:25,719 [main] INFO  monitor.tasking  - DONE_apple (another copy).jpeg_single
+2014-11-07 15:34:25,719 [main] INFO  monitor.processing  - FINISH_apple (another copy).jpeg
+2014-11-07 15:34:25,719 [main] INFO  full  - Finished processing: apple (another copy).jpeg
+2014-11-07 15:34:25,719 [main] INFO  full  - Finished processing all images.
