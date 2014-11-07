@@ -7,9 +7,6 @@ import com.cclab.core.utils.BootObserver;
 import com.cclab.core.utils.BootSettings;
 import com.cclab.core.utils.NodeLogger;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 /**
  * Class that keeps track of Node status for Scheduler
  *
@@ -53,7 +50,6 @@ public class Node {
     long maxIdleTime;
     boolean testMode; // Test Mode: do not actually start / stop nodes in AWS
     MasterInstance myMaster;
-<<<<<<< HEAD
 
     /**
      * Construct Node object.
@@ -182,7 +178,7 @@ public class Node {
     	currTask = null;
 
         // Notify backup that task was finished
-        myMaster.backupFinishedTask(t.inputId);
+        myMaster.backupFinishedTask(currTask.inputId);
 
         /// Go IDLE
     	switchState(State.IDLE);

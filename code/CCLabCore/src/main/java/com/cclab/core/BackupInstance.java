@@ -52,7 +52,7 @@ public class BackupInstance extends NodeInstance {
 	    	new BootObserver(myMasterName, BootSettings.backup(myMasterName, myName, myIP));
 	    	
 	    	// Kill self
-	    	quit();
+	    	shutDown();
 		} catch (IOException e) {
 			NodeLogger.get().error("Could not start master, backup failed");
             NodeLogger.get().error(e.getMessage(), e);

@@ -49,7 +49,7 @@ public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
     public boolean interpretAndContinue(String[] command) {
         try {
             if (command[0].equals("quit")) {
-            	quit();
+            	shutDown();
                 return false;
             }
             if (command[0].equals("bcast")) {
@@ -67,17 +67,6 @@ public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
             NodeLogger.get().error("Error interpreting command " + NodeUtils.join(command, " ") + " (" + e.getMessage() + ")", e);
         }
         return extendedInterpret(command);
-    }
-    
-    /**
-     * Quit the instance
-     */
-    public void quit() {
-    	shuttingDown = true;
-        if (server != null)
-            server.quit();
-        for (ClientComm client : clients.values())
-            client.quit();
     }
 
 
@@ -103,5 +92,16 @@ public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
     @Override
     public void nodeConnected(String name) {
         NodeLogger.get().info("Node connected: "+name);
+    }
+    
+    /**
+     * Quit the instance
+     */
+    public void shutDown() {
+    	shuttingDown = true;
+        if (server != null)
+            server.quit();
+        for (ClientComm client : clients.values())
+            client.quit();
     }
 }
