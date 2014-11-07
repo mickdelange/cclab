@@ -17,6 +17,7 @@ public class BootObserver extends Thread {
 
 	int interval;
 	String jarPath;
+	String pemPath;
 	String instanceId;
 	String settings;
 	
@@ -29,6 +30,7 @@ public class BootObserver extends Thread {
 			// Something went wrong loading properties, set to default
 			interval = 2000;
 			jarPath = "";
+			pemPath = "";
 		}
         
         run();
@@ -68,7 +70,7 @@ public class BootObserver extends Thread {
 		
 		try
 		{
-			jsch.addIdentity("~/test1mick.pem");
+			jsch.addIdentity(pemPath);
 			Session session = jsch.getSession("root", ip, 22);
 			java.util.Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
@@ -132,6 +134,8 @@ public class BootObserver extends Thread {
 			if (inputStream != null) {
 				prop.load(inputStream);
 				interval = Integer.parseInt(prop.getProperty("bootupInterval"));
+				jarPath = prop.getProperty("jarPath");
+				pemPath = prop.getProperty("pemPath");
 				return true;
 			} else {
 				NodeLogger.get().error("Observer properties file not found");
