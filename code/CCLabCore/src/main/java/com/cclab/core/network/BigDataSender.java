@@ -59,7 +59,7 @@ public class BigDataSender {
                 communicator.finishedSending(parentMessage, myChannel);
             }
             myKey.interestOps(SelectionKey.OP_READ);
-        } catch (Exception e) {
+        } catch (IOException e) {
             try {
                 if (buf != null)
                     buf.clear();

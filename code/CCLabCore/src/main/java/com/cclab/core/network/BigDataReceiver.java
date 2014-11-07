@@ -62,7 +62,7 @@ public class BigDataReceiver extends Thread{
                 communicator.cancelConnection(myKey);
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             NodeLogger.get().error("Error receiving message ", e);
             //assume node disconnected
             buf.clear();
