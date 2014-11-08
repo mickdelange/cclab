@@ -8,6 +8,7 @@ import com.cclab.core.utils.MasterObserver;
 import com.cclab.core.utils.NodeLogger;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class BackupInstance extends NodeInstance {
 
@@ -52,7 +53,7 @@ public class BackupInstance extends NodeInstance {
             new BootObserver(myMasterName, BootSettings.backup(myMasterName, myName, myIP));
 
             // Kill self
-            shutDown();
+            safeShutDown();
         } catch (IOException e) {
             NodeLogger.get().error("Could not start master, backup failed");
             NodeLogger.get().error(e.getMessage(), e);
@@ -69,8 +70,10 @@ public class BackupInstance extends NodeInstance {
         notification.setDetails(ownIP);
 
         for (String key : clients.keySet()) {
-            if (!key.equals(masterIP)) // Notify only worker nodes
+            if (!key.equals(masterIP)) {// Notify only worker nodes
+                System.out.println("Added notification for " + key);
                 clients.get(key).addMessageToOutgoing(notification);
+            }
         }
     }
 
@@ -91,6 +94,21 @@ public class BackupInstance extends NodeInstance {
         }
     }
 
+    private void safeShutDown() {
+        boolean done;
+        do {
+            done = true;
+            // check if all notifications to workers have been sent
+            for (Map.Entry<String, ClientComm> client : clients.entrySet())
+                if (!client.getKey().equals(masterIP))
+                    if (client.getValue().hasOutgoingWaiting()) {
+                        done = false;
+                        break;
+                    }
+        } while (!done);
+        shutDown();
+    }
+
     @Override
     public boolean extendedInterpret(String[] command) {
         return false;
@@ -103,7 +121,9 @@ public class BackupInstance extends NodeInstance {
         if (!masterObserver.started)// Run observer on first contact
             new Thread(masterObserver).start();
 
-        if (message.getType() == Message.Type.BACKUPTASK.getCode()) {
+        if (message.getType() == Message.Type.STILLALIVE.getCode()) {
+            NodeLogger.get().debug("MASTER is healthy");
+        } else if (message.getType() == Message.Type.BACKUPTASK.getCode()) {
             // TODO: process new task message:
             // Store new image in input
         } else if (message.getType() == Message.Type.BACKUPFIN.getCode()) {

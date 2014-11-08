@@ -40,6 +40,10 @@ public class DataSender {
         this.parentMessage = parentMessage;
     }
 
+    public boolean hasRemaining() {
+        return chunk < chunks;
+    }
+
     public void doSend() {
         ByteBuffer buf = ByteBuffer.allocateDirect(BUF_SIZE);
         try {

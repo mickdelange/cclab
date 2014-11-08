@@ -33,7 +33,7 @@ public class MasterInstance extends NodeInstance {
     public MasterInstance(String name, String backupName, int port) throws IOException {
         super(name);
         myBackupName = backupName;
-        
+
         server = new ServerComm(port, myName, this);
         server.start();
 
@@ -41,7 +41,7 @@ public class MasterInstance extends NodeInstance {
         List<String> masterIds = new ArrayList<String>();
         masterIds.add(myName);
         masterIds.add(myBackupName);
-        
+
         scheduler = new Scheduler(masterIds, this);
         scheduler.run();
     }
@@ -80,8 +80,9 @@ public class MasterInstance extends NodeInstance {
 
     /**
      * Send a task to a specific node
+     *
      * @param recipient Node
-     * @param inputId Task id
+     * @param inputId   Task id
      */
     public void sendTaskTo(String recipient, String inputId) {
         if (inputId == null || inputId.length() < 1) {
@@ -102,55 +103,57 @@ public class MasterInstance extends NodeInstance {
 
     /**
      * Back-up new task to backup node.
+     *
      * @param inputId
      */
     public void backupNewTask(String inputId) {
-    	if (backupConnected) {
-	        Message message = new Message(Message.Type.BACKUPTASK, myName);
-	        message.setDetails(inputId);
-	        byte[] input = Database.getInstance().getRecord(inputId);
-	        if (input == null) {
-	            NodeLogger.get().error("Task will not be sent");
-	            return;
-	        }
-	    	// TODO: fix: message.setData(input);
-	        server.addMessageToOutgoing(message, myBackupName);
-    	}
+        if (backupConnected) {
+            Message message = new Message(Message.Type.BACKUPTASK, myName);
+            message.setDetails(inputId);
+            byte[] input = Database.getInstance().getRecord(inputId);
+            if (input == null) {
+                NodeLogger.get().error("Task will not be sent");
+                return;
+            }
+            // TODO: fix: message.setData(input);
+            server.addMessageToOutgoing(message, myBackupName);
+        }
     }
-    
+
     /**
      * Notify back-up of finished task.
+     *
      * @param inputId
      */
     public void backupFinishedTask(String inputId) {
-    	if (backupConnected) {
-	        Message message = new Message(Message.Type.BACKUPFIN, myName);
-	        message.setDetails(inputId);
-	        server.addMessageToOutgoing(message, myBackupName);
-    	}
+        if (backupConnected) {
+            Message message = new Message(Message.Type.BACKUPFIN, myName);
+            message.setDetails(inputId);
+            server.addMessageToOutgoing(message, myBackupName);
+        }
     }
-    
+
     /**
      * Notify back-up of new connection.
-     * @param inputId
+     *
+     * @param instanceId
      */
     public void backupNodeConnection(String instanceId) {
-    	if (backupConnected) {
-	        Message message = new Message(Message.Type.BACKUPCONNECT, myName);
-	        message.setDetails(instanceId);
-	        server.addMessageToOutgoing(message, myBackupName);
-    	}
+        if (backupConnected) {
+            Message message = new Message(Message.Type.BACKUPCONNECT, myName);
+            message.setDetails(instanceId);
+            server.addMessageToOutgoing(message, myBackupName);
+        }
     }
-    
+
     /**
      * Notify back-up of still being alive.
-     * @param inputId
      */
     public void backupStillAlive() {
-    	if (backupConnected) {
-	        Message message = new Message(Message.Type.STILLALIVE, myName);
-	        server.addMessageToOutgoing(message, myBackupName);
-    	}
+        if (backupConnected) {
+            Message message = new Message(Message.Type.STILLALIVE, myName);
+            server.addMessageToOutgoing(message, myBackupName);
+        }
     }
 
     @Override
@@ -170,15 +173,15 @@ public class MasterInstance extends NodeInstance {
     public void nodeConnected(String name) {
         super.nodeConnected(name);
         if (name.equals(myBackupName)) {
-        	// Handle connection to backup node
-        	backupConnected = true;
+            // Handle connection to backup node
+            backupConnected = true;
         } else {
-        	// Handle connection to worker node
+            // Handle connection to worker node
             scheduler.nodeConnected(name);
             // Backup connection
             backupNodeConnection(name);
         }
-        
+
     }
 
     @Override

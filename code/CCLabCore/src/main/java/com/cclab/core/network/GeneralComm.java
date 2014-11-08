@@ -154,6 +154,16 @@ public abstract class GeneralComm extends Thread {
         dataSenders.remove(channel);
     }
 
+    public boolean hasOutgoingWaiting() {
+        for (ConcurrentLinkedQueue map : outgoingQueues.values())
+            if (!map.isEmpty())
+                return true;
+        for (DataSender dataSender : dataSenders.values())
+            if (dataSender.hasRemaining())
+                return true;
+        return false;
+    }
+
     abstract void accept(SelectionKey key) throws IOException;
 
     abstract void read(SelectionKey key) throws IOException;
