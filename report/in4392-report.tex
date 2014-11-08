@@ -196,14 +196,56 @@ These logs give an insight in processing times and load on each node.
 % explain how they can be supported in the future.
 \subsection{System Policies}
 \label{sec:policies}
+As mentioned in several previous sections, specific functions of the system are controlled through policies.
+Especially the work of the Scheduler depends very much on these set policies.
+The following subsections will discuss the use of these policies, their current settings, and the possibility to extend this using custom policies.
 
 \subsubsection{Scheduling}
+Scheduling, consisting of load balancing and provisioning, is the core of the designed system.
+It is used to assign tasks to available nodes, making optimal use of resources.
+The Scheduler component has several settings that help it perform best, mostly related to the provisioning of new nodes.
+The system stores these settings in a properties file, they are summed up in Table \ref{tbl:policy}.
 
-\subsubsection{Provisioning}
+\begin{table}[]
+	\begin{tabular}{| l | l | r |}
+		\hline
+		Setting name & Description & Value \\ \hline \hline
+		\texttt{interval} & Scheduler interval & 2 sec. \\ \hline
+		\texttt{loadThresh} & Max. tasks in queue & 5/node \\ \hline
+		\texttt{maxTaskTime} & Max. time a Worker is Working & 1 min. \\ \hline
+		\texttt{maxIdleTime} & Max. time a Worker is Idle & 1 hr. \\ \hline
+		\texttt{maxTaskRetry} & Max. times a task is retried & 2 \\ \hline
+		\texttt{maxTimeOut} & Max. times Master is unresponsive & 10 sec. \\ \hline
+	\end{tabular}
+	\caption{Settings for the different policies. These values describe the behaviour of the scheduling and the reliability policies.}
+	\label{tbl:policy}
+\end{table}
 
-\subsubsection{Redundancy}
+The basic choice for the scheduler is to assign a new task to the first available Worker node.
+When no Worker node is available the Scheduler checks the length of the queue with the given policy.
+As seen in Table \ref{tbl:policy}, the value of \texttt{loadThresh} indicates that if more than 5 tasks per working node are in the queue, a new Worker node should be provisioned.
+This number was chosen as processing 5 tasks generally takes longer than provisioning a new Worker.
+
+When a Worker node has been Idle for an hour, as set by \texttt{maxIdleTime}, it is shut down.
+This period was chosen because the system is run on the Amazon EC2 cloud, in which starting up a machine costs the equivalent of one hour of compute power.
+Shutting down a machine sooner and provisioning it again multiple times within an hour would cause a tremendous increase in cost.
+
+\subsubsection{Reliability}
+The other settings in Table \ref{tbl:policy} are used for reliability of the system.
+\texttt{maxTaskTime} is used to indicate after what period the Master can consider a Worker node to have crashed, in this case it is set to 1 minute.
+However, it should be considered that this period should be substantially longer than the maximum length an actual (non-crashed) task might take.
+
+\texttt{maxTaskRetry} is the maximum amount of times a task is reassigned after a Worker node crashed on it.
+With these settings if two nodes fail on the same task, the task is considered corrupt and ignored for further processing.
+
+\texttt{maxTimeOut} is the maximum period in which the Backup node has not been able to contact the Master node.
+If this period has passed, the Backup node takes over as the Master node.
+This period is set to 10 seconds, as the Master node should normally send a message to the Backup node every 2 seconds (the \texttt{interval} setting).
 
 \subsubsection{Extensions}
+As the implemented policies are stored in properties files, they can easily be replaced or edited.
+This allows the designed system to support different policies as well as enables WantCloud to fine-tune the policies according to the monitoring results.
+Flexibility added this way allows the system to be adapted to changes in the environment, or nature of the tasks it performs.
 
 % 6. Experimental Results (recommended size: 1.5 pages)
 % a. Experimental setup: describe the working environments (DAS, Amazon EC2,
