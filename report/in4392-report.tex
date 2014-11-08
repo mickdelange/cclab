@@ -4,6 +4,7 @@
 \makeatother
 
 \usepackage{graphicx}
+\usepackage{url}
 
 \begin{document}
 
@@ -53,7 +54,7 @@ One of the business processes in WantCloud requires large images to be blurred u
 This process is compute intensive, as Gaussian functions require complex calculations as well as reading and writing large amounts of data.
 
 Currently, WantCloud has a single server running all of these tasks.
-For applying the Gaussian blur, an image filtering implementation in Java by Jerry Huxtable is used.\footnote{http://huxtable.com/ip/filters/index.html}
+For applying the Gaussian blur, an image filtering implementation in Java by Jerry Huxtable is used.\cite{web:huxtable}
 The WantCloud server is experiencing heavy peak loads and sits idle for the rest of the day.
 At peak moments clients need to wait for quite some time for the images to be processed, which is harmful for WantCloud's business.
 Therefore, WantCloud wants to explore the option to utilise a cloud computing infrastructure to cope with high loads and be able to scale down with low loads.
@@ -87,23 +88,21 @@ This means that unused nodes should be released as they are no longer needed, an
 No human input should be required to 
 This requirement should result being able to handle peak loads better, while limiting costs for unused resources.
 
-\subsection{Performance}
+\subsection{Load Balancing}
 The application should automatically schedule tasks to compute nodes.
-This means that tasks are assigned to available nodes, new nodes are started when needed, and unused nodes are released without human input.
+This means that tasks are divided over available nodes, new nodes are started when needed, and unused nodes are released without human input.
 
 \subsection{Reliability}
 Furthermore, the application must be reliable, or fault tolerant.
 This means that any problems that occur should be dealt with, without the need for human interference.
 Nodes that crash, tasks that break or other problems that occur should be dealt with by the system automatically.
 
+\subsubsection{Monitoring}
+Although WantCloud wishes to create a system that performs without human intervention, it does want to be able to monitor the work.
+Specifically, it wants to monitor which tasks have been processed, by what machine the task was processed, and how long each machine has been active.
+This is important for both billing and testing purposes.
+
 % 5. System Design (recommended size: 1.5 pages)
-% a. Resource Management Architecture: describe the design of your system,
-% including the inter-operation of the provisioning, allocation, reliability, and
-% monitoring components (which correspond to the homonym features required
-% by the WantCloud CTO).
-% b. System Policies: describe the policies your system uses and supports. The latter
-% may remain not implemented throughout your coursework, as long as you can
-% explain how they can be supported in the future.
 % c. (Optional, for bonus points, see Section F) Additional System Features:
 % describe each additional feature of your system, one sub-section per feature.
 \section{System Design}
@@ -131,6 +130,8 @@ The Master node is the heart of the system, it receives new tasks and handles th
 The Master keeps a queue of all tasks that still need to be performed.
 It assigns these tasks to Worker nodes and gets notified of finished tasks by the Workers.
 The assignment of tasks is done by the Scheduler application.
+Furthermore, the Scheduler instantiates new Worker nodes when the queue becomes too long.
+These Worker nodes are stopped again when they have been inactive for a set period of time.
 The scheduling policy will be further addressed in Section \ref{sec:policies}.
 
 \subsubsection{Backup}
@@ -146,20 +147,59 @@ Worker nodes do not manage their own queue, they process one task at a time.
 \subsubsection{Communication}
 % TODO: Maria describe the communication between nodes
 
+% a. Resource Management Architecture: describe the design of your system,
+% including the inter-operation of the provisioning, allocation, reliability, and
+% monitoring components (which correspond to the homonym features required
+% by the WantCloud CTO).
 \subsection{Resource Management Architecture}
 \label{sec:resource_man}
-Here we will discuss how the requirements set in Section \ref{sec:bg} can be satisfied by the designed architecture.
+This section will discuss how the designed architecture manages the resources of the cloud infrastructure.
+Management of these resources is done according to the requirements given in Section \ref{sec:bg}.
 
 \subsubsection{Elasticity}
+The Scheduler, as discussed previously, manages the provisioning of Worker nodes as needed.
+As the workload increases, the queue in the Master node builds up.
+At a predetermined queue length, new Worker nodes will be provisioned.
+These nodes are monitored by the Scheduler and stopped after a set period of inactivity.
+The exact provisioning policy will be discussed in Section \ref{sec:policies}.
 
-\subsubsection{Automation}
+\subsubsection{Load Balancing}
+The Scheduler balances the load by assigning tasks to the first available Worker node.
+It does so by keeping track of all nodes and their states.
+The four states a Worker node can be in are: Stopped, Starting, Idle, and Working.
+As the names suggest, they imply that the node is turned off, starting up, waiting for work or processing a task respectively.
+An Idle node is ready to receive a new task, it is therefore preferred as a node to assign tasks to.
+If no Idle node can be found, the Scheduler either waits for a node to become Idle or provisions a new one, depending on the length of the queue.
 
-\subsubsection{Fault Tolerance}
+\subsubsection{Reliability}
+To ensure reliability, two monitoring features have been built into the design.
+The first is the Master monitoring the Workers.
+If a Worker node does not finish a tasks within a given period of time, it is assumed that the node crashed and it is shut down.
+The task that Worker was working on will then be reintroduced to the queue and assigned to the next available node.
 
+The second monitoring feature is the Backup node.
+This node receives all uploaded images from the Master as well as all incoming connections from Worker nodes.
+If no message can be sent, the Master notifies the Backup that it is still alive.
+This way the Backup node knows if the Master is still working properly.
+When there is no communication for a given period of time, the Backup node takes over and notifies all Workers that it has become the Master node.
+Furthermore, the Master node is rebooted and initiated as the Backup node.
+
+\subsubsection{Monitoring}
+To monitor all the work that is being done in the system, logs are kept.
+These logs are written to files on each server, keeping track of its own work.
+The Master node logs the assignment and completion of tasks.
+Worker nodes log incoming tasks, their processing and their completion.
+These logs give an insight in processing times and load on each node.
+
+% b. System Policies: describe the policies your system uses and supports. The latter
+% may remain not implemented throughout your coursework, as long as you can
+% explain how they can be supported in the future.
 \subsection{System Policies}
 \label{sec:policies}
 
 \subsubsection{Scheduling}
+
+\subsubsection{Provisioning}
 
 \subsubsection{Redundancy}
 
