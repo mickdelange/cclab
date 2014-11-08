@@ -89,6 +89,8 @@ public class MasterInstance extends NodeInstance {
             NodeLogger.get().error("Task input identifier not supplied");
             return;
         }
+        NodeLogger.get().info("Sending task " + inputId + " to " + recipient);
+
         NodeLogger.getTasking().info("ASSIGN_" + inputId + "_" + recipient);
         Message message = new Message(Message.Type.NEWTASK, myName);
         message.setDetails(inputId);

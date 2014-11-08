@@ -71,7 +71,7 @@ public class DataSender {
             NodeLogger.get().debug("Message " + parentMessage.getId() + ": Sent " + (chunk + 1) + " of " + chunks + "(" + size + " bytes)");
             chunk++;
             if (chunk >= chunks) {
-                NodeLogger.get().info("Sent data for " + parentMessage);
+                NodeLogger.get().debug("Sent data for " + parentMessage);
                 communicator.finishedSending(parentMessage, myChannel);
             }
             myKey.interestOps(SelectionKey.OP_READ);

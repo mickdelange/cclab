@@ -69,6 +69,7 @@ public class BackupInstance extends NodeInstance {
         Message notification = new Message(Message.Type.NEWMASTER, myName);
         notification.setDetails(ownIP);
 
+        System.out.println("Notifying workers: " + (clients.size() - 1));
         for (String key : clients.keySet()) {
             if (!key.equals(masterIP)) {// Notify only worker nodes
                 System.out.println("Added notification for " + key);
