@@ -36,7 +36,7 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
         registerMaster(masterIP);
 
         // Listen for connections from new masters
-        server = new ServerComm(port, myName, this);
+        server = new ServerComm(NodeUtils.testModeOn? 9030 : port, myName, this);
         server.start();
     }
 

@@ -10,6 +10,9 @@ import java.io.*;
  * @author an3m0na
  */
 public class NodeUtils {
+    //TODO change to false if not test!!!!
+    public static boolean testModeOn = true;
+
     public static String join(Object[] parts, int skip, String delimiter) {
         StringBuilder ret = new StringBuilder();
         for (int i = skip; i < parts.length - 1; i++)

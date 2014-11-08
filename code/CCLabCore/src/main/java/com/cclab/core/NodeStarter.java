@@ -15,15 +15,15 @@ import java.io.IOException;
 public class NodeStarter {
 
     private static final String usage = "Usage:\t<single>\n" +
-            "\t<master> <name> <backup_name> [<port>]\n" +
-            "\t<backup> <name> <master_ip> [<master_port>]" +
-            "\t<worker> <name> [<master_ip> [<master_port>]]";
+            "\t<name> <master> <backup_name> [<port>]\n" +
+            "\t<name> <backup> <master_name> <master_ip> [<master_port>]\n" +
+            "\t<name> <worker> [<master_ip> [<master_port>]]";
 
     public static void main(String[] args) {
     	if (args.length == 1 && args[0].equals("single")) {
     		// Run a single instance
     		new SingleInstance();
-        } else if (args.length < 3) {
+        } else if (args.length < 2) {
             System.out.println(usage);
             System.exit(1);
         } else {

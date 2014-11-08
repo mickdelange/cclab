@@ -2,10 +2,7 @@ package com.cclab.core;
 
 import com.cclab.core.network.ClientComm;
 import com.cclab.core.network.Message;
-import com.cclab.core.utils.BootObserver;
-import com.cclab.core.utils.BootSettings;
-import com.cclab.core.utils.MasterObserver;
-import com.cclab.core.utils.NodeLogger;
+import com.cclab.core.utils.*;
 
 import java.io.IOException;
 import java.util.Map;
@@ -28,10 +25,12 @@ public class BackupInstance extends NodeInstance {
 
         masterObserver = new MasterObserver(this);
 
-        try {
-            AwsConnect.init();
-        } catch (Exception e) {
-            NodeLogger.get().error(e.getMessage(), e);
+        if (NodeUtils.testModeOn) {
+            try {
+                AwsConnect.init();
+            } catch (Exception e) {
+                NodeLogger.get().error(e.getMessage(), e);
+            }
         }
     }
 
@@ -65,7 +64,7 @@ public class BackupInstance extends NodeInstance {
      * Notify all registered Worker nodes of new master.
      */
     private void notifyWorkers() {
-        String ownIP = AwsConnect.getInstancePrivIP(myName);
+        String ownIP = NodeUtils.testModeOn ? "localhost" : AwsConnect.getInstancePrivIP(myName);
         Message notification = new Message(Message.Type.NEWMASTER, myName);
         notification.setDetails(ownIP);
 
@@ -84,9 +83,9 @@ public class BackupInstance extends NodeInstance {
      * @param nodeName
      */
     private void registerNode(String nodeName) {
-        String nodeIP = AwsConnect.getInstancePrivIP(nodeName);
+        String nodeIP = NodeUtils.testModeOn ? "localhost" : AwsConnect.getInstancePrivIP(nodeName);
         try {
-            ClientComm client = new ClientComm(nodeIP, port, myName, this);
+            ClientComm client = new ClientComm(nodeIP, NodeUtils.testModeOn ? 9030 : port, myName, this);
             client.start();
             clients.put(nodeIP, client);
         } catch (IOException e) {
