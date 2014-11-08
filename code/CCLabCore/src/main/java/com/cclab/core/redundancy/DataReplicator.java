@@ -6,7 +6,9 @@ import com.cclab.core.network.Message;
 import com.cclab.core.utils.NodeLogger;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -20,37 +22,42 @@ public class DataReplicator {
     private ConcurrentLinkedQueue<String> stored;
     private MasterInstance master = null;
 
+    private Set<String> backedUnprocessed = null;
+    private Set<String> backedProcessed = null;
+
     public DataReplicator(MasterInstance master) {
         waiting = new ConcurrentLinkedQueue<String>();
         stored = new ConcurrentLinkedQueue<String>();
+        backedUnprocessed = new HashSet<String>();
+        backedProcessed = new HashSet<String>();
         this.master = master;
+
     }
 
     public void backupFutureRecord(String recordId) {
-        if (!waiting.contains(recordId))
-            waiting.add(recordId);
+        waiting.add(recordId);
     }
 
     public void backupPendingRecord(String recordId, byte[] record) {
-        waiting.remove(recordId);
-        stored.remove(recordId);
         backup(Message.Type.BACKUPTASK, recordId, record);
     }
 
     public void backupFinishedRecord(String recordId, byte[] record) {
-        waiting.remove(recordId);
-        stored.remove(recordId);
         backup(Message.Type.BACKUPFIN, recordId, record);
     }
 
     public void backupStoredRecord(String recordId) {
-        //remove from waiting if already processed
-        waiting.remove(recordId);
-        if (!stored.contains(recordId))
-            stored.add(recordId);
+        stored.add(recordId);
     }
 
     private void backup(Message.Type type, String recordId, byte[] data) {
+        if (type == Message.Type.BACKUPTASK) {
+            if (backedUnprocessed.contains(recordId))
+                return;
+        } else {
+            if (backedProcessed.contains(recordId))
+                return;
+        }
 
         if (data == null || data.length <= 0) {
             data = Database.getInstance().getRecord(recordId);
@@ -61,6 +68,10 @@ public class DataReplicator {
         }
         waiting.remove(recordId);
         stored.remove(recordId);
+        if (type == Message.Type.BACKUPTASK)
+            backedUnprocessed.add(recordId);
+        else
+            backedProcessed.add(recordId);
 
         Message message = new Message(type, master.myName);
         message.setDetails(recordId);

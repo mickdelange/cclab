@@ -63,7 +63,6 @@ public class Scheduler extends Thread {
                 instances = AwsConnect.getInstances();
             }
 
-
             for (Instance inst : instances) {
                 if (!masterIds.contains(inst.getInstanceId()))
                     workerNodes.add(new Node(inst, maxTaskTime, maxIdleTime, testMode, myMaster));

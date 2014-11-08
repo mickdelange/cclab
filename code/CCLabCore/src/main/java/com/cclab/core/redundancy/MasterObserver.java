@@ -43,10 +43,9 @@ public class MasterObserver extends Thread {
                 currTime = System.currentTimeMillis();
 
                 // No message received from Master for too long, take over.
-                //TODO put back!!!
-//                if ((currTime - lastContact) > maxTimeOut) {
-//                    backupInstance.takeOver();
-//                }
+                if ((currTime - lastContact) > maxTimeOut) {
+                    backupInstance.takeOver();
+                }
 
             }
             NodeLogger.get().info("Master Observer for " + backupInstance + " has quit");
@@ -58,6 +57,7 @@ public class MasterObserver extends Thread {
     /**
      * Register contact with Master
      */
+
     public void hadContact() {
         lastContact = System.currentTimeMillis();
     }
