@@ -1,8 +1,9 @@
 package com.cclab.core;
 
+import com.cclab.core.data.Database;
 import com.cclab.core.network.ClientComm;
 import com.cclab.core.network.Message;
-import com.cclab.core.utils.MasterObserver;
+import com.cclab.core.redundancy.MasterObserver;
 import com.cclab.core.utils.NodeLogger;
 import com.cclab.core.utils.NodeUtils;
 
@@ -21,6 +22,9 @@ public class BackupInstance extends NodeInstance {
         myMasterName = masterName;
         this.masterIP = masterIP;
         this.port = port;
+
+        //start listening to master
+        Database.isBackup = true;
         ClientComm client = new ClientComm(masterIP, port, myName, this);
         client.start();
         clients.put(masterIP, client);
@@ -99,10 +103,10 @@ public class BackupInstance extends NodeInstance {
             // check if all notifications to workers have been sent
             for (Map.Entry<String, ClientComm> client : clients.entrySet())
 //                if (!client.getKey().equals(masterIP))
-                    if (client.getValue().hasOutgoingWaiting()) {
-                        done = false;
-                        break;
-                    }
+                if (client.getValue().hasOutgoingWaiting()) {
+                    done = false;
+                    break;
+                }
         } while (!done);
         shutDown();
     }
@@ -122,10 +126,10 @@ public class BackupInstance extends NodeInstance {
         if (message.getType() == Message.Type.STILLALIVE.getCode()) {
             NodeLogger.get().debug("MASTER is healthy");
         } else if (message.getType() == Message.Type.BACKUPTASK.getCode()) {
-            // TODO: process new task message:
             // Store new image in input
+            Database.getInstance().storeInputRecord((byte[]) message.getData(), message.getDetails());
         } else if (message.getType() == Message.Type.BACKUPFIN.getCode()) {
-            // TODO: process task finished:
+            Database.getInstance().storeRecord((byte[]) message.getData(), message.getDetails());
             // Move image from input to output
         } else if (message.getType() == Message.Type.BACKUPCONNECT.getCode()) {
             registerNode(message.getDetails());

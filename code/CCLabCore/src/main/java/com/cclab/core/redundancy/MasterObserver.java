@@ -1,6 +1,7 @@
-package com.cclab.core.utils;
+package com.cclab.core.redundancy;
 
 import com.cclab.core.BackupInstance;
+import com.cclab.core.utils.NodeLogger;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,9 +43,10 @@ public class MasterObserver extends Thread {
                 currTime = System.currentTimeMillis();
 
                 // No message received from Master for too long, take over.
-                if ((currTime - lastContact) > maxTimeOut) {
-                    backupInstance.takeOver();
-                }
+                //TODO put back!!!
+//                if ((currTime - lastContact) > maxTimeOut) {
+//                    backupInstance.takeOver();
+//                }
 
             }
             NodeLogger.get().info("Master Observer for " + backupInstance + " has quit");

@@ -1,6 +1,7 @@
-package com.cclab.core.utils;
+package com.cclab.core.redundancy;
 
 import com.cclab.core.AwsConnect;
+import com.cclab.core.utils.NodeLogger;
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;

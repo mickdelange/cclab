@@ -3,8 +3,8 @@ package com.cclab.core.scheduler;
 import com.amazonaws.services.ec2.model.Instance;
 import com.cclab.core.AwsConnect;
 import com.cclab.core.MasterInstance;
-import com.cclab.core.utils.BootObserver;
-import com.cclab.core.utils.BootSettings;
+import com.cclab.core.redundancy.BootObserver;
+import com.cclab.core.redundancy.BootSettings;
 import com.cclab.core.utils.NodeLogger;
 
 /**
@@ -110,9 +110,10 @@ public class Node {
             throw new Error("InstanceId changed");
         }
     }
-    
+
     /**
      * Start the node
+     *
      * @return
      */
     public boolean start() {
@@ -120,7 +121,7 @@ public class Node {
             switchState(State.STARTING);
             System.out.println("TESTMODE: " + instanceId + " was started.");
             return true;
-        } else if(AwsConnect.startInstance(instanceId)) {
+        } else if (AwsConnect.startInstance(instanceId)) {
             // Observer booting up
             new BootObserver(instanceId, BootSettings.worker(instanceId, myMaster.myIP));
             switchState(State.STARTING);
@@ -128,9 +129,10 @@ public class Node {
         }
         return false;
     }
-    
+
     /**
      * Stop the node
+     *
      * @return
      */
     public boolean stop() {
@@ -152,8 +154,8 @@ public class Node {
      */
     public void assign(Task t) {
         // Add to queue
-    	currTask = t;
-        
+        currTask = t;
+
         // Perform task
         doWork();
     }
@@ -174,14 +176,11 @@ public class Node {
      * After receiving confirmation that a Task was completed, execute this.
      */
     public void taskFinished() {
-        // Notify backup that task was finished
-        myMaster.backupFinishedTask(currTask.inputId);
-        
         // Clear current task
-    	currTask = null;
+        currTask = null;
 
         /// Go IDLE
-    	switchState(State.IDLE);
+        switchState(State.IDLE);
     }
 
     /**

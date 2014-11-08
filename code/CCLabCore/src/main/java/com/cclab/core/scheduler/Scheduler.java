@@ -108,7 +108,6 @@ public class Scheduler extends Thread {
      * Run the scheduler
      */
     public void run() {
-        boolean backupNotified = false;
         try {
             while (!shouldExit) {
                 synchronized (this) {
@@ -118,13 +117,12 @@ public class Scheduler extends Thread {
                 updateNodeStates();
 
                 // Update main queue
-                backupNotified = getTasks();
+                getTasks();
 
                 // Assign any new tasks
                 assignTasks();
 
-                if (!backupNotified)
-                    myMaster.backupStillAlive();
+                myMaster.backupStillAlive();
             }
             NodeLogger.get().info("Scheduler for " + myMaster + " has quit");
         } catch (InterruptedException e) {
@@ -209,23 +207,19 @@ public class Scheduler extends Thread {
     /**
      * Get all tasks from input folder
      */
-    private boolean getTasks() {
+    private void getTasks() {
         String newInput = Database.getInstance().getNextRecordId();
         Task nT;
-        boolean backupNotified = false;
         while (newInput != null) {
             // Create and add task
             nT = new Task(newInput);
             addTask(nT);
 
-            // Backup new task
-            myMaster.backupNewTask(nT.inputId);
-            backupNotified = true;
+            myMaster.backupFutureTask(newInput);
 
             // Get next
             newInput = Database.getInstance().getNextRecordId();
         }
-        return backupNotified;
     }
 
     /**

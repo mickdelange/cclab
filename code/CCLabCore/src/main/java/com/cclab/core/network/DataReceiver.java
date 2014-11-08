@@ -31,10 +31,6 @@ public class DataReceiver extends Thread {
 
     @Override
     public void run() {
-//        synchronized (this) {
-//            if (isReceiving)
-//                return;
-//        }
         doReceive();
     }
 
@@ -50,8 +46,8 @@ public class DataReceiver extends Thread {
 
             buf.flip();
 
-            if (parentMessage == null) {
-                while (buf.remaining() > 4) {
+            while (buf.remaining() > 0) {
+                if (parentMessage == null) {
                     int size = buf.getInt();
                     NodeLogger.get().debug("Receiving message of size " + size);
                     byte[] data = new byte[size];
@@ -59,42 +55,37 @@ public class DataReceiver extends Thread {
                     Message message = Message.getFromBytes(data);
                     NodeLogger.get().debug("Received " + message);
                     if (message != null) {
-                        if (message.getType() == Message.Type.NEWTASK.getCode() ||
-                                message.getType() == Message.Type.FINISHED.getCode()) {
+                        if (Message.Type.get(message.getType()).isBulkType()) {
                             parentMessage = message;
-                            break;
+                            continue;
                         } else {
-//                            synchronized (this) {
-//                                isReceiving = false;
-//                            }
                             communicator.handleMessage(message, myChannel);
                         }
                     }
                 }
-            }
-            if (parentMessage != null) {
-                int size = buf.remaining();
-                byte[] data = new byte[size];
-                buf.get(data, 0, size);
-                collector.write(data);
-                int total = -1;
-                try {
-                    total = (Integer) parentMessage.getData();
-                } catch (Exception e) {
-                    NodeLogger.get().error("Cannot cast " + parentMessage.getData() + " for " + parentMessage);
-                }
-//                synchronized (this) {
-//                    isReceiving = false;
-//                }
-                if (collector.size() == total) {
-                    NodeLogger.get().info("Received data for " + parentMessage);
-                    parentMessage.setData(collector.toByteArray());
-                    communicator.handleMessage(parentMessage, myChannel);
-                } else {
-                    NodeLogger.get().debug("Message " + parentMessage.getId() + ": Received " + collector.size() + " bytes of " + parentMessage.getData());
-                }
+                if (parentMessage != null) {
+                    int total = -1;
+                    try {
+                        total = (Integer) parentMessage.getData();
+                    } catch (Exception e) {
+                        NodeLogger.get().error("Cannot cast " + parentMessage.getData() + " for " + parentMessage);
+                    }
 
-
+                    int size = Math.min(buf.remaining(), total - collector.size());
+                    byte[] data = new byte[size];
+                    buf.get(data, 0, size);
+                    collector.write(data);
+                    if (collector.size() == total) {
+                        NodeLogger.get().debug("Received data for " + parentMessage);
+                        parentMessage.setData(collector.toByteArray());
+                        communicator.handleMessage(parentMessage, myChannel);
+                        parentMessage = null;
+                        collector.close();
+                        collector = new ByteArrayOutputStream();
+                    } else {
+                        NodeLogger.get().debug("Message " + parentMessage.getId() + ": Received " + collector.size() + " bytes of " + parentMessage.getData());
+                    }
+                }
             }
 
             if (myChannel.read(buf) == -1) {

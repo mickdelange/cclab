@@ -29,8 +29,7 @@ public class DataSender {
         this.myKey = key;
         this.myChannel = (SocketChannel) key.channel();
         this.communicator = communicator;
-        if (parentMessage.getType() == Message.Type.NEWTASK.getCode() ||
-                parentMessage.getType() == Message.Type.FINISHED.getCode()) {
+        if (Message.Type.get(parentMessage.getType()).isBulkType()) {
             this.data = (byte[]) parentMessage.getData();
             parentMessage.setData(data.length);
             chunks = data.length / BUF_SIZE;

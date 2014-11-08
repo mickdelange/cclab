@@ -152,4 +152,11 @@ public class ServerComm extends GeneralComm {
         NodeLogger.get().error("Cannot handle connect");
     }
 
+    public boolean hasOutgoingWaiting(String name) {
+        SocketChannel channel = nameToChannel.get(name);
+        if (channel == null)
+            return false;
+        ConcurrentLinkedQueue<Message> queue = outgoingQueues.get(channel);
+        return !queue.isEmpty();
+    }
 }

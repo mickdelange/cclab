@@ -122,7 +122,6 @@ public abstract class GeneralComm extends Thread {
         }
         for (Map.Entry<SocketChannel, ConcurrentLinkedQueue<Message>> e : outgoingQueues.entrySet()) {
             if (!e.getValue().isEmpty()) {
-                System.out.println("Found to send");
                 e.getKey().keyFor(selector).interestOps(SelectionKey.OP_WRITE);
             }
         }
@@ -150,7 +149,6 @@ public abstract class GeneralComm extends Thread {
     }
 
     void handleMessage(Message message, SocketChannel channel) {
-        dataReceivers.remove(channel);
         interpreter.processMessage(message);
     }
 
