@@ -1,5 +1,5 @@
 #!/bin/bash
- MASTER='54.173.192.88'
+ MASTER='54.85.49.14'
  MASTERID='i-c1bbb72a'
  
  BACKUP='54.165.77.125'

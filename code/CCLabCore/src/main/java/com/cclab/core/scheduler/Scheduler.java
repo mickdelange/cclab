@@ -281,6 +281,19 @@ public class Scheduler extends Thread {
     }
 
     /**
+     * Start a specific node.
+     * For command line usage.
+     */
+    public void startNode(String instanceId) {
+    	NodeLogger.getBoot().info("START_" + instanceId);
+        Node n = getWorkerById(instanceId);
+        if (n != null)
+        	n.start();
+        else
+        	NodeLogger.getBoot().error("Could not find instance");
+    }
+
+    /**
      * Get a worker node by its instanceId
      *
      * @param instId
