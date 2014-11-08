@@ -5,6 +5,7 @@
 
 \usepackage{graphicx}
 \usepackage{url}
+\usepackage{eurosym}
 
 \begin{document}
 
@@ -59,9 +60,9 @@ The WantCloud server is experiencing heavy peak loads and sits idle for the rest
 At peak moments clients need to wait for quite some time for the images to be processed, which is harmful for WantCloud's business.
 Therefore, WantCloud wants to explore the option to utilise a cloud computing infrastructure to cope with high loads and be able to scale down with low loads.
 
-This report will discuss the details of an exploration towards using Amazon EC2\footnote{http://aws.amazon.com/ec2/} as a solution to WantClouds needs.
+This report will discuss the details of an exploration towards using Amazon EC2\cite{web:ec2} as a solution to WantClouds needs.
 The image processing system will be implemented on a dynamically scalable cluster of compute nodes.
-This implementation is made available open source through GitHub\footnote{https://github.com/mickdelange/cclab}.
+This implementation is made available open source through GitHub\cite{web:git}.
 The performance, overhead, and scalability will be tested to compare to the current set-up using one machine.
 
 In this report first an insight will be given into the background of the application and its requirements in Section \ref{sec:bg}.
@@ -118,7 +119,7 @@ These nodes communicate to notify each other of new tasks and finished tasks.
 Figure \ref{fig:architecture_overview} gives an overview of the discussed architecture.
 A short description of all elements in the overview follows.
 
-\begin{figure}[]
+\begin{figure}
 	\centering
 	\includegraphics[width=0.4\textwidth]{images/architecture_overview.jpg}
 	\caption{An overview of the system architecture on a high level. Multiple Workers are controlled by a Master node. The Backup node monitors the state of the Master node.}
@@ -206,15 +207,16 @@ It is used to assign tasks to available nodes, making optimal use of resources.
 The Scheduler component has several settings that help it perform best, mostly related to the provisioning of new nodes.
 The system stores these settings in a properties file, they are summed up in Table \ref{tbl:policy}.
 
-\begin{table}[]
+\begin{table}
+	\centering
 	\begin{tabular}{| l | l | r |}
 		\hline
 		Setting name & Description & Value \\ \hline \hline
 		\texttt{interval} & Scheduler interval & 2 sec. \\ \hline
 		\texttt{loadThresh} & Max. tasks in queue & 5/node \\ \hline
 		\texttt{maxTaskTime} & Max. time a Worker is Working & 1 min. \\ \hline
-		\texttt{maxIdleTime} & Max. time a Worker is Idle & 1 hr. \\ \hline
-		\texttt{maxTaskRetry} & Max. times a task is retried & 2 \\ \hline
+		\texttt{maxIdleTime} & Max. time a Worker is Idle & 1 hour \\ \hline
+		\texttt{maxTaskRetry} & Max. times a task is retried & 2 x\\ \hline
 		\texttt{maxTimeOut} & Max. times Master is unresponsive & 10 sec. \\ \hline
 	\end{tabular}
 	\caption{Settings for the different policies. These values describe the behaviour of the scheduling and the reliability policies.}
@@ -248,14 +250,35 @@ This allows the designed system to support different policies as well as enables
 Flexibility added this way allows the system to be adapted to changes in the environment, or nature of the tasks it performs.
 
 % 6. Experimental Results (recommended size: 1.5 pages)
-% a. Experimental setup: describe the working environments (DAS, Amazon EC2,
+% a. Experimental set-up: describe the working environments (DAS, Amazon EC2,
 % etc.), the general workload and monitoring tools and libraries, other tools and
 % libraries you have used to implement and deploy your system, other tools and
 % libraries used to conduct your experiments.
-% b. Experiments: describe the experiments you have conducted to analyze each
-% system feature, then analyze them; use one sub-section per experiment. For
+\section{Evaluation}
+\label{sec:eval}
+To verify whether the designed system offers an improvement to WantCloud, experiments have been conducted.
+These experiments analyse the performance of the system as well as analyse the previously described features.
+This section will first discuss the experimental set-up, giving an overview of the used environment and the implementation of the proof of concept.
+Following subsections will discuss the conducted experiments and their results.
+
+\subsection{Experimental Set-up}
+The working environment chosen for this system is Amazon Web Services\cite{web:aws}, particularly the Elastic Compute Cloud (EC2)\cite{web:ec2}.
+Virtual machines called EC2 instances can easily be provisioned on this infrastructure.
+Moreover, the platform offers many tools to create divers applications.
+
+The chosen instances are \texttt{t2.micro} instances with an Ubuntu operating system.
+This instance type only offer one virtual CPU and 1 gigabyte of memory.
+However, these instances can be used free of charge for 750 hours per month, leaving enough space to perform the experiments at no cost.
+Six of these instances were created, of which one functioned as Master node, one as Backup node and four as Worker nodes.
+
+The implementation of the system was done in Java and applies several external tools to perform all its work.
+The most notably are the Gaussian blur implementation by Huxtable \cite{web:huxtable} and the AWS SDK for Java \cite{web:sdk}.
+The full implementation of the experimental set-up is available as open source through GitHub \cite{web:git}.
+
+% b. Experiments: describe the experiments you have conducted to analyse each
+% system feature, then analyse them; use one sub-section per experiment. For
 % each experiment, describe the workload, present the operation of the system,
-% and analyze the results. In the analysis, report:
+% and analyse the results. In the analysis, report:
 % i. Charged-time = time that would have been charged using the
 % Amazon EC2 timing approach (1-hour increments)
 % ii. Charged-cost = cost that would have been charged using the
@@ -264,23 +287,116 @@ Flexibility added this way allows the system to be adapted to changes in the env
 % the service, etc.
 % iv. (optional) Usage metrics of the experiment, such as per-VM and overall
 % system usage and activity.
-\section{Evaluation}
-\label{sec:eval}
+\subsection{Scheduler Performance}
+The first conducted experiment tests the performance of several scheduler set-ups against the performance of the current WantCloud server.
 
-\subsection{Setup}
+\subsubsection{Test set}
+To understand this experiment, it is important to first describe the test set that was used.
+The total test set consists of 20 images, which are listed in Table \ref{tbl:tasks}.
+The table shows the file name, their size in kilobytes, their occurrence in the test set (\#), and the average time it took to process that image over all tests.
+This set consists of four different images, of different sizes representing typical images.
+There are two occurrences of the rather large \emph{strawberry.jpg}, and more occurrences of the smaller images.
+As can be expected, it is easier to compute a Gaussian filter for small images than it is for large images.
 
-\subsection{Test files}
+\begin{table}
+	\centering
+	\begin{tabular}{| l | r | c | r |}
+		\hline
+		File name & Size (kB) & \# & Avg. time (sec.) \\ \hline \hline
+		\emph{apple.jpeg} & 90.5 & 4 & 0.548 \\ \hline
+		\emph{banana.jpg} & 342.2 & 7 & 17.312 \\ \hline
+		\emph{pears.jpg} & 957.2 & 7 & 17.468 \\ \hline
+		\emph{strawberry.jpg} & 5,735.9 & 2 & 26.226 \\ \hline
+	\end{tabular}
+	\caption{Selected set of test images, their size in kilobytes, their occurrence in the test set (total: 20 images), and their average processing time over all tests.}
+	\label{tbl:tasks}
+\end{table}
 
-\subsection{Experiments}
+\subsubsection{Experiment}
+In this experiment the current WantCloud approach is simulated by using a single EC2 instance that operates directly on input files, without the use of a scheduler.
+The used set-ups are listed in Table \ref{tbl:setups}.
+In this table, the \emph{Single} set-up is the instance just described.
+The other set-ups use the Scheduler and have respectively one, two, three or four Worker nodes to perform the work. 
 
-\subsubsection{Scheduler}
-\begin{figure}[]
+\begin{table}
+	\centering
+	\begin{tabular}{| l | c | c |}
+		\hline
+		Name & Scheduler & \# Worker \\ \hline \hline
+		\emph{Single} & no & - \\ \hline
+		\emph{Scheduler 1} & yes & 1 \\ \hline
+		\emph{Scheduler 2} & yes & 2 \\ \hline
+		\emph{Scheduler 3} & yes & 3 \\ \hline
+		\emph{Scheduler 4} & yes & 4 \\ \hline
+	\end{tabular}
+	\caption{The different set-ups tested in the Scheduler Performance experiment, the name, use of the Scheduler, and amount of used Worker nodes are listed.}
+	\label{tbl:setups}
+\end{table}
+
+\subsubsection{Results}
+The results of this experiment are shown in Figure \ref{fig:diagram_total_processing}.
+This figure shows the total processing time for the whole test set per set-up.
+Several interesting facts stand out when analysing these results.
+First of all it can be seen that \emph{Scheduler 1} takes a few seconds longer than \emph{Single}.
+This is as expected, as the Scheduler would cause some overhead.
+Interestingly, this overhead is quite minimal.
+
+\begin{figure}
 	\centering
 	\includegraphics[width=0.5\textwidth]{images/diagram_total_processing.jpg}
-	\caption{Processing time comparison for 5 types of setups. Time in seconds.}
+	\caption{Processing time comparison for 5 types of set-ups. Time in seconds.}
 	\label{fig:diagram_total_processing}
 \end{figure}
 
+The following observation that can be made is that \emph{Scheduler 2} scores significantly better than both previous set-ups.
+The speed up is almost double compared to \emph{Scheduler 1}.
+\emph{Scheduler 3} and \emph{Scheduler 4} both perform even better than the previous two.
+
+To verify these results the average processing time per task was also analysed in Figure \ref{fig:diagram_avg_image}.
+This figure shows that the average time per task is almost the same in each set-up.
+A small increase can be seen from \emph{Single} to the \emph{Scheduler} set-ups, which could be due to the Scheduler overhead.
+However, this difference is so small it is hardly measurable on this scale.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/diagram_avg_image.jpg}
+	\caption{Average processing time per task for 5 types of set-ups. Time in seconds.}
+	\label{fig:diagram_avg_image}
+\end{figure}
+
+Table \ref{tbl:costs} gives an overview of estimated costs using the different set-ups on Amazon EC2.
+For \emph{Single} only one machine is needed, which keeps the cost low.
+For \emph{Scheduler 1} to \emph{4}, not only the Worker node, but also a Master node and a Backup node are required, this results in higher costs per running hour.
+As these tests were relatively brief, they do not predict the costs for long term use of the system.
+In the long term, the \emph{Scheduler} set-ups require at least two machines to be running at all time (Master and Backup), Workers can be shut off.
+Further discussion of these costs can be found in Section \ref{sec:discussion}.
+
+\begin{table}
+	\centering
+	\begin{tabular}{| l | c | c |}
+		\hline
+		Name & EC2 hours & Costs (\euro) \\ \hline \hline
+		\emph{Single} & 1 & 0,10 \\ \hline
+		\emph{Scheduler 1} & 3 & 0,30 \\ \hline
+		\emph{Scheduler 2} & 4 & 0,40 \\ \hline
+		\emph{Scheduler 3} & 5 & 0,50 \\ \hline
+		\emph{Scheduler 4} & 6 & 0,60 \\ \hline
+	\end{tabular}
+	\caption{The charged hours and costs of the different set-ups tested in the Scheduler Performance experiment, on Amazon EC2. Cost per hour: \EUR{0,10}.}
+	\label{tbl:costs}
+\end{table}
+
+\subsection{Time To Recover Master}
+
+\subsubsection{Experiment}
+
+\subsubsection{Results}
+
+\subsection{Time To Boot}
+
+\subsubsection{Experiment}
+
+\subsubsection{Results}
 
 % 7. Discussion (recommended size: 1 page): summarize the main findings of your work
 % and discuss the tradeoffs inherent in the design of cloud-computing-based applications.
