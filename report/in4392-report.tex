@@ -272,7 +272,7 @@ However, these instances can be used free of charge for 750 hours per month, lea
 Six of these instances were created, of which one functioned as Master node, one as Backup node and four as Worker nodes.
 
 The implementation of the system was done in Java and applies several external tools to perform all its work.
-The most notably are the Gaussian blur implementation by Huxtable \cite{web:huxtable} and the AWS SDK for Java \cite{web:sdk}.
+The most notably are the Gaussian blur implementation by Huxtable \cite{web:huxtable} and the AWS SDK for Java \cite{web:sdk}, used for starting and stopping instances.
 The full implementation of the experimental set-up is available as open source through GitHub \cite{web:git}.
 
 % b. Experiments: describe the experiments you have conducted to analyse each
@@ -393,10 +393,39 @@ Further discussion of these costs can be found in Section \ref{sec:discussion}.
 \subsubsection{Results}
 
 \subsection{Time To Boot}
+To be able to fully use the provisioning capabilities of the designed system, it is important to know the time it takes for a Worker to be instantiated.
+This time period is relevant for the Scheduler to be able to assess whether or not the queue is long enough to initialise more Worker nodes.
+The relevant time is measured from the moment the Master node sends a request to start an instance to the AWS API, until the Worker node connects to the Master.
+At that moment the Worker node is ready to accept tasks.
 
 \subsubsection{Experiment}
+For this experiment the existing implementation was used, with a small addition.
+To measure only the time it takes to start an instance as well as run the Worker software on it, a specific command was added to the Master implementation.
+This command allows to start the process of booting up a new Worker, as would normally happen through the Scheduler, but without the processing of tasks.
 
 \subsubsection{Results}
+All four Worker instances were started up and the time it took for them to connect was recorded.
+The results found in this experiment are listed in Table \ref{tbl:boottimes}.
+On average it takes a Worker 32,3 seconds to be ready to process tasks.
+As seen in Figure \ref{fig:diagram_avg_image}, a single task takes roughly 15 seconds. 
+From this we can deduct that already at 4 tasks per working node, it might be useful to start a new Worker.
+The current policy is set to 5, which is a more safe choice.
+
+\begin{table}
+	\centering
+	\begin{tabular}{| l | r |}
+		\hline
+		Machine & Boot time (sec.) \\ \hline \hline
+		\emph{Worker 1} & 30,7 \\ \hline
+		\emph{Worker 2} & 26,7 \\ \hline
+		\emph{Worker 3} & 30,7 \\ \hline
+		\emph{Worker 4} & 41,4 \\ \hline \hline
+		Average & 32,3 \\ \hline
+	\end{tabular}
+	\caption{The time it takes from the moment the Master sends a command to boot up until the Worker connects to the Master and is ready to receive tasks.}
+	\label{tbl:boottimes}
+\end{table}
+
 
 % 7. Discussion (recommended size: 1 page): summarize the main findings of your work
 % and discuss the tradeoffs inherent in the design of cloud-computing-based applications.
@@ -406,6 +435,10 @@ Further discussion of these costs can be found in Section \ref{sec:discussion}.
 % day/1 month/1 year.
 \section{Discussion}
 \label{sec:discussion}
+% TODO: discuss costs in long term use of this cloud system (see discussion in Scheduler Performance results)
+
+% TODO: update & mention the time sheet in Appendix A
+
 
 % 8. Conclusion
 \section{Conclusion}
