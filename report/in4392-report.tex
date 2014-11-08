@@ -47,47 +47,54 @@ B.I. Ghit\\
 % implement, and the structure of the remainder of the article; use one short paragraph
 % for each.
 \section{Introduction}
+\label{sec:intro}
 WantCloud BV is an organisation with a large workload in blurring images.
 One of the business processes in WantCloud requires large images to be blurred using a Gaussian blur.
-This process is compute intensive, as Gaussian functions require complex calculations as well as reading and writing a large amount of data.
+This process is compute intensive, as Gaussian functions require complex calculations as well as reading and writing large amounts of data.
 
 Currently, WantCloud has a single server running all of these tasks.
-This machine is experiencing heavy peak loads and sits idle for the rest of the day
-Therefore, WantCloud wants to explore the option to employ the cloud to be able to scale up and down as needed.
+For applying the Gaussian blur, an image filtering implementation in Java by Jerry Huxtable is used.\footnote{http://huxtable.com/ip/filters/index.html}
+The WantCloud server is experiencing heavy peak loads and sits idle for the rest of the day.
+At peak moments clients need to wait for quite some time for the images to be processed, which is harmful for WantCloud's business.
+Therefore, WantCloud wants to explore the option to utilise a cloud computing infrastructure to cope with high loads and be able to scale down with low loads.
 
 This report will discuss the details of an exploration towards using Amazon EC2\footnote{http://aws.amazon.com/ec2/} as a solution to WantClouds needs.
 The image processing system will be implemented on a dynamically scalable cluster of compute nodes.
-This implementation is made available open-source through GitHub\footnote{https://github.com/mickdelange/cclab}.
+This implementation is made available open source through GitHub\footnote{https://github.com/mickdelange/cclab}.
 The performance, overhead, and scalability will be tested to compare to the current set-up using one machine.
 
-This paper will first give an insight in the application and its requirements in Section \ref{sec_bg}.
-After this the design of the cloud system will be discussed in Section \ref{sec_system}, giving an insight in the implementation.
-The designed system will be evaluated in Section \ref{sec_eval}.
-The results in the evaluation will be discussed in Section \ref{sec_discussion} and conclusions will be presented in Section \ref{sec_conclusion}.
+In this report first an insight will be given into the background of the application and its requirements in Section \ref{sec:bg}.
+After this the design of the cloud solution will be discussed in Section \ref{sec:system}, giving an insight in the implementation.
+The designed system will be tested and evaluated in Section \ref{sec:eval}.
+The results of the evaluation will be discussed in Section \ref{sec:discussion} and conclusions will be presented in Section \ref{sec:conclusion}.
 
 % 4. Background on Application (recommended size: 0.5 pages):
 % describe the application (1 paragraph) and its requirements (1-3 paragraphs, summarized in a table if needed).
 \section{Background}
-\label{sec_bg}
-The application that this report describes handles image files and adds Gaussian Blur to these images.
-Image files can be uploaded, which will then be processed and the results will be returned to the user.
-The application uses the Amazon Compute Cloud to process the images in a reliable and scalable way.
-This means that the number of used nodes -and therefore the resulting cost- is kept to a minimum, whilst providing better performance than WantCloud currently has.
+\label{sec:bg}
+The application that WantCloud uses receives images from clients, to which a Gaussian blur needs to be applied.
+These image files are uploaded, these files are processed by the WantCloud server, and the results are presented to the clients after completion.
+Currently, WantCloud uses a single machine to process these images.
+This machine has to process many image files at certain times and sits idle for most of the time.
+
+WantCloud has decided to explore the option of using a cloud platform to handle these varying loads in a more efficient way.
+This means that the explored solution should provide better performance, while keeping the resulting costs to a minimum.
 More specifically, the application has to deal with the following requirements.
 
 \subsection{Elasticity}
-The application must scale the active nodes up and down depending on the workload.
+The application must automatically provision compute nodes, depending on the current workload.
 This means that unused nodes should be released as they are no longer needed, and new nodes should be leased as soon as the workload increases.
-This requirement should result in lower cost for maintaining nodes, while handling peak loads faster.
+No human input should be required to 
+This requirement should result being able to handle peak loads better, while limiting costs for unused resources.
 
-\subsection{Automation}
-The application should handle its own scheduling automatically.
-This means that tasks are assigned to available nodes, new nodes are started when needed, and unused nodes are release without human input.
+\subsection{Performance}
+The application should automatically schedule tasks to compute nodes.
+This means that tasks are assigned to available nodes, new nodes are started when needed, and unused nodes are released without human input.
 
-\subsection{Fault tolerance}
+\subsection{Reliability}
 Furthermore, the application must be reliable, or fault tolerant.
-This means that any problems that occur should be dealt with by the system itself.
-Nodes that crash, tasks that break or other problems that occur should be dealt with by the system itself, again without human input.
+This means that any problems that occur should be dealt with, without the need for human interference.
+Nodes that crash, tasks that break or other problems that occur should be dealt with by the system automatically.
 
 % 5. System Design (recommended size: 1.5 pages)
 % a. Resource Management Architecture: describe the design of your system,
