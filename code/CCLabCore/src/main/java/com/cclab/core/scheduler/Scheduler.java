@@ -110,9 +110,7 @@ public class Scheduler extends Thread {
     public void run() {
         boolean backupNotified = false;
         try {
-            while (true) {
-                if (shouldExit) // Stop the loop.
-                    break;
+            while (!shouldExit) {
                 synchronized (this) {
                     wait(interval);
                 }
@@ -128,6 +126,7 @@ public class Scheduler extends Thread {
                 if (!backupNotified)
                     myMaster.backupStillAlive();
             }
+            NodeLogger.get().info("Scheduler for " + myMaster + " has quit");
         } catch (InterruptedException e) {
             NodeLogger.get().error(e.getMessage(), e);
         }

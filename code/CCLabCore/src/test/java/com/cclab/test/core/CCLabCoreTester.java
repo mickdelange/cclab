@@ -27,10 +27,10 @@ public class CCLabCoreTester {
         try {
             AwsConnect.init();
 
-//            AwsConnect.startInstance("i-56afa3bd");
-//            AwsConnect.startInstance("i-c1bbb72a");
-//            AwsConnect.startInstance("i-1bb57cfa");
-//            AwsConnect.startInstance("i-3eb27bdf");
+//            AwsConnect.stopInstance("i-56afa3bd");
+//            AwsConnect.stopInstance("i-c1bbb72a");
+//            AwsConnect.stopInstance("i-1bb57cfa");
+//            AwsConnect.stopInstance("i-3eb27bdf");
 
             // List all instance IDs, IPs & states
             for (Instance inst : AwsConnect.getInstances()) {

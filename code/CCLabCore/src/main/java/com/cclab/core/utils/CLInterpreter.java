@@ -11,5 +11,5 @@ package com.cclab.core.utils;
  * @author an3m0na
  */
 public interface CLInterpreter {
-    public boolean interpretAndContinue(String[] command);
+    public boolean interpretCommand(String[] command);
 }

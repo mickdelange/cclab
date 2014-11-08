@@ -33,11 +33,12 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
         super(myName);
         this.port = port;
 
-        registerMaster(masterIP);
-
         // Listen for connections from new masters
-        server = new ServerComm(NodeUtils.testModeOn? 9030 : port, myName, this);
+        server = new ServerComm(NodeUtils.testModeOn ? 9030 : port, myName, this);
         server.start();
+        server.listeningModeOn = true;
+
+        registerMaster(masterIP);
     }
 
     /**
@@ -130,5 +131,11 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
         ret.setData(output);
         NodeLogger.get().info("Finished task " + ret);
         clients.get(masterIP).addMessageToOutgoing(ret);
+    }
+
+    @Override
+    public void shutDown() {
+        super.shutDown();
+        NodeLogger.get().info("WORKER shutting down");
     }
 }

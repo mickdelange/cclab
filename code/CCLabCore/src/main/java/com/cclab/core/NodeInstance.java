@@ -29,6 +29,7 @@ public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
     public String myName;
     public String myIP;
     boolean shuttingDown = false;
+    private CLReader clReader = null;
 
     public NodeInstance(String myName) {
         this.myName = myName;
@@ -42,11 +43,12 @@ public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
         myIP = AwsConnect.getInstancePrivIP(myName);
         NodeLogger.configureLogger(myName, this);
         clients = new HashMap<String, ClientComm>();
-        new CLReader(this).start();
+        clReader = new CLReader(this);
+        clReader.start();
     }
 
     @Override
-    public boolean interpretAndContinue(String[] command) {
+    public boolean interpretCommand(String[] command) {
         try {
             if (command[0].equals("quit")) {
             	shutDown();
@@ -99,6 +101,8 @@ public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
      */
     public void shutDown() {
     	shuttingDown = true;
+        if(clReader != null)
+            clReader.quit();
         if (server != null)
             server.quit();
         for (ClientComm client : clients.values())

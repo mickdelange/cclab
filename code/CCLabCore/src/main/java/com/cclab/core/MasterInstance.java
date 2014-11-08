@@ -43,7 +43,7 @@ public class MasterInstance extends NodeInstance {
         masterIds.add(myBackupName);
 
         scheduler = new Scheduler(masterIds, this);
-        scheduler.run();
+        scheduler.start();
     }
 
     @Override
@@ -190,5 +190,6 @@ public class MasterInstance extends NodeInstance {
     public void shutDown() {
         super.shutDown();
         scheduler.quit();
+        NodeLogger.get().info("MASTER shutting down");
     }
 }

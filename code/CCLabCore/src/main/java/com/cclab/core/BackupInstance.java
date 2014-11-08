@@ -2,7 +2,9 @@ package com.cclab.core;
 
 import com.cclab.core.network.ClientComm;
 import com.cclab.core.network.Message;
-import com.cclab.core.utils.*;
+import com.cclab.core.utils.MasterObserver;
+import com.cclab.core.utils.NodeLogger;
+import com.cclab.core.utils.NodeUtils;
 
 import java.io.IOException;
 import java.util.Map;
@@ -45,11 +47,10 @@ public class BackupInstance extends NodeInstance {
         try {
             // Init self as Master, with Master as Backup
             new MasterInstance(myName, myMasterName, port);
-
             // Notify all Workers.
-            notifyWorkers();
+            broadcastMasterSwitch();
 
-            new BootObserver(myMasterName, BootSettings.backup(myMasterName, myName, myIP));
+//            new BootObserver(myMasterName, BootSettings.backup(myMasterName, myName, myIP));
 
             // Kill self
             safeShutDown();
@@ -63,17 +64,13 @@ public class BackupInstance extends NodeInstance {
     /**
      * Notify all registered Worker nodes of new master.
      */
-    private void notifyWorkers() {
+    private void broadcastMasterSwitch() {
         String ownIP = NodeUtils.testModeOn ? "localhost" : AwsConnect.getInstancePrivIP(myName);
         Message notification = new Message(Message.Type.NEWMASTER, myName);
         notification.setDetails(ownIP);
 
-        System.out.println("Notifying workers: " + (clients.size() - 1));
-        for (String key : clients.keySet()) {
-            if (!key.equals(masterIP)) {// Notify only worker nodes
-                System.out.println("Added notification for " + key);
-                clients.get(key).addMessageToOutgoing(notification);
-            }
+        for (Map.Entry<String, ClientComm> client : clients.entrySet()) {
+            client.getValue().addMessageToOutgoing(notification);
         }
     }
 
@@ -96,11 +93,12 @@ public class BackupInstance extends NodeInstance {
 
     private void safeShutDown() {
         boolean done;
+        NodeLogger.get().info("Waiting for nodes to receive switch notification");
         do {
             done = true;
             // check if all notifications to workers have been sent
             for (Map.Entry<String, ClientComm> client : clients.entrySet())
-                if (!client.getKey().equals(masterIP))
+//                if (!client.getKey().equals(masterIP))
                     if (client.getValue().hasOutgoingWaiting()) {
                         done = false;
                         break;
@@ -145,5 +143,6 @@ public class BackupInstance extends NodeInstance {
     public void shutDown() {
         masterObserver.quit();
         super.shutDown();
+        NodeLogger.get().info("BACKUP shutting down");
     }
 }

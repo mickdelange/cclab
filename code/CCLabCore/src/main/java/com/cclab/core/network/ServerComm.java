@@ -33,6 +33,7 @@ public class ServerComm extends GeneralComm {
     ConcurrentHashMap<SocketChannel, String> channelToName;
     ExecutorService pool = Executors.newFixedThreadPool(5);
     ConcurrentHashMap<SocketChannel, Transceiver> transceivers;
+    public boolean listeningModeOn = false;
 
     public ServerComm(int port, String myName, CommInterpreter interpreter) throws IOException {
         super(port, myName, interpreter);
@@ -141,7 +142,8 @@ public class ServerComm extends GeneralComm {
     void handleMessage(Message message, SocketChannel channel) {
         SelectionKey key = channel.keyFor(selector);
         registerClient(message.getOwner(), channel);
-        key.interestOps(key.interestOps() & ~SelectionKey.OP_READ);
+        if (!listeningModeOn)
+            key.interestOps(key.interestOps() & ~SelectionKey.OP_READ);
         super.handleMessage(message, channel);
     }
 

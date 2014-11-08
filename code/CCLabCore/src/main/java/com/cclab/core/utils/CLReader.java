@@ -1,6 +1,6 @@
 package com.cclab.core.utils;
 
-import javax.xml.soap.Node;
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 public class CLReader extends Thread {
 
     CLInterpreter interpreter;
+    private boolean shouldExit = false;
 
     public CLReader(CLInterpreter interpreter) {
         this.interpreter = interpreter;
@@ -26,19 +27,28 @@ public class CLReader extends Thread {
     @Override
     public void run() {
         String command = null;
-        InputStreamReader inStream = new InputStreamReader(System.in);
-        BufferedReader reader = new BufferedReader(inStream);
-        while (true) {
+        BufferedInputStream inStream = new BufferedInputStream(System.in);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
+        while (!shouldExit) {
             // see if cli command was given
+            command = null;
             try {
-                command = reader.readLine();
+                if (inStream.available() > 0)
+                    command = reader.readLine();
             } catch (IOException e) {
                 NodeLogger.get().error(e.getMessage(), e);
             }
             // received command in CLI
-            NodeLogger.get().debug("Received command " + command + ".");
-            if (command != null && !interpreter.interpretAndContinue(command.split(" ")))
-                break;
+
+            if (command != null) {
+                NodeLogger.get().debug("Received command " + command + ".");
+                interpreter.interpretCommand(command.split(" "));
+            }
         }
+        NodeLogger.get().info("CL Reader for " + interpreter + " has quit");
+    }
+
+    public void quit() {
+        shouldExit = true;
     }
 }
