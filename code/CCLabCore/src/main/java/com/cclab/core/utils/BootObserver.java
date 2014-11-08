@@ -32,8 +32,6 @@ public class BootObserver extends Thread {
 			jarPath = "";
 			pemPath = "";
 		}
-        
-        run();
     }
 	
 	/**
@@ -50,10 +48,9 @@ public class BootObserver extends Thread {
 				
 				currState = AwsConnect.getInstanceState(instanceId);
 				if (currState.equals("running")) {
-					// Run the jar
-					sendCommand();
-					
-					quit(); // Work is done
+					//  Send the command, quit if successful
+					if (sendCommand())
+						quit(); // Work is done
 				}
 			}
 		} catch (InterruptedException e) {
@@ -64,7 +61,7 @@ public class BootObserver extends Thread {
 	/**
 	 * Send SSH command to run jar on instance.
 	 */
-	private void sendCommand() {
+	private boolean sendCommand() {
 		JSch jsch = new JSch();
 		String ip = AwsConnect.getInstancePrivIP(instanceId);
 		
@@ -114,11 +111,14 @@ public class BootObserver extends Thread {
 
 			channel.disconnect();
 			session.disconnect();
+			
+			return true;
 		}
 		catch (Exception e)
 		{
 			NodeLogger.get().error(e.getMessage());
 		}
+		return false;
 	}
 	
 	/**

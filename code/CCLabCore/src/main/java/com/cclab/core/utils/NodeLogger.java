@@ -48,4 +48,8 @@ public class NodeLogger {
     public static Logger getTasking() {
         return Logger.getLogger("monitor.tasking");
     }
+
+    public static Logger getBoot() {
+        return Logger.getLogger("monitor.boot");
+    }
 }
