@@ -28,6 +28,7 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
     String masterIP = null;
     final int MAX_RECONNECT = 3;
     int reconnecting = 0;
+    String nowProcessing = null;
 
     public WorkerInstance(String myName, String masterIP, int port) throws IOException {
         super(myName);
@@ -89,6 +90,7 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
     @Override
     public void processMessage(Message message) {
         if (message.getType() == Message.Type.NEWTASK.getCode()) {
+            nowProcessing = message.getDetails();
             NodeLogger.get().info("Received task " + message);
             NodeLogger.getProcessing().info("START_" + message.getDetails());
             Processor processor = new ImageProcessor(message.getDetails(), (byte[]) message.getData(), "blur", this);
@@ -131,11 +133,17 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
         ret.setData(output);
         NodeLogger.get().info("Finished task " + ret);
         clients.get(masterIP).addMessageToOutgoing(ret);
+        nowProcessing = null;
     }
 
     @Override
     public void shutDown() {
         super.shutDown();
         NodeLogger.get().info("WORKER shutting down");
+    }
+
+    @Override
+    public String getPingDetails() {
+        return nowProcessing;
     }
 }

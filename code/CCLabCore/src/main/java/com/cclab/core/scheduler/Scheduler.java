@@ -182,10 +182,11 @@ public class Scheduler extends Thread {
      *
      * @param instanceId
      */
-    public void taskFinished(String instanceId) {
+    public void taskFinished(String instanceId, String inputId) {
         for (Node n : workerNodes) {
             if (n.instanceId.equals(instanceId)) {
-                n.taskFinished();
+                if (n.currTask.inputId.equals(inputId))
+                    n.taskFinished();
                 break;
             }
         }

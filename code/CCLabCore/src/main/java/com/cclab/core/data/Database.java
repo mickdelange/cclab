@@ -153,6 +153,17 @@ public class Database {
     }
 
     /**
+     * Extracts the original input record's id from an output filename.
+     *
+     * @param filename the output record's filename
+     * @return the original input record's id
+     */
+    private String getIdFromOutputName(String filename) {
+        filename = filename.replace("processed_", "");
+        return filename.substring(filename.indexOf("_") + 1);
+    }
+
+    /**
      * Gets a record from its id.
      *
      * @param inputId the record's id
@@ -196,15 +207,24 @@ public class Database {
         }
     }
 
-    public String[] getInputRecords() {
-        return inputDir.list();
-    }
+    public String[] getProcessedRecords() {
+        String[] stored = outputDir.list();
 
-    public String[] getStoredRecords() {
-        return outputDir.list();
+        for (int i = 0; i < stored.length; i++)
+            stored[i] = getIdFromOutputName(stored[i]);
+        return stored;
     }
 
     public String[] getTemporaryRecords() {
         return tmpDir.list();
+    }
+
+    public void removeInputRecord(String inputId) {
+        String inputName = getInputPathFromId(inputId);
+        File file = new File(inputName);
+        boolean done = file.delete();
+        if (!done) {
+            NodeLogger.get().info("No input to remove for " + inputName);
+        }
     }
 }

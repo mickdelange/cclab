@@ -5,10 +5,7 @@ import com.cclab.core.data.Database;
 import com.cclab.core.network.Message;
 import com.cclab.core.utils.NodeLogger;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -93,10 +90,16 @@ public class DataReplicator {
     }
 
     public void backupAll() {
-        List<String> storedList = Arrays.asList(Database.getInstance().getStoredRecords());
+        NodeLogger.get().info("Re-replicating to backup");
+        List<String> initialStored = Arrays.asList(Database.getInstance().getProcessedRecords());
+        ArrayList<String> storedList = new ArrayList<String>(initialStored);
         stored.addAll(storedList);
-        List<String> processingList = Arrays.asList(Database.getInstance().getTemporaryRecords());
+        NodeLogger.get().debug("Stored: " + storedList);
+        List<String> initialProcessing = Arrays.asList(Database.getInstance().getTemporaryRecords());
+        ArrayList<String> processingList = new ArrayList<String>(initialProcessing);
+        NodeLogger.get().debug("Processed: " + processingList);
         processingList.removeAll(stored);
+        NodeLogger.get().debug("Adding: " + processingList);
         waiting.addAll(processingList);
     }
 }

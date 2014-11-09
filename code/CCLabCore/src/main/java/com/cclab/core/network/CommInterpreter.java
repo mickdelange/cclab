@@ -14,4 +14,8 @@ public interface CommInterpreter {
     abstract void nodeConnected(String name);
 
     abstract void communicatorDown(GeneralComm comm);
+
+    abstract String getPingDetails();
+
+    abstract void nodeDisconnected(String name);
 }

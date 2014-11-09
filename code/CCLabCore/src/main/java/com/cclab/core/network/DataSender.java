@@ -63,11 +63,11 @@ public class DataSender {
             while (buf.hasRemaining()) {
                 myChannel.write(buf);
                 if (++tries > MAX_SEND_TRIES) {
-                    NodeLogger.get().debug("Outgoing buffer full for " + ((SocketChannel) myKey.channel()).socket().getRemoteSocketAddress());
+                    NodeLogger.get().trace("Outgoing buffer full for " + ((SocketChannel) myKey.channel()).socket().getRemoteSocketAddress());
                     //TODO maybe disconnect
                 }
             }
-            NodeLogger.get().debug("Message " + parentMessage.getId() + ": Sent " + (chunk + 1) + " of " + chunks + "(" + size + " bytes)");
+            NodeLogger.get().trace("Message " + parentMessage.getId() + ": Sent " + (chunk + 1) + " of " + chunks + "(" + size + " bytes)");
             chunk++;
             if (chunk >= chunks) {
                 NodeLogger.get().debug("Sent data for " + parentMessage);

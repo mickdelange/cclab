@@ -133,6 +133,7 @@ public class ServerComm extends GeneralComm {
         String client = channelToName.get(channel);
 
         NodeLogger.get().info("Node " + client + " disconnected");
+        interpreter.nodeDisconnected(client);
         channelToName.remove(channel);
         nameToChannel.remove(client);
         super.cancelConnection(key);

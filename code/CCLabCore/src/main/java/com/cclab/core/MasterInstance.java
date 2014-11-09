@@ -32,9 +32,14 @@ public class MasterInstance extends NodeInstance {
     String myBackupName;
     boolean backupConnected = false;
     DataReplicator replicator = null;
+    List<String> processing = null;
+    boolean tasksStarted = false;
 
     public MasterInstance(String name, String backupName, int port) throws IOException {
         super(name);
+
+        NodeLogger.getFailure().info("MASTER_BOOT");
+
         myBackupName = backupName;
 
         replicator = new DataReplicator(this);
@@ -46,6 +51,8 @@ public class MasterInstance extends NodeInstance {
         List<String> masterIds = new ArrayList<String>();
         masterIds.add(myName);
         masterIds.add(myBackupName);
+
+        processing = new ArrayList<String>();
 
         scheduler = new Scheduler(masterIds, this);
         scheduler.start();
@@ -90,10 +97,21 @@ public class MasterInstance extends NodeInstance {
      * @param inputId   Task id
      */
     public void sendTaskTo(String recipient, String inputId) {
+        if (!tasksStarted) {
+            NodeLogger.getFailure().info("MASTER_PROCESSING");
+            tasksStarted = true;
+        }
         if (inputId == null || inputId.length() < 1) {
             NodeLogger.get().error("Task input identifier not supplied");
             return;
         }
+
+        if (processing.contains(inputId)) {
+            NodeLogger.get().info("Task is already being processed");
+            scheduler.taskFinished(recipient, inputId);
+            return;
+        }
+
         NodeLogger.get().info("Sending task " + inputId + " to " + recipient);
 
         byte[] input = Database.getInstance().getRecord(inputId);
@@ -164,7 +182,7 @@ public class MasterInstance extends NodeInstance {
         if (message.getType() == Message.Type.FINISHED.getCode()) {
             NodeLogger.get().info("Task " + message.getDetails() + " finished");
 
-            scheduler.taskFinished(message.getOwner());
+            scheduler.taskFinished(message.getOwner(), message.getDetails());
 
             // optional
             Database.getInstance().storeRecord((byte[]) message.getData(), message.getDetails());
@@ -174,7 +192,16 @@ public class MasterInstance extends NodeInstance {
                 replicator.backupFinishedRecord(message.getDetails(), (byte[]) message.getData());
             else
                 replicator.backupStoredRecord(message.getDetails());
+        } else if (message.getType() == Message.Type.PING.getCode()) {
+            if (message.getDetails() != null) {
+                Database.getInstance().removeInputRecord(message.getDetails());
+                markProcessing(message.getDetails());
+            }
         }
+    }
+
+    private void markProcessing(String inputId) {
+        processing.add(inputId);
     }
 
     @Override
@@ -198,12 +225,17 @@ public class MasterInstance extends NodeInstance {
         super.shutDown();
         scheduler.quit();
         NodeLogger.get().info("MASTER shutting down");
+        NodeLogger.getFailure().info("MASTER_FAIL");
     }
 
     @Override
     public void communicatorDown(GeneralComm comm) {
         super.communicatorDown(comm);
-        if (comm.equals(clients.get(myBackupName))) {
+    }
+
+    @Override
+    public void nodeDisconnected(String name) {
+        if (name.equals(myBackupName)) {
             backupConnected = false;
             replicator = new DataReplicator(this);
             replicator.backupAll();

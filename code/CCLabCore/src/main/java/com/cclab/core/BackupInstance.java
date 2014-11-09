@@ -19,6 +19,8 @@ public class BackupInstance extends NodeInstance {
 
     public BackupInstance(String myName, String masterName, String masterIP, int port) throws IOException {
         super(myName);
+
+        NodeLogger.getFailure().info("BACKUP_BOOT");
         myMasterName = masterName;
         this.masterIP = masterIP;
         this.port = port;
@@ -129,6 +131,7 @@ public class BackupInstance extends NodeInstance {
             // Store new image in input
             Database.getInstance().storeInputRecord((byte[]) message.getData(), message.getDetails());
         } else if (message.getType() == Message.Type.BACKUPFIN.getCode()) {
+            Database.getInstance().removeInputRecord(message.getDetails());
             Database.getInstance().storeRecord((byte[]) message.getData(), message.getDetails());
             // Move image from input to output
         } else if (message.getType() == Message.Type.BACKUPCONNECT.getCode()) {
@@ -148,5 +151,6 @@ public class BackupInstance extends NodeInstance {
         masterObserver.quit();
         super.shutDown();
         NodeLogger.get().info("BACKUP shutting down");
+        NodeLogger.getFailure().info("BACKUP_FAIL");
     }
 }

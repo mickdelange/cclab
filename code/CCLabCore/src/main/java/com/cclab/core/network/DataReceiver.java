@@ -49,7 +49,7 @@ public class DataReceiver extends Thread {
             while (buf.remaining() > 0) {
                 if (parentMessage == null) {
                     int size = buf.getInt();
-                    NodeLogger.get().debug("Receiving message of size " + size);
+                    NodeLogger.get().trace("Receiving message of size " + size);
                     byte[] data = new byte[size];
                     buf.get(data, 0, size);
                     Message message = Message.getFromBytes(data);
@@ -83,7 +83,7 @@ public class DataReceiver extends Thread {
                         collector.close();
                         collector = new ByteArrayOutputStream();
                     } else {
-                        NodeLogger.get().debug("Message " + parentMessage.getId() + ": Received " + collector.size() + " bytes of " + parentMessage.getData());
+                        NodeLogger.get().trace("Message " + parentMessage.getId() + ": Received " + collector.size() + " bytes of " + parentMessage.getData());
                     }
                 }
             }

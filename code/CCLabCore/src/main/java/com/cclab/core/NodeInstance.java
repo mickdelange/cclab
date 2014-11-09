@@ -108,4 +108,14 @@ public abstract class NodeInstance implements CLInterpreter, CommInterpreter {
         for (ClientComm client : clients.values())
             client.quit();
     }
+
+    @Override
+    public String getPingDetails() {
+        return null;
+    }
+
+    @Override
+    public void nodeDisconnected(String name) {
+
+    }
 }
