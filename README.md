@@ -3,6 +3,8 @@ Cloud Computing Lab Exercise
 
 This repository contains the work of Mick de Lange and Maria Voinea for the IN4392 Cloud Computing course of the TU Delft.
 
+The final report can be downloaded [here](https://github.com/mickdelange/cclab/blob/master/report/in4392-report.pdf?raw=true).
+
 ## Objective
 
 The project's objective is the scheduling of image processing tasks on virtual machines in the Amazon EC2 cloud.
