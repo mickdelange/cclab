@@ -43,7 +43,7 @@ public class Scheduler extends Thread {
             // Something went wrong loading properties, set to default
             loadThresh = 5;
             interval = 2000;
-            maxTaskTime = 60000;
+            maxTaskTime = 120000;
             maxIdleTime = 3600000;
             maxTaskRetry = 2;
             testMode = false;
@@ -182,17 +182,20 @@ public class Scheduler extends Thread {
      *
      * @param instanceId
      */
-    public void taskFinished(String instanceId, String inputId) {
+    public boolean taskFinished(String instanceId, String inputId) {
         for (Node n : workerNodes) {
             if (n.instanceId.equals(instanceId)) {
-                if (n.currTask.inputId.equals(inputId))
+                if (n.currTask.inputId.equals(inputId)) {
                     n.taskFinished();
-                break;
+                    break;
+                } else
+                    return false;
             }
         }
         synchronized (this) {
             notify();
         }
+        return true;
     }
 
     /**

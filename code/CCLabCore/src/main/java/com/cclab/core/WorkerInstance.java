@@ -90,8 +90,10 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
     @Override
     public void processMessage(Message message) {
         if (message.getType() == Message.Type.NEWTASK.getCode()) {
-            nowProcessing = message.getDetails();
             NodeLogger.get().info("Received task " + message);
+            if (message.getDetails().equals(nowProcessing))
+                return;
+            nowProcessing = message.getDetails();
             NodeLogger.getProcessing().info("START_" + message.getDetails());
             Processor processor = new ImageProcessor(message.getDetails(), (byte[]) message.getData(), "blur", this);
             new Thread(processor).start();

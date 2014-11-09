@@ -182,12 +182,14 @@ public class MasterInstance extends NodeInstance {
         if (message.getType() == Message.Type.FINISHED.getCode()) {
             NodeLogger.get().info("Task " + message.getDetails() + " finished");
 
-            scheduler.taskFinished(message.getOwner(), message.getDetails());
+            boolean expected = scheduler.taskFinished(message.getOwner(), message.getDetails());
 
             // optional
             Database.getInstance().storeRecord((byte[]) message.getData(), message.getDetails());
             NodeLogger.getTasking().info("DONE_" + message.getDetails() + "_" + message.getOwner());
 
+            if (!expected)
+                server.listenTo(message.getDetails());
             if (backupConnected)
                 replicator.backupFinishedRecord(message.getDetails(), (byte[]) message.getData());
             else

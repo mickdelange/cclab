@@ -19,14 +19,14 @@ public class DataReceiver extends Thread {
     private SocketChannel myChannel = null;
     private static final int BUF_SIZE = 8192;
     private GeneralComm communicator = null;
-    private ByteArrayOutputStream collector = new ByteArrayOutputStream();
-    private Message parentMessage = null;
-//    private boolean isReceiving = false;
+    private ByteArrayOutputStream collector = null;
+    private int expected = 0;
 
     public DataReceiver(SelectionKey key, GeneralComm communicator) {
         this.myKey = key;
         this.myChannel = (SocketChannel) key.channel();
         this.communicator = communicator;
+        collector = new ByteArrayOutputStream();
     }
 
     @Override
@@ -47,44 +47,26 @@ public class DataReceiver extends Thread {
             buf.flip();
 
             while (buf.remaining() > 0) {
-                if (parentMessage == null) {
-                    int size = buf.getInt();
-                    NodeLogger.get().trace("Receiving message of size " + size);
-                    byte[] data = new byte[size];
-                    buf.get(data, 0, size);
-                    Message message = Message.getFromBytes(data);
-                    NodeLogger.get().debug("Received " + message);
-                    if (message != null) {
-                        if (Message.Type.get(message.getType()).isBulkType()) {
-                            parentMessage = message;
-                            continue;
-                        } else {
-                            communicator.handleMessage(message, myChannel);
-                        }
-                    }
+                if (collector.size() <= 0) {
+                    expected = buf.getInt();
+                    NodeLogger.get().debug("Expecting " + expected + " bytes");
                 }
-                if (parentMessage != null) {
-                    int total = -1;
-                    try {
-                        total = (Integer) parentMessage.getData();
-                    } catch (Exception e) {
-                        NodeLogger.get().error("Cannot cast " + parentMessage.getData() + " for " + parentMessage);
-                    }
 
-                    int size = Math.min(buf.remaining(), total - collector.size());
-                    byte[] data = new byte[size];
-                    buf.get(data, 0, size);
-                    collector.write(data);
-                    if (collector.size() == total) {
-                        NodeLogger.get().debug("Received data for " + parentMessage);
-                        parentMessage.setData(collector.toByteArray());
-                        communicator.handleMessage(parentMessage, myChannel);
-                        parentMessage = null;
+                int size = Math.min(buf.remaining(), expected - collector.size());
+                byte[] data = new byte[size];
+                buf.get(data, 0, size);
+                collector.write(data);
+                if (collector.size() == expected) {
+                    Message message = Message.getFromBytes(collector.toByteArray());
+                    if (message != null) {
+                        NodeLogger.get().debug("Received data for " + message);
+                        communicator.handleMessage(message, myChannel);
                         collector.close();
                         collector = new ByteArrayOutputStream();
-                    } else {
-                        NodeLogger.get().trace("Message " + parentMessage.getId() + ": Received " + collector.size() + " bytes of " + parentMessage.getData());
+                        expected = 0;
                     }
+                } else {
+                    NodeLogger.get().trace("Received " + collector.size() + " bytes of " + expected);
                 }
             }
 

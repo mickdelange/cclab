@@ -165,7 +165,6 @@ public class AwsConnect {
     	try {
 	        List<String> instancesToStop = new ArrayList<String>();
 	        instancesToStop.add(instanceId);
-	        
 	        StopInstancesRequest sir = new StopInstancesRequest();
 	        sir.setInstanceIds(instancesToStop);
 	        

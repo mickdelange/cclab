@@ -11,7 +11,7 @@ import java.io.*;
  */
 public class NodeUtils {
     //TODO change to false if not test!!!!
-    public static boolean testModeOn = true;
+    public static boolean testModeOn = false;
 
     public static String join(Object[] parts, int skip, String delimiter) {
         StringBuilder ret = new StringBuilder();

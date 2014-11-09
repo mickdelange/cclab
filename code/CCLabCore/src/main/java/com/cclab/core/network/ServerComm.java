@@ -160,4 +160,12 @@ public class ServerComm extends GeneralComm {
         ConcurrentLinkedQueue<Message> queue = outgoingQueues.get(channel);
         return !queue.isEmpty();
     }
+
+    public void listenTo(String name) {
+        SocketChannel channel = nameToChannel.get(name);
+        if (channel == null)
+            return;
+        SelectionKey key = channel.keyFor(selector);
+        key.interestOps(key.interestOps() | SelectionKey.OP_READ);
+    }
 }
