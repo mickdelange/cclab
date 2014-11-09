@@ -1,0 +1,54 @@
+2014-11-09 14:16:48,998 [main] INFO  full  - Server communicator is now online
+2014-11-09 14:16:49,002 [main] INFO  full  - Listening on port 9026
+2014-11-09 14:16:49,023 [main] INFO  full  - ClientComm communicator is now online
+2014-11-09 14:16:49,023 [main] INFO  full  - Connecting to 172.31.31.101:9026
+2014-11-09 14:16:49,045 [Thread-3] DEBUG full  - Sent data for Message[0][PING] from i-1bb57cfa (null)
+2014-11-09 14:16:49,049 [Thread-3] DEBUG full  - Resuming normal send mode for  i-1bb57cfa
+2014-11-09 14:16:49,050 [Thread-2] INFO  full  - Connection from: /172.31.41.198:37450
+2014-11-09 14:16:49,057 [Thread-3] DEBUG full  - Expecting 90713 bytes
+2014-11-09 14:16:49,058 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:16:49,059 [Thread-2] DEBUG full  - Received data for Message[2][PING] from i-3eb27bdf (null)
+2014-11-09 14:16:49,059 [Thread-2] INFO  full  - Client i-3eb27bdf has connected.
+2014-11-09 14:16:49,060 [Thread-2] INFO  full  - Node connected: i-3eb27bdf
+2014-11-09 14:16:49,069 [Thread-3] DEBUG full  - Received data for Message[28][NEWTASK] from i-c1bbb72a (apple.jpeg)
+2014-11-09 14:16:49,070 [Thread-3] INFO  full  - Received task Message[28][NEWTASK] from i-c1bbb72a (apple.jpeg)
+2014-11-09 14:16:50,773 [Thread-6] INFO  full  - Finished task Message[1][FINISHED] from i-1bb57cfa (apple.jpeg)
+2014-11-09 14:16:50,774 [Thread-3] DEBUG full  - Sent data for Message[1][FINISHED] from i-1bb57cfa (apple.jpeg)
+2014-11-09 14:16:50,774 [Thread-3] DEBUG full  - Resuming normal send mode for  i-1bb57cfa
+2014-11-09 14:16:50,795 [Thread-3] DEBUG full  - Expecting 5736055 bytes
+2014-11-09 14:16:51,076 [Thread-3] DEBUG full  - Received data for Message[30][NEWTASK] from i-c1bbb72a (strawberry (copy).jpg)
+2014-11-09 14:16:51,076 [Thread-3] INFO  full  - Received task Message[30][NEWTASK] from i-c1bbb72a (strawberry (copy).jpg)
+2014-11-09 14:17:42,997 [Thread-8] INFO  full  - Finished task Message[2][FINISHED] from i-1bb57cfa (strawberry (copy).jpg)
+2014-11-09 14:17:42,999 [Thread-3] DEBUG full  - Sent data for Message[2][FINISHED] from i-1bb57cfa (strawberry (copy).jpg)
+2014-11-09 14:17:42,999 [Thread-3] DEBUG full  - Resuming normal send mode for  i-1bb57cfa
+2014-11-09 14:17:43,003 [Thread-3] DEBUG full  - Expecting 957355 bytes
+2014-11-09 14:17:43,021 [Thread-3] DEBUG full  - Received data for Message[64][NEWTASK] from i-c1bbb72a (pears (3rd copy).jpg)
+2014-11-09 14:17:43,021 [Thread-3] INFO  full  - Received task Message[64][NEWTASK] from i-c1bbb72a (pears (3rd copy).jpg)
+2014-11-09 14:18:18,069 [Thread-9] INFO  full  - Finished task Message[3][FINISHED] from i-1bb57cfa (pears (3rd copy).jpg)
+2014-11-09 14:18:18,070 [Thread-3] DEBUG full  - Sent data for Message[3][FINISHED] from i-1bb57cfa (pears (3rd copy).jpg)
+2014-11-09 14:18:18,071 [Thread-3] DEBUG full  - Resuming normal send mode for  i-1bb57cfa
+2014-11-09 14:18:18,075 [Thread-3] DEBUG full  - Expecting 957359 bytes
+2014-11-09 14:18:18,097 [Thread-3] DEBUG full  - Received data for Message[91][NEWTASK] from i-c1bbb72a (pears (another copy).jpg)
+2014-11-09 14:18:18,097 [Thread-3] INFO  full  - Received task Message[91][NEWTASK] from i-c1bbb72a (pears (another copy).jpg)
+2014-11-09 14:18:52,637 [Thread-10] INFO  full  - Finished task Message[4][FINISHED] from i-1bb57cfa (pears (another copy).jpg)
+2014-11-09 14:18:52,638 [Thread-3] DEBUG full  - Sent data for Message[4][FINISHED] from i-1bb57cfa (pears (another copy).jpg)
+2014-11-09 14:18:52,638 [Thread-3] DEBUG full  - Resuming normal send mode for  i-1bb57cfa
+2014-11-09 14:18:52,645 [Thread-3] DEBUG full  - Expecting 957344 bytes
+2014-11-09 14:18:52,660 [Thread-3] DEBUG full  - Received data for Message[118][NEWTASK] from i-c1bbb72a (pears.jpg)
+2014-11-09 14:18:52,660 [Thread-3] INFO  full  - Received task Message[118][NEWTASK] from i-c1bbb72a (pears.jpg)
+2014-11-09 14:19:27,373 [Thread-11] INFO  full  - Finished task Message[5][FINISHED] from i-1bb57cfa (pears.jpg)
+2014-11-09 14:19:27,375 [Thread-3] DEBUG full  - Sent data for Message[5][FINISHED] from i-1bb57cfa (pears.jpg)
+2014-11-09 14:19:27,375 [Thread-3] DEBUG full  - Resuming normal send mode for  i-1bb57cfa
+2014-11-09 14:19:27,378 [Thread-3] DEBUG full  - Expecting 342355 bytes
+2014-11-09 14:19:27,389 [Thread-3] DEBUG full  - Received data for Message[143][NEWTASK] from i-c1bbb72a (banana (3rd copy).jpg)
+2014-11-09 14:19:27,389 [Thread-3] INFO  full  - Received task Message[143][NEWTASK] from i-c1bbb72a (banana (3rd copy).jpg)
+2014-11-09 14:20:01,278 [Thread-12] INFO  full  - Finished task Message[6][FINISHED] from i-1bb57cfa (banana (3rd copy).jpg)
+2014-11-09 14:20:01,280 [Thread-3] DEBUG full  - Sent data for Message[6][FINISHED] from i-1bb57cfa (banana (3rd copy).jpg)
+2014-11-09 14:20:01,280 [Thread-3] DEBUG full  - Resuming normal send mode for  i-1bb57cfa
+2014-11-09 14:20:37,786 [Thread-1] DEBUG full  - Received command quit.
+2014-11-09 14:20:37,788 [Thread-2] INFO  full  - Communicator Thread[Thread-2,5,main] for com.cclab.core.WorkerInstance@56b0287a has quit
+2014-11-09 14:20:37,788 [Thread-2] WARN  full  - Communicator disconnected
+2014-11-09 14:20:37,789 [Thread-3] INFO  full  - Communicator Thread[Thread-3,5,main] for com.cclab.core.WorkerInstance@56b0287a has quit
+2014-11-09 14:20:37,789 [Thread-3] WARN  full  - Communicator disconnected
+2014-11-09 14:20:37,789 [Thread-1] INFO  full  - WORKER shutting down
+2014-11-09 14:20:37,789 [Thread-1] INFO  full  - CL Reader for com.cclab.core.WorkerInstance@56b0287a has quit

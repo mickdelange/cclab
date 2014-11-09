@@ -1,0 +1,52 @@
+2014-11-09 14:43:49,022 [main] INFO  full  - Server communicator is now online
+2014-11-09 14:43:49,027 [main] INFO  full  - Listening on port 9026
+2014-11-09 14:43:49,050 [main] INFO  full  - ClientComm communicator is now online
+2014-11-09 14:43:49,050 [main] INFO  full  - Connecting to 172.31.31.101:9026
+2014-11-09 14:43:49,074 [Thread-3] DEBUG full  - Sent data for Message[0][PING] from i-4b5f8faa (null)
+2014-11-09 14:43:49,081 [Thread-3] DEBUG full  - Resuming normal send mode for  i-4b5f8faa
+2014-11-09 14:43:49,089 [Thread-3] DEBUG full  - Expecting 342355 bytes
+2014-11-09 14:43:49,102 [Thread-3] DEBUG full  - Received data for Message[34][NEWTASK] from i-c1bbb72a (banana (6th copy).jpg)
+2014-11-09 14:43:49,103 [Thread-3] INFO  full  - Received task Message[34][NEWTASK] from i-c1bbb72a (banana (6th copy).jpg)
+2014-11-09 14:43:49,109 [Thread-3] INFO  monitor.processing  - START_banana (6th copy).jpg
+2014-11-09 14:43:49,261 [Thread-2] INFO  full  - Connection from: /172.31.41.198:41741
+2014-11-09 14:43:49,267 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:49,267 [Thread-2] DEBUG full  - Received data for Message[3][PING] from i-3eb27bdf (null)
+2014-11-09 14:43:49,268 [Thread-2] INFO  full  - Client i-3eb27bdf has connected.
+2014-11-09 14:43:49,268 [Thread-2] INFO  full  - Node connected: i-3eb27bdf
+2014-11-09 14:44:21,365 [Thread-5] INFO  monitor.processing  - FINISH_banana (6th copy).jpg
+2014-11-09 14:44:21,365 [Thread-5] INFO  full  - Finished task Message[1][FINISHED] from i-4b5f8faa (banana (6th copy).jpg)
+2014-11-09 14:44:21,367 [Thread-3] DEBUG full  - Sent data for Message[1][FINISHED] from i-4b5f8faa (banana (6th copy).jpg)
+2014-11-09 14:44:21,367 [Thread-3] DEBUG full  - Resuming normal send mode for  i-4b5f8faa
+2014-11-09 14:44:21,372 [Thread-3] DEBUG full  - Expecting 957355 bytes
+2014-11-09 14:44:21,391 [Thread-3] DEBUG full  - Received data for Message[54][NEWTASK] from i-c1bbb72a (pears (3rd copy).jpg)
+2014-11-09 14:44:21,392 [Thread-3] INFO  full  - Received task Message[54][NEWTASK] from i-c1bbb72a (pears (3rd copy).jpg)
+2014-11-09 14:44:21,397 [Thread-3] INFO  monitor.processing  - START_pears (3rd copy).jpg
+2014-11-09 14:44:40,521 [Thread-2] DEBUG full  - Expecting 170 bytes
+2014-11-09 14:44:40,533 [Thread-2] DEBUG full  - Received data for Message[5][NEWMASTER] from i-3eb27bdf (172.31.41.198)
+2014-11-09 14:44:40,533 [Thread-2] INFO  full  - ClientComm communicator is now online
+2014-11-09 14:44:40,533 [Thread-2] INFO  full  - Connecting to 172.31.41.198:9026
+2014-11-09 14:44:57,688 [Thread-3] INFO  full  - Communicator Thread[Thread-3,5,main] for com.cclab.core.WorkerInstance@48ae27b0 has quit
+2014-11-09 14:44:57,704 [Thread-3] WARN  full  - Communicator disconnected
+2014-11-09 14:44:57,699 [Thread-9] DEBUG full  - Sent data for Message[2][PING] from i-4b5f8faa (pears (3rd copy).jpg)
+2014-11-09 14:44:57,706 [Thread-9] DEBUG full  - Resuming normal send mode for  i-4b5f8faa
+2014-11-09 14:44:58,789 [Thread-8] INFO  monitor.processing  - FINISH_pears (3rd copy).jpg
+2014-11-09 14:44:58,789 [Thread-8] INFO  full  - Finished task Message[3][FINISHED] from i-4b5f8faa (pears (3rd copy).jpg)
+2014-11-09 14:44:58,794 [Thread-9] DEBUG full  - Sent data for Message[3][FINISHED] from i-4b5f8faa (pears (3rd copy).jpg)
+2014-11-09 14:44:58,794 [Thread-9] DEBUG full  - Resuming normal send mode for  i-4b5f8faa
+2014-11-09 14:50:58,910 [Thread-1] DEBUG full  - Received command quit.
+2014-11-09 14:52:01,587 [Thread-1] INFO  full  - WORKER shutting down
+2014-11-09 14:52:01,704 [Thread-1] INFO  full  - CL Reader for com.cclab.core.WorkerInstance@48ae27b0 has quit
+2014-11-09 14:52:01,707 [Thread-2] WARN  full  - Communicator disconnected
+2014-11-09 14:52:01,976 [Thread-9] ERROR full  - Error receiving message 
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:251)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:218)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:254)
+	at com.cclab.core.network.DataReceiver.doReceive(DataReceiver.java:44)
+	at com.cclab.core.network.ClientComm.read(ClientComm.java:69)
+	at com.cclab.core.network.GeneralComm.run(GeneralComm.java:73)
+2014-11-09 14:52:02,268 [Thread-9] WARN  full  - Connection closed for /172.31.41.198:9026
+2014-11-09 14:52:02,269 [Thread-9] INFO  full  - Communicator Thread[Thread-9,5,main] for com.cclab.core.WorkerInstance@48ae27b0 has quit
+2014-11-09 14:52:02,270 [Thread-9] WARN  full  - Communicator disconnected

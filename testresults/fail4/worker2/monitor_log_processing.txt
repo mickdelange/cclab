@@ -1,0 +1,5 @@
+2014-11-09 14:43:45,771 -> START_apple.jpeg
+2014-11-09 14:43:47,489 -> FINISH_apple.jpeg
+2014-11-09 14:43:47,783 -> START_strawberry (copy).jpg
+2014-11-09 14:44:41,413 -> FINISH_strawberry (copy).jpg
+2014-11-09 14:44:41,429 -> START_banana.jpg

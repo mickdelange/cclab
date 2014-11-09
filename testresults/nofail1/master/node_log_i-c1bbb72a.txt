@@ -1,0 +1,562 @@
+2014-11-09 13:57:39,275 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:57:41,275 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:57:41,275 [Thread-2] DEBUG full  - Sent data for Message[211][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:57:41,276 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:57:43,275 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:57:43,276 [Thread-2] DEBUG full  - Sent data for Message[212][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:57:43,276 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:57:45,276 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:57:45,276 [Thread-2] DEBUG full  - Sent data for Message[213][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:57:45,276 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:57:47,276 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:57:47,277 [Thread-2] DEBUG full  - Sent data for Message[214][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:57:47,277 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:57:49,277 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:57:49,278 [Thread-2] DEBUG full  - Sent data for Message[215][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:57:49,278 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:57:51,277 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:57:51,278 [Thread-2] DEBUG full  - Sent data for Message[216][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:57:51,278 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:57:53,278 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:57:53,278 [Thread-2] DEBUG full  - Sent data for Message[217][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:57:53,278 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:57:55,278 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:57:55,279 [Thread-2] DEBUG full  - Sent data for Message[218][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:57:55,279 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:57:57,279 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:57:57,279 [Thread-2] DEBUG full  - Sent data for Message[219][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:57:57,279 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:57:59,127 [Thread-2] DEBUG full  - Expecting 82332 bytes
+2014-11-09 13:57:59,129 [Thread-2] DEBUG full  - Received data for Message[11][FINISHED] from i-56afa3bd (pears (another copy).jpg)
+2014-11-09 13:57:59,129 [Thread-2] INFO  full  - Task pears (another copy).jpg finished
+2014-11-09 13:57:59,129 [Thread-2] DEBUG full  - Node i-56afa3bd switching state to IDLE
+2014-11-09 13:57:59,129 [Thread-3] DEBUG full  - Node i-56afa3bd switching state to WORKING
+2014-11-09 13:57:59,129 [Thread-3] INFO  full  - Sending task apple (copy).jpeg to i-56afa3bd
+2014-11-09 13:57:59,129 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:57:59,131 [Thread-2] DEBUG full  - Sent data for Message[221][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:57:59,131 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:57:59,132 [Thread-2] DEBUG full  - Sent data for Message[222][BACKUPFIN] from i-c1bbb72a (pears (another copy).jpg)
+2014-11-09 13:57:59,133 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:57:59,133 [Thread-2] DEBUG full  - Sent data for Message[220][NEWTASK] from i-c1bbb72a (apple (copy).jpeg)
+2014-11-09 13:57:59,133 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:57:59,978 [Thread-2] DEBUG full  - Expecting 9525 bytes
+2014-11-09 13:58:00,015 [Thread-2] DEBUG full  - Received data for Message[12][FINISHED] from i-56afa3bd (apple (copy).jpeg)
+2014-11-09 13:58:00,015 [Thread-2] INFO  full  - Task apple (copy).jpeg finished
+2014-11-09 13:58:00,015 [Thread-2] DEBUG full  - Node i-56afa3bd switching state to IDLE
+2014-11-09 13:58:00,015 [Thread-3] DEBUG full  - Node i-56afa3bd switching state to WORKING
+2014-11-09 13:58:00,016 [Thread-3] INFO  full  - Sending task banana (5th copy).jpg to i-56afa3bd
+2014-11-09 13:58:00,016 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:00,016 [Thread-2] DEBUG full  - Sent data for Message[224][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:00,016 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:00,017 [Thread-2] DEBUG full  - Sent data for Message[225][BACKUPFIN] from i-c1bbb72a (apple (copy).jpeg)
+2014-11-09 13:58:00,017 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:00,020 [Thread-2] DEBUG full  - Sent data for Message[223][NEWTASK] from i-c1bbb72a (banana (5th copy).jpg)
+2014-11-09 13:58:00,020 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:02,018 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:02,018 [Thread-2] DEBUG full  - Sent data for Message[226][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:02,018 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:04,018 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:04,019 [Thread-2] DEBUG full  - Sent data for Message[227][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:04,019 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:06,019 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:06,019 [Thread-2] DEBUG full  - Sent data for Message[228][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:06,019 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:08,019 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:08,019 [Thread-2] DEBUG full  - Sent data for Message[229][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:08,019 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:10,019 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:10,020 [Thread-2] DEBUG full  - Sent data for Message[230][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:10,020 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:12,020 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:12,020 [Thread-2] DEBUG full  - Sent data for Message[231][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:12,020 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:14,020 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:14,021 [Thread-2] DEBUG full  - Sent data for Message[232][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:14,021 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:16,021 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:16,021 [Thread-2] DEBUG full  - Sent data for Message[233][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:16,021 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:18,021 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:18,022 [Thread-2] DEBUG full  - Sent data for Message[234][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:18,022 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:20,022 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:20,022 [Thread-2] DEBUG full  - Sent data for Message[235][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:20,022 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:22,022 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:22,022 [Thread-2] DEBUG full  - Sent data for Message[236][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:22,022 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:24,022 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:24,023 [Thread-2] DEBUG full  - Sent data for Message[237][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:24,023 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:26,023 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:26,023 [Thread-2] DEBUG full  - Sent data for Message[238][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:26,023 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:28,023 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:28,024 [Thread-2] DEBUG full  - Sent data for Message[239][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:28,024 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:30,024 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:30,024 [Thread-2] DEBUG full  - Sent data for Message[240][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:30,024 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:32,024 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:32,024 [Thread-2] DEBUG full  - Sent data for Message[241][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:32,024 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:34,024 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:34,025 [Thread-2] DEBUG full  - Sent data for Message[242][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:34,025 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:35,744 [Thread-2] DEBUG full  - Expecting 74169 bytes
+2014-11-09 13:58:35,745 [Thread-2] DEBUG full  - Received data for Message[13][FINISHED] from i-56afa3bd (banana (5th copy).jpg)
+2014-11-09 13:58:35,745 [Thread-2] INFO  full  - Task banana (5th copy).jpg finished
+2014-11-09 13:58:35,746 [Thread-2] DEBUG full  - Node i-56afa3bd switching state to IDLE
+2014-11-09 13:58:35,746 [Thread-3] DEBUG full  - Node i-56afa3bd switching state to WORKING
+2014-11-09 13:58:35,746 [Thread-3] INFO  full  - Sending task banana (another copy).jpg to i-56afa3bd
+2014-11-09 13:58:35,747 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:35,747 [Thread-2] DEBUG full  - Sent data for Message[244][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:35,747 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:35,751 [Thread-2] DEBUG full  - Sent data for Message[245][BACKUPFIN] from i-c1bbb72a (banana (5th copy).jpg)
+2014-11-09 13:58:35,751 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:35,756 [Thread-2] DEBUG full  - Sent data for Message[243][NEWTASK] from i-c1bbb72a (banana (another copy).jpg)
+2014-11-09 13:58:35,756 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:37,747 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:37,747 [Thread-2] DEBUG full  - Sent data for Message[246][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:37,747 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:39,747 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:39,748 [Thread-2] DEBUG full  - Sent data for Message[247][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:39,748 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:41,748 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:41,748 [Thread-2] DEBUG full  - Sent data for Message[248][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:41,748 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:43,748 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:43,749 [Thread-2] DEBUG full  - Sent data for Message[249][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:43,749 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:45,749 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:45,749 [Thread-2] DEBUG full  - Sent data for Message[250][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:45,749 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:47,749 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:47,749 [Thread-2] DEBUG full  - Sent data for Message[251][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:47,749 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:49,749 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:49,750 [Thread-2] DEBUG full  - Sent data for Message[252][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:49,750 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:51,751 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:51,752 [Thread-2] DEBUG full  - Sent data for Message[253][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:51,752 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:53,752 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:53,752 [Thread-2] DEBUG full  - Sent data for Message[254][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:53,752 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:55,752 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:55,752 [Thread-2] DEBUG full  - Sent data for Message[255][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:55,752 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:57,752 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:57,753 [Thread-2] DEBUG full  - Sent data for Message[256][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:57,753 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:58:59,753 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:58:59,753 [Thread-2] DEBUG full  - Sent data for Message[257][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:58:59,753 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:01,753 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:01,754 [Thread-2] DEBUG full  - Sent data for Message[258][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:01,754 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:03,754 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:03,754 [Thread-2] DEBUG full  - Sent data for Message[259][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:03,754 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:05,754 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:05,755 [Thread-2] DEBUG full  - Sent data for Message[260][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:05,755 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:07,755 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:07,757 [Thread-2] DEBUG full  - Sent data for Message[261][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:07,757 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:09,757 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:09,757 [Thread-2] DEBUG full  - Sent data for Message[262][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:09,757 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:11,271 [Thread-2] DEBUG full  - Expecting 74173 bytes
+2014-11-09 13:59:11,273 [Thread-2] DEBUG full  - Received data for Message[14][FINISHED] from i-56afa3bd (banana (another copy).jpg)
+2014-11-09 13:59:11,273 [Thread-2] INFO  full  - Task banana (another copy).jpg finished
+2014-11-09 13:59:11,273 [Thread-2] DEBUG full  - Node i-56afa3bd switching state to IDLE
+2014-11-09 13:59:11,273 [Thread-3] DEBUG full  - Node i-56afa3bd switching state to WORKING
+2014-11-09 13:59:11,273 [Thread-3] INFO  full  - Sending task pears.jpg to i-56afa3bd
+2014-11-09 13:59:11,274 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:11,274 [Thread-2] DEBUG full  - Sent data for Message[264][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:11,274 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:11,276 [Thread-2] DEBUG full  - Sent data for Message[265][BACKUPFIN] from i-c1bbb72a (banana (another copy).jpg)
+2014-11-09 13:59:11,276 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:11,286 [Thread-2] DEBUG full  - Sent data for Message[263][NEWTASK] from i-c1bbb72a (pears.jpg)
+2014-11-09 13:59:11,286 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:13,274 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:13,275 [Thread-2] DEBUG full  - Sent data for Message[266][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:13,275 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:15,275 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:15,275 [Thread-2] DEBUG full  - Sent data for Message[267][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:15,275 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:17,275 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:17,275 [Thread-2] DEBUG full  - Sent data for Message[268][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:17,275 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:19,275 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:19,276 [Thread-2] DEBUG full  - Sent data for Message[269][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:19,276 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:21,276 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:21,276 [Thread-2] DEBUG full  - Sent data for Message[270][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:21,276 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:23,276 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:23,277 [Thread-2] DEBUG full  - Sent data for Message[271][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:23,277 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:25,277 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:25,277 [Thread-2] DEBUG full  - Sent data for Message[272][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:25,277 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:27,277 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:27,277 [Thread-2] DEBUG full  - Sent data for Message[273][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:27,278 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:29,278 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:29,278 [Thread-2] DEBUG full  - Sent data for Message[274][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:29,278 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:31,278 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:31,278 [Thread-2] DEBUG full  - Sent data for Message[275][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:31,278 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:33,278 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:33,279 [Thread-2] DEBUG full  - Sent data for Message[276][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:33,279 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:35,279 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:35,279 [Thread-2] DEBUG full  - Sent data for Message[277][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:35,279 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:37,279 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:37,280 [Thread-2] DEBUG full  - Sent data for Message[278][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:37,280 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:39,280 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:39,280 [Thread-2] DEBUG full  - Sent data for Message[279][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:39,280 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:41,280 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:41,280 [Thread-2] DEBUG full  - Sent data for Message[280][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:41,280 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:43,280 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:43,281 [Thread-2] DEBUG full  - Sent data for Message[281][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:43,281 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:45,281 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:45,281 [Thread-2] DEBUG full  - Sent data for Message[282][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:45,281 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:47,021 [Thread-2] DEBUG full  - Expecting 82317 bytes
+2014-11-09 13:59:47,059 [Thread-2] DEBUG full  - Received data for Message[15][FINISHED] from i-56afa3bd (pears.jpg)
+2014-11-09 13:59:47,059 [Thread-2] INFO  full  - Task pears.jpg finished
+2014-11-09 13:59:47,059 [Thread-2] DEBUG full  - Node i-56afa3bd switching state to IDLE
+2014-11-09 13:59:47,060 [Thread-3] DEBUG full  - Node i-56afa3bd switching state to WORKING
+2014-11-09 13:59:47,060 [Thread-3] INFO  full  - Sending task strawberry.jpg to i-56afa3bd
+2014-11-09 13:59:47,063 [Thread-2] DEBUG full  - Sent data for Message[283][BACKUPFIN] from i-c1bbb72a (pears.jpg)
+2014-11-09 13:59:47,063 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:47,074 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:47,078 [Thread-2] DEBUG full  - Sent data for Message[285][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:47,078 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:47,181 [Thread-2] DEBUG full  - Sent data for Message[284][NEWTASK] from i-c1bbb72a (strawberry.jpg)
+2014-11-09 13:59:47,181 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:49,074 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:49,075 [Thread-2] DEBUG full  - Sent data for Message[286][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:49,075 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:51,075 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:51,075 [Thread-2] DEBUG full  - Sent data for Message[287][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:51,075 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:53,075 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:53,076 [Thread-2] DEBUG full  - Sent data for Message[288][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:53,076 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:55,076 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:55,076 [Thread-2] DEBUG full  - Sent data for Message[289][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:55,076 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:57,076 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:57,077 [Thread-2] DEBUG full  - Sent data for Message[290][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:57,077 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 13:59:59,077 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 13:59:59,077 [Thread-2] DEBUG full  - Sent data for Message[291][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 13:59:59,077 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:01,077 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:01,077 [Thread-2] DEBUG full  - Sent data for Message[292][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:01,077 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:03,077 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:03,078 [Thread-2] DEBUG full  - Sent data for Message[293][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:03,078 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:05,078 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:05,078 [Thread-2] DEBUG full  - Sent data for Message[294][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:05,078 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:07,078 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:07,079 [Thread-2] DEBUG full  - Sent data for Message[295][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:07,079 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:09,079 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:09,079 [Thread-2] DEBUG full  - Sent data for Message[296][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:09,079 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:11,079 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:11,080 [Thread-2] DEBUG full  - Sent data for Message[297][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:11,080 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:13,080 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:13,080 [Thread-2] DEBUG full  - Sent data for Message[298][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:13,080 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:15,080 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:15,080 [Thread-2] DEBUG full  - Sent data for Message[299][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:15,080 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:17,080 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:17,081 [Thread-2] DEBUG full  - Sent data for Message[300][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:17,081 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:19,081 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:19,081 [Thread-2] DEBUG full  - Sent data for Message[301][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:19,081 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:21,081 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:21,082 [Thread-2] DEBUG full  - Sent data for Message[302][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:21,082 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:23,082 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:23,082 [Thread-2] DEBUG full  - Sent data for Message[303][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:23,082 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:25,082 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:25,082 [Thread-2] DEBUG full  - Sent data for Message[304][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:25,083 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:27,083 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:27,083 [Thread-2] DEBUG full  - Sent data for Message[305][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:27,083 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:29,083 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:29,083 [Thread-2] DEBUG full  - Sent data for Message[306][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:29,083 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:31,083 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:31,084 [Thread-2] DEBUG full  - Sent data for Message[307][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:31,084 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:33,084 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:33,084 [Thread-2] DEBUG full  - Sent data for Message[308][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:33,084 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:35,084 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:35,084 [Thread-2] DEBUG full  - Sent data for Message[309][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:35,085 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:37,085 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:37,085 [Thread-2] DEBUG full  - Sent data for Message[310][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:37,085 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:39,085 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:39,085 [Thread-2] DEBUG full  - Sent data for Message[311][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:39,085 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:40,820 [Thread-2] DEBUG full  - Expecting 96166 bytes
+2014-11-09 14:00:40,821 [Thread-2] DEBUG full  - Received data for Message[16][FINISHED] from i-56afa3bd (strawberry.jpg)
+2014-11-09 14:00:40,821 [Thread-2] INFO  full  - Task strawberry.jpg finished
+2014-11-09 14:00:40,821 [Thread-2] DEBUG full  - Node i-56afa3bd switching state to IDLE
+2014-11-09 14:00:40,822 [Thread-3] DEBUG full  - Node i-56afa3bd switching state to WORKING
+2014-11-09 14:00:40,822 [Thread-3] INFO  full  - Sending task pears (5th copy).jpg to i-56afa3bd
+2014-11-09 14:00:40,823 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:40,823 [Thread-2] DEBUG full  - Sent data for Message[313][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:40,823 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:40,825 [Thread-2] DEBUG full  - Sent data for Message[314][BACKUPFIN] from i-c1bbb72a (strawberry.jpg)
+2014-11-09 14:00:40,825 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:40,832 [Thread-2] DEBUG full  - Sent data for Message[312][NEWTASK] from i-c1bbb72a (pears (5th copy).jpg)
+2014-11-09 14:00:40,832 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:42,823 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:42,823 [Thread-2] DEBUG full  - Sent data for Message[315][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:42,823 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:44,823 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:44,824 [Thread-2] DEBUG full  - Sent data for Message[316][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:44,824 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:46,824 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:46,824 [Thread-2] DEBUG full  - Sent data for Message[317][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:46,824 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:48,824 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:48,824 [Thread-2] DEBUG full  - Sent data for Message[318][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:48,825 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:50,824 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:50,825 [Thread-2] DEBUG full  - Sent data for Message[319][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:50,825 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:52,825 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:52,825 [Thread-2] DEBUG full  - Sent data for Message[320][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:52,825 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:54,825 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:54,826 [Thread-2] DEBUG full  - Sent data for Message[321][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:54,826 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:56,826 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:56,826 [Thread-2] DEBUG full  - Sent data for Message[322][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:56,826 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:00:58,826 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:00:58,826 [Thread-2] DEBUG full  - Sent data for Message[323][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:00:58,827 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:00,827 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:00,827 [Thread-2] DEBUG full  - Sent data for Message[324][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:00,827 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:02,827 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:02,827 [Thread-2] DEBUG full  - Sent data for Message[325][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:02,827 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:04,827 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:04,828 [Thread-2] DEBUG full  - Sent data for Message[326][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:04,828 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:06,828 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:06,828 [Thread-2] DEBUG full  - Sent data for Message[327][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:06,828 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:08,828 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:08,829 [Thread-2] DEBUG full  - Sent data for Message[328][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:08,829 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:10,829 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:10,829 [Thread-2] DEBUG full  - Sent data for Message[329][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:10,829 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:12,829 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:12,829 [Thread-2] DEBUG full  - Sent data for Message[330][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:12,829 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:14,829 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:14,830 [Thread-2] DEBUG full  - Sent data for Message[331][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:14,830 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:16,830 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:16,830 [Thread-2] DEBUG full  - Sent data for Message[332][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:16,830 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:17,227 [Thread-2] DEBUG full  - Expecting 82328 bytes
+2014-11-09 14:01:17,228 [Thread-2] DEBUG full  - Received data for Message[17][FINISHED] from i-56afa3bd (pears (5th copy).jpg)
+2014-11-09 14:01:17,228 [Thread-2] INFO  full  - Task pears (5th copy).jpg finished
+2014-11-09 14:01:17,228 [Thread-2] DEBUG full  - Node i-56afa3bd switching state to IDLE
+2014-11-09 14:01:17,228 [Thread-3] DEBUG full  - Node i-56afa3bd switching state to WORKING
+2014-11-09 14:01:17,229 [Thread-3] INFO  full  - Sending task banana (3rd copy).jpg to i-56afa3bd
+2014-11-09 14:01:17,229 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:17,229 [Thread-2] DEBUG full  - Sent data for Message[334][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:17,229 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:17,231 [Thread-2] DEBUG full  - Sent data for Message[335][BACKUPFIN] from i-c1bbb72a (pears (5th copy).jpg)
+2014-11-09 14:01:17,231 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:17,235 [Thread-2] DEBUG full  - Sent data for Message[333][NEWTASK] from i-c1bbb72a (banana (3rd copy).jpg)
+2014-11-09 14:01:17,235 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:19,229 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:19,230 [Thread-2] DEBUG full  - Sent data for Message[336][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:19,230 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:21,230 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:21,230 [Thread-2] DEBUG full  - Sent data for Message[337][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:21,230 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:23,230 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:23,231 [Thread-2] DEBUG full  - Sent data for Message[338][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:23,231 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:25,231 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:25,231 [Thread-2] DEBUG full  - Sent data for Message[339][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:25,231 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:27,231 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:27,232 [Thread-2] DEBUG full  - Sent data for Message[340][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:27,232 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:29,232 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:29,232 [Thread-2] DEBUG full  - Sent data for Message[341][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:29,232 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:31,232 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:31,232 [Thread-2] DEBUG full  - Sent data for Message[342][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:31,232 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:33,232 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:33,233 [Thread-2] DEBUG full  - Sent data for Message[343][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:33,233 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:35,233 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:35,233 [Thread-2] DEBUG full  - Sent data for Message[344][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:35,233 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:37,233 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:37,234 [Thread-2] DEBUG full  - Sent data for Message[345][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:37,234 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:39,234 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:39,234 [Thread-2] DEBUG full  - Sent data for Message[346][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:39,234 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:41,234 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:41,234 [Thread-2] DEBUG full  - Sent data for Message[347][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:41,235 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:43,235 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:43,235 [Thread-2] DEBUG full  - Sent data for Message[348][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:43,235 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:45,235 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:45,235 [Thread-2] DEBUG full  - Sent data for Message[349][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:45,235 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:47,235 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:47,236 [Thread-2] DEBUG full  - Sent data for Message[350][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:47,236 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:49,236 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:49,236 [Thread-2] DEBUG full  - Sent data for Message[351][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:49,236 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:51,236 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:51,237 [Thread-2] DEBUG full  - Sent data for Message[352][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:51,237 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:52,372 [Thread-2] DEBUG full  - Expecting 74169 bytes
+2014-11-09 14:01:52,373 [Thread-2] DEBUG full  - Received data for Message[18][FINISHED] from i-56afa3bd (banana (3rd copy).jpg)
+2014-11-09 14:01:52,373 [Thread-2] INFO  full  - Task banana (3rd copy).jpg finished
+2014-11-09 14:01:52,373 [Thread-2] DEBUG full  - Node i-56afa3bd switching state to IDLE
+2014-11-09 14:01:52,373 [Thread-3] DEBUG full  - Node i-56afa3bd switching state to WORKING
+2014-11-09 14:01:52,373 [Thread-3] INFO  full  - Sending task pears (4th copy).jpg to i-56afa3bd
+2014-11-09 14:01:52,374 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:52,374 [Thread-2] DEBUG full  - Sent data for Message[354][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:52,374 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:52,376 [Thread-2] DEBUG full  - Sent data for Message[355][BACKUPFIN] from i-c1bbb72a (banana (3rd copy).jpg)
+2014-11-09 14:01:52,376 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:52,387 [Thread-2] DEBUG full  - Sent data for Message[353][NEWTASK] from i-c1bbb72a (pears (4th copy).jpg)
+2014-11-09 14:01:52,387 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:54,374 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:54,376 [Thread-2] DEBUG full  - Sent data for Message[356][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:54,376 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:56,376 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:56,377 [Thread-2] DEBUG full  - Sent data for Message[357][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:56,377 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:01:58,377 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:01:58,377 [Thread-2] DEBUG full  - Sent data for Message[358][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:01:58,377 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:00,377 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:02:00,378 [Thread-2] DEBUG full  - Sent data for Message[359][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:00,378 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:02,378 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:02:02,379 [Thread-2] DEBUG full  - Sent data for Message[360][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:02,379 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:04,379 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:02:04,379 [Thread-2] DEBUG full  - Sent data for Message[361][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:04,379 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:06,379 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:02:06,380 [Thread-2] DEBUG full  - Sent data for Message[362][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:06,380 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:08,380 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:02:08,380 [Thread-2] DEBUG full  - Sent data for Message[363][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:08,380 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:10,380 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:02:10,380 [Thread-2] DEBUG full  - Sent data for Message[364][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:10,380 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:12,380 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:02:12,381 [Thread-2] DEBUG full  - Sent data for Message[365][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:12,381 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:14,381 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:02:14,381 [Thread-2] DEBUG full  - Sent data for Message[366][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:14,381 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:16,381 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:02:16,382 [Thread-2] DEBUG full  - Sent data for Message[367][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:16,382 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:18,382 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:02:18,382 [Thread-2] DEBUG full  - Sent data for Message[368][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:18,382 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:20,382 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:02:20,383 [Thread-2] DEBUG full  - Sent data for Message[369][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:20,383 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:22,383 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:02:22,383 [Thread-2] DEBUG full  - Sent data for Message[370][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:22,383 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:24,383 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:02:24,383 [Thread-2] DEBUG full  - Sent data for Message[371][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:24,383 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:26,383 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:02:26,384 [Thread-2] DEBUG full  - Sent data for Message[372][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:26,384 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:28,384 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:02:28,384 [Thread-2] DEBUG full  - Sent data for Message[373][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:28,384 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:28,675 [Thread-2] DEBUG full  - Expecting 82328 bytes
+2014-11-09 14:02:28,715 [Thread-2] DEBUG full  - Received data for Message[19][FINISHED] from i-56afa3bd (pears (4th copy).jpg)
+2014-11-09 14:02:28,715 [Thread-2] INFO  full  - Task pears (4th copy).jpg finished
+2014-11-09 14:02:28,715 [Thread-2] DEBUG full  - Node i-56afa3bd switching state to IDLE
+2014-11-09 14:02:28,716 [Thread-3] DEBUG full  - Node i-56afa3bd switching state to WORKING
+2014-11-09 14:02:28,716 [Thread-3] INFO  full  - Sending task apple (another copy).jpeg to i-56afa3bd
+2014-11-09 14:02:28,716 [Thread-2] DEBUG full  - Sent data for Message[375][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:28,716 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:28,717 [Thread-2] DEBUG full  - Sent data for Message[376][BACKUPFIN] from i-c1bbb72a (pears (4th copy).jpg)
+2014-11-09 14:02:28,717 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:28,718 [Thread-2] DEBUG full  - Sent data for Message[374][NEWTASK] from i-c1bbb72a (apple (another copy).jpeg)
+2014-11-09 14:02:28,718 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:29,577 [Thread-2] DEBUG full  - Expecting 9533 bytes
+2014-11-09 14:02:29,615 [Thread-2] DEBUG full  - Received data for Message[20][FINISHED] from i-56afa3bd (apple (another copy).jpeg)
+2014-11-09 14:02:29,615 [Thread-2] INFO  full  - Task apple (another copy).jpeg finished
+2014-11-09 14:02:29,615 [Thread-2] DEBUG full  - Node i-56afa3bd switching state to IDLE
+2014-11-09 14:02:29,616 [Thread-2] DEBUG full  - Sent data for Message[377][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:29,616 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:29,616 [Thread-2] DEBUG full  - Sent data for Message[378][BACKUPFIN] from i-c1bbb72a (apple (another copy).jpeg)
+2014-11-09 14:02:29,616 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:31,616 [Thread-2] DEBUG full  - Sent data for Message[379][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:31,616 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:33,616 [Thread-2] DEBUG full  - Sent data for Message[380][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:33,616 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:35,617 [Thread-2] DEBUG full  - Sent data for Message[381][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:35,617 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:37,617 [Thread-2] DEBUG full  - Sent data for Message[382][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:37,617 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:39,617 [Thread-2] DEBUG full  - Sent data for Message[383][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:39,617 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:41,617 [Thread-2] DEBUG full  - Sent data for Message[384][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:41,618 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:43,618 [Thread-2] DEBUG full  - Sent data for Message[385][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:02:43,618 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:02:45,354 [Thread-1] DEBUG full  - Received command quit.
+2014-11-09 14:02:45,354 [Thread-1] INFO  full  - MASTER shutting down
+2014-11-09 14:02:45,355 [Thread-1] INFO  full  - CL Reader for com.cclab.core.MasterInstance@63109aa1 has quit
+2014-11-09 14:02:45,355 [Thread-2] INFO  full  - Communicator Thread[Thread-2,5,main] for com.cclab.core.MasterInstance@63109aa1 has quit
+2014-11-09 14:02:45,356 [Thread-2] WARN  full  - Communicator disconnected
+2014-11-09 14:02:45,618 [Thread-3] INFO  full  - Scheduler for com.cclab.core.MasterInstance@63109aa1 has quit

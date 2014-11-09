@@ -1,0 +1,50 @@
+2014-11-09 14:43:51,918 [main] INFO  full  - Server communicator is now online
+2014-11-09 14:43:51,923 [main] INFO  full  - Listening on port 9026
+2014-11-09 14:43:51,945 [main] INFO  full  - ClientComm communicator is now online
+2014-11-09 14:43:51,945 [main] INFO  full  - Connecting to 172.31.31.101:9026
+2014-11-09 14:43:51,965 [Thread-3] DEBUG full  - Sent data for Message[0][PING] from i-485f8fa9 (null)
+2014-11-09 14:43:51,970 [Thread-2] INFO  full  - Connection from: /172.31.41.198:59666
+2014-11-09 14:43:51,970 [Thread-3] DEBUG full  - Resuming normal send mode for  i-485f8fa9
+2014-11-09 14:43:51,977 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:51,978 [Thread-2] DEBUG full  - Received data for Message[4][PING] from i-3eb27bdf (null)
+2014-11-09 14:43:51,978 [Thread-2] INFO  full  - Client i-3eb27bdf has connected.
+2014-11-09 14:43:51,978 [Thread-2] INFO  full  - Node connected: i-3eb27bdf
+2014-11-09 14:43:51,979 [Thread-3] DEBUG full  - Expecting 342351 bytes
+2014-11-09 14:43:51,993 [Thread-3] DEBUG full  - Received data for Message[37][NEWTASK] from i-c1bbb72a (banana (copy).jpg)
+2014-11-09 14:43:51,993 [Thread-3] INFO  full  - Received task Message[37][NEWTASK] from i-c1bbb72a (banana (copy).jpg)
+2014-11-09 14:44:21,769 [Thread-6] INFO  full  - Finished task Message[1][FINISHED] from i-485f8fa9 (banana (copy).jpg)
+2014-11-09 14:44:21,770 [Thread-3] DEBUG full  - Sent data for Message[1][FINISHED] from i-485f8fa9 (banana (copy).jpg)
+2014-11-09 14:44:21,770 [Thread-3] DEBUG full  - Resuming normal send mode for  i-485f8fa9
+2014-11-09 14:44:21,775 [Thread-3] DEBUG full  - Expecting 342355 bytes
+2014-11-09 14:44:21,789 [Thread-3] DEBUG full  - Received data for Message[57][NEWTASK] from i-c1bbb72a (banana (4th copy).jpg)
+2014-11-09 14:44:21,789 [Thread-3] INFO  full  - Received task Message[57][NEWTASK] from i-c1bbb72a (banana (4th copy).jpg)
+2014-11-09 14:44:38,649 [Thread-2] DEBUG full  - Expecting 170 bytes
+2014-11-09 14:44:38,661 [Thread-2] DEBUG full  - Received data for Message[5][NEWMASTER] from i-3eb27bdf (172.31.41.198)
+2014-11-09 14:44:38,661 [Thread-2] INFO  full  - ClientComm communicator is now online
+2014-11-09 14:44:38,661 [Thread-2] INFO  full  - Connecting to 172.31.41.198:9026
+2014-11-09 14:44:38,681 [Thread-3] INFO  full  - Communicator Thread[Thread-3,5,main] for com.cclab.core.WorkerInstance@136f5b6e has quit
+2014-11-09 14:44:54,594 [Thread-3] WARN  full  - Communicator disconnected
+2014-11-09 14:44:54,616 [Thread-9] DEBUG full  - Sent data for Message[2][PING] from i-485f8fa9 (banana (4th copy).jpg)
+2014-11-09 14:44:54,617 [Thread-9] DEBUG full  - Resuming normal send mode for  i-485f8fa9
+2014-11-09 14:44:55,618 [Thread-8] INFO  full  - Finished task Message[3][FINISHED] from i-485f8fa9 (banana (4th copy).jpg)
+2014-11-09 14:44:55,624 [Thread-9] DEBUG full  - Sent data for Message[3][FINISHED] from i-485f8fa9 (banana (4th copy).jpg)
+2014-11-09 14:44:55,624 [Thread-9] DEBUG full  - Resuming normal send mode for  i-485f8fa9
+2014-11-09 14:45:09,172 [Thread-9] ERROR full  - Error receiving message 
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:251)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:218)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:254)
+	at com.cclab.core.network.DataReceiver.doReceive(DataReceiver.java:44)
+	at com.cclab.core.network.ClientComm.read(ClientComm.java:69)
+	at com.cclab.core.network.GeneralComm.run(GeneralComm.java:73)
+2014-11-09 14:45:09,180 [Thread-9] WARN  full  - Connection closed for /172.31.41.198:9026
+2014-11-09 14:45:09,180 [Thread-9] INFO  full  - Communicator Thread[Thread-9,5,main] for com.cclab.core.WorkerInstance@136f5b6e has quit
+2014-11-09 14:45:09,181 [Thread-9] WARN  full  - Communicator disconnected
+2014-11-09 14:45:09,181 [Thread-9] ERROR full  - Client for 172.31.41.198 went down
+2014-11-09 14:45:21,214 [Thread-1] DEBUG full  - Received command quit.
+2014-11-09 14:45:21,216 [Thread-1] INFO  full  - WORKER shutting down
+2014-11-09 14:45:21,216 [Thread-1] INFO  full  - CL Reader for com.cclab.core.WorkerInstance@136f5b6e has quit
+2014-11-09 14:45:21,216 [Thread-2] INFO  full  - Communicator Thread[Thread-2,5,main] for com.cclab.core.WorkerInstance@136f5b6e has quit
+2014-11-09 14:45:21,220 [Thread-2] WARN  full  - Communicator disconnected

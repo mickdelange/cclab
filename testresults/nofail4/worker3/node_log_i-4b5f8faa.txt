@@ -1,0 +1,42 @@
+2014-11-09 14:30:57,225 [main] INFO  full  - Server communicator is now online
+2014-11-09 14:30:57,227 [main] INFO  full  - Listening on port 9026
+2014-11-09 14:30:57,249 [main] INFO  full  - ClientComm communicator is now online
+2014-11-09 14:30:57,250 [main] INFO  full  - Connecting to 172.31.31.101:9026
+2014-11-09 14:30:57,279 [Thread-3] DEBUG full  - Sent data for Message[0][PING] from i-4b5f8faa (null)
+2014-11-09 14:30:57,285 [Thread-3] DEBUG full  - Resuming normal send mode for  i-4b5f8faa
+2014-11-09 14:30:57,286 [Thread-3] DEBUG full  - Expecting 342355 bytes
+2014-11-09 14:30:57,300 [Thread-3] DEBUG full  - Received data for Message[35][NEWTASK] from i-c1bbb72a (banana (6th copy).jpg)
+2014-11-09 14:30:57,300 [Thread-3] INFO  full  - Received task Message[35][NEWTASK] from i-c1bbb72a (banana (6th copy).jpg)
+2014-11-09 14:30:57,465 [Thread-2] INFO  full  - Connection from: /172.31.41.198:52947
+2014-11-09 14:30:57,470 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:30:57,470 [Thread-2] DEBUG full  - Received data for Message[3][PING] from i-3eb27bdf (null)
+2014-11-09 14:30:57,470 [Thread-2] INFO  full  - Client i-3eb27bdf has connected.
+2014-11-09 14:30:57,470 [Thread-2] INFO  full  - Node connected: i-3eb27bdf
+2014-11-09 14:31:30,489 [Thread-5] INFO  full  - Finished task Message[1][FINISHED] from i-4b5f8faa (banana (6th copy).jpg)
+2014-11-09 14:31:30,491 [Thread-3] DEBUG full  - Sent data for Message[1][FINISHED] from i-4b5f8faa (banana (6th copy).jpg)
+2014-11-09 14:31:30,491 [Thread-3] DEBUG full  - Resuming normal send mode for  i-4b5f8faa
+2014-11-09 14:31:30,495 [Thread-3] DEBUG full  - Expecting 957355 bytes
+2014-11-09 14:31:30,516 [Thread-3] DEBUG full  - Received data for Message[56][NEWTASK] from i-c1bbb72a (pears (3rd copy).jpg)
+2014-11-09 14:31:30,516 [Thread-3] INFO  full  - Received task Message[56][NEWTASK] from i-c1bbb72a (pears (3rd copy).jpg)
+2014-11-09 14:32:07,569 [Thread-8] INFO  full  - Finished task Message[2][FINISHED] from i-4b5f8faa (pears (3rd copy).jpg)
+2014-11-09 14:32:07,570 [Thread-3] DEBUG full  - Sent data for Message[2][FINISHED] from i-4b5f8faa (pears (3rd copy).jpg)
+2014-11-09 14:32:07,570 [Thread-3] DEBUG full  - Resuming normal send mode for  i-4b5f8faa
+2014-11-09 14:32:07,577 [Thread-3] DEBUG full  - Expecting 342359 bytes
+2014-11-09 14:32:07,590 [Thread-3] DEBUG full  - Received data for Message[93][NEWTASK] from i-c1bbb72a (banana (another copy).jpg)
+2014-11-09 14:32:07,590 [Thread-3] INFO  full  - Received task Message[93][NEWTASK] from i-c1bbb72a (banana (another copy).jpg)
+2014-11-09 14:32:42,789 [Thread-9] INFO  full  - Finished task Message[3][FINISHED] from i-4b5f8faa (banana (another copy).jpg)
+2014-11-09 14:32:42,791 [Thread-3] DEBUG full  - Sent data for Message[3][FINISHED] from i-4b5f8faa (banana (another copy).jpg)
+2014-11-09 14:32:42,791 [Thread-3] DEBUG full  - Resuming normal send mode for  i-4b5f8faa
+2014-11-09 14:32:42,795 [Thread-3] DEBUG full  - Expecting 342355 bytes
+2014-11-09 14:32:42,807 [Thread-3] DEBUG full  - Received data for Message[121][NEWTASK] from i-c1bbb72a (banana (3rd copy).jpg)
+2014-11-09 14:32:42,807 [Thread-3] INFO  full  - Received task Message[121][NEWTASK] from i-c1bbb72a (banana (3rd copy).jpg)
+2014-11-09 14:33:18,141 [Thread-10] INFO  full  - Finished task Message[4][FINISHED] from i-4b5f8faa (banana (3rd copy).jpg)
+2014-11-09 14:33:18,142 [Thread-3] DEBUG full  - Sent data for Message[4][FINISHED] from i-4b5f8faa (banana (3rd copy).jpg)
+2014-11-09 14:33:18,142 [Thread-3] DEBUG full  - Resuming normal send mode for  i-4b5f8faa
+2014-11-09 14:35:14,449 [Thread-1] DEBUG full  - Received command quit.
+2014-11-09 14:35:14,449 [Thread-2] INFO  full  - Communicator Thread[Thread-2,5,main] for com.cclab.core.WorkerInstance@7de3ec13 has quit
+2014-11-09 14:35:14,450 [Thread-2] WARN  full  - Communicator disconnected
+2014-11-09 14:35:14,450 [Thread-3] INFO  full  - Communicator Thread[Thread-3,5,main] for com.cclab.core.WorkerInstance@7de3ec13 has quit
+2014-11-09 14:35:14,450 [Thread-3] WARN  full  - Communicator disconnected
+2014-11-09 14:35:14,451 [Thread-1] INFO  full  - WORKER shutting down
+2014-11-09 14:35:14,451 [Thread-1] INFO  full  - CL Reader for com.cclab.core.WorkerInstance@7de3ec13 has quit
