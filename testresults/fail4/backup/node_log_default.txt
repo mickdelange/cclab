@@ -1,0 +1,258 @@
+2014-11-09 14:43:36,793 [main] INFO  monitor.failure  - BACKUP_BOOT
+2014-11-09 14:43:36,795 [main] INFO  full  - ClientComm communicator is now online
+2014-11-09 14:43:36,796 [main] INFO  full  - Connecting to 172.31.31.101:9026
+2014-11-09 14:43:36,842 [Thread-2] DEBUG full  - Sent data for Message[0][PING] from i-3eb27bdf (null)
+2014-11-09 14:43:36,845 [Thread-2] DEBUG full  - Resuming normal send mode for  i-3eb27bdf
+2014-11-09 14:43:36,949 [Thread-2] DEBUG full  - Expecting 957351 bytes
+2014-11-09 14:43:36,983 [Thread-2] DEBUG full  - Received data for Message[0][BACKUPTASK] from i-c1bbb72a (pears (copy).jpg)
+2014-11-09 14:43:36,983 [Thread-2] INFO  full  - Database initializing under /home/ubuntu/cclab as backup
+2014-11-09 14:43:36,983 [Thread-2] WARN  full  - Input directory not found. Creating it...
+2014-11-09 14:43:36,983 [Thread-2] INFO  full  - Temporary directory not found. Creating it...
+2014-11-09 14:43:36,983 [Thread-2] INFO  full  - Output directory not found. Creating it...
+2014-11-09 14:43:36,984 [Thread-2] WARN  full  - No initial input in database
+2014-11-09 14:43:36,985 [Thread-2] DEBUG full  - Expecting 90713 bytes
+2014-11-09 14:43:36,990 [Thread-2] DEBUG full  - Received data for Message[1][BACKUPTASK] from i-c1bbb72a (apple.jpeg)
+2014-11-09 14:43:37,036 [Thread-2] DEBUG full  - Expecting 5736055 bytes
+2014-11-09 14:43:37,282 [Thread-2] DEBUG full  - Received data for Message[2][BACKUPTASK] from i-c1bbb72a (strawberry (copy).jpg)
+2014-11-09 14:43:37,293 [Thread-2] DEBUG full  - Expecting 342355 bytes
+2014-11-09 14:43:37,297 [Thread-2] DEBUG full  - Received data for Message[3][BACKUPTASK] from i-c1bbb72a (banana (6th copy).jpg)
+2014-11-09 14:43:37,301 [Thread-2] DEBUG full  - Expecting 342351 bytes
+2014-11-09 14:43:37,310 [Thread-2] DEBUG full  - Received data for Message[4][BACKUPTASK] from i-c1bbb72a (banana (copy).jpg)
+2014-11-09 14:43:37,311 [Thread-2] DEBUG full  - Expecting 342344 bytes
+2014-11-09 14:43:37,316 [Thread-2] DEBUG full  - Received data for Message[5][BACKUPTASK] from i-c1bbb72a (banana.jpg)
+2014-11-09 14:43:37,324 [Thread-2] DEBUG full  - Expecting 957355 bytes
+2014-11-09 14:43:37,338 [Thread-2] DEBUG full  - Received data for Message[6][BACKUPTASK] from i-c1bbb72a (pears (3rd copy).jpg)
+2014-11-09 14:43:37,341 [Thread-2] DEBUG full  - Expecting 342355 bytes
+2014-11-09 14:43:37,344 [Thread-2] DEBUG full  - Received data for Message[7][BACKUPTASK] from i-c1bbb72a (banana (4th copy).jpg)
+2014-11-09 14:43:37,349 [Thread-2] DEBUG full  - Expecting 90724 bytes
+2014-11-09 14:43:37,350 [Thread-2] DEBUG full  - Received data for Message[8][BACKUPTASK] from i-c1bbb72a (apple (3rd copy).jpeg)
+2014-11-09 14:43:37,351 [Thread-2] DEBUG full  - Expecting 957355 bytes
+2014-11-09 14:43:37,372 [Thread-2] DEBUG full  - Received data for Message[9][BACKUPTASK] from i-c1bbb72a (pears (6th copy).jpg)
+2014-11-09 14:43:37,373 [Thread-2] DEBUG full  - Expecting 957359 bytes
+2014-11-09 14:43:37,390 [Thread-2] DEBUG full  - Received data for Message[10][BACKUPTASK] from i-c1bbb72a (pears (another copy).jpg)
+2014-11-09 14:43:37,391 [Thread-2] DEBUG full  - Expecting 90720 bytes
+2014-11-09 14:43:37,394 [Thread-2] DEBUG full  - Received data for Message[11][BACKUPTASK] from i-c1bbb72a (apple (copy).jpeg)
+2014-11-09 14:43:37,394 [Thread-2] DEBUG full  - Expecting 342355 bytes
+2014-11-09 14:43:37,407 [Thread-2] DEBUG full  - Received data for Message[12][BACKUPTASK] from i-c1bbb72a (banana (5th copy).jpg)
+2014-11-09 14:43:37,408 [Thread-2] DEBUG full  - Expecting 342359 bytes
+2014-11-09 14:43:37,411 [Thread-2] DEBUG full  - Received data for Message[13][BACKUPTASK] from i-c1bbb72a (banana (another copy).jpg)
+2014-11-09 14:43:37,413 [Thread-2] DEBUG full  - Expecting 957344 bytes
+2014-11-09 14:43:37,425 [Thread-2] DEBUG full  - Received data for Message[14][BACKUPTASK] from i-c1bbb72a (pears.jpg)
+2014-11-09 14:43:37,430 [Thread-2] DEBUG full  - Expecting 5736048 bytes
+2014-11-09 14:43:37,562 [Thread-2] DEBUG full  - Received data for Message[15][BACKUPTASK] from i-c1bbb72a (strawberry.jpg)
+2014-11-09 14:43:37,571 [Thread-2] DEBUG full  - Expecting 957355 bytes
+2014-11-09 14:43:37,588 [Thread-2] DEBUG full  - Received data for Message[16][BACKUPTASK] from i-c1bbb72a (pears (5th copy).jpg)
+2014-11-09 14:43:37,589 [Thread-2] DEBUG full  - Expecting 342355 bytes
+2014-11-09 14:43:37,596 [Thread-2] DEBUG full  - Received data for Message[17][BACKUPTASK] from i-c1bbb72a (banana (3rd copy).jpg)
+2014-11-09 14:43:37,596 [Thread-2] DEBUG full  - Expecting 957355 bytes
+2014-11-09 14:43:37,620 [Thread-2] DEBUG full  - Received data for Message[18][BACKUPTASK] from i-c1bbb72a (pears (4th copy).jpg)
+2014-11-09 14:43:37,621 [Thread-2] DEBUG full  - Expecting 90728 bytes
+2014-11-09 14:43:37,624 [Thread-2] DEBUG full  - Received data for Message[19][BACKUPTASK] from i-c1bbb72a (apple (another copy).jpeg)
+2014-11-09 14:43:37,881 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:37,881 [Thread-2] DEBUG full  - Received data for Message[20][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:37,881 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:43:39,881 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:39,885 [Thread-2] DEBUG full  - Received data for Message[21][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:39,885 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:43:41,881 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:41,882 [Thread-2] DEBUG full  - Received data for Message[22][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:41,882 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:43:41,932 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:41,933 [Thread-2] DEBUG full  - Received data for Message[24][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:41,933 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:43:41,934 [Thread-2] DEBUG full  - Expecting 167 bytes
+2014-11-09 14:43:41,934 [Thread-2] DEBUG full  - Received data for Message[25][BACKUPCONNECT] from i-c1bbb72a (i-56afa3bd)
+2014-11-09 14:43:42,111 [Thread-2] INFO  full  - ClientComm communicator is now online
+2014-11-09 14:43:42,117 [Thread-2] INFO  full  - Connecting to 172.31.23.86:9026
+2014-11-09 14:43:42,130 [Thread-6] DEBUG full  - Sent data for Message[1][PING] from i-3eb27bdf (null)
+2014-11-09 14:43:42,130 [Thread-6] DEBUG full  - Resuming normal send mode for  i-3eb27bdf
+2014-11-09 14:43:43,933 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:43,933 [Thread-2] DEBUG full  - Received data for Message[26][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:43,933 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:43:45,933 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:45,933 [Thread-2] DEBUG full  - Received data for Message[27][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:45,934 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:43:45,941 [Thread-2] DEBUG full  - Expecting 167 bytes
+2014-11-09 14:43:45,941 [Thread-2] DEBUG full  - Received data for Message[28][BACKUPCONNECT] from i-c1bbb72a (i-1bb57cfa)
+2014-11-09 14:43:45,941 [Thread-2] INFO  full  - ClientComm communicator is now online
+2014-11-09 14:43:45,941 [Thread-2] INFO  full  - Connecting to 172.31.40.114:9026
+2014-11-09 14:43:45,950 [Thread-7] DEBUG full  - Sent data for Message[2][PING] from i-3eb27bdf (null)
+2014-11-09 14:43:45,950 [Thread-7] DEBUG full  - Resuming normal send mode for  i-3eb27bdf
+2014-11-09 14:43:47,679 [Thread-2] DEBUG full  - Expecting 9518 bytes
+2014-11-09 14:43:47,680 [Thread-2] DEBUG full  - Received data for Message[30][BACKUPFIN] from i-c1bbb72a (apple.jpeg)
+2014-11-09 14:43:47,696 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:47,696 [Thread-2] DEBUG full  - Received data for Message[32][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:47,696 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:43:49,023 [Thread-2] DEBUG full  - Expecting 167 bytes
+2014-11-09 14:43:49,024 [Thread-2] DEBUG full  - Received data for Message[33][BACKUPCONNECT] from i-c1bbb72a (i-4b5f8faa)
+2014-11-09 14:43:49,199 [Thread-2] INFO  full  - ClientComm communicator is now online
+2014-11-09 14:43:49,205 [Thread-2] INFO  full  - Connecting to 172.31.34.146:9026
+2014-11-09 14:43:49,214 [Thread-8] DEBUG full  - Sent data for Message[3][PING] from i-3eb27bdf (null)
+2014-11-09 14:43:49,214 [Thread-8] DEBUG full  - Resuming normal send mode for  i-3eb27bdf
+2014-11-09 14:43:51,025 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:51,027 [Thread-2] DEBUG full  - Received data for Message[35][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:51,027 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:43:51,985 [Thread-2] DEBUG full  - Expecting 167 bytes
+2014-11-09 14:43:51,985 [Thread-2] DEBUG full  - Received data for Message[36][BACKUPCONNECT] from i-c1bbb72a (i-485f8fa9)
+2014-11-09 14:43:51,985 [Thread-2] INFO  full  - ClientComm communicator is now online
+2014-11-09 14:43:51,985 [Thread-2] INFO  full  - Connecting to 172.31.34.145:9026
+2014-11-09 14:43:51,990 [Thread-9] DEBUG full  - Sent data for Message[4][PING] from i-3eb27bdf (null)
+2014-11-09 14:43:51,990 [Thread-9] DEBUG full  - Resuming normal send mode for  i-3eb27bdf
+2014-11-09 14:43:53,985 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:53,985 [Thread-2] DEBUG full  - Received data for Message[38][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:53,985 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:43:55,985 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:55,986 [Thread-2] DEBUG full  - Received data for Message[39][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:55,986 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:43:57,986 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:57,986 [Thread-2] DEBUG full  - Received data for Message[40][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:57,986 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:43:59,986 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:59,987 [Thread-2] DEBUG full  - Received data for Message[41][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:59,988 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:44:01,987 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:44:01,987 [Thread-2] DEBUG full  - Received data for Message[42][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:01,987 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:44:03,988 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:44:03,988 [Thread-2] DEBUG full  - Received data for Message[43][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:03,988 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:44:05,988 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:44:05,988 [Thread-2] DEBUG full  - Received data for Message[44][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:05,988 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:44:07,988 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:44:07,989 [Thread-2] DEBUG full  - Received data for Message[45][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:07,989 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:44:09,989 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:44:09,989 [Thread-2] DEBUG full  - Received data for Message[46][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:09,989 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:44:11,989 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:44:11,989 [Thread-2] DEBUG full  - Received data for Message[47][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:11,989 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:44:13,990 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:44:13,992 [Thread-2] DEBUG full  - Received data for Message[48][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:13,992 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:44:15,328 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:44:15,329 [Thread-2] DEBUG full  - Received data for Message[50][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:15,329 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:44:15,329 [Thread-2] DEBUG full  - Expecting 82324 bytes
+2014-11-09 14:44:15,331 [Thread-2] DEBUG full  - Received data for Message[51][BACKUPFIN] from i-c1bbb72a (pears (copy).jpg)
+2014-11-09 14:44:17,327 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:44:17,328 [Thread-2] DEBUG full  - Received data for Message[52][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:17,328 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:44:19,328 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:44:19,328 [Thread-2] DEBUG full  - Received data for Message[53][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:19,328 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:44:21,316 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:44:21,317 [Thread-2] DEBUG full  - Received data for Message[55][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:21,317 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:44:21,318 [Thread-2] DEBUG full  - Expecting 74169 bytes
+2014-11-09 14:44:21,319 [Thread-2] DEBUG full  - Received data for Message[56][BACKUPFIN] from i-c1bbb72a (banana (6th copy).jpg)
+2014-11-09 14:44:21,791 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:44:21,791 [Thread-2] DEBUG full  - Received data for Message[58][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:21,791 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:44:21,792 [Thread-2] DEBUG full  - Expecting 74165 bytes
+2014-11-09 14:44:21,798 [Thread-2] DEBUG full  - Received data for Message[59][BACKUPFIN] from i-c1bbb72a (banana (copy).jpg)
+2014-11-09 14:44:32,993 [Thread-5] INFO  full  - Backup node is taking over from Master node.
+2014-11-09 14:44:33,189 [Thread-5] INFO  monitor.failure  - MASTER_BOOT
+2014-11-09 14:44:33,196 [Thread-5] INFO  full  - Server communicator is now online
+2014-11-09 14:44:33,209 [Thread-5] INFO  full  - Listening on port 9026
+2014-11-09 14:44:33,238 [Thread-5] INFO  full  - Scheduler started in Test Mode.
+2014-11-09 14:44:33,245 [Thread-5] INFO  full  - Waiting for nodes to receive switch notification
+2014-11-09 14:44:33,250 [Thread-2] DEBUG full  - Sent data for Message[5][NEWMASTER] from i-3eb27bdf (172.31.41.198)
+2014-11-09 14:44:33,258 [Thread-2] DEBUG full  - Resuming normal send mode for  i-3eb27bdf
+2014-11-09 14:44:33,257 [Thread-6] DEBUG full  - Sent data for Message[5][NEWMASTER] from i-3eb27bdf (172.31.41.198)
+2014-11-09 14:44:33,261 [Thread-6] DEBUG full  - Resuming normal send mode for  i-3eb27bdf
+2014-11-09 14:44:33,257 [Thread-8] DEBUG full  - Sent data for Message[5][NEWMASTER] from i-3eb27bdf (172.31.41.198)
+2014-11-09 14:44:33,261 [Thread-8] DEBUG full  - Resuming normal send mode for  i-3eb27bdf
+2014-11-09 14:44:33,257 [Thread-7] DEBUG full  - Sent data for Message[5][NEWMASTER] from i-3eb27bdf (172.31.41.198)
+2014-11-09 14:44:33,262 [Thread-7] DEBUG full  - Resuming normal send mode for  i-3eb27bdf
+2014-11-09 14:44:33,257 [Thread-9] DEBUG full  - Sent data for Message[5][NEWMASTER] from i-3eb27bdf (172.31.41.198)
+2014-11-09 14:44:33,262 [Thread-9] DEBUG full  - Resuming normal send mode for  i-3eb27bdf
+2014-11-09 14:44:33,262 [Thread-5] INFO  full  - OBSERVER shutting down
+2014-11-09 14:44:33,262 [Thread-7] INFO  full  - Communicator Thread[Thread-7,5,main] for com.cclab.core.BackupInstance@28e5ed13 has quit
+2014-11-09 14:44:33,262 [Thread-7] WARN  full  - Communicator disconnected
+2014-11-09 14:44:33,263 [Thread-2] INFO  full  - Communicator Thread[Thread-2,5,main] for com.cclab.core.BackupInstance@28e5ed13 has quit
+2014-11-09 14:44:33,263 [Thread-2] WARN  full  - Communicator disconnected
+2014-11-09 14:44:33,269 [Thread-1] INFO  full  - CL Reader for com.cclab.core.BackupInstance@28e5ed13 has quit
+2014-11-09 14:44:33,274 [Thread-5] INFO  full  - BACKUP shutting down
+2014-11-09 14:44:33,274 [Thread-5] INFO  monitor.failure  - BACKUP_FAIL
+2014-11-09 14:44:33,274 [Thread-5] INFO  full  - Master Observer for com.cclab.core.BackupInstance@28e5ed13 has quit
+2014-11-09 14:44:33,274 [Thread-6] INFO  full  - Communicator Thread[Thread-6,5,main] for com.cclab.core.BackupInstance@28e5ed13 has quit
+2014-11-09 14:44:33,274 [Thread-6] WARN  full  - Communicator disconnected
+2014-11-09 14:44:33,274 [Thread-8] INFO  full  - Communicator Thread[Thread-8,5,main] for com.cclab.core.BackupInstance@28e5ed13 has quit
+2014-11-09 14:44:33,274 [Thread-8] WARN  full  - Communicator disconnected
+2014-11-09 14:44:33,274 [Thread-9] INFO  full  - Communicator Thread[Thread-9,5,main] for com.cclab.core.BackupInstance@28e5ed13 has quit
+2014-11-09 14:44:33,275 [Thread-9] WARN  full  - Communicator disconnected
+2014-11-09 14:44:33,712 [Thread-11] INFO  full  - Connection from: /172.31.23.86:56829
+2014-11-09 14:44:35,279 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:44:37,279 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:44:38,679 [Thread-11] INFO  full  - Connection from: /172.31.34.145:59747
+2014-11-09 14:44:39,279 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:44:40,479 [Thread-11] INFO  full  - Connection from: /172.31.34.146:44522
+2014-11-09 14:44:40,484 [Thread-11] INFO  full  - Connection from: /172.31.40.114:38021
+2014-11-09 14:44:40,527 [Thread-11] DEBUG full  - Expecting 178 bytes
+2014-11-09 14:44:40,527 [Thread-11] DEBUG full  - Received data for Message[2][PING] from i-1bb57cfa (strawberry (copy).jpg)
+2014-11-09 14:44:40,527 [Thread-11] INFO  full  - Client i-1bb57cfa has connected.
+2014-11-09 14:44:40,530 [Thread-11] INFO  full  - Node connected: i-1bb57cfa
+2014-11-09 14:44:40,530 [Thread-11] INFO  full  - Node i-1bb57cfa has finished booting up.
+2014-11-09 14:44:40,530 [Thread-11] DEBUG full  - Node i-1bb57cfa switching state to IDLE
+2014-11-09 14:44:40,530 [Thread-12] DEBUG full  - Node i-1bb57cfa switching state to WORKING
+2014-11-09 14:44:40,530 [Thread-12] INFO  monitor.failure  - MASTER_PROCESSING
+2014-11-09 14:44:40,531 [Thread-12] INFO  full  - Sending task strawberry (copy).jpg to i-1bb57cfa
+2014-11-09 14:44:40,541 [Thread-11] INFO  full  - No input to remove for /home/ubuntu/cclab/input_backup/strawberry (copy).jpg
+2014-11-09 14:44:40,549 [Thread-12] INFO  monitor.tasking  - ASSIGN_strawberry (copy).jpg_i-1bb57cfa
+2014-11-09 14:44:40,555 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:44:40,786 [Thread-11] DEBUG full  - Sent data for Message[6][NEWTASK] from i-3eb27bdf (strawberry (copy).jpg)
+2014-11-09 14:44:40,786 [Thread-11] DEBUG full  - Resuming normal send mode for  i-3eb27bdf
+2014-11-09 14:44:41,596 [Thread-11] DEBUG full  - Expecting 96173 bytes
+2014-11-09 14:44:41,598 [Thread-11] DEBUG full  - Received data for Message[3][FINISHED] from i-1bb57cfa (strawberry (copy).jpg)
+2014-11-09 14:44:41,598 [Thread-11] INFO  full  - Task strawberry (copy).jpg finished
+2014-11-09 14:44:41,598 [Thread-11] DEBUG full  - Node i-1bb57cfa switching state to IDLE
+2014-11-09 14:44:41,598 [Thread-12] DEBUG full  - Node i-1bb57cfa switching state to WORKING
+2014-11-09 14:44:41,598 [Thread-12] INFO  full  - Sending task banana.jpg to i-1bb57cfa
+2014-11-09 14:44:41,599 [Thread-12] INFO  monitor.tasking  - ASSIGN_banana.jpg_i-1bb57cfa
+2014-11-09 14:44:41,599 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:44:41,599 [Thread-11] INFO  monitor.tasking  - DONE_strawberry (copy).jpg_i-1bb57cfa
+2014-11-09 14:44:41,607 [Thread-11] DEBUG full  - Sent data for Message[7][NEWTASK] from i-3eb27bdf (banana.jpg)
+2014-11-09 14:44:41,607 [Thread-11] DEBUG full  - Resuming normal send mode for  i-3eb27bdf
+2014-11-09 14:44:43,599 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:44:45,599 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:44:47,601 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:44:49,601 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:44:50,809 [Thread-11] DEBUG full  - Expecting 167 bytes
+2014-11-09 14:44:50,809 [Thread-11] DEBUG full  - Received data for Message[2][PING] from i-56afa3bd (banana.jpg)
+2014-11-09 14:44:50,809 [Thread-11] INFO  full  - Client i-56afa3bd has connected.
+2014-11-09 14:44:50,810 [Thread-11] INFO  full  - Node connected: i-56afa3bd
+2014-11-09 14:44:50,810 [Thread-11] INFO  full  - Node i-56afa3bd has finished booting up.
+2014-11-09 14:44:50,810 [Thread-11] DEBUG full  - Node i-56afa3bd switching state to IDLE
+2014-11-09 14:44:50,810 [Thread-11] INFO  full  - No input to remove for /home/ubuntu/cclab/input_backup/banana.jpg
+2014-11-09 14:44:50,810 [Thread-12] DEBUG full  - Node i-56afa3bd switching state to WORKING
+2014-11-09 14:44:50,810 [Thread-12] INFO  full  - Sending task pears (3rd copy).jpg to i-56afa3bd
+2014-11-09 14:44:50,811 [Thread-12] INFO  monitor.tasking  - ASSIGN_pears (3rd copy).jpg_i-56afa3bd
+2014-11-09 14:44:50,811 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:44:50,833 [Thread-11] DEBUG full  - Sent data for Message[8][NEWTASK] from i-3eb27bdf (pears (3rd copy).jpg)
+2014-11-09 14:44:50,833 [Thread-11] DEBUG full  - Resuming normal send mode for  i-3eb27bdf
+2014-11-09 14:44:52,309 [Thread-11] DEBUG full  - Expecting 74158 bytes
+2014-11-09 14:44:52,311 [Thread-11] DEBUG full  - Received data for Message[3][FINISHED] from i-56afa3bd (banana.jpg)
+2014-11-09 14:44:52,311 [Thread-11] INFO  full  - Task banana.jpg finished
+2014-11-09 14:44:52,311 [Thread-11] INFO  monitor.tasking  - DONE_banana.jpg_i-56afa3bd
+2014-11-09 14:44:52,312 [Thread-11] ERROR full  - Error forced communicator to shut down
+java.lang.NullPointerException
+	at com.cclab.core.network.ServerComm.listenTo(ServerComm.java:166)
+	at com.cclab.core.MasterInstance.processMessage(MasterInstance.java:192)
+	at com.cclab.core.network.GeneralComm.handleMessage(GeneralComm.java:152)
+	at com.cclab.core.network.ServerComm.handleMessage(ServerComm.java:148)
+	at com.cclab.core.network.DataReceiver.doReceive(DataReceiver.java:63)
+	at com.cclab.core.network.ServerComm.read(ServerComm.java:105)
+	at com.cclab.core.network.GeneralComm.run(GeneralComm.java:73)
+2014-11-09 14:44:52,314 [Thread-11] WARN  full  - Communicator disconnected
+2014-11-09 14:44:52,314 [Thread-11] ERROR full  - Server went down
+2014-11-09 14:44:52,811 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:44:54,812 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:44:56,814 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:44:58,814 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:45:00,814 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:45:02,815 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:45:04,815 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:45:06,815 [Thread-12] DEBUG full  - No idle nodes available
+2014-11-09 14:45:08,816 [Thread-12] DEBUG full  - No idle nodes available

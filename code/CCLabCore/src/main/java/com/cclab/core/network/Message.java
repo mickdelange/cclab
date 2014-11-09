@@ -26,7 +26,7 @@ public class Message implements Serializable {
         FINISHED((byte) 2),
         NEWMASTER((byte) 3),
         BACKUPTASK((byte) 4),
-        BACKUPFIN((byte) 5), 
+        BACKUPFIN((byte) 5),
         BACKUPCONNECT((byte) 6),
         STILLALIVE((byte) 7);
 
@@ -56,6 +56,10 @@ public class Message implements Serializable {
 
         public static Type get(String name) {
             return nameLookup.get(name);
+        }
+
+        public boolean isBulkType() {
+            return this.equals(NEWTASK) || this.equals(FINISHED) || this.equals(BACKUPFIN) || this.equals(BACKUPTASK);
         }
     }
 

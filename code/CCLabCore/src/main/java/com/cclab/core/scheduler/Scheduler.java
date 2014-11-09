@@ -4,7 +4,9 @@ import com.amazonaws.services.ec2.model.Instance;
 import com.cclab.core.AwsConnect;
 import com.cclab.core.MasterInstance;
 import com.cclab.core.data.Database;
+import com.cclab.core.utils.DummyAwsInstance;
 import com.cclab.core.utils.NodeLogger;
+import com.cclab.core.utils.NodeUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,6 +34,7 @@ public class Scheduler extends Thread {
     List<String> masterIds;
 
     private boolean shouldExit = false;
+    private Set<Instance> instances;
 
     public Scheduler(List<String> mi, MasterInstance m) {
         myMaster = m;
@@ -40,7 +43,7 @@ public class Scheduler extends Thread {
             // Something went wrong loading properties, set to default
             loadThresh = 5;
             interval = 2000;
-            maxTaskTime = 60000;
+            maxTaskTime = 120000;
             maxIdleTime = 3600000;
             maxTaskRetry = 2;
             testMode = false;
@@ -51,8 +54,14 @@ public class Scheduler extends Thread {
         }
 
         try {
-            AwsConnect.init();
-            Set<Instance> instances = AwsConnect.getInstances();
+            if (NodeUtils.testModeOn) {
+                DummyAwsInstance[] dummies = {new DummyAwsInstance("pendejo1"), new DummyAwsInstance("pendejo2")};
+                instances = new HashSet<Instance>();
+                instances.addAll(Arrays.asList(dummies));
+            } else {
+                AwsConnect.init();
+                instances = AwsConnect.getInstances();
+            }
 
             for (Instance inst : instances) {
                 if (!masterIds.contains(inst.getInstanceId()))
@@ -98,11 +107,8 @@ public class Scheduler extends Thread {
      * Run the scheduler
      */
     public void run() {
-    	boolean backupNotified = false;
         try {
-            while (true) {
-                if (shouldExit) // Stop the loop.
-                    break;
+            while (!shouldExit) {
                 synchronized (this) {
                     wait(interval);
                 }
@@ -110,14 +116,14 @@ public class Scheduler extends Thread {
                 updateNodeStates();
 
                 // Update main queue
-                backupNotified = getTasks();
+                getTasks();
 
                 // Assign any new tasks
                 assignTasks();
-                
-                if (!backupNotified)
-                	myMaster.backupStillAlive();
+
+                myMaster.backupStillAlive();
             }
+            NodeLogger.get().info("Scheduler for " + myMaster + " has quit");
         } catch (InterruptedException e) {
             NodeLogger.get().error(e.getMessage(), e);
         }
@@ -125,31 +131,32 @@ public class Scheduler extends Thread {
 
     /**
      * Assign tasks to an available Node.
+     *
      * @return True is task was assigned to an active node, False otherwise.
      */
     private void assignTasks() {
-    	
-    	boolean idleNodes = true;
+
+        boolean idleNodes = true;
 
         while (!mainQ.isEmpty() && idleNodes) {
 
-	        // Search for an IDLE node
-	        Node n = findIdleNode();
-	        if (n != null) {
-	            // IDLE node available, assign Task
-	            n.assign(mainQ.poll());
-	        } else {
-		        NodeLogger.get().debug("No idle nodes available");
-	        	// No IDLE nodes available, check if new one should be started
-	        	idleNodes = false;
-	        	if (queueSize()/availableNodes > loadThresh) {
-	        		n = startNewNode();
-	        		if (n == null) {
-	        	        // No new nodes available, all nodes are running
-	        			NodeLogger.get().debug("No new nodes available");
-	        		}
-	        	}
-	        }
+            // Search for an IDLE node
+            Node n = findIdleNode();
+            if (n != null) {
+                // IDLE node available, assign Task
+                n.assign(mainQ.poll());
+            } else {
+                NodeLogger.get().debug("No idle nodes available");
+                // No IDLE nodes available, check if new one should be started
+                idleNodes = false;
+                if (queueSize() / availableNodes > loadThresh) {
+                    n = startNewNode();
+                    if (n == null) {
+                        // No new nodes available, all nodes are running
+                        NodeLogger.get().debug("No new nodes available");
+                    }
+                }
+            }
         }
     }
 
@@ -175,16 +182,20 @@ public class Scheduler extends Thread {
      *
      * @param instanceId
      */
-    public void taskFinished(String instanceId) {
+    public boolean taskFinished(String instanceId, String inputId) {
         for (Node n : workerNodes) {
             if (n.instanceId.equals(instanceId)) {
-                n.taskFinished();
-                break;
+                if (n.currTask.inputId.equals(inputId)) {
+                    n.taskFinished();
+                    break;
+                } else
+                    return false;
             }
         }
         synchronized (this) {
             notify();
         }
+        return true;
     }
 
     /**
@@ -199,30 +210,26 @@ public class Scheduler extends Thread {
     /**
      * Get all tasks from input folder
      */
-    private boolean getTasks() {
+    private void getTasks() {
         String newInput = Database.getInstance().getNextRecordId();
         Task nT;
-        boolean backupNotified = false;
         while (newInput != null) {
             // Create and add task
             nT = new Task(newInput);
             addTask(nT);
-            
-            // Backup new task
- 			myMaster.backupNewTask(nT.inputId);
-			backupNotified = true;
+
+            myMaster.backupFutureTask(newInput);
 
             // Get next
             newInput = Database.getInstance().getNextRecordId();
         }
-        return backupNotified;
     }
 
     /**
      * Update node states bases on AWS response
      */
     private void updateNodeStates() {
-        Set<Instance> instances = AwsConnect.getInstances();
+
         availableNodes = 0;
 
         Node wn = null;
@@ -232,7 +239,7 @@ public class Scheduler extends Thread {
             if (wn != null) {
                 wn.updateState(inst);
                 if (wn.state != Node.State.STOPPED)
-                	availableNodes++;
+                    availableNodes++;
                 // Check if node has lost tasks
                 if (wn.hasLostTask()) {
                     // Add tasks back to main queue

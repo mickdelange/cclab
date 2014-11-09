@@ -1,4 +1,4 @@
-package com.cclab.core.utils;
+package com.cclab.core.redundancy;
 
 public abstract class BootSettings {
 

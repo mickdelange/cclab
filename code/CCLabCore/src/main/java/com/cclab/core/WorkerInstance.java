@@ -28,36 +28,44 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
     String masterIP = null;
     final int MAX_RECONNECT = 3;
     int reconnecting = 0;
+    String nowProcessing = null;
 
     public WorkerInstance(String myName, String masterIP, int port) throws IOException {
         super(myName);
         this.port = port;
-        
-        registerMaster(masterIP);
-        
-        server = new ServerComm(port, myName, this);
+
+        // Listen for connections from new masters
+        server = new ServerComm(NodeUtils.testModeOn ? 9030 : port, myName, this);
         server.start();
+        server.listeningModeOn = true;
+
+        registerMaster(masterIP);
     }
-    
+
     /**
      * Register to a Master node.
-     * @throws IOException 
+     *
+     * @throws IOException
      */
     private void registerMaster(String newMasterIP) {
-    	try {
-    		// Remove any old master connections
-        	clients.clear();
-        	
-        	this.masterIP = newMasterIP;
-        	
-        	// Register to master
+        try {
+            // Remove any old master connections
+            shuttingDown = true;
+            for (ClientComm client : clients.values())
+                client.quit();
+            clients.clear();
+            shuttingDown = false;
+
+            this.masterIP = newMasterIP;
+
+            // Register to master
             ClientComm client = new ClientComm(masterIP, port, myName, this);
             client.start();
-        	clients.put(masterIP, client);
-		} catch (IOException e) {
+            clients.put(masterIP, client);
+        } catch (IOException e) {
             e.printStackTrace();
-			NodeLogger.get().error("Could not register Master node.");
-		}
+            NodeLogger.get().error("Could not register Master node.");
+        }
     }
 
     @Override
@@ -83,9 +91,13 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
     public void processMessage(Message message) {
         if (message.getType() == Message.Type.NEWTASK.getCode()) {
             NodeLogger.get().info("Received task " + message);
+            if (message.getDetails().equals(nowProcessing))
+                return;
+            nowProcessing = message.getDetails();
             NodeLogger.getProcessing().info("START_" + message.getDetails());
             Processor processor = new ImageProcessor(message.getDetails(), (byte[]) message.getData(), "blur", this);
             new Thread(processor).start();
+            // Fake doing work
 //            try {
 //                Thread.sleep(5000);
 //            } catch (InterruptedException e) {
@@ -94,9 +106,8 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
 //            Message ret = new Message(Message.Type.FINISHED, myName);
 //            ret.setDetails(message.getDetails());
 //            clients.get(masterIP).addMessageToOutgoing(ret);
-        }
-        else if (message.getType() == Message.Type.NEWMASTER.getCode()) {
-        	registerMaster(message.getDetails());
+        } else if (message.getType() == Message.Type.NEWMASTER.getCode()) {
+            registerMaster(message.getDetails());
         }
     }
 
@@ -124,5 +135,17 @@ public class WorkerInstance extends NodeInstance implements ProcessController {
         ret.setData(output);
         NodeLogger.get().info("Finished task " + ret);
         clients.get(masterIP).addMessageToOutgoing(ret);
+        nowProcessing = null;
+    }
+
+    @Override
+    public void shutDown() {
+        super.shutDown();
+        NodeLogger.get().info("WORKER shutting down");
+    }
+
+    @Override
+    public String getPingDetails() {
+        return nowProcessing;
     }
 }

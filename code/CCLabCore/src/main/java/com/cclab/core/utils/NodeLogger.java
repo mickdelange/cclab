@@ -1,6 +1,8 @@
 package com.cclab.core.utils;
 
-import org.apache.log4j.*;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,12 +29,12 @@ public class NodeLogger {
             InputStream configStream = caller.getClass().getResourceAsStream("/log4j.properties");
             props.load(configStream);
             configStream.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println("Error: Cannot load log configuration file");
             return;
         }
 
-        props.setProperty("log.name",name);
+        props.setProperty("log.name", name);
         LogManager.resetConfiguration();
         PropertyConfigurator.configure(props);
     }
@@ -51,5 +53,9 @@ public class NodeLogger {
 
     public static Logger getBoot() {
         return Logger.getLogger("monitor.boot");
+    }
+
+    public static Logger getFailure() {
+        return Logger.getLogger("monitor.failure");
     }
 }

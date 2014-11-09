@@ -53,9 +53,7 @@ public abstract class GeneralComm extends Thread {
     public void run() {
         try {
             // main loop
-            while (true) {
-                if (shouldExit)
-                    break;
+            while (!shouldExit) {
                 checkOutgoing();
                 // wait for something to happen
                 selector.select(TIMEOUT);
@@ -79,6 +77,7 @@ public abstract class GeneralComm extends Thread {
 
                 }
             }
+            NodeLogger.get().info("Communicator " + this + " for " + interpreter + " has quit");
         } catch (Exception e) {
             NodeLogger.get().error("Error forced communicator to shut down", e);
         } finally {
@@ -89,7 +88,12 @@ public abstract class GeneralComm extends Thread {
     }
 
     void addMessageToOutgoing(Message message, SocketChannel channel) {
-        outgoingQueues.get(channel).add(message);
+        ConcurrentLinkedQueue<Message> queue = outgoingQueues.get(channel);
+        if (queue == null) {
+            NodeLogger.get().error("Channel not connected. Will not send " + message);
+            return;
+        }
+        queue.add(message);
         selector.wakeup();
     }
 
@@ -145,13 +149,22 @@ public abstract class GeneralComm extends Thread {
     }
 
     void handleMessage(Message message, SocketChannel channel) {
-        dataReceivers.remove(channel);
         interpreter.processMessage(message);
     }
 
     void finishedSending(Message message, SocketChannel channel) {
         NodeLogger.get().debug("Resuming normal send mode for  " + message.getOwner());
         dataSenders.remove(channel);
+    }
+
+    public boolean hasOutgoingWaiting() {
+        for (ConcurrentLinkedQueue map : outgoingQueues.values())
+            if (!map.isEmpty())
+                return true;
+        for (DataSender dataSender : dataSenders.values())
+            if (dataSender.hasRemaining())
+                return true;
+        return false;
     }
 
     abstract void accept(SelectionKey key) throws IOException;

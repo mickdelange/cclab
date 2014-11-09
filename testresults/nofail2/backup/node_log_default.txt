@@ -1,0 +1,627 @@
+2014-11-09 14:05:46,431 [main] INFO  monitor.failure  - BACKUP_BOOT
+2014-11-09 14:05:46,432 [main] INFO  full  - ClientComm communicator is now online
+2014-11-09 14:05:46,433 [main] INFO  full  - Connecting to 172.31.31.101:9026
+2014-11-09 14:05:46,485 [Thread-2] DEBUG full  - Sent data for Message[0][PING] from i-3eb27bdf (null)
+2014-11-09 14:05:46,492 [Thread-2] DEBUG full  - Resuming normal send mode for  i-3eb27bdf
+2014-11-09 14:05:46,671 [Thread-2] DEBUG full  - Expecting 957351 bytes
+2014-11-09 14:05:46,702 [Thread-2] DEBUG full  - Received data for Message[0][BACKUPTASK] from i-c1bbb72a (pears (copy).jpg)
+2014-11-09 14:05:46,708 [Thread-2] INFO  full  - Database initializing under /home/ubuntu/cclab as backup
+2014-11-09 14:05:46,708 [Thread-2] WARN  full  - Input directory not found. Creating it...
+2014-11-09 14:05:46,708 [Thread-2] INFO  full  - Temporary directory not found. Creating it...
+2014-11-09 14:05:46,709 [Thread-2] INFO  full  - Output directory not found. Creating it...
+2014-11-09 14:05:46,709 [Thread-2] WARN  full  - No initial input in database
+2014-11-09 14:05:46,710 [Thread-2] DEBUG full  - Expecting 90713 bytes
+2014-11-09 14:05:46,713 [Thread-2] DEBUG full  - Received data for Message[1][BACKUPTASK] from i-c1bbb72a (apple.jpeg)
+2014-11-09 14:05:46,761 [Thread-2] DEBUG full  - Expecting 5736055 bytes
+2014-11-09 14:05:47,030 [Thread-2] DEBUG full  - Received data for Message[2][BACKUPTASK] from i-c1bbb72a (strawberry (copy).jpg)
+2014-11-09 14:05:47,040 [Thread-2] DEBUG full  - Expecting 342355 bytes
+2014-11-09 14:05:47,044 [Thread-2] DEBUG full  - Received data for Message[3][BACKUPTASK] from i-c1bbb72a (banana (6th copy).jpg)
+2014-11-09 14:05:47,048 [Thread-2] DEBUG full  - Expecting 342351 bytes
+2014-11-09 14:05:47,055 [Thread-2] DEBUG full  - Received data for Message[4][BACKUPTASK] from i-c1bbb72a (banana (copy).jpg)
+2014-11-09 14:05:47,055 [Thread-2] DEBUG full  - Expecting 342344 bytes
+2014-11-09 14:05:47,062 [Thread-2] DEBUG full  - Received data for Message[5][BACKUPTASK] from i-c1bbb72a (banana.jpg)
+2014-11-09 14:05:47,066 [Thread-2] DEBUG full  - Expecting 957355 bytes
+2014-11-09 14:05:47,083 [Thread-2] DEBUG full  - Received data for Message[6][BACKUPTASK] from i-c1bbb72a (pears (3rd copy).jpg)
+2014-11-09 14:05:47,083 [Thread-2] DEBUG full  - Expecting 342355 bytes
+2014-11-09 14:05:47,090 [Thread-2] DEBUG full  - Received data for Message[7][BACKUPTASK] from i-c1bbb72a (banana (4th copy).jpg)
+2014-11-09 14:05:47,091 [Thread-2] DEBUG full  - Expecting 90724 bytes
+2014-11-09 14:05:47,092 [Thread-2] DEBUG full  - Received data for Message[8][BACKUPTASK] from i-c1bbb72a (apple (3rd copy).jpeg)
+2014-11-09 14:05:47,096 [Thread-2] DEBUG full  - Expecting 957355 bytes
+2014-11-09 14:05:47,111 [Thread-2] DEBUG full  - Received data for Message[9][BACKUPTASK] from i-c1bbb72a (pears (6th copy).jpg)
+2014-11-09 14:05:47,115 [Thread-2] DEBUG full  - Expecting 957359 bytes
+2014-11-09 14:05:47,135 [Thread-2] DEBUG full  - Received data for Message[10][BACKUPTASK] from i-c1bbb72a (pears (another copy).jpg)
+2014-11-09 14:05:47,136 [Thread-2] DEBUG full  - Expecting 90720 bytes
+2014-11-09 14:05:47,138 [Thread-2] DEBUG full  - Received data for Message[11][BACKUPTASK] from i-c1bbb72a (apple (copy).jpeg)
+2014-11-09 14:05:47,138 [Thread-2] DEBUG full  - Expecting 342355 bytes
+2014-11-09 14:05:47,144 [Thread-2] DEBUG full  - Received data for Message[12][BACKUPTASK] from i-c1bbb72a (banana (5th copy).jpg)
+2014-11-09 14:05:47,145 [Thread-2] DEBUG full  - Expecting 342359 bytes
+2014-11-09 14:05:47,149 [Thread-2] DEBUG full  - Received data for Message[13][BACKUPTASK] from i-c1bbb72a (banana (another copy).jpg)
+2014-11-09 14:05:47,152 [Thread-2] DEBUG full  - Expecting 957344 bytes
+2014-11-09 14:05:47,167 [Thread-2] DEBUG full  - Received data for Message[14][BACKUPTASK] from i-c1bbb72a (pears.jpg)
+2014-11-09 14:05:47,170 [Thread-2] DEBUG full  - Expecting 5736048 bytes
+2014-11-09 14:05:47,349 [Thread-2] DEBUG full  - Received data for Message[15][BACKUPTASK] from i-c1bbb72a (strawberry.jpg)
+2014-11-09 14:05:47,356 [Thread-2] DEBUG full  - Expecting 957355 bytes
+2014-11-09 14:05:47,370 [Thread-2] DEBUG full  - Received data for Message[16][BACKUPTASK] from i-c1bbb72a (pears (5th copy).jpg)
+2014-11-09 14:05:47,376 [Thread-2] DEBUG full  - Expecting 342355 bytes
+2014-11-09 14:05:47,401 [Thread-2] DEBUG full  - Received data for Message[17][BACKUPTASK] from i-c1bbb72a (banana (3rd copy).jpg)
+2014-11-09 14:05:47,402 [Thread-2] DEBUG full  - Expecting 957355 bytes
+2014-11-09 14:05:47,409 [Thread-2] DEBUG full  - Received data for Message[18][BACKUPTASK] from i-c1bbb72a (pears (4th copy).jpg)
+2014-11-09 14:05:47,412 [Thread-2] DEBUG full  - Expecting 90728 bytes
+2014-11-09 14:05:47,413 [Thread-2] DEBUG full  - Received data for Message[19][BACKUPTASK] from i-c1bbb72a (apple (another copy).jpeg)
+2014-11-09 14:05:47,823 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:05:47,823 [Thread-2] DEBUG full  - Received data for Message[20][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:05:47,823 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:05:49,823 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:05:49,827 [Thread-2] DEBUG full  - Received data for Message[21][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:05:49,827 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:05:51,824 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:05:51,824 [Thread-2] DEBUG full  - Received data for Message[22][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:05:51,824 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:05:53,825 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:05:53,825 [Thread-2] DEBUG full  - Received data for Message[23][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:05:53,825 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:05:54,022 [Thread-2] DEBUG full  - Expecting 167 bytes
+2014-11-09 14:05:54,022 [Thread-2] DEBUG full  - Received data for Message[24][BACKUPCONNECT] from i-c1bbb72a (i-56afa3bd)
+2014-11-09 14:05:54,205 [Thread-2] INFO  full  - ClientComm communicator is now online
+2014-11-09 14:05:54,205 [Thread-2] INFO  full  - Connecting to 172.31.23.86:9026
+2014-11-09 14:05:54,216 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:05:54,216 [Thread-2] DEBUG full  - Received data for Message[26][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:05:54,216 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:05:54,217 [Thread-6] DEBUG full  - Sent data for Message[1][PING] from i-3eb27bdf (null)
+2014-11-09 14:05:54,217 [Thread-6] DEBUG full  - Resuming normal send mode for  i-3eb27bdf
+2014-11-09 14:05:56,026 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:05:56,026 [Thread-2] DEBUG full  - Received data for Message[27][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:05:56,026 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:05:57,611 [Thread-2] DEBUG full  - Expecting 167 bytes
+2014-11-09 14:05:57,611 [Thread-2] DEBUG full  - Received data for Message[28][BACKUPCONNECT] from i-c1bbb72a (i-1bb57cfa)
+2014-11-09 14:05:57,611 [Thread-2] INFO  full  - ClientComm communicator is now online
+2014-11-09 14:05:57,612 [Thread-2] INFO  full  - Connecting to 172.31.40.114:9026
+2014-11-09 14:05:57,621 [Thread-7] DEBUG full  - Sent data for Message[2][PING] from i-3eb27bdf (null)
+2014-11-09 14:05:57,621 [Thread-7] DEBUG full  - Resuming normal send mode for  i-3eb27bdf
+2014-11-09 14:05:59,354 [Thread-2] DEBUG full  - Expecting 9518 bytes
+2014-11-09 14:05:59,355 [Thread-2] DEBUG full  - Received data for Message[30][BACKUPFIN] from i-c1bbb72a (apple.jpeg)
+2014-11-09 14:05:59,377 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:05:59,377 [Thread-2] DEBUG full  - Received data for Message[32][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:05:59,377 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:01,375 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:01,375 [Thread-2] DEBUG full  - Received data for Message[33][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:01,375 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:03,376 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:03,376 [Thread-2] DEBUG full  - Received data for Message[34][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:03,376 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:05,377 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:05,377 [Thread-2] DEBUG full  - Received data for Message[35][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:05,377 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:07,378 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:07,378 [Thread-2] DEBUG full  - Received data for Message[36][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:07,378 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:09,378 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:09,378 [Thread-2] DEBUG full  - Received data for Message[37][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:09,378 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:11,379 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:11,379 [Thread-2] DEBUG full  - Received data for Message[38][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:11,379 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:13,380 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:13,380 [Thread-2] DEBUG full  - Received data for Message[39][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:13,380 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:15,380 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:15,381 [Thread-2] DEBUG full  - Received data for Message[40][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:15,381 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:17,381 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:17,382 [Thread-2] DEBUG full  - Received data for Message[41][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:17,382 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:19,382 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:19,382 [Thread-2] DEBUG full  - Received data for Message[42][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:19,382 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:21,383 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:21,383 [Thread-2] DEBUG full  - Received data for Message[43][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:21,383 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:23,383 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:23,384 [Thread-2] DEBUG full  - Received data for Message[44][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:23,384 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:25,384 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:25,385 [Thread-2] DEBUG full  - Received data for Message[45][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:25,385 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:27,385 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:27,385 [Thread-2] DEBUG full  - Received data for Message[46][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:27,385 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:27,806 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:27,806 [Thread-2] DEBUG full  - Received data for Message[48][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:27,806 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:27,807 [Thread-2] DEBUG full  - Expecting 82324 bytes
+2014-11-09 14:06:27,809 [Thread-2] DEBUG full  - Received data for Message[49][BACKUPFIN] from i-c1bbb72a (pears (copy).jpg)
+2014-11-09 14:06:29,806 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:29,807 [Thread-2] DEBUG full  - Received data for Message[50][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:29,807 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:31,807 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:31,808 [Thread-2] DEBUG full  - Received data for Message[51][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:31,808 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:33,808 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:33,808 [Thread-2] DEBUG full  - Received data for Message[52][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:33,808 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:35,809 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:35,809 [Thread-2] DEBUG full  - Received data for Message[53][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:35,809 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:37,810 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:37,810 [Thread-2] DEBUG full  - Received data for Message[54][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:37,810 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:39,810 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:39,811 [Thread-2] DEBUG full  - Received data for Message[55][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:39,811 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:41,811 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:41,811 [Thread-2] DEBUG full  - Received data for Message[56][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:41,812 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:43,812 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:43,812 [Thread-2] DEBUG full  - Received data for Message[57][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:43,812 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:45,813 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:45,813 [Thread-2] DEBUG full  - Received data for Message[58][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:45,813 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:47,813 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:47,814 [Thread-2] DEBUG full  - Received data for Message[59][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:47,814 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:49,814 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:49,815 [Thread-2] DEBUG full  - Received data for Message[60][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:49,815 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:51,665 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:51,666 [Thread-2] DEBUG full  - Received data for Message[62][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:51,666 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:51,666 [Thread-2] DEBUG full  - Expecting 96173 bytes
+2014-11-09 14:06:51,668 [Thread-2] DEBUG full  - Received data for Message[63][BACKUPFIN] from i-c1bbb72a (strawberry (copy).jpg)
+2014-11-09 14:06:53,665 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:53,666 [Thread-2] DEBUG full  - Received data for Message[64][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:53,666 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:55,668 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:55,668 [Thread-2] DEBUG full  - Received data for Message[65][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:55,668 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:57,669 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:57,669 [Thread-2] DEBUG full  - Received data for Message[66][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:57,669 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:06:59,670 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:06:59,670 [Thread-2] DEBUG full  - Received data for Message[67][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:06:59,670 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:01,671 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:01,671 [Thread-2] DEBUG full  - Received data for Message[68][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:01,671 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:03,671 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:03,672 [Thread-2] DEBUG full  - Received data for Message[69][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:03,672 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:03,937 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:03,937 [Thread-2] DEBUG full  - Received data for Message[71][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:03,937 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:03,938 [Thread-2] DEBUG full  - Expecting 74169 bytes
+2014-11-09 14:07:03,939 [Thread-2] DEBUG full  - Received data for Message[72][BACKUPFIN] from i-c1bbb72a (banana (6th copy).jpg)
+2014-11-09 14:07:05,937 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:05,938 [Thread-2] DEBUG full  - Received data for Message[73][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:05,938 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:07,938 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:07,939 [Thread-2] DEBUG full  - Received data for Message[74][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:07,939 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:09,939 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:09,939 [Thread-2] DEBUG full  - Received data for Message[75][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:09,939 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:11,940 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:11,940 [Thread-2] DEBUG full  - Received data for Message[76][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:11,940 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:13,941 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:13,941 [Thread-2] DEBUG full  - Received data for Message[77][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:13,941 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:15,941 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:15,942 [Thread-2] DEBUG full  - Received data for Message[78][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:15,942 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:17,942 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:17,942 [Thread-2] DEBUG full  - Received data for Message[79][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:17,942 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:19,943 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:19,943 [Thread-2] DEBUG full  - Received data for Message[80][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:19,943 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:21,944 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:21,944 [Thread-2] DEBUG full  - Received data for Message[81][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:21,944 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:23,944 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:23,945 [Thread-2] DEBUG full  - Received data for Message[82][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:23,945 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:25,946 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:25,946 [Thread-2] DEBUG full  - Received data for Message[83][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:25,946 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:25,958 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:25,959 [Thread-2] DEBUG full  - Received data for Message[85][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:25,959 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:25,959 [Thread-2] DEBUG full  - Expecting 74165 bytes
+2014-11-09 14:07:25,960 [Thread-2] DEBUG full  - Received data for Message[86][BACKUPFIN] from i-c1bbb72a (banana (copy).jpg)
+2014-11-09 14:07:27,958 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:27,959 [Thread-2] DEBUG full  - Received data for Message[87][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:27,959 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:29,959 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:29,959 [Thread-2] DEBUG full  - Received data for Message[88][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:29,959 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:31,960 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:31,960 [Thread-2] DEBUG full  - Received data for Message[89][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:31,960 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:33,960 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:33,961 [Thread-2] DEBUG full  - Received data for Message[90][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:33,961 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:35,961 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:35,962 [Thread-2] DEBUG full  - Received data for Message[91][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:35,962 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:37,962 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:37,962 [Thread-2] DEBUG full  - Received data for Message[92][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:37,962 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:39,132 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:39,133 [Thread-2] DEBUG full  - Received data for Message[94][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:39,133 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:39,133 [Thread-2] DEBUG full  - Expecting 74158 bytes
+2014-11-09 14:07:39,135 [Thread-2] DEBUG full  - Received data for Message[95][BACKUPFIN] from i-c1bbb72a (banana.jpg)
+2014-11-09 14:07:41,133 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:41,133 [Thread-2] DEBUG full  - Received data for Message[96][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:41,133 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:43,134 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:43,136 [Thread-2] DEBUG full  - Received data for Message[97][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:43,136 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:45,134 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:45,135 [Thread-2] DEBUG full  - Received data for Message[98][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:45,135 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:47,135 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:47,136 [Thread-2] DEBUG full  - Received data for Message[99][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:47,136 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:49,136 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:49,136 [Thread-2] DEBUG full  - Received data for Message[100][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:49,136 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:51,138 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:51,139 [Thread-2] DEBUG full  - Received data for Message[101][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:51,139 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:53,139 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:53,139 [Thread-2] DEBUG full  - Received data for Message[102][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:53,139 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:55,140 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:55,140 [Thread-2] DEBUG full  - Received data for Message[103][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:55,140 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:57,141 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:57,141 [Thread-2] DEBUG full  - Received data for Message[104][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:57,141 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:07:59,141 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:07:59,142 [Thread-2] DEBUG full  - Received data for Message[105][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:07:59,142 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:00,768 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:00,768 [Thread-2] DEBUG full  - Received data for Message[107][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:00,769 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:00,769 [Thread-2] DEBUG full  - Expecting 82328 bytes
+2014-11-09 14:08:00,774 [Thread-2] DEBUG full  - Received data for Message[108][BACKUPFIN] from i-c1bbb72a (pears (3rd copy).jpg)
+2014-11-09 14:08:01,691 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:01,692 [Thread-2] DEBUG full  - Received data for Message[110][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:01,692 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:01,692 [Thread-2] DEBUG full  - Expecting 9529 bytes
+2014-11-09 14:08:01,692 [Thread-2] DEBUG full  - Received data for Message[111][BACKUPFIN] from i-c1bbb72a (apple (3rd copy).jpeg)
+2014-11-09 14:08:03,680 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:03,680 [Thread-2] DEBUG full  - Received data for Message[112][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:03,680 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:05,680 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:05,680 [Thread-2] DEBUG full  - Received data for Message[113][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:05,681 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:07,680 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:07,681 [Thread-2] DEBUG full  - Received data for Message[114][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:07,681 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:09,681 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:09,681 [Thread-2] DEBUG full  - Received data for Message[115][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:09,681 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:11,681 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:11,682 [Thread-2] DEBUG full  - Received data for Message[116][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:11,682 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:13,682 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:13,682 [Thread-2] DEBUG full  - Received data for Message[117][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:13,682 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:14,734 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:14,734 [Thread-2] DEBUG full  - Received data for Message[119][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:14,734 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:14,735 [Thread-2] DEBUG full  - Expecting 74169 bytes
+2014-11-09 14:08:14,737 [Thread-2] DEBUG full  - Received data for Message[120][BACKUPFIN] from i-c1bbb72a (banana (4th copy).jpg)
+2014-11-09 14:08:16,734 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:16,737 [Thread-2] DEBUG full  - Received data for Message[121][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:16,737 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:18,735 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:18,735 [Thread-2] DEBUG full  - Received data for Message[122][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:18,735 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:20,735 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:20,735 [Thread-2] DEBUG full  - Received data for Message[123][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:20,735 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:22,735 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:22,736 [Thread-2] DEBUG full  - Received data for Message[124][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:22,736 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:24,736 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:24,736 [Thread-2] DEBUG full  - Received data for Message[125][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:24,736 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:26,737 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:26,737 [Thread-2] DEBUG full  - Received data for Message[126][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:26,737 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:28,737 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:28,738 [Thread-2] DEBUG full  - Received data for Message[127][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:28,738 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:30,738 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:30,738 [Thread-2] DEBUG full  - Received data for Message[128][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:30,738 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:32,739 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:32,740 [Thread-2] DEBUG full  - Received data for Message[129][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:32,740 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:34,740 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:34,740 [Thread-2] DEBUG full  - Received data for Message[130][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:34,740 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:36,294 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:36,295 [Thread-2] DEBUG full  - Received data for Message[132][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:36,295 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:36,295 [Thread-2] DEBUG full  - Expecting 82328 bytes
+2014-11-09 14:08:36,296 [Thread-2] DEBUG full  - Received data for Message[133][BACKUPFIN] from i-c1bbb72a (pears (6th copy).jpg)
+2014-11-09 14:08:37,147 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:37,148 [Thread-2] DEBUG full  - Received data for Message[135][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:37,148 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:37,148 [Thread-2] DEBUG full  - Expecting 9525 bytes
+2014-11-09 14:08:37,148 [Thread-2] DEBUG full  - Received data for Message[136][BACKUPFIN] from i-c1bbb72a (apple (copy).jpeg)
+2014-11-09 14:08:39,147 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:39,148 [Thread-2] DEBUG full  - Received data for Message[137][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:39,148 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:41,148 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:41,148 [Thread-2] DEBUG full  - Received data for Message[138][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:41,148 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:43,148 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:43,149 [Thread-2] DEBUG full  - Received data for Message[139][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:43,149 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:45,149 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:45,149 [Thread-2] DEBUG full  - Received data for Message[140][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:45,149 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:47,149 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:47,149 [Thread-2] DEBUG full  - Received data for Message[141][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:47,149 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:49,149 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:49,149 [Thread-2] DEBUG full  - Received data for Message[142][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:49,150 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:50,674 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:50,674 [Thread-2] DEBUG full  - Received data for Message[144][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:50,675 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:50,675 [Thread-2] DEBUG full  - Expecting 82332 bytes
+2014-11-09 14:08:50,681 [Thread-2] DEBUG full  - Received data for Message[145][BACKUPFIN] from i-c1bbb72a (pears (another copy).jpg)
+2014-11-09 14:08:52,674 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:52,675 [Thread-2] DEBUG full  - Received data for Message[146][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:52,675 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:54,675 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:54,675 [Thread-2] DEBUG full  - Received data for Message[147][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:54,675 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:56,675 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:56,675 [Thread-2] DEBUG full  - Received data for Message[148][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:56,676 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:08:58,675 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:08:58,676 [Thread-2] DEBUG full  - Received data for Message[149][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:08:58,676 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:00,676 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:00,676 [Thread-2] DEBUG full  - Received data for Message[150][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:00,676 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:02,676 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:02,677 [Thread-2] DEBUG full  - Received data for Message[151][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:02,677 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:04,677 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:04,677 [Thread-2] DEBUG full  - Received data for Message[152][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:04,677 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:06,677 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:06,677 [Thread-2] DEBUG full  - Received data for Message[153][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:06,677 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:08,677 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:08,678 [Thread-2] DEBUG full  - Received data for Message[154][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:08,678 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:10,678 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:10,678 [Thread-2] DEBUG full  - Received data for Message[155][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:10,678 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:11,057 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:11,058 [Thread-2] DEBUG full  - Received data for Message[157][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:11,058 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:11,058 [Thread-2] DEBUG full  - Expecting 74169 bytes
+2014-11-09 14:09:11,060 [Thread-2] DEBUG full  - Received data for Message[158][BACKUPFIN] from i-c1bbb72a (banana (5th copy).jpg)
+2014-11-09 14:09:13,057 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:13,057 [Thread-2] DEBUG full  - Received data for Message[159][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:13,057 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:15,057 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:15,057 [Thread-2] DEBUG full  - Received data for Message[160][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:15,057 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:17,057 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:17,058 [Thread-2] DEBUG full  - Received data for Message[161][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:17,058 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:19,058 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:19,059 [Thread-2] DEBUG full  - Received data for Message[162][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:19,059 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:21,058 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:21,060 [Thread-2] DEBUG full  - Received data for Message[163][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:21,060 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:23,058 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:23,059 [Thread-2] DEBUG full  - Received data for Message[164][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:23,059 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:25,059 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:25,059 [Thread-2] DEBUG full  - Received data for Message[165][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:25,059 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:26,463 [Thread-2] DEBUG full  - Expecting 74173 bytes
+2014-11-09 14:09:26,465 [Thread-2] DEBUG full  - Received data for Message[166][BACKUPFIN] from i-c1bbb72a (banana (another copy).jpg)
+2014-11-09 14:09:26,485 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:26,485 [Thread-2] DEBUG full  - Received data for Message[168][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:26,485 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:28,483 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:28,484 [Thread-2] DEBUG full  - Received data for Message[169][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:28,484 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:30,484 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:30,484 [Thread-2] DEBUG full  - Received data for Message[170][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:30,484 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:32,484 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:32,484 [Thread-2] DEBUG full  - Received data for Message[171][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:32,484 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:34,484 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:34,485 [Thread-2] DEBUG full  - Received data for Message[172][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:34,485 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:36,485 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:36,485 [Thread-2] DEBUG full  - Received data for Message[173][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:36,485 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:38,485 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:38,485 [Thread-2] DEBUG full  - Received data for Message[174][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:38,485 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:40,485 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:40,486 [Thread-2] DEBUG full  - Received data for Message[175][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:40,486 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:42,486 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:42,486 [Thread-2] DEBUG full  - Received data for Message[176][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:42,486 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:44,486 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:44,486 [Thread-2] DEBUG full  - Received data for Message[177][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:44,486 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:45,500 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:45,500 [Thread-2] DEBUG full  - Received data for Message[179][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:45,500 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:45,500 [Thread-2] DEBUG full  - Expecting 82317 bytes
+2014-11-09 14:09:45,502 [Thread-2] DEBUG full  - Received data for Message[180][BACKUPFIN] from i-c1bbb72a (pears.jpg)
+2014-11-09 14:09:47,499 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:47,499 [Thread-2] DEBUG full  - Received data for Message[181][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:47,499 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:49,501 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:49,504 [Thread-2] DEBUG full  - Received data for Message[182][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:49,504 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:51,501 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:51,502 [Thread-2] DEBUG full  - Received data for Message[183][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:51,502 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:53,502 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:53,502 [Thread-2] DEBUG full  - Received data for Message[184][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:53,502 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:55,502 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:55,502 [Thread-2] DEBUG full  - Received data for Message[185][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:55,502 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:57,503 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:57,503 [Thread-2] DEBUG full  - Received data for Message[186][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:57,503 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:09:59,503 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:09:59,503 [Thread-2] DEBUG full  - Received data for Message[187][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:09:59,503 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:01,503 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:01,503 [Thread-2] DEBUG full  - Received data for Message[188][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:01,503 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:03,503 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:03,504 [Thread-2] DEBUG full  - Received data for Message[189][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:03,504 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:05,504 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:05,504 [Thread-2] DEBUG full  - Received data for Message[190][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:05,504 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:07,504 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:07,504 [Thread-2] DEBUG full  - Received data for Message[191][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:07,504 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:09,504 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:09,505 [Thread-2] DEBUG full  - Received data for Message[192][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:09,505 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:11,505 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:11,505 [Thread-2] DEBUG full  - Received data for Message[193][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:11,505 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:13,505 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:13,506 [Thread-2] DEBUG full  - Received data for Message[194][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:13,506 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:15,506 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:15,506 [Thread-2] DEBUG full  - Received data for Message[195][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:15,506 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:17,506 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:17,506 [Thread-2] DEBUG full  - Received data for Message[196][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:17,506 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:19,506 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:19,507 [Thread-2] DEBUG full  - Received data for Message[197][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:19,507 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:20,318 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:20,319 [Thread-2] DEBUG full  - Received data for Message[199][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:20,319 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:20,319 [Thread-2] DEBUG full  - Expecting 82328 bytes
+2014-11-09 14:10:20,321 [Thread-2] DEBUG full  - Received data for Message[200][BACKUPFIN] from i-c1bbb72a (pears (5th copy).jpg)
+2014-11-09 14:10:20,883 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:20,883 [Thread-2] DEBUG full  - Received data for Message[202][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:20,883 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:20,884 [Thread-2] DEBUG full  - Expecting 96166 bytes
+2014-11-09 14:10:20,886 [Thread-2] DEBUG full  - Received data for Message[203][BACKUPFIN] from i-c1bbb72a (strawberry.jpg)
+2014-11-09 14:10:22,883 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:22,883 [Thread-2] DEBUG full  - Received data for Message[204][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:22,883 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:24,884 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:24,886 [Thread-2] DEBUG full  - Received data for Message[205][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:24,886 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:26,884 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:26,884 [Thread-2] DEBUG full  - Received data for Message[206][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:26,884 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:28,884 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:28,884 [Thread-2] DEBUG full  - Received data for Message[207][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:28,885 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:30,885 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:30,885 [Thread-2] DEBUG full  - Received data for Message[208][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:30,885 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:32,885 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:32,885 [Thread-2] DEBUG full  - Received data for Message[209][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:32,885 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:34,885 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:34,886 [Thread-2] DEBUG full  - Received data for Message[210][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:34,886 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:36,886 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:36,886 [Thread-2] DEBUG full  - Received data for Message[211][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:36,886 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:38,886 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:38,886 [Thread-2] DEBUG full  - Received data for Message[212][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:38,886 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:40,886 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:40,887 [Thread-2] DEBUG full  - Received data for Message[213][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:40,887 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:42,887 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:42,887 [Thread-2] DEBUG full  - Received data for Message[214][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:42,887 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:44,887 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:44,887 [Thread-2] DEBUG full  - Received data for Message[215][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:44,887 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:46,887 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:46,888 [Thread-2] DEBUG full  - Received data for Message[216][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:46,888 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:48,888 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:48,888 [Thread-2] DEBUG full  - Received data for Message[217][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:48,888 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:50,888 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:50,888 [Thread-2] DEBUG full  - Received data for Message[218][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:50,888 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:52,889 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:52,889 [Thread-2] DEBUG full  - Received data for Message[219][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:52,889 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:54,151 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:54,153 [Thread-2] DEBUG full  - Received data for Message[221][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:54,153 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:54,153 [Thread-2] DEBUG full  - Expecting 74169 bytes
+2014-11-09 14:10:54,155 [Thread-2] DEBUG full  - Received data for Message[222][BACKUPFIN] from i-c1bbb72a (banana (3rd copy).jpg)
+2014-11-09 14:10:54,998 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:54,998 [Thread-2] DEBUG full  - Received data for Message[223][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:54,998 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:54,998 [Thread-2] DEBUG full  - Expecting 9533 bytes
+2014-11-09 14:10:54,998 [Thread-2] DEBUG full  - Received data for Message[224][BACKUPFIN] from i-c1bbb72a (apple (another copy).jpeg)
+2014-11-09 14:10:56,998 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:56,998 [Thread-2] DEBUG full  - Received data for Message[225][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:56,998 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:57,089 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:57,089 [Thread-2] DEBUG full  - Received data for Message[226][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:57,089 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:10:57,090 [Thread-2] DEBUG full  - Expecting 82328 bytes
+2014-11-09 14:10:57,091 [Thread-2] DEBUG full  - Received data for Message[227][BACKUPFIN] from i-c1bbb72a (pears (4th copy).jpg)
+2014-11-09 14:10:59,089 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:10:59,090 [Thread-2] DEBUG full  - Received data for Message[228][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:10:59,090 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:11:01,090 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:11:01,090 [Thread-2] DEBUG full  - Received data for Message[229][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:11:01,090 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:11:03,090 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:11:03,090 [Thread-2] DEBUG full  - Received data for Message[230][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:11:03,090 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:11:05,090 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:11:05,091 [Thread-2] DEBUG full  - Received data for Message[231][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:11:05,091 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:11:07,090 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:11:07,091 [Thread-2] DEBUG full  - Received data for Message[232][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:11:07,091 [Thread-2] DEBUG full  - MASTER is healthy
+2014-11-09 14:11:08,668 [Thread-1] DEBUG full  - Received command quit.
+2014-11-09 14:11:08,668 [Thread-1] INFO  full  - OBSERVER shutting down
+2014-11-09 14:11:08,672 [Thread-2] INFO  full  - Communicator Thread[Thread-2,5,main] for com.cclab.core.BackupInstance@33437177 has quit
+2014-11-09 14:11:08,673 [Thread-2] WARN  full  - Communicator disconnected
+2014-11-09 14:11:08,673 [Thread-1] INFO  full  - BACKUP shutting down
+2014-11-09 14:11:08,673 [Thread-1] INFO  monitor.failure  - BACKUP_FAIL
+2014-11-09 14:11:08,673 [Thread-1] INFO  full  - CL Reader for com.cclab.core.BackupInstance@33437177 has quit
+2014-11-09 14:11:08,673 [Thread-7] INFO  full  - Communicator Thread[Thread-7,5,main] for com.cclab.core.BackupInstance@33437177 has quit
+2014-11-09 14:11:08,673 [Thread-7] WARN  full  - Communicator disconnected
+2014-11-09 14:11:08,673 [Thread-6] INFO  full  - Communicator Thread[Thread-6,5,main] for com.cclab.core.BackupInstance@33437177 has quit
+2014-11-09 14:11:08,674 [Thread-6] WARN  full  - Communicator disconnected
+2014-11-09 14:11:08,732 [Thread-5] INFO  full  - Master Observer for com.cclab.core.BackupInstance@33437177 has quit

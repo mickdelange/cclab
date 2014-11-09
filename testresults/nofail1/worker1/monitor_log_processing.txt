@@ -1,0 +1,40 @@
+2014-11-09 13:52:17,534 -> START_pears (copy).jpg
+2014-11-09 13:52:50,469 -> FINISH_pears (copy).jpg
+2014-11-09 13:52:50,481 -> START_apple.jpeg
+2014-11-09 13:52:51,625 -> FINISH_apple.jpeg
+2014-11-09 13:52:51,921 -> START_strawberry (copy).jpg
+2014-11-09 13:53:46,630 -> FINISH_strawberry (copy).jpg
+2014-11-09 13:53:46,644 -> START_banana (6th copy).jpg
+2014-11-09 13:54:22,501 -> FINISH_banana (6th copy).jpg
+2014-11-09 13:54:22,515 -> START_banana (copy).jpg
+2014-11-09 13:54:57,601 -> FINISH_banana (copy).jpg
+2014-11-09 13:54:57,649 -> START_banana.jpg
+2014-11-09 13:55:33,758 -> FINISH_banana.jpg
+2014-11-09 13:55:33,788 -> START_pears (3rd copy).jpg
+2014-11-09 13:56:10,433 -> FINISH_pears (3rd copy).jpg
+2014-11-09 13:56:10,451 -> START_banana (4th copy).jpg
+2014-11-09 13:56:45,445 -> FINISH_banana (4th copy).jpg
+2014-11-09 13:56:45,490 -> START_apple (3rd copy).jpeg
+2014-11-09 13:56:46,333 -> FINISH_apple (3rd copy).jpeg
+2014-11-09 13:56:46,407 -> START_pears (6th copy).jpg
+2014-11-09 13:57:23,061 -> FINISH_pears (6th copy).jpg
+2014-11-09 13:57:23,091 -> START_pears (another copy).jpg
+2014-11-09 13:57:58,919 -> FINISH_pears (another copy).jpg
+2014-11-09 13:57:58,929 -> START_apple (copy).jpeg
+2014-11-09 13:57:59,769 -> FINISH_apple (copy).jpeg
+2014-11-09 13:57:59,817 -> START_banana (5th copy).jpg
+2014-11-09 13:58:35,534 -> FINISH_banana (5th copy).jpg
+2014-11-09 13:58:35,549 -> START_banana (another copy).jpg
+2014-11-09 13:59:11,061 -> FINISH_banana (another copy).jpg
+2014-11-09 13:59:11,085 -> START_pears.jpg
+2014-11-09 13:59:46,809 -> FINISH_pears.jpg
+2014-11-09 13:59:46,989 -> START_strawberry.jpg
+2014-11-09 14:00:40,607 -> FINISH_strawberry.jpg
+2014-11-09 14:00:40,631 -> START_pears (5th copy).jpg
+2014-11-09 14:01:17,013 -> FINISH_pears (5th copy).jpg
+2014-11-09 14:01:17,031 -> START_banana (3rd copy).jpg
+2014-11-09 14:01:52,157 -> FINISH_banana (3rd copy).jpg
+2014-11-09 14:01:52,181 -> START_pears (4th copy).jpg
+2014-11-09 14:02:28,457 -> FINISH_pears (4th copy).jpg
+2014-11-09 14:02:28,504 -> START_apple (another copy).jpeg
+2014-11-09 14:02:29,357 -> FINISH_apple (another copy).jpeg

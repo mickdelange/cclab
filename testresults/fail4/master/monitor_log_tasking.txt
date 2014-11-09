@@ -1,0 +1,12 @@
+2014-11-09 14:43:42,260 -> ASSIGN_pears (copy).jpg_i-56afa3bd
+2014-11-09 14:43:46,268 -> ASSIGN_apple.jpeg_i-1bb57cfa
+2014-11-09 14:43:48,006 -> DONE_apple.jpeg_i-1bb57cfa
+2014-11-09 14:43:48,009 -> ASSIGN_strawberry (copy).jpg_i-1bb57cfa
+2014-11-09 14:43:49,351 -> ASSIGN_banana (6th copy).jpg_i-4b5f8faa
+2014-11-09 14:43:52,312 -> ASSIGN_banana (copy).jpg_i-485f8fa9
+2014-11-09 14:44:15,655 -> ASSIGN_banana.jpg_i-56afa3bd
+2014-11-09 14:44:15,656 -> DONE_pears (copy).jpg_i-56afa3bd
+2014-11-09 14:44:21,645 -> ASSIGN_pears (3rd copy).jpg_i-4b5f8faa
+2014-11-09 14:44:21,645 -> DONE_banana (6th copy).jpg_i-4b5f8faa
+2014-11-09 14:44:22,119 -> ASSIGN_banana (4th copy).jpg_i-485f8fa9
+2014-11-09 14:44:22,120 -> DONE_banana (copy).jpg_i-485f8fa9

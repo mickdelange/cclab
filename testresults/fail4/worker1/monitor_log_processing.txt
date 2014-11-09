@@ -1,0 +1,5 @@
+2014-11-09 14:43:42,018 -> START_pears (copy).jpg
+2014-11-09 14:44:15,369 -> FINISH_pears (copy).jpg
+2014-11-09 14:44:15,389 -> START_banana.jpg
+2014-11-09 14:44:50,905 -> START_pears (3rd copy).jpg
+2014-11-09 14:44:52,350 -> FINISH_banana.jpg

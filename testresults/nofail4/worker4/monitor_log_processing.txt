@@ -1,0 +1,12 @@
+2014-11-09 14:31:00,516 -> START_banana (copy).jpg
+2014-11-09 14:31:30,815 -> FINISH_banana (copy).jpg
+2014-11-09 14:31:30,831 -> START_banana (4th copy).jpg
+2014-11-09 14:32:03,998 -> FINISH_banana (4th copy).jpg
+2014-11-09 14:32:04,013 -> START_apple (copy).jpeg
+2014-11-09 14:32:05,045 -> FINISH_apple (copy).jpeg
+2014-11-09 14:32:05,105 -> START_banana (5th copy).jpg
+2014-11-09 14:32:37,943 -> FINISH_banana (5th copy).jpg
+2014-11-09 14:32:37,973 -> START_pears (5th copy).jpg
+2014-11-09 14:33:11,033 -> FINISH_pears (5th copy).jpg
+2014-11-09 14:33:11,040 -> START_apple (another copy).jpeg
+2014-11-09 14:33:11,833 -> FINISH_apple (another copy).jpeg

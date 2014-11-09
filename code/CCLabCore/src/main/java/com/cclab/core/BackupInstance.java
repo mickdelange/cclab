@@ -1,13 +1,16 @@
 package com.cclab.core;
 
+import com.cclab.core.data.Database;
 import com.cclab.core.network.ClientComm;
 import com.cclab.core.network.Message;
-import com.cclab.core.utils.BootObserver;
-import com.cclab.core.utils.BootSettings;
-import com.cclab.core.utils.MasterObserver;
+import com.cclab.core.redundancy.BootObserver;
+import com.cclab.core.redundancy.BootSettings;
+import com.cclab.core.redundancy.MasterObserver;
 import com.cclab.core.utils.NodeLogger;
+import com.cclab.core.utils.NodeUtils;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class BackupInstance extends NodeInstance {
 
@@ -18,19 +21,26 @@ public class BackupInstance extends NodeInstance {
 
     public BackupInstance(String myName, String masterName, String masterIP, int port) throws IOException {
         super(myName);
+
+        NodeLogger.getFailure().info("BACKUP_BOOT");
         myMasterName = masterName;
         this.masterIP = masterIP;
         this.port = port;
+
+        //start listening to master
+        Database.isBackup = true;
         ClientComm client = new ClientComm(masterIP, port, myName, this);
         client.start();
         clients.put(masterIP, client);
 
         masterObserver = new MasterObserver(this);
 
-        try {
-            AwsConnect.init();
-        } catch (Exception e) {
-            NodeLogger.get().error(e.getMessage(), e);
+        if (NodeUtils.testModeOn) {
+            try {
+                AwsConnect.init();
+            } catch (Exception e) {
+                NodeLogger.get().error(e.getMessage(), e);
+            }
         }
     }
 
@@ -45,14 +55,14 @@ public class BackupInstance extends NodeInstance {
         try {
             // Init self as Master, with Master as Backup
             new MasterInstance(myName, myMasterName, port);
-
             // Notify all Workers.
-            notifyWorkers();
+            broadcastMasterSwitch();
 
-            new BootObserver(myMasterName, BootSettings.backup(myMasterName, myName, myIP));
+            if (!NodeUtils.testModeOn)
+                new BootObserver(myMasterName, BootSettings.backup(myMasterName, myName, myIP));
 
             // Kill self
-            shutDown();
+            safeShutDown();
         } catch (IOException e) {
             NodeLogger.get().error("Could not start master, backup failed");
             NodeLogger.get().error(e.getMessage(), e);
@@ -63,14 +73,13 @@ public class BackupInstance extends NodeInstance {
     /**
      * Notify all registered Worker nodes of new master.
      */
-    private void notifyWorkers() {
-        String ownIP = AwsConnect.getInstancePrivIP(myName);
+    private void broadcastMasterSwitch() {
+        String ownIP = NodeUtils.testModeOn ? "localhost" : AwsConnect.getInstancePrivIP(myName);
         Message notification = new Message(Message.Type.NEWMASTER, myName);
         notification.setDetails(ownIP);
 
-        for (String key : clients.keySet()) {
-            if (!key.equals(masterIP)) // Notify only worker nodes
-                clients.get(key).addMessageToOutgoing(notification);
+        for (Map.Entry<String, ClientComm> client : clients.entrySet()) {
+            client.getValue().addMessageToOutgoing(notification);
         }
     }
 
@@ -80,15 +89,31 @@ public class BackupInstance extends NodeInstance {
      * @param nodeName
      */
     private void registerNode(String nodeName) {
-        String nodeIP = AwsConnect.getInstancePrivIP(nodeName);
+        String nodeIP = NodeUtils.testModeOn ? "localhost" : AwsConnect.getInstancePrivIP(nodeName);
         try {
-            ClientComm client = new ClientComm(nodeIP, port, myName, this);
+            ClientComm client = new ClientComm(nodeIP, NodeUtils.testModeOn ? 9030 : port, myName, this);
             client.start();
             clients.put(nodeIP, client);
         } catch (IOException e) {
             e.printStackTrace();
             NodeLogger.get().error("Could not register node.");
         }
+    }
+
+    private void safeShutDown() {
+        boolean done;
+        NodeLogger.get().info("Waiting for nodes to receive switch notification");
+        do {
+            done = true;
+            // check if all notifications to workers have been sent
+            for (Map.Entry<String, ClientComm> client : clients.entrySet())
+//                if (!client.getKey().equals(masterIP))
+                if (client.getValue().hasOutgoingWaiting()) {
+                    done = false;
+                    break;
+                }
+        } while (!done);
+        shutDown();
     }
 
     @Override
@@ -103,11 +128,14 @@ public class BackupInstance extends NodeInstance {
         if (!masterObserver.started)// Run observer on first contact
             new Thread(masterObserver).start();
 
-        if (message.getType() == Message.Type.BACKUPTASK.getCode()) {
-            // TODO: process new task message:
+        if (message.getType() == Message.Type.STILLALIVE.getCode()) {
+            NodeLogger.get().debug("MASTER is healthy");
+        } else if (message.getType() == Message.Type.BACKUPTASK.getCode()) {
             // Store new image in input
+            Database.getInstance().storeInputRecord((byte[]) message.getData(), message.getDetails());
         } else if (message.getType() == Message.Type.BACKUPFIN.getCode()) {
-            // TODO: process task finished:
+            Database.getInstance().removeInputRecord(message.getDetails());
+            Database.getInstance().storeRecord((byte[]) message.getData(), message.getDetails());
             // Move image from input to output
         } else if (message.getType() == Message.Type.BACKUPCONNECT.getCode()) {
             registerNode(message.getDetails());
@@ -125,5 +153,7 @@ public class BackupInstance extends NodeInstance {
     public void shutDown() {
         masterObserver.quit();
         super.shutDown();
+        NodeLogger.get().info("BACKUP shutting down");
+        NodeLogger.getFailure().info("BACKUP_FAIL");
     }
 }

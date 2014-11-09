@@ -98,7 +98,9 @@ public class ClientComm extends GeneralComm {
 
             outgoingQueues.clear();
             outgoingQueues.put(mainChannel, new ConcurrentLinkedQueue<Message>());
-            addMessageToOutgoing(new Message(Message.Type.PING, myName), mainChannel);
+            Message first = new Message(Message.Type.PING, myName);
+            first.setDetails(interpreter.getPingDetails());
+            addMessageToOutgoing(first, mainChannel);
         }
     }
 

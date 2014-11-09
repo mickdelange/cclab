@@ -1,0 +1,5 @@
+2014-11-09 14:44:40,549 -> ASSIGN_strawberry (copy).jpg_i-1bb57cfa
+2014-11-09 14:44:41,599 -> ASSIGN_banana.jpg_i-1bb57cfa
+2014-11-09 14:44:41,599 -> DONE_strawberry (copy).jpg_i-1bb57cfa
+2014-11-09 14:44:50,811 -> ASSIGN_pears (3rd copy).jpg_i-56afa3bd
+2014-11-09 14:44:52,311 -> DONE_banana.jpg_i-56afa3bd

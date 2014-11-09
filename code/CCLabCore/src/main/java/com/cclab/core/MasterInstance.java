@@ -2,8 +2,10 @@ package com.cclab.core;
 
 
 import com.cclab.core.data.Database;
+import com.cclab.core.network.GeneralComm;
 import com.cclab.core.network.Message;
 import com.cclab.core.network.ServerComm;
+import com.cclab.core.redundancy.DataReplicator;
 import com.cclab.core.scheduler.Scheduler;
 import com.cclab.core.utils.NodeLogger;
 import com.cclab.core.utils.NodeUtils;
@@ -29,11 +31,19 @@ public class MasterInstance extends NodeInstance {
     Scheduler scheduler;
     String myBackupName;
     boolean backupConnected = false;
+    DataReplicator replicator = null;
+    List<String> processing = null;
+    boolean tasksStarted = false;
 
     public MasterInstance(String name, String backupName, int port) throws IOException {
         super(name);
+
+        NodeLogger.getFailure().info("MASTER_BOOT");
+
         myBackupName = backupName;
-        
+
+        replicator = new DataReplicator(this);
+
         server = new ServerComm(port, myName, this);
         server.start();
 
@@ -41,9 +51,11 @@ public class MasterInstance extends NodeInstance {
         List<String> masterIds = new ArrayList<String>();
         masterIds.add(myName);
         masterIds.add(myBackupName);
-        
+
+        processing = new ArrayList<String>();
+
         scheduler = new Scheduler(masterIds, this);
-        scheduler.run();
+        scheduler.start();
     }
 
     @Override
@@ -85,77 +97,89 @@ public class MasterInstance extends NodeInstance {
 
     /**
      * Send a task to a specific node
+     *
      * @param recipient Node
-     * @param inputId Task id
+     * @param inputId   Task id
      */
     public void sendTaskTo(String recipient, String inputId) {
+        if (!tasksStarted) {
+            NodeLogger.getFailure().info("MASTER_PROCESSING");
+            tasksStarted = true;
+        }
         if (inputId == null || inputId.length() < 1) {
             NodeLogger.get().error("Task input identifier not supplied");
             return;
         }
-        NodeLogger.getTasking().info("ASSIGN_" + inputId + "_" + recipient);
-        Message message = new Message(Message.Type.NEWTASK, myName);
-        message.setDetails(inputId);
+
+        if (processing.contains(inputId)) {
+            NodeLogger.get().info("Task is already being processed");
+            scheduler.taskFinished(recipient, inputId);
+            return;
+        }
+
+        NodeLogger.get().info("Sending task " + inputId + " to " + recipient);
+
         byte[] input = Database.getInstance().getRecord(inputId);
-        if (input == null) {
+        if (input == null || input.length <= 0) {
             NodeLogger.get().error("Task will not be sent");
             return;
         }
+        if (backupConnected)
+            replicator.backupPendingRecord(inputId, input);
+        else
+            replicator.backupFutureRecord(inputId);
+        NodeLogger.getTasking().info("ASSIGN_" + inputId + "_" + recipient);
+        Message message = new Message(Message.Type.NEWTASK, myName);
+        message.setDetails(inputId);
         message.setData(input);
         server.addMessageToOutgoing(message, recipient);
     }
 
     /**
-     * Back-up new task to backup node.
-     * @param inputId
+     * Send a message to the backup master
+     *
+     * @param message
      */
-    public void backupNewTask(String inputId) {
-    	if (backupConnected) {
-	        Message message = new Message(Message.Type.BACKUPTASK, myName);
-	        message.setDetails(inputId);
-	        byte[] input = Database.getInstance().getRecord(inputId);
-	        if (input == null) {
-	            NodeLogger.get().error("Task will not be sent");
-	            return;
-	        }
-	    	// TODO: fix: message.setData(input);
-	        server.addMessageToOutgoing(message, myBackupName);
-    	}
+    public void sendToBackup(Message message) {
+        if (backupConnected) {
+            server.addMessageToOutgoing(message, myBackupName);
+        } else {
+            NodeLogger.get().error("Backup is not connected! Will not send " + message);
+        }
     }
-    
-    /**
-     * Notify back-up of finished task.
-     * @param inputId
-     */
-    public void backupFinishedTask(String inputId) {
-    	if (backupConnected) {
-	        Message message = new Message(Message.Type.BACKUPFIN, myName);
-	        message.setDetails(inputId);
-	        server.addMessageToOutgoing(message, myBackupName);
-    	}
-    }
-    
+
     /**
      * Notify back-up of new connection.
-     * @param inputId
+     *
+     * @param instanceId
      */
     public void backupNodeConnection(String instanceId) {
-    	if (backupConnected) {
-	        Message message = new Message(Message.Type.BACKUPCONNECT, myName);
-	        message.setDetails(instanceId);
-	        server.addMessageToOutgoing(message, myBackupName);
-    	}
+        if (backupConnected) {
+            Message message = new Message(Message.Type.BACKUPCONNECT, myName);
+            message.setDetails(instanceId);
+            server.addMessageToOutgoing(message, myBackupName);
+        }
     }
-    
+
+    /**
+     * Backup future task
+     *
+     * @param recordId
+     */
+    public void backupFutureTask(String recordId) {
+        replicator.backupFutureRecord(recordId);
+    }
+
     /**
      * Notify back-up of still being alive.
-     * @param inputId
      */
     public void backupStillAlive() {
-    	if (backupConnected) {
-	        Message message = new Message(Message.Type.STILLALIVE, myName);
-	        server.addMessageToOutgoing(message, myBackupName);
-    	}
+        if (backupConnected) {
+            if (server.hasOutgoingWaiting(myBackupName))
+                return;
+            Message message = new Message(Message.Type.STILLALIVE, myName);
+            server.addMessageToOutgoing(message, myBackupName);
+        }
     }
 
     @Override
@@ -163,12 +187,28 @@ public class MasterInstance extends NodeInstance {
         if (message.getType() == Message.Type.FINISHED.getCode()) {
             NodeLogger.get().info("Task " + message.getDetails() + " finished");
 
-            scheduler.taskFinished(message.getOwner());
+            boolean expected = scheduler.taskFinished(message.getOwner(), message.getDetails());
 
             // optional
             Database.getInstance().storeRecord((byte[]) message.getData(), message.getDetails());
             NodeLogger.getTasking().info("DONE_" + message.getDetails() + "_" + message.getOwner());
+
+            if (!expected)
+                server.listenTo(message.getDetails());
+            if (backupConnected)
+                replicator.backupFinishedRecord(message.getDetails(), (byte[]) message.getData());
+            else
+                replicator.backupStoredRecord(message.getDetails());
+        } else if (message.getType() == Message.Type.PING.getCode()) {
+            if (message.getDetails() != null) {
+                Database.getInstance().removeInputRecord(message.getDetails());
+                markProcessing(message.getDetails());
+            }
         }
+    }
+
+    private void markProcessing(String inputId) {
+        processing.add(inputId);
     }
 
     @Override
@@ -176,20 +216,37 @@ public class MasterInstance extends NodeInstance {
     	NodeLogger.getBoot().info("CONNECTED_" + name);
         super.nodeConnected(name);
         if (name.equals(myBackupName)) {
-        	// Handle connection to backup node
-        	backupConnected = true;
+            // Handle connection to backup node
+            backupConnected = true;
+            replicator.doBackup();
         } else {
-        	// Handle connection to worker node
+            // Handle connection to worker node
             scheduler.nodeConnected(name);
             // Backup connection
             backupNodeConnection(name);
         }
-        
+
     }
 
     @Override
     public void shutDown() {
         super.shutDown();
         scheduler.quit();
+        NodeLogger.get().info("MASTER shutting down");
+        NodeLogger.getFailure().info("MASTER_FAIL");
+    }
+
+    @Override
+    public void communicatorDown(GeneralComm comm) {
+        super.communicatorDown(comm);
+    }
+
+    @Override
+    public void nodeDisconnected(String name) {
+        if (name.equals(myBackupName)) {
+            backupConnected = false;
+            replicator = new DataReplicator(this);
+            replicator.backupAll();
+        }
     }
 }

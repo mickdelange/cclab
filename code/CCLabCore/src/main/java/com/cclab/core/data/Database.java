@@ -19,7 +19,7 @@ import java.io.File;
  */
 
 public class Database {
-    private static Database ourInstance = new Database();
+    private static Database ourInstance = null;
     private static final String rootInDir = "/input";
     private static final String rootOutDir = "/output";
     private static final String rootTmpDir = "/tmp";
@@ -30,16 +30,21 @@ public class Database {
     private int nextUp = -1;
 
     public static Database getInstance() {
+        if (ourInstance == null)
+            ourInstance = new Database();
         return ourInstance;
     }
 
-    private Database() {
-        String currentDir = System.getProperty("user.dir");
-        NodeLogger.get().info("Database initializing under " + currentDir);
+    public static boolean isBackup = false;
 
-        String inputDirPath = currentDir + rootInDir;
-        String outputDirPath = currentDir + rootOutDir;
-        String tmpDirPath = currentDir + rootTmpDir;
+    private Database() {
+
+        String currentDir = System.getProperty("user.dir");
+        NodeLogger.get().info("Database initializing under " + currentDir + (isBackup ? " as backup" : ""));
+
+        String inputDirPath = currentDir + rootInDir + (isBackup ? "_backup" : "");
+        String outputDirPath = currentDir + rootOutDir + (isBackup ? "_backup" : "");
+        String tmpDirPath = currentDir + rootTmpDir + (isBackup ? "_backup" : "");
         inputDir = new File(inputDirPath);
         outputDir = new File(outputDirPath);
         tmpDir = new File(tmpDirPath);
@@ -117,14 +122,25 @@ public class Database {
 
 
     /**
-     * Transforms an input record id to the associated filename.
+     * Transforms a record id to the associated filename in the input directory.
      *
      * @param inputId the record's id
      * @return the input record's filename
      */
     private String getInputPathFromId(String inputId) {
+        return inputDir.getAbsolutePath() + "/" + inputId;
+    }
+
+    /**
+     * Transforms a record id to the associated filename in the temporary directory.
+     *
+     * @param inputId the record's id
+     * @return the input record's filename
+     */
+    private String getTempPathFromId(String inputId) {
         return tmpDir.getAbsolutePath() + "/" + inputId;
     }
+
 
     /**
      * Constructs an output filename based on the original input record's id.
@@ -137,13 +153,24 @@ public class Database {
     }
 
     /**
+     * Extracts the original input record's id from an output filename.
+     *
+     * @param filename the output record's filename
+     * @return the original input record's id
+     */
+    private String getIdFromOutputName(String filename) {
+        filename = filename.replace("processed_", "");
+        return filename.substring(filename.indexOf("_") + 1);
+    }
+
+    /**
      * Gets a record from its id.
      *
      * @param inputId the record's id
      * @return the record as a byte array
      */
     public byte[] getRecord(String inputId) {
-        String inputName = getInputPathFromId(inputId);
+        String inputName = getTempPathFromId(inputId);
         try {
             return NodeUtils.readDataFromFile(new File(inputName));
         } catch (Exception e) {
@@ -163,6 +190,41 @@ public class Database {
             NodeUtils.writeDataToFile(output, new File(outputName));
         } catch (Exception e) {
             NodeLogger.get().error("Error storing output " + outputName, e);
+        }
+    }
+
+    /**
+     * Writes a record to storage as an input record
+     *
+     * @param output the new record as a byte array
+     */
+    public void storeInputRecord(byte[] output, String inputId) {
+        String outputName = getInputPathFromId(inputId);
+        try {
+            NodeUtils.writeDataToFile(output, new File(outputName));
+        } catch (Exception e) {
+            NodeLogger.get().error("Error storing output " + outputName, e);
+        }
+    }
+
+    public String[] getProcessedRecords() {
+        String[] stored = outputDir.list();
+
+        for (int i = 0; i < stored.length; i++)
+            stored[i] = getIdFromOutputName(stored[i]);
+        return stored;
+    }
+
+    public String[] getTemporaryRecords() {
+        return tmpDir.list();
+    }
+
+    public void removeInputRecord(String inputId) {
+        String inputName = getInputPathFromId(inputId);
+        File file = new File(inputName);
+        boolean done = file.delete();
+        if (!done) {
+            NodeLogger.get().info("No input to remove for " + inputName);
         }
     }
 }

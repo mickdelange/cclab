@@ -1,0 +1,243 @@
+2014-11-09 14:43:30,152 [main] INFO  monitor.failure  - MASTER_BOOT
+2014-11-09 14:43:30,158 [main] INFO  full  - Server communicator is now online
+2014-11-09 14:43:30,162 [main] INFO  full  - Listening on port 9026
+2014-11-09 14:43:30,187 [main] INFO  full  - Scheduler started in Test Mode.
+2014-11-09 14:43:32,195 [Thread-3] INFO  full  - Database initializing under /home/ubuntu/cclab
+2014-11-09 14:43:32,195 [Thread-3] INFO  full  - Temporary directory not found. Creating it...
+2014-11-09 14:43:32,196 [Thread-3] INFO  full  - Output directory not found. Creating it...
+2014-11-09 14:43:32,206 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:34,207 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:36,207 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:37,139 [Thread-2] INFO  full  - Connection from: /172.31.41.198:54392
+2014-11-09 14:43:37,171 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:37,189 [Thread-2] DEBUG full  - Received data for Message[0][PING] from i-3eb27bdf (null)
+2014-11-09 14:43:37,189 [Thread-2] INFO  full  - Client i-3eb27bdf has connected.
+2014-11-09 14:43:37,194 [Thread-2] INFO  full  - Node connected: i-3eb27bdf
+2014-11-09 14:43:37,295 [Thread-2] DEBUG full  - Sent data for Message[0][BACKUPTASK] from i-c1bbb72a (pears (copy).jpg)
+2014-11-09 14:43:37,295 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,297 [Thread-2] DEBUG full  - Sent data for Message[1][BACKUPTASK] from i-c1bbb72a (apple.jpeg)
+2014-11-09 14:43:37,297 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,562 [Thread-2] DEBUG full  - Sent data for Message[2][BACKUPTASK] from i-c1bbb72a (strawberry (copy).jpg)
+2014-11-09 14:43:37,562 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,566 [Thread-2] DEBUG full  - Sent data for Message[3][BACKUPTASK] from i-c1bbb72a (banana (6th copy).jpg)
+2014-11-09 14:43:37,566 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,577 [Thread-2] DEBUG full  - Sent data for Message[4][BACKUPTASK] from i-c1bbb72a (banana (copy).jpg)
+2014-11-09 14:43:37,577 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,615 [Thread-2] DEBUG full  - Sent data for Message[5][BACKUPTASK] from i-c1bbb72a (banana.jpg)
+2014-11-09 14:43:37,615 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,633 [Thread-2] DEBUG full  - Sent data for Message[6][BACKUPTASK] from i-c1bbb72a (pears (3rd copy).jpg)
+2014-11-09 14:43:37,633 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,646 [Thread-2] DEBUG full  - Sent data for Message[7][BACKUPTASK] from i-c1bbb72a (banana (4th copy).jpg)
+2014-11-09 14:43:37,647 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,648 [Thread-2] DEBUG full  - Sent data for Message[8][BACKUPTASK] from i-c1bbb72a (apple (3rd copy).jpeg)
+2014-11-09 14:43:37,648 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,671 [Thread-2] DEBUG full  - Sent data for Message[9][BACKUPTASK] from i-c1bbb72a (pears (6th copy).jpg)
+2014-11-09 14:43:37,671 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,692 [Thread-2] DEBUG full  - Sent data for Message[10][BACKUPTASK] from i-c1bbb72a (pears (another copy).jpg)
+2014-11-09 14:43:37,692 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,703 [Thread-2] DEBUG full  - Sent data for Message[11][BACKUPTASK] from i-c1bbb72a (apple (copy).jpeg)
+2014-11-09 14:43:37,703 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,707 [Thread-2] DEBUG full  - Sent data for Message[12][BACKUPTASK] from i-c1bbb72a (banana (5th copy).jpg)
+2014-11-09 14:43:37,707 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,717 [Thread-2] DEBUG full  - Sent data for Message[13][BACKUPTASK] from i-c1bbb72a (banana (another copy).jpg)
+2014-11-09 14:43:37,717 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,734 [Thread-2] DEBUG full  - Sent data for Message[14][BACKUPTASK] from i-c1bbb72a (pears.jpg)
+2014-11-09 14:43:37,734 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,881 [Thread-2] DEBUG full  - Sent data for Message[15][BACKUPTASK] from i-c1bbb72a (strawberry.jpg)
+2014-11-09 14:43:37,881 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,904 [Thread-2] DEBUG full  - Sent data for Message[16][BACKUPTASK] from i-c1bbb72a (pears (5th copy).jpg)
+2014-11-09 14:43:37,904 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,912 [Thread-2] DEBUG full  - Sent data for Message[17][BACKUPTASK] from i-c1bbb72a (banana (3rd copy).jpg)
+2014-11-09 14:43:37,912 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,941 [Thread-2] DEBUG full  - Sent data for Message[18][BACKUPTASK] from i-c1bbb72a (pears (4th copy).jpg)
+2014-11-09 14:43:37,941 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:37,951 [Thread-2] DEBUG full  - Sent data for Message[19][BACKUPTASK] from i-c1bbb72a (apple (another copy).jpeg)
+2014-11-09 14:43:37,951 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:38,208 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:38,208 [Thread-2] DEBUG full  - Sent data for Message[20][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:38,208 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:40,208 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:40,208 [Thread-2] DEBUG full  - Sent data for Message[21][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:40,209 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:42,208 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:42,209 [Thread-2] DEBUG full  - Sent data for Message[22][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:42,209 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:42,234 [Thread-2] INFO  full  - Connection from: /172.31.23.86:55708
+2014-11-09 14:43:42,257 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:42,257 [Thread-2] DEBUG full  - Received data for Message[0][PING] from i-56afa3bd (null)
+2014-11-09 14:43:42,258 [Thread-2] INFO  full  - Client i-56afa3bd has connected.
+2014-11-09 14:43:42,258 [Thread-2] INFO  full  - Node connected: i-56afa3bd
+2014-11-09 14:43:42,258 [Thread-2] INFO  full  - Node i-56afa3bd has finished booting up.
+2014-11-09 14:43:42,258 [Thread-2] DEBUG full  - Node i-56afa3bd switching state to IDLE
+2014-11-09 14:43:42,259 [Thread-3] DEBUG full  - Node i-56afa3bd switching state to WORKING
+2014-11-09 14:43:42,259 [Thread-3] INFO  monitor.failure  - MASTER_PROCESSING
+2014-11-09 14:43:42,259 [Thread-3] INFO  full  - Sending task pears (copy).jpg to i-56afa3bd
+2014-11-09 14:43:42,260 [Thread-3] INFO  monitor.tasking  - ASSIGN_pears (copy).jpg_i-56afa3bd
+2014-11-09 14:43:42,260 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:42,260 [Thread-2] DEBUG full  - Sent data for Message[24][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:42,260 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:42,261 [Thread-2] DEBUG full  - Sent data for Message[25][BACKUPCONNECT] from i-c1bbb72a (i-56afa3bd)
+2014-11-09 14:43:42,261 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:42,284 [Thread-2] DEBUG full  - Sent data for Message[23][NEWTASK] from i-c1bbb72a (pears (copy).jpg)
+2014-11-09 14:43:42,284 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:44,260 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:44,261 [Thread-2] DEBUG full  - Sent data for Message[26][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:44,261 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:46,242 [Thread-2] INFO  full  - Connection from: /172.31.40.114:60776
+2014-11-09 14:43:46,260 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:46,261 [Thread-2] DEBUG full  - Sent data for Message[27][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:46,261 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:46,267 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:46,267 [Thread-2] DEBUG full  - Received data for Message[0][PING] from i-1bb57cfa (null)
+2014-11-09 14:43:46,267 [Thread-2] INFO  full  - Client i-1bb57cfa has connected.
+2014-11-09 14:43:46,267 [Thread-2] INFO  full  - Node connected: i-1bb57cfa
+2014-11-09 14:43:46,268 [Thread-2] INFO  full  - Node i-1bb57cfa has finished booting up.
+2014-11-09 14:43:46,268 [Thread-2] DEBUG full  - Node i-1bb57cfa switching state to IDLE
+2014-11-09 14:43:46,268 [Thread-3] DEBUG full  - Node i-1bb57cfa switching state to WORKING
+2014-11-09 14:43:46,268 [Thread-3] INFO  full  - Sending task apple.jpeg to i-1bb57cfa
+2014-11-09 14:43:46,268 [Thread-3] INFO  monitor.tasking  - ASSIGN_apple.jpeg_i-1bb57cfa
+2014-11-09 14:43:46,268 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:46,268 [Thread-2] DEBUG full  - Sent data for Message[28][BACKUPCONNECT] from i-c1bbb72a (i-1bb57cfa)
+2014-11-09 14:43:46,269 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:46,270 [Thread-2] DEBUG full  - Sent data for Message[29][NEWTASK] from i-c1bbb72a (apple.jpeg)
+2014-11-09 14:43:46,270 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:48,002 [Thread-2] DEBUG full  - Expecting 9518 bytes
+2014-11-09 14:43:48,003 [Thread-2] DEBUG full  - Received data for Message[1][FINISHED] from i-1bb57cfa (apple.jpeg)
+2014-11-09 14:43:48,003 [Thread-2] INFO  full  - Task apple.jpeg finished
+2014-11-09 14:43:48,003 [Thread-2] DEBUG full  - Node i-1bb57cfa switching state to IDLE
+2014-11-09 14:43:48,004 [Thread-3] DEBUG full  - Node i-1bb57cfa switching state to WORKING
+2014-11-09 14:43:48,004 [Thread-3] INFO  full  - Sending task strawberry (copy).jpg to i-1bb57cfa
+2014-11-09 14:43:48,006 [Thread-2] INFO  monitor.tasking  - DONE_apple.jpeg_i-1bb57cfa
+2014-11-09 14:43:48,006 [Thread-2] DEBUG full  - Sent data for Message[30][BACKUPFIN] from i-c1bbb72a (apple.jpeg)
+2014-11-09 14:43:48,007 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:48,009 [Thread-3] INFO  monitor.tasking  - ASSIGN_strawberry (copy).jpg_i-1bb57cfa
+2014-11-09 14:43:48,020 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:48,023 [Thread-2] DEBUG full  - Sent data for Message[32][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:48,024 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:48,242 [Thread-2] DEBUG full  - Sent data for Message[31][NEWTASK] from i-c1bbb72a (strawberry (copy).jpg)
+2014-11-09 14:43:48,242 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:49,328 [Thread-2] INFO  full  - Connection from: /172.31.34.146:49978
+2014-11-09 14:43:49,349 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:49,350 [Thread-2] DEBUG full  - Received data for Message[0][PING] from i-4b5f8faa (null)
+2014-11-09 14:43:49,350 [Thread-2] INFO  full  - Client i-4b5f8faa has connected.
+2014-11-09 14:43:49,350 [Thread-2] INFO  full  - Node connected: i-4b5f8faa
+2014-11-09 14:43:49,350 [Thread-2] INFO  full  - Node i-4b5f8faa has finished booting up.
+2014-11-09 14:43:49,350 [Thread-2] DEBUG full  - Node i-4b5f8faa switching state to IDLE
+2014-11-09 14:43:49,350 [Thread-3] DEBUG full  - Node i-4b5f8faa switching state to WORKING
+2014-11-09 14:43:49,350 [Thread-3] INFO  full  - Sending task banana (6th copy).jpg to i-4b5f8faa
+2014-11-09 14:43:49,351 [Thread-3] INFO  monitor.tasking  - ASSIGN_banana (6th copy).jpg_i-4b5f8faa
+2014-11-09 14:43:49,351 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:49,351 [Thread-2] DEBUG full  - Sent data for Message[33][BACKUPCONNECT] from i-c1bbb72a (i-4b5f8faa)
+2014-11-09 14:43:49,351 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:49,365 [Thread-2] DEBUG full  - Sent data for Message[34][NEWTASK] from i-c1bbb72a (banana (6th copy).jpg)
+2014-11-09 14:43:49,365 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:51,351 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:51,353 [Thread-2] DEBUG full  - Sent data for Message[35][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:51,353 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:52,293 [Thread-2] INFO  full  - Connection from: /172.31.34.145:42566
+2014-11-09 14:43:52,311 [Thread-2] DEBUG full  - Expecting 155 bytes
+2014-11-09 14:43:52,311 [Thread-2] DEBUG full  - Received data for Message[0][PING] from i-485f8fa9 (null)
+2014-11-09 14:43:52,311 [Thread-2] INFO  full  - Client i-485f8fa9 has connected.
+2014-11-09 14:43:52,311 [Thread-2] INFO  full  - Node connected: i-485f8fa9
+2014-11-09 14:43:52,311 [Thread-2] INFO  full  - Node i-485f8fa9 has finished booting up.
+2014-11-09 14:43:52,311 [Thread-2] DEBUG full  - Node i-485f8fa9 switching state to IDLE
+2014-11-09 14:43:52,312 [Thread-3] DEBUG full  - Node i-485f8fa9 switching state to WORKING
+2014-11-09 14:43:52,312 [Thread-3] INFO  full  - Sending task banana (copy).jpg to i-485f8fa9
+2014-11-09 14:43:52,312 [Thread-3] INFO  monitor.tasking  - ASSIGN_banana (copy).jpg_i-485f8fa9
+2014-11-09 14:43:52,312 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:52,312 [Thread-2] DEBUG full  - Sent data for Message[36][BACKUPCONNECT] from i-c1bbb72a (i-485f8fa9)
+2014-11-09 14:43:52,312 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:52,325 [Thread-2] DEBUG full  - Sent data for Message[37][NEWTASK] from i-c1bbb72a (banana (copy).jpg)
+2014-11-09 14:43:52,325 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:54,313 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:54,313 [Thread-2] DEBUG full  - Sent data for Message[38][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:54,313 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:56,313 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:56,313 [Thread-2] DEBUG full  - Sent data for Message[39][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:56,313 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:43:58,313 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:43:58,314 [Thread-2] DEBUG full  - Sent data for Message[40][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:43:58,314 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:00,314 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:44:00,314 [Thread-2] DEBUG full  - Sent data for Message[41][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:00,314 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:02,315 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:44:02,315 [Thread-2] DEBUG full  - Sent data for Message[42][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:02,315 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:04,315 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:44:04,316 [Thread-2] DEBUG full  - Sent data for Message[43][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:04,316 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:06,316 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:44:06,316 [Thread-2] DEBUG full  - Sent data for Message[44][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:06,316 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:08,316 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:44:08,317 [Thread-2] DEBUG full  - Sent data for Message[45][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:08,317 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:10,317 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:44:10,317 [Thread-2] DEBUG full  - Sent data for Message[46][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:10,317 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:12,317 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:44:12,318 [Thread-2] DEBUG full  - Sent data for Message[47][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:12,318 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:14,318 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:44:14,318 [Thread-2] DEBUG full  - Sent data for Message[48][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:14,318 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:15,652 [Thread-2] DEBUG full  - Expecting 82324 bytes
+2014-11-09 14:44:15,654 [Thread-2] DEBUG full  - Received data for Message[1][FINISHED] from i-56afa3bd (pears (copy).jpg)
+2014-11-09 14:44:15,654 [Thread-2] INFO  full  - Task pears (copy).jpg finished
+2014-11-09 14:44:15,655 [Thread-2] DEBUG full  - Node i-56afa3bd switching state to IDLE
+2014-11-09 14:44:15,655 [Thread-3] DEBUG full  - Node i-56afa3bd switching state to WORKING
+2014-11-09 14:44:15,655 [Thread-3] INFO  full  - Sending task banana.jpg to i-56afa3bd
+2014-11-09 14:44:15,655 [Thread-3] INFO  monitor.tasking  - ASSIGN_banana.jpg_i-56afa3bd
+2014-11-09 14:44:15,655 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:44:15,656 [Thread-2] INFO  monitor.tasking  - DONE_pears (copy).jpg_i-56afa3bd
+2014-11-09 14:44:15,657 [Thread-2] DEBUG full  - Sent data for Message[50][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:15,657 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:15,659 [Thread-2] DEBUG full  - Sent data for Message[51][BACKUPFIN] from i-c1bbb72a (pears (copy).jpg)
+2014-11-09 14:44:15,659 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:15,662 [Thread-2] DEBUG full  - Sent data for Message[49][NEWTASK] from i-c1bbb72a (banana.jpg)
+2014-11-09 14:44:15,662 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:17,656 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:44:17,656 [Thread-2] DEBUG full  - Sent data for Message[52][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:17,656 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:19,656 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:44:19,657 [Thread-2] DEBUG full  - Sent data for Message[53][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:19,657 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:21,642 [Thread-2] DEBUG full  - Expecting 74169 bytes
+2014-11-09 14:44:21,643 [Thread-2] DEBUG full  - Received data for Message[1][FINISHED] from i-4b5f8faa (banana (6th copy).jpg)
+2014-11-09 14:44:21,643 [Thread-2] INFO  full  - Task banana (6th copy).jpg finished
+2014-11-09 14:44:21,643 [Thread-2] DEBUG full  - Node i-4b5f8faa switching state to IDLE
+2014-11-09 14:44:21,644 [Thread-3] DEBUG full  - Node i-4b5f8faa switching state to WORKING
+2014-11-09 14:44:21,644 [Thread-3] INFO  full  - Sending task pears (3rd copy).jpg to i-4b5f8faa
+2014-11-09 14:44:21,645 [Thread-3] INFO  monitor.tasking  - ASSIGN_pears (3rd copy).jpg_i-4b5f8faa
+2014-11-09 14:44:21,645 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:44:21,645 [Thread-2] INFO  monitor.tasking  - DONE_banana (6th copy).jpg_i-4b5f8faa
+2014-11-09 14:44:21,645 [Thread-2] DEBUG full  - Sent data for Message[55][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:21,645 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:21,648 [Thread-2] DEBUG full  - Sent data for Message[56][BACKUPFIN] from i-c1bbb72a (banana (6th copy).jpg)
+2014-11-09 14:44:21,648 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:21,664 [Thread-2] DEBUG full  - Sent data for Message[54][NEWTASK] from i-c1bbb72a (pears (3rd copy).jpg)
+2014-11-09 14:44:21,664 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:22,117 [Thread-2] DEBUG full  - Expecting 74165 bytes
+2014-11-09 14:44:22,118 [Thread-2] DEBUG full  - Received data for Message[1][FINISHED] from i-485f8fa9 (banana (copy).jpg)
+2014-11-09 14:44:22,118 [Thread-2] INFO  full  - Task banana (copy).jpg finished
+2014-11-09 14:44:22,119 [Thread-2] DEBUG full  - Node i-485f8fa9 switching state to IDLE
+2014-11-09 14:44:22,119 [Thread-3] DEBUG full  - Node i-485f8fa9 switching state to WORKING
+2014-11-09 14:44:22,119 [Thread-3] INFO  full  - Sending task banana (4th copy).jpg to i-485f8fa9
+2014-11-09 14:44:22,119 [Thread-3] INFO  monitor.tasking  - ASSIGN_banana (4th copy).jpg_i-485f8fa9
+2014-11-09 14:44:22,119 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:44:22,120 [Thread-2] INFO  monitor.tasking  - DONE_banana (copy).jpg_i-485f8fa9
+2014-11-09 14:44:22,120 [Thread-2] DEBUG full  - Sent data for Message[58][STILLALIVE] from i-c1bbb72a (null)
+2014-11-09 14:44:22,120 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:22,126 [Thread-2] DEBUG full  - Sent data for Message[59][BACKUPFIN] from i-c1bbb72a (banana (copy).jpg)
+2014-11-09 14:44:22,126 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:22,133 [Thread-2] DEBUG full  - Sent data for Message[57][NEWTASK] from i-c1bbb72a (banana (4th copy).jpg)
+2014-11-09 14:44:22,133 [Thread-2] DEBUG full  - Resuming normal send mode for  i-c1bbb72a
+2014-11-09 14:44:22,807 [Thread-1] DEBUG full  - Received command quit.
+2014-11-09 14:44:22,807 [Thread-2] INFO  full  - Communicator Thread[Thread-2,5,main] for com.cclab.core.MasterInstance@103d3d90 has quit
+2014-11-09 14:44:22,808 [Thread-2] WARN  full  - Communicator disconnected
+2014-11-09 14:44:22,808 [Thread-1] INFO  full  - MASTER shutting down
+2014-11-09 14:44:22,808 [Thread-1] INFO  monitor.failure  - MASTER_FAIL
+2014-11-09 14:44:22,808 [Thread-1] INFO  full  - CL Reader for com.cclab.core.MasterInstance@103d3d90 has quit
+2014-11-09 14:44:24,120 [Thread-3] DEBUG full  - No idle nodes available
+2014-11-09 14:44:24,120 [Thread-3] INFO  full  - Scheduler for com.cclab.core.MasterInstance@103d3d90 has quit

@@ -33,6 +33,7 @@ public class ServerComm extends GeneralComm {
     ConcurrentHashMap<SocketChannel, String> channelToName;
     ExecutorService pool = Executors.newFixedThreadPool(5);
     ConcurrentHashMap<SocketChannel, Transceiver> transceivers;
+    public boolean listeningModeOn = false;
 
     public ServerComm(int port, String myName, CommInterpreter interpreter) throws IOException {
         super(port, myName, interpreter);
@@ -132,6 +133,7 @@ public class ServerComm extends GeneralComm {
         String client = channelToName.get(channel);
 
         NodeLogger.get().info("Node " + client + " disconnected");
+        interpreter.nodeDisconnected(client);
         channelToName.remove(channel);
         nameToChannel.remove(client);
         super.cancelConnection(key);
@@ -141,7 +143,8 @@ public class ServerComm extends GeneralComm {
     void handleMessage(Message message, SocketChannel channel) {
         SelectionKey key = channel.keyFor(selector);
         registerClient(message.getOwner(), channel);
-        key.interestOps(key.interestOps() & ~SelectionKey.OP_READ);
+        if (!listeningModeOn)
+            key.interestOps(key.interestOps() & ~SelectionKey.OP_READ);
         super.handleMessage(message, channel);
     }
 
@@ -150,4 +153,19 @@ public class ServerComm extends GeneralComm {
         NodeLogger.get().error("Cannot handle connect");
     }
 
+    public boolean hasOutgoingWaiting(String name) {
+        SocketChannel channel = nameToChannel.get(name);
+        if (channel == null)
+            return false;
+        ConcurrentLinkedQueue<Message> queue = outgoingQueues.get(channel);
+        return !queue.isEmpty();
+    }
+
+    public void listenTo(String name) {
+        SocketChannel channel = nameToChannel.get(name);
+        if (channel == null)
+            return;
+        SelectionKey key = channel.keyFor(selector);
+        key.interestOps(key.interestOps() | SelectionKey.OP_READ);
+    }
 }
