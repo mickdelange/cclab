@@ -258,10 +258,10 @@ The jar can be run to start up either a Master, a Backup or a Worker instance by
 
 \subsubsection{Node Instance}
 The Master, the Backup and all Workers are extensions of a node instance.  
-Each node has basic communication abilites and awareness of its physical node identifier, which it uses as a signature in communication. 
+Each node has basic communication abilities and awareness of its physical node identifier, which it uses as a signature in communication. 
 
 \subsubsection{Derived Instances}
-The derived instances implement the necessary processing functionality, resource management and policies described in this section.
+The derived instances implement the necessary processing functionality, resource management and policies described earlier in this section.
 Regular and long-running application logic runs as a separate thread. 
 For instance, the Master's Scheduler, the Backup's MasterObserver, and the Worker's Processor are all threads that carry out their specific functionality. 
 The take-over procedure is implemented as a forced instantiation of a new Master instance by the Backup, followed by a forced stopping of all threads carrying out Backup functionality.
@@ -272,7 +272,7 @@ Each node instance keeps a running Server thread that listens for new connection
  The master is only connected \emph{to} and does not keep any clients. 
 Workers connect only to the master, but keep a Server to listen for take-over messages from the backup instance. 
 The backup instance only keeps clients to connect to the master and each worker that it is notified of by the master. 
-The communication consists of serialized Message objects that are sent and received over non-blocking sockets, in order to avoid communicators getting 'stuck' on transfer operations. 
+The communication consists of serialized Message objects that are sent and received over non-blocking sockets, in order to avoid communicators getting \lq{}stuck\rq{} on transfer operations. 
 These messages have an identifier, an owner (the emitting node's signature), a data object (the image file's content as a byte array, if applicable) and details (such as the image identifier). 
 Since image files are large in size, the message bytes are grouped into segments before they are sent.
 
@@ -434,7 +434,7 @@ Processing was run once without connecting a Backup node to the Master, and agai
 
 \subsubsection{Overhead Results}
 Table \ref{tbl:overhead} shows the extra time needed for the replication to be done in each of the 4 configurations. 
-The average is 5,1 seconds, which is neglijable compared to the duration of the processing. 
+The average is 5,1 seconds, which is negligible compared to the duration of the processing. 
 It is interesting to see that the added overhead does not depend on the configuration. 
 We argue that the large variability is due to the fluctuation in network availability and computation power in the virtual machines on which the Master and Backup processes run.
 
@@ -502,10 +502,10 @@ The current policy is set to 5, which is a more safe choice.
 Our experiments reveal that the computation time needed to apply Gaussian blurring to arbitrary workloads can, indeed, be reduced drastically using a IaaS-based cloud solution. 
 We obtained a 60\% decrease in processing time for our test set, running on a 4-Worker-node configuration. 
 Of course, it is worth mentioning that the base case of our experiments consisted of a single-core virtual machine running the computation. 
-A comparison to WantCloud's actual server-based setup might show less of an improvement.
+A comparison to WantCloud's actual server-based set-up might show less of an improvement.
 
 However, our solution does remove the single-point-of-failure risk that comes with WantCloud's current approach.
-We have shown that the system can recover in due time from any node failure, while only adding a neglijable amount of overhead in processing.
+We have shown that the system can recover in due time from any node failure, while only adding a negligible amount of overhead in processing.
 
 Moreover, the system can scale its resource usage according to WantCloud's requirements with minimal configuration on their part. 
 As our results reveal, it takes only a few seconds for a new node to be booted up and take on some of the system's processing load. 
@@ -517,11 +517,11 @@ Purchasing hardware upgrades to prepare for peak loads is not as flexible as dyn
 % 8. Conclusion
 \section{Conclusion}
 \label{sec:conclusion}
-This report has analyzed a IaaS-based cloud solution for WantCloud, a company wishing to provide advanced image processing services to its customers.
+This report has analysed a IaaS-based cloud solution for WantCloud, a company wishing to provide advanced image processing services to its customers.
  Firstly, we put together a thorough description of the target workload and computation needs of WantCloud's Gaussian blur application. 
 Secondly, we proposed a system design meant to fit the requirements, while exploring the capabilities of a cloud-based solution.
 We then dove into a detailed analysis of the architecture and implementation, as well as the versatility of its configuration.
-This was followed by a series of experiments to measure the system's performance, to infer cost projections, to test recovery capabilites and scalability.
+This was followed by a series of experiments to measure the system's performance, to infer cost projections, to test recovery capabilities and scalability.
 Finally, we discussed our findings and concluded that the system is, indeed a viable option for WantCloud.
 
 An overview of the time spent on this project can be found under !TODO ref appendix!. 
