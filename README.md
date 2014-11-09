@@ -21,19 +21,21 @@ and then run directly as a jar.
 
 For running as a master node:
 
-`java -jar cclab-core-1.0-SNAPSHOT-jar-with-dependencies.jar "node_name" "master" ["port"]`
+`java -jar cclab-core-3.0-jar-with-dependencies.jar "node_name" "master" ["port"]`
 
 For running as a worker node:
 
-`java -jar cclab-core-1.0-SNAPSHOT-jar-with-dependencies.jar "node_name" "worker" ["hostname" ["port"]]`
+`java -jar cclab-core-3.0-jar-with-dependencies.jar "node_name" "worker" ["master_ip" ["port"]]`
+
+For running as a backup node:
+
+`java -jar cclab-core-3.0-jar-with-dependencies.jar "node_name" "backup" "master_name" ["master_ip" ["port"]]`
 
 The current version only supports manual booting of instances.
 
 ## Task Processing
 
 The master node will expect to find its input image files under `input/` , in its current running directory. If not, it will create the folder and expect that files will be added there later. All output is written under `output/`.
-
-The current version supports only manual sending of tasks through the command line interface.
 
 ## Command Line Interface
 
