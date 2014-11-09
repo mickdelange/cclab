@@ -368,14 +368,6 @@ The other set-ups use the Scheduler and have respectively one, two, three or fou
 	\label{tbl:setups}
 \end{table}
 
-\subsubsection{Results}
-The results of this experiment are shown in Figure \ref{fig:diagram_total_processing}.
-This figure shows the total processing time for the whole test set per set-up.
-Several interesting facts stand out when analysing these results.
-First of all it can be seen that \emph{Scheduler 1} takes a few seconds longer than \emph{Single}.
-This is as expected, as the Scheduler would cause some overhead.
-Interestingly, this overhead is quite minimal.
-
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\textwidth]{images/diagram_total_processing.jpg}
@@ -383,6 +375,16 @@ Interestingly, this overhead is quite minimal.
 	\label{fig:diagram_total_processing}
 \end{figure}
 
+\newpage
+
+\subsubsection{Results}
+
+The results of this experiment are shown in Figure \ref{fig:diagram_total_processing}.
+This figure shows the total processing time for the whole test set per set-up.
+Several interesting facts stand out when analysing these results.
+First of all it can be seen that \emph{Scheduler 1} takes a few seconds longer than \emph{Single}.
+This is as expected, as the Scheduler would cause some overhead.
+Interestingly, this overhead is quite minimal.
 The following observation that can be made is that \emph{Scheduler 2} scores significantly better than both previous set-ups.
 The speed up is almost double compared to \emph{Scheduler 1}.
 \emph{Scheduler 3} and \emph{Scheduler 4} both perform even better than the previous two.
@@ -391,13 +393,6 @@ To verify these results the average processing time per task was also analysed i
 This figure shows that the average time per task is almost the same in each set-up.
 A small increase can be seen from \emph{Single} to the \emph{Scheduler} set-ups, which could be due to the Scheduler overhead.
 However, this difference is so small it is hardly measurable on this scale.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{images/diagram_avg_image.jpg}
-	\caption{Average processing time per task for 5 types of set-ups. Time in seconds.}
-	\label{fig:diagram_avg_image}
-\end{figure}
 
 Table \ref{tbl:costs} gives an overview of estimated costs using the different set-ups on Amazon EC2.
 For \emph{Single} only one machine is needed, which keeps the cost low.
@@ -420,6 +415,13 @@ Further discussion of these costs can be found in Section \ref{sec:discussion}.
 	\caption{The charged hours and costs of the different set-ups tested in the Scheduler Performance experiment, on Amazon EC2. Cost per hour: \EUR{0,10}.}
 	\label{tbl:costs}
 \end{table}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/diagram_avg_image.jpg}
+	\caption{Average processing time per task for 5 types of set-ups. Time in seconds.}
+	\label{fig:diagram_avg_image}
+\end{figure}
 
 \subsection{Time To Recover Master}
 The most expensive recovery procedure is that from a Master failure. 
@@ -543,6 +545,7 @@ The source code of our solution and instructions for using it can be found in th
 \bibliography{references}{}
 \bibliographystyle{plain}
 
+\newpage
 \appendix
 % 9. Appendix A: Time sheets (see Section E)
 \section{Time sheet}
