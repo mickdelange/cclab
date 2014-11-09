@@ -3,6 +3,8 @@ package com.cclab.core;
 import com.cclab.core.data.Database;
 import com.cclab.core.network.ClientComm;
 import com.cclab.core.network.Message;
+import com.cclab.core.redundancy.BootObserver;
+import com.cclab.core.redundancy.BootSettings;
 import com.cclab.core.redundancy.MasterObserver;
 import com.cclab.core.utils.NodeLogger;
 import com.cclab.core.utils.NodeUtils;
@@ -56,7 +58,8 @@ public class BackupInstance extends NodeInstance {
             // Notify all Workers.
             broadcastMasterSwitch();
 
-//            new BootObserver(myMasterName, BootSettings.backup(myMasterName, myName, myIP));
+            if (!NodeUtils.testModeOn)
+                new BootObserver(myMasterName, BootSettings.backup(myMasterName, myName, myIP));
 
             // Kill self
             safeShutDown();

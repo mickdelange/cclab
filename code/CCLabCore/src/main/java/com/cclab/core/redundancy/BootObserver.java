@@ -1,19 +1,16 @@
 package com.cclab.core.redundancy;
 
-import com.cclab.core.AwsConnect;
-import com.cclab.core.utils.NodeLogger;
-import com.jcraft.jsch.Channel;
-import com.jcraft.jsch.ChannelExec;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.Session;
+import com.jcraft.jsch.*;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import com.cclab.core.AwsConnect;
+import com.cclab.core.utils.NodeLogger;
+
 /**
  * Thread that initialises a machine when it finished booting.
- *
  * @author Mick de Lange
  */
 public class BootObserver extends Thread {
@@ -35,8 +32,6 @@ public class BootObserver extends Thread {
             jarPath = "";
             pemPath = "";
         }
-
-        run();
     }
 
     /**
@@ -45,15 +40,17 @@ public class BootObserver extends Thread {
     public void run() {
         String currState;
         try {
-            while (!shouldExit) {
+            while(true) {
+                if(shouldExit) // Stop the loop.
+                    break;
+
                 Thread.sleep(interval);
 
                 currState = AwsConnect.getInstanceState(instanceId);
                 if (currState.equals("running")) {
-                    // Run the jar
-                    sendCommand();
-
-                    quit(); // Work is done
+                    //  Send the command, quit if successful
+                    if (sendCommand())
+                        quit(); // Work is done
                 }
             }
         } catch (InterruptedException e) {
@@ -64,11 +61,12 @@ public class BootObserver extends Thread {
     /**
      * Send SSH command to run jar on instance.
      */
-    private void sendCommand() {
+    private boolean sendCommand() {
         JSch jsch = new JSch();
         String ip = AwsConnect.getInstancePrivIP(instanceId);
 
-        try {
+        try
+        {
             jsch.addIdentity(pemPath);
             Session session = jsch.getSession("ubuntu", ip, 22);
             java.util.Properties config = new java.util.Properties();
@@ -87,34 +85,44 @@ public class BootObserver extends Thread {
             channel.connect();
 
             byte[] tmp = new byte[1024];
-            while (true) {
-                while (in.available() > 0) {
+            while (true)
+            {
+                while (in.available() > 0)
+                {
                     int i = in.read(tmp, 0, 1024);
                     if (i < 0)
                         break;
                     NodeLogger.get().info(new String(tmp, 0, i));
                 }
-                if (channel.isClosed()) {
+                if (channel.isClosed())
+                {
                     NodeLogger.get().info("exit-status: " + channel.getExitStatus());
                     break;
                 }
-                try {
+                try
+                {
                     Thread.sleep(1000);
-                } catch (Exception ee) {
+                }
+                catch (Exception ee)
+                {
                     NodeLogger.get().error(ee.getMessage());
                 }
             }
 
             channel.disconnect();
             session.disconnect();
-        } catch (Exception e) {
+
+            return true;
+        }
+        catch (Exception e)
+        {
             NodeLogger.get().error(e.getMessage());
         }
+        return false;
     }
 
     /**
      * Get the properties from the config file.
-     *
      * @return True if succeeded, False otherwise.
      */
     public boolean loadProperties() {
@@ -142,7 +150,7 @@ public class BootObserver extends Thread {
     /**
      * Kill observer thread.
      */
-    public void quit() {
+    public void quit(){
         shouldExit = true;
     }
 
