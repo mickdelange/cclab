@@ -42,6 +42,14 @@ B.I. Ghit\\
 
 % 2. Abstract: a description of the problem, system description, analysis overview, and one main result. Size: one paragraph with at most 150 words.
 \begin{abstract}
+This report analyses the opportunity for WantCloud to apply an IaaS system to process their image blurring workload.
+WantCloud has irregular loads on their current system and wants an efficient way to deal with this, giving optimal speed and keeping costs low.
+Furthermore, WantCloud wants to improve the reliability of the system by eliminating the single point of failure.
+The proposed system uses the Amazon Compute Cloud to host a number of machines that perform the tasks.
+These Worker nodes are directed by a Master node, which assigns the tasks through a Scheduler.
+A Backup node ensures reliability by monitoring the Master and taking over if necessary.
+To verify the usability, the processing times, overhead and recovery times of the proposed system were analysed.
+From this it followed that the system offers flexibility, reliability and faster image processing, whilst minimising overhead and costs.
 \end{abstract}
 
 % 3. Introduction (recommended size, including points 1 and 2: 1 page): describe the
@@ -499,7 +507,7 @@ The current policy is set to 5, which is a more safe choice.
 % TODO: discuss costs in long term use of this cloud system (see discussion in Scheduler Performance results)
 % TODO: update & mention the time sheet in Appendix A
 
-Our experiments reveal that the computation time needed to apply Gaussian blurring to arbitrary workloads can, indeed, be reduced drastically using a IaaS-based cloud solution. 
+Our experiments reveal that the computation time needed to apply Gaussian blurring to arbitrary workloads can, indeed, be reduced drastically using an IaaS-based cloud solution. 
 We obtained a 60\% decrease in processing time for our test set, running on a 4-Worker-node configuration. 
 Of course, it is worth mentioning that the base case of our experiments consisted of a single-core virtual machine running the computation. 
 A comparison to WantCloud's actual server-based set-up might show less of an improvement.
@@ -522,7 +530,7 @@ The configuration depends on WantCloud's chosen policies, but the same calculati
 % 8. Conclusion
 \section{Conclusion}
 \label{sec:conclusion}
-This report has analysed a IaaS-based cloud solution for WantCloud, a company wishing to provide advanced image processing services to its customers.
+This report has analysed an IaaS-based cloud solution for WantCloud, a company wishing to provide advanced image processing services to its customers.
  Firstly, we put together a thorough description of the target workload and computation needs of WantCloud's Gaussian blur application. 
 Secondly, we proposed a system design meant to fit the requirements, while exploring the capabilities of a cloud-based solution.
 We then dove into a detailed analysis of the architecture and implementation, as well as the versatility of its configuration.
