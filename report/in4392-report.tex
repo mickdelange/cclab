@@ -514,9 +514,9 @@ WantCloud can have full control in adjusting the balance between performance and
 Purchasing hardware upgrades to prepare for peak loads is not as flexible as dynamic provisioning and can incur very high short-term costs with a long amortization period. 
 Moreover, for most of the time, these resources remain unused. 
 Our cost analysis for the configurations presented here give insight into the regular costs of using the cloud solution. 
- Let us consider a peak of only 4 hours per day when Scheduler 4 is needed, with 2 hours of less use with Scheduler 3, another 2 hours of Scheduler 2 and the rest of the day with low utilization (Scheduler1). 
-The total costs amount to 9\euro/day, 270\euro/month, and 3,240\euro/year.
- Of course, the configuration depends on WantCloud's chosen policies, but the same formula can be used by them to dynamically adjust to the right performance/cost ratio.
+Let us consider a peak of only 4 hours per day where 4 Workers are needed, 2 hours per day where 3 Workers are needed, another 2 hours where 2 Workers are needed, and the rest of the day with little to no utilization (1 or 0 Workers).
+The total costs amount to roughly \EUR{9}/day, \EUR{270}/month, or \EUR{3,240}/year.
+The configuration depends on WantCloud's chosen policies, but the same calculation can be used by them to dynamically adjust to the right performance/cost ratio.
 
 
 % 8. Conclusion
@@ -529,8 +529,8 @@ We then dove into a detailed analysis of the architecture and implementation, as
 This was followed by a series of experiments to measure the system's performance, to infer cost projections, to test recovery capabilities and scalability.
 Finally, we discussed our findings and concluded that the system is, indeed a viable option for WantCloud.
 
-An overview of the time spent on this project can be found under appendix \ref{app:a}.
-The source code of our solution and indications for using it can be found in the aforementioned GitHub repository\cite{web:git}.
+An overview of the time spent on this project and its experiments can be found in appendix \ref{app:a}.
+The source code of our solution and instructions for using it can be found in the aforementioned GitHub repository\cite{web:git}.
 
 \bibliography{references}{}
 \bibliographystyle{plain}
@@ -546,19 +546,49 @@ The following table documents the time spent working on specific parts of the as
 	\hline
 	Part & Time (hrs) \\ \hline \hline
 	% the  = total amount of time spent in completing WantOne CTO’s assignment (the large exercise).
-	\texttt{total-time} & 50\\ \hline
+	\texttt{total-time} & 115\\ \hline
 	% the think-time = total amount of time spent in thinking about how to solve WantOne CTO’s assignment (the large exercise).
-	\texttt{think-time} & 8\\ \hline
+	\texttt{think-time} & 10\\ \hline
 	% the dev-time = total amount of time spent in developing the code needed to solve WantOne CTO’s assignment (the large exercise).
-	\texttt{dev-time} & 40\\ \hline
+	\texttt{dev-time} & 50\\ \hline
 	% the xp-time = total amount of time spent in experiments for WantOne CTO’s assignment (the large exercise).
-	\texttt{xp-time} & 0\\ \hline
-	% the analysis-time = total amount of time spent in analyzing the results of the experiments for WantOne CTO’s assignment (the large exercise).
-	\texttt{analysis-time} & 0\\ \hline
+	\texttt{xp-time} & 20\\ \hline
+	% the analysis-time = total amount of time spent in analysing the results of the experiments for WantOne CTO’s assignment (the large exercise).
+	\texttt{analysis-time} & 10\\ \hline
 	% the write-time = total amount of time spent in writing this report
-	\texttt{write-time} & 2\\ \hline
+	\texttt{write-time} & 20\\ \hline
 	% the wasted-time = total amount of time spent in activities related to WantOne CTO’s assignment (the large exercise), but which cannot be charged as think-time, dev-time, xp-time, analysis-time, or write-time
-	\texttt{wasted-time} & 0\\ \hline
+	\texttt{wasted-time} & 5\\ \hline
+\end{tabular}
+
+The following table documents the time spent on the Scheduler Performance experiment.
+
+\begin{tabular}{ | l | r | }
+	\hline
+	Part & Time (hrs) \\ \hline \hline
+	\texttt{total-time} & 9\\ \hline
+	\texttt{dev-time} & 6\\ \hline
+	\texttt{setup-time} & 3\\ \hline
+\end{tabular}
+
+The following table documents the time spent on the Time To Recover Master experiment.
+
+\begin{tabular}{ | l | r | }
+	\hline
+	Part & Time (hrs) \\ \hline \hline
+	\texttt{total-time} & 8\\ \hline
+	\texttt{dev-time} & 6\\ \hline
+	\texttt{setup-time} & 2\\ \hline
+\end{tabular}
+
+The following table documents the time spent on the Time To Boot experiment.
+
+\begin{tabular}{ | l | r | }
+	\hline
+	Part & Time (hrs) \\ \hline \hline
+	\texttt{total-time} & 3\\ \hline
+	\texttt{dev-time} & 2\\ \hline
+	\texttt{setup-time} & 1\\ \hline
 \end{tabular}
 
 \end{document}
