@@ -511,7 +511,12 @@ Moreover, the system can scale its resource usage according to WantCloud's requi
 As our results reveal, it takes only a few seconds for a new node to be booted up and take on some of the system's processing load. 
 
 WantCloud can have full control in adjusting the balance between performance and cost. 
-Purchasing hardware upgrades to prepare for peak loads is not as flexible as dynamic provisioning and can incur very high short-term costs with a long amortization period. Moreover, for most of the time, these resources remain unused. 
+Purchasing hardware upgrades to prepare for peak loads is not as flexible as dynamic provisioning and can incur very high short-term costs with a long amortization period. 
+Moreover, for most of the time, these resources remain unused. 
+Our cost analysis for the configurations presented here give insight into the regular costs of using the cloud solution. 
+ Let us consider a peak of only 4 hours per day when Scheduler 4 is needed, with 2 hours of less use with Scheduler 3, another 2 hours of Scheduler 2 and the rest of the day with low utilization (Scheduler1). 
+The total costs amount to 9\euro/day, 270\euro/month, and 3,240\euro/year.
+ Of course, the configuration depends on WantCloud's chosen policies, but the same formula can be used by them to dynamically adjust to the right performance/cost ratio.
 
 
 % 8. Conclusion
@@ -524,8 +529,8 @@ We then dove into a detailed analysis of the architecture and implementation, as
 This was followed by a series of experiments to measure the system's performance, to infer cost projections, to test recovery capabilites and scalability.
 Finally, we discussed our findings and concluded that the system is, indeed a viable option for WantCloud.
 
-An overview of the time spent on this project can be found under !TODO ref appendix!. 
-The source code of our solution and indications for using it can be found in the afore mentioned GitHub repository\cite{web:git}.
+An overview of the time spent on this project can be found under appendix \ref{app:a}.
+The source code of our solution and indications for using it can be found in the aforementioned GitHub repository\cite{web:git}.
 
 \bibliography{references}{}
 \bibliographystyle{plain}
@@ -533,6 +538,7 @@ The source code of our solution and indications for using it can be found in the
 \appendix
 % 9. Appendix A: Time sheets (see Section E)
 \section{Time sheet}
+\label{app:a}
 
 The following table documents the time spent working on specific parts of the assignment.
 
