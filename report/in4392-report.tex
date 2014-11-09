@@ -460,7 +460,7 @@ The relevant time is measured from the moment the Master node sends a request to
 At that moment the Worker node is ready to accept tasks.
 
 \subsubsection{Experiment}
-For this experiment the existing implementation was used, with a small addition.
+For this experiment, the existing implementation was used, with a small addition.
 To measure only the time it takes to start an instance as well as run the Worker software on it, a specific command was added to the Master implementation.
 This command allows to start the process of booting up a new Worker, as would normally happen through the Scheduler, but without the processing of tasks.
 
@@ -497,13 +497,35 @@ The current policy is set to 5, which is a more safe choice.
 \section{Discussion}
 \label{sec:discussion}
 % TODO: discuss costs in long term use of this cloud system (see discussion in Scheduler Performance results)
-
 % TODO: update & mention the time sheet in Appendix A
+
+Our experiments reveal that the computation time needed to apply Gaussian blurring to arbitrary workloads can, indeed, be reduced drastically using a IaaS-based cloud solution. 
+We obtained a 60\% decrease in processing time for our test set, running on a 4-Worker-node configuration. 
+Of course, it is worth mentioning that the base case of our experiments consisted of a single-core virtual machine running the computation. 
+A comparison to WantCloud's actual server-based setup might show less of an improvement.
+
+However, our solution does remove the single-point-of-failure risk that comes with WantCloud's current approach.
+We have shown that the system can recover in due time from any node failure, while only adding a neglijable amount of overhead in processing.
+
+Moreover, the system can scale its resource usage according to WantCloud's requirements with minimal configuration on their part. 
+As our results reveal, it takes only a few seconds for a new node to be booted up and take on some of the system's processing load. 
+
+WantCloud can have full control in adjusting the balance between performance and cost. 
+Purchasing hardware upgrades to prepare for peak loads is not as flexible as dynamic provisioning and can incur very high short-term costs with a long amortization period. Moreover, for most of the time, these resources remain unused. 
 
 
 % 8. Conclusion
 \section{Conclusion}
 \label{sec:conclusion}
+This report has analyzed a IaaS-based cloud solution for WantCloud, a company wishing to provide advanced image processing services to its customers.
+ Firstly, we put together a thorough description of the target workload and computation needs of WantCloud's Gaussian blur application. 
+Secondly, we proposed a system design meant to fit the requirements, while exploring the capabilities of a cloud-based solution.
+We then dove into a detailed analysis of the architecture and implementation, as well as the versatility of its configuration.
+This was followed by a series of experiments to measure the system's performance, to infer cost projections, to test recovery capabilites and scalability.
+Finally, we discussed our findings and concluded that the system is, indeed a viable option for WantCloud.
+
+An overview of the time spent on this project can be found under !TODO ref appendix!. 
+The source code of our solution and indications for using it can be found in the afore mentioned GitHub repository\cite{web:git}.
 
 \bibliography{references}{}
 \bibliographystyle{plain}
