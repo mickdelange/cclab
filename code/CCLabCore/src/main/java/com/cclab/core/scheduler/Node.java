@@ -97,7 +97,7 @@ public class Node {
                 // Kill node
                 stop();
             } // Machine has unexpectedly quit
-            else if (state != State.STOPPED && !currState.equals("running")) {
+            else if ((state == State.WORKING || state == State.IDLE) && !currState.equals("running")) {
                 NodeLogger.get().error("Node " + instanceId + " has unexpectedly quit.");
                 switchState(State.STOPPED);
             } // Machine has been IDLE for a long time
@@ -121,9 +121,10 @@ public class Node {
             switchState(State.STARTING);
             System.out.println("TESTMODE: " + instanceId + " was started.");
             return true;
-        } else if (AwsConnect.startInstance(instanceId)) {
-            // Observer booting up
-            new BootObserver(instanceId, BootSettings.worker(instanceId, myMaster.myIP));
+        } else if(AwsConnect.startInstance(instanceId)) {
+            // Run observer in new thread to monitor boot process.
+            BootObserver bO = new BootObserver(instanceId, BootSettings.worker(instanceId, myMaster.myIP));
+            new Thread(bO).start();
             switchState(State.STARTING);
             return true;
         }

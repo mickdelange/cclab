@@ -84,6 +84,11 @@ public class MasterInstance extends NodeInstance {
                 System.out.println("Next task: " + inputId);
                 return true;
             }
+            if (command[0].equals("boot")) {
+                scheduler.startNode(command[1]);
+                return true;
+            }
+	            
         } catch (Exception e) {
             NodeLogger.get().error("Error interpreting command " + NodeUtils.join(command, " ") + " (" + e.getMessage() + ")", e);
         }
@@ -208,6 +213,7 @@ public class MasterInstance extends NodeInstance {
 
     @Override
     public void nodeConnected(String name) {
+    	NodeLogger.getBoot().info("CONNECTED_" + name);
         super.nodeConnected(name);
         if (name.equals(myBackupName)) {
             // Handle connection to backup node

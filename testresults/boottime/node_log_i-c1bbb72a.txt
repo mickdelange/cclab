@@ -1,0 +1,72 @@
+2014-11-08 22:18:21,102 [main] INFO  full  - Server communicator is now online
+2014-11-08 22:18:21,103 [main] INFO  full  - Listening on port 9026
+2014-11-08 22:18:23,116 [main] INFO  full  - Database initializing under /home/ubuntu/cclab
+2014-11-08 22:18:23,116 [main] WARN  full  - No initial input in database
+2014-11-08 22:18:33,717 [Thread-1] DEBUG full  - Received command boot i-56afa3bd.
+2014-11-08 22:18:34,064 [Thread-1] DEBUG full  - Node i-56afa3bd switching state to STARTING
+2014-11-08 22:18:55,629 [Thread-5] ERROR full  - java.net.ConnectException: Connection refused
+2014-11-08 22:19:00,381 [Thread-2] INFO  full  - Connection from: /172.31.23.86:55703
+2014-11-08 22:19:00,402 [Thread-2] DEBUG full  - Receiving message of size 155
+2014-11-08 22:19:00,416 [Thread-2] DEBUG full  - Received Message[0][PING] from i-56afa3bd (null)
+2014-11-08 22:19:00,417 [Thread-2] INFO  full  - Client i-56afa3bd has connected.
+2014-11-08 22:19:00,417 [Thread-2] INFO  full  - Node connected: i-56afa3bd
+2014-11-08 22:19:00,417 [Thread-2] INFO  full  - Node i-56afa3bd has finished booting up.
+2014-11-08 22:19:00,418 [Thread-2] DEBUG full  - Node i-56afa3bd switching state to IDLE
+2014-11-08 22:19:01,160 [Thread-5] INFO  full  - 0    [main] INFO  full  - ClientComm communicator is now online
+2    [main] INFO  full  - Connecting to 172.31.31.101:9026
+18   [main] INFO  full  - Server communicator is now online
+18   [main] INFO  full  - Listening on port 9026
+37   [Thread-2] INFO  full  - Sent data for Message[0][PING] from i-56afa3bd (null)
+
+2014-11-08 22:19:49,235 [Thread-1] DEBUG full  - Received command boot i-1bb57cfa.
+2014-11-08 22:19:49,593 [Thread-1] DEBUG full  - Node i-1bb57cfa switching state to STARTING
+2014-11-08 22:20:15,053 [Thread-9] ERROR full  - java.net.ConnectException: Connection refused
+2014-11-08 22:20:19,874 [Thread-2] INFO  full  - Connection from: /172.31.40.114:60359
+2014-11-08 22:20:19,905 [Thread-2] DEBUG full  - Receiving message of size 155
+2014-11-08 22:20:19,905 [Thread-2] DEBUG full  - Received Message[0][PING] from i-1bb57cfa (null)
+2014-11-08 22:20:19,905 [Thread-2] INFO  full  - Client i-1bb57cfa has connected.
+2014-11-08 22:20:19,906 [Thread-2] INFO  full  - Node connected: i-1bb57cfa
+2014-11-08 22:20:19,906 [Thread-2] INFO  full  - Node i-1bb57cfa has finished booting up.
+2014-11-08 22:20:19,906 [Thread-2] DEBUG full  - Node i-1bb57cfa switching state to IDLE
+2014-11-08 22:20:20,548 [Thread-9] INFO  full  - 0    [main] INFO  full  - ClientComm communicator is now online
+1    [main] INFO  full  - Connecting to 172.31.31.101:9026
+18   [main] INFO  full  - Server communicator is now online
+18   [main] INFO  full  - Listening on port 9026
+42   [Thread-2] INFO  full  - Sent data for Message[0][PING] from i-1bb57cfa (null)
+
+2014-11-08 22:20:41,003 [Thread-1] DEBUG full  - Received command boot i-4b5f8faa.
+2014-11-08 22:20:41,340 [Thread-1] DEBUG full  - Node i-4b5f8faa switching state to STARTING
+2014-11-08 22:21:06,736 [Thread-13] ERROR full  - java.net.ConnectException: Connection refused
+2014-11-08 22:21:11,622 [Thread-2] INFO  full  - Connection from: /172.31.34.146:59280
+2014-11-08 22:21:11,654 [Thread-2] DEBUG full  - Receiving message of size 155
+2014-11-08 22:21:11,654 [Thread-2] DEBUG full  - Received Message[0][PING] from i-4b5f8faa (null)
+2014-11-08 22:21:11,655 [Thread-2] INFO  full  - Client i-4b5f8faa has connected.
+2014-11-08 22:21:11,655 [Thread-2] INFO  full  - Node connected: i-4b5f8faa
+2014-11-08 22:21:11,655 [Thread-2] INFO  full  - Node i-4b5f8faa has finished booting up.
+2014-11-08 22:21:11,655 [Thread-2] DEBUG full  - Node i-4b5f8faa switching state to IDLE
+2014-11-08 22:21:12,047 [Thread-13] INFO  full  - 0    [main] INFO  full  - ClientComm communicator is now online
+1    [main] INFO  full  - Connecting to 172.31.31.101:9026
+18   [main] INFO  full  - Server communicator is now online
+19   [main] INFO  full  - Listening on port 9026
+47   [Thread-2] INFO  full  - Sent data for Message[0][PING] from i-4b5f8faa (null)
+
+2014-11-08 22:21:35,275 [Thread-1] DEBUG full  - Received command boot i-485f8fa9.
+2014-11-08 22:21:35,607 [Thread-1] DEBUG full  - Node i-485f8fa9 switching state to STARTING
+2014-11-08 22:21:57,012 [Thread-17] ERROR full  - java.net.ConnectException: Connection refused
+2014-11-08 22:22:16,609 [Thread-2] INFO  full  - Connection from: /172.31.34.145:39261
+2014-11-08 22:22:16,632 [Thread-2] DEBUG full  - Receiving message of size 155
+2014-11-08 22:22:16,632 [Thread-2] DEBUG full  - Received Message[0][PING] from i-485f8fa9 (null)
+2014-11-08 22:22:16,632 [Thread-2] INFO  full  - Client i-485f8fa9 has connected.
+2014-11-08 22:22:16,632 [Thread-2] INFO  full  - Node connected: i-485f8fa9
+2014-11-08 22:22:16,632 [Thread-2] INFO  full  - Node i-485f8fa9 has finished booting up.
+2014-11-08 22:22:16,633 [Thread-2] DEBUG full  - Node i-485f8fa9 switching state to IDLE
+2014-11-08 22:22:17,397 [Thread-17] INFO  full  - 0    [main] INFO  full  - ClientComm communicator is now online
+1    [main] INFO  full  - Connecting to 172.31.31.101:9026
+16   [main] INFO  full  - Server communicator is now online
+16   [main] INFO  full  - Listening on port 9026
+38   [Thread-2] INFO  full  - Sent data for Message[0][PING] from i-485f8fa9 (null)
+
+2014-11-08 22:22:51,258 [Thread-1] DEBUG full  - Received command boot i-3eb27bdf.
+2014-11-08 22:25:59,864 [Thread-1] DEBUG full  - Received command boot i-3eb27bdf.
+2014-11-08 22:26:02,824 [Thread-1] DEBUG full  - Received command quit.
+2014-11-08 22:26:02,825 [Thread-2] WARN  full  - Communicator disconnected

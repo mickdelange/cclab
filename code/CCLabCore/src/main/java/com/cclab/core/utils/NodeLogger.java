@@ -51,6 +51,10 @@ public class NodeLogger {
         return Logger.getLogger("monitor.tasking");
     }
 
+    public static Logger getBoot() {
+        return Logger.getLogger("monitor.boot");
+    }
+
     public static Logger getFailure() {
         return Logger.getLogger("monitor.failure");
     }
