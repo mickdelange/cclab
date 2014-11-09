@@ -1,0 +1,40 @@
+2014-11-09 20:12:29,073 [Thread-3] INFO  monitor.tasking  - ASSIGN_pears (copy).jpg_i-56afa3bd
+2014-11-09 20:13:02,664 [Thread-3] INFO  monitor.tasking  - ASSIGN_apple.jpeg_i-56afa3bd
+2014-11-09 20:13:02,665 [Thread-2] INFO  monitor.tasking  - DONE_pears (copy).jpg_i-56afa3bd
+2014-11-09 20:13:03,880 [Thread-2] INFO  monitor.tasking  - DONE_apple.jpeg_i-56afa3bd
+2014-11-09 20:13:03,888 [Thread-3] INFO  monitor.tasking  - ASSIGN_strawberry (copy).jpg_i-56afa3bd
+2014-11-09 20:13:58,696 [Thread-3] INFO  monitor.tasking  - ASSIGN_banana (6th copy).jpg_i-56afa3bd
+2014-11-09 20:13:58,696 [Thread-2] INFO  monitor.tasking  - DONE_strawberry (copy).jpg_i-56afa3bd
+2014-11-09 20:14:34,518 [Thread-3] INFO  monitor.tasking  - ASSIGN_banana (copy).jpg_i-56afa3bd
+2014-11-09 20:14:34,518 [Thread-2] INFO  monitor.tasking  - DONE_banana (6th copy).jpg_i-56afa3bd
+2014-11-09 20:15:10,324 [Thread-3] INFO  monitor.tasking  - ASSIGN_banana.jpg_i-56afa3bd
+2014-11-09 20:15:10,324 [Thread-2] INFO  monitor.tasking  - DONE_banana (copy).jpg_i-56afa3bd
+2014-11-09 20:15:45,991 [Thread-3] INFO  monitor.tasking  - ASSIGN_pears (3rd copy).jpg_i-56afa3bd
+2014-11-09 20:15:45,991 [Thread-2] INFO  monitor.tasking  - DONE_banana.jpg_i-56afa3bd
+2014-11-09 20:16:22,626 [Thread-3] INFO  monitor.tasking  - ASSIGN_banana (4th copy).jpg_i-56afa3bd
+2014-11-09 20:16:22,627 [Thread-2] INFO  monitor.tasking  - DONE_pears (3rd copy).jpg_i-56afa3bd
+2014-11-09 20:16:58,297 [Thread-3] INFO  monitor.tasking  - ASSIGN_apple (3rd copy).jpeg_i-56afa3bd
+2014-11-09 20:16:58,297 [Thread-2] INFO  monitor.tasking  - DONE_banana (4th copy).jpg_i-56afa3bd
+2014-11-09 20:16:59,202 [Thread-3] INFO  monitor.tasking  - ASSIGN_pears (6th copy).jpg_i-56afa3bd
+2014-11-09 20:16:59,203 [Thread-2] INFO  monitor.tasking  - DONE_apple (3rd copy).jpeg_i-56afa3bd
+2014-11-09 20:17:35,833 [Thread-3] INFO  monitor.tasking  - ASSIGN_pears (another copy).jpg_i-56afa3bd
+2014-11-09 20:17:35,833 [Thread-2] INFO  monitor.tasking  - DONE_pears (6th copy).jpg_i-56afa3bd
+2014-11-09 20:18:12,353 [Thread-3] INFO  monitor.tasking  - ASSIGN_apple (copy).jpeg_i-56afa3bd
+2014-11-09 20:18:12,353 [Thread-2] INFO  monitor.tasking  - DONE_pears (another copy).jpg_i-56afa3bd
+2014-11-09 20:18:13,253 [Thread-3] INFO  monitor.tasking  - ASSIGN_banana (5th copy).jpg_i-56afa3bd
+2014-11-09 20:18:13,253 [Thread-2] INFO  monitor.tasking  - DONE_apple (copy).jpeg_i-56afa3bd
+2014-11-09 20:18:48,917 [Thread-3] INFO  monitor.tasking  - ASSIGN_banana (another copy).jpg_i-56afa3bd
+2014-11-09 20:18:48,917 [Thread-2] INFO  monitor.tasking  - DONE_banana (5th copy).jpg_i-56afa3bd
+2014-11-09 20:19:24,547 [Thread-3] INFO  monitor.tasking  - ASSIGN_pears.jpg_i-56afa3bd
+2014-11-09 20:19:24,547 [Thread-2] INFO  monitor.tasking  - DONE_banana (another copy).jpg_i-56afa3bd
+2014-11-09 20:20:00,936 [Thread-2] INFO  monitor.tasking  - DONE_pears.jpg_i-56afa3bd
+2014-11-09 20:20:00,937 [Thread-3] INFO  monitor.tasking  - ASSIGN_strawberry.jpg_i-56afa3bd
+2014-11-09 20:20:55,195 [Thread-3] INFO  monitor.tasking  - ASSIGN_pears (5th copy).jpg_i-56afa3bd
+2014-11-09 20:20:55,195 [Thread-2] INFO  monitor.tasking  - DONE_strawberry.jpg_i-56afa3bd
+2014-11-09 20:21:31,637 [Thread-3] INFO  monitor.tasking  - ASSIGN_banana (3rd copy).jpg_i-56afa3bd
+2014-11-09 20:21:31,637 [Thread-2] INFO  monitor.tasking  - DONE_pears (5th copy).jpg_i-56afa3bd
+2014-11-09 20:22:07,349 [Thread-3] INFO  monitor.tasking  - ASSIGN_pears (4th copy).jpg_i-56afa3bd
+2014-11-09 20:22:07,349 [Thread-2] INFO  monitor.tasking  - DONE_banana (3rd copy).jpg_i-56afa3bd
+2014-11-09 20:22:43,679 [Thread-3] INFO  monitor.tasking  - ASSIGN_apple (another copy).jpeg_i-56afa3bd
+2014-11-09 20:22:43,680 [Thread-2] INFO  monitor.tasking  - DONE_pears (4th copy).jpg_i-56afa3bd
+2014-11-09 20:22:44,578 [Thread-2] INFO  monitor.tasking  - DONE_apple (another copy).jpeg_i-56afa3bd
